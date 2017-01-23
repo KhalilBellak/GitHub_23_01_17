@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+{
+    UIImagePickerController *picker;
+    UIImage *image;
+    
+    __strong IBOutlet UIImageView *imageViewArea1;
+    __strong IBOutlet UIButton *buttonArea1;
+}
 
+- (IBAction)pressButtonArea:(id)sender forEvent:(UIEvent *)event;
 
 @end
 
