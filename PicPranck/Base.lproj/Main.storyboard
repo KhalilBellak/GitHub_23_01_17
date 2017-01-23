@@ -55,17 +55,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-Am-p9w">
-                                <rect key="frame" x="68" y="281" width="240" height="160"/>
+                                <rect key="frame" x="67" y="281" width="240" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKK-Zd-chr">
+                                <rect key="frame" x="67" y="282" width="238.99999999999994" height="159.99999999999989"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="pressButtonArea:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zc7-0i-bMU"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="asw-Ac-Yqg">
-                                <rect key="frame" x="68" y="440" width="240" height="160"/>
+                                <rect key="frame" x="67" y="440" width="240" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wp-j6-YVP">
-                                <rect key="frame" x="68" y="121" width="239" height="160"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZ2-HT-wmz">
+                                <rect key="frame" x="68" y="440" width="238.99999999999994" height="159.99999999999989"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="pressButtonArea:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GPe-4V-0Y4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wp-j6-YVP">
+                                <rect key="frame" x="67" y="122" width="238.99999999999994" height="159.99999999999989"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="pressButtonArea:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ga5-8h-ubh"/>
                                 </connections>
@@ -78,7 +91,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buttonArea1" destination="9Wp-j6-YVP" id="qXH-1y-YEX"/>
+                        <outlet property="buttonArea2" destination="hKK-Zd-chr" id="SWW-bn-yrf"/>
+                        <outlet property="buttonArea3" destination="kZ2-HT-wmz" id="HKn-9R-ZkB"/>
                         <outlet property="imageViewArea1" destination="pup-fg-WGr" id="PUC-sM-0h5"/>
+                        <outlet property="imageViewArea2" destination="Ngr-Am-p9w" id="K7L-dg-GvP"/>
+                        <outlet property="imageViewArea3" destination="asw-Ac-Yqg" id="63G-gC-WZN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

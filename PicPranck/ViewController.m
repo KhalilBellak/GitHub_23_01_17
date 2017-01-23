@@ -22,14 +22,40 @@
 
 -(IBAction)pressButtonArea:(id)sender forEvent:(UIEvent *)event
 {
-    picker=[[UIImagePickerController alloc] init];
-    if(nil!=picker)
+    UIButton *button=(UIButton *)sender;
+    if(nil!=button)
     {
-        picker.delegate=self;
-        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [self presentViewController:picker animated:YES completion:NULL];
-        //[picker takePicture];
+        //if(button==buttonArea1)
+        picker=[[UIImagePickerController alloc] init];
+        if(nil!=picker)
+        {
+            picker.delegate=self;
+            [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            [self presentViewController:picker animated:YES completion:NULL];
+            
+            CGRect frame = picker.view.frame;
+            //int y = frame.size.height;
+            int x = frame.size.width;
+            
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x-100, 10, 100, 30)];
+            [button setTitle:@"Library" forState:UIControlStateNormal];
+            [button setBackgroundColor:[UIColor clearColor]];
+            [button addTarget:self action:@selector(gotoLibrary:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [picker.view addSubview:button];
+            
+        }
     }
+}
+-(IBAction)gotoLibrary:(id)sender
+{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    [imagePicker.view setFrame:CGRectMake(0, 80, 450, 350)];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    imagePicker.allowsEditing = YES;
+    [imagePicker setDelegate:self];
+    
+    [picker presentViewController:imagePicker animated:YES completion:nil];
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
@@ -43,14 +69,7 @@
 }
 //-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 //{
-//    if(nil!=segue)
-//    {
-//        if([segue.identifier containsString:@"area"])
-//        {
-//            UIViewController *vcDest=segue.destinationViewController;
-//            pickpranckcamera
-//        }
-//    }
+
 //}
 
 - (void)didReceiveMemoryWarning {

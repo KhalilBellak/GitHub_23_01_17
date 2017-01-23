@@ -13,8 +13,15 @@
     UIImagePickerController *picker;
     UIImage *image;
     
-    __strong IBOutlet UIImageView *imageViewArea1;
-    __strong IBOutlet UIButton *buttonArea1;
+    IBOutlet UIImageView *imageViewArea1;
+    IBOutlet UIButton *buttonArea1;
+    
+    IBOutlet UIButton *buttonArea2;
+    IBOutlet UIImageView *imageViewArea2;
+    
+    
+    IBOutlet UIButton *buttonArea3;
+    IBOutlet UIImageView *imageViewArea3;
 }
 
 - (IBAction)pressButtonArea:(id)sender forEvent:(UIEvent *)event;
