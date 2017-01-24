@@ -13,6 +13,9 @@
     UIImagePickerController *picker;
     UIImage *image;
     
+    IBOutlet UITapGestureRecognizer *doubleTapArea1;
+    IBOutlet UILabel *labelArea1;
+    
     IBOutlet UIImageView *imageViewArea1;
     IBOutlet UIButton *buttonArea1;
     
@@ -25,6 +28,7 @@
 }
 
 - (IBAction)pressButtonArea:(id)sender forEvent:(UIEvent *)event;
+- (IBAction)doubleTap:(id)sender;
 
 @end
 
