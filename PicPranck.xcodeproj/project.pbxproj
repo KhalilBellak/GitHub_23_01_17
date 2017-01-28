@@ -15,6 +15,7 @@
 		F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */; };
 		F9A19E091E34C0D700EE34E6 /* PicPranckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E081E34C0D700EE34E6 /* PicPranckTests.m */; };
 		F9A19E141E34C0D700EE34E6 /* PicPranckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */; };
+		F9C2B6DD1E3CB89200985102 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C2B6DC1E3CB89200985102 /* PicPranckTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		F9A19E0F1E34C0D700EE34E6 /* PicPranckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicPranckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicPranckUITests.m; sourceTree = "<group>"; };
 		F9A19E151E34C0D800EE34E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9C2B6DB1E3CB89200985102 /* PicPranckTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckTextView.h; sourceTree = SOURCE_ROOT; };
+		F9C2B6DC1E3CB89200985102 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */,
 				F9A19DF41E34C0D600EE34E6 /* ViewController.h */,
 				F9A19DF51E34C0D600EE34E6 /* ViewController.m */,
+				F9C2B6DB1E3CB89200985102 /* PicPranckTextView.h */,
+				F9C2B6DC1E3CB89200985102 /* PicPranckTextView.m */,
 				F9A19DF71E34C0D600EE34E6 /* Main.storyboard */,
 				F9A19DFA1E34C0D600EE34E6 /* Assets.xcassets */,
 				F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */,
@@ -275,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
+				F9C2B6DD1E3CB89200985102 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 			);

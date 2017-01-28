@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,
+    UITextFieldDelegate,UITextViewDelegate>
 {
     UIImagePickerController *picker;
     UIImage *image;
     
-    IBOutlet UITapGestureRecognizer *doubleTapArea1;
-    IBOutlet UILabel *labelArea1;
-    
+    //IBOutlet UITapGestureRecognizer *doubleTapArea1;
+    UITextField *textField;
+    UITextView *textView;
     IBOutlet UIImageView *imageViewArea1;
     IBOutlet UIButton *buttonArea1;
     
@@ -28,7 +29,5 @@
 }
 
 - (IBAction)pressButtonArea:(id)sender forEvent:(UIEvent *)event;
-- (IBAction)doubleTap:(id)sender;
-
 @end
 
