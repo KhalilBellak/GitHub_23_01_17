@@ -7,27 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,
-    UITextFieldDelegate,UITextViewDelegate>
+#import "PicPranckTextView.h"
+@interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 {
     UIImagePickerController *picker;
     UIImage *image;
     
-    //IBOutlet UITapGestureRecognizer *doubleTapArea1;
-    UITextField *textField;
-    UITextView *textView;
+    PicPranckTextView *textView1;
     IBOutlet UIImageView *imageViewArea1;
-    IBOutlet UIButton *buttonArea1;
     
-    IBOutlet UIButton *buttonArea2;
+
     IBOutlet UIImageView *imageViewArea2;
+    PicPranckTextView *textView2;
     
-    
-    IBOutlet UIButton *buttonArea3;
     IBOutlet UIImageView *imageViewArea3;
+    PicPranckTextView *textView3;
+    
+    //UITapGestureRecognizer *tapOnce;
+    //UITapGestureRecognizer *tapTwice;
 }
 
-- (IBAction)pressButtonArea:(id)sender forEvent:(UIEvent *)event;
 @end
 
