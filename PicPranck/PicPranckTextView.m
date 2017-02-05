@@ -11,59 +11,72 @@
 @implementation PicPranckTextView
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 -(void)addGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
     if([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]])
     {
-        //UITapGestureRecognizer *tapGestureRecognizer=(UITapGestureRecognizer *)gestureRecognizer;
         [super addGestureRecognizer:gestureRecognizer];
     }
 }
 -(void)initWithDelegate:(id<UITextViewDelegate> ) textViewDelegate ImageView:(UIImageView *)iImageView AndText:(NSString *)text
 {
-    //Initialization
-    self.imageView=imageView;
-    gestureView=[[UIView alloc]  init];
-    //Layout
-    [self setText:text];
-    self.frame=iImageView.frame;
-    self.delegate=textViewDelegate;
-    [self setBackgroundColor:[UIColor clearColor]];
-    
     self.tapsAcquired=0;
-    self.layer.frame=iImageView.frame;
+    self.editable=YES;
+    self.edited=NO;
+    self.delegate=textViewDelegate;
+    self.imageView=iImageView;
+    
+    //self.imageView=iImageView;
+    
+    UIColor *pColor=[UIColor whiteColor];
+    if([text length]>0)
+    {
+        //TODO: fill text with white (not transparent)
+        NSNumber *stroke=[[NSNumber alloc] init];
+        stroke=[NSNumber numberWithFloat:7.0];
+        NSDictionary *typingAttributes = @{
+                                           NSFontAttributeName: [UIFont fontWithName:@"Impact" size:22.0f],
+                                           NSForegroundColorAttributeName : pColor,
+                                           NSKernAttributeName : @(1.3f),
+                                           NSStrokeColorAttributeName : [UIColor blackColor],
+                                           NSStrokeWidthAttributeName :stroke
+                                           };
+        NSAttributedString *attributedText=[[NSAttributedString alloc] initWithString:text attributes:typingAttributes];
+        [self setAttributedText:attributedText ];
+    }
+    
+    //LAYOUT
+    self.frame=iImageView.frame;
+    [self setBackgroundColor:[UIColor clearColor]];
     self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
-    self.layer.borderColor=[[UIColor redColor]CGColor];
-    self.layer.borderWidth= 1.0f;
+    //self.layer.borderWidth= 1.0f;
+    [self.layer setBorderWidth:2.0f];
+    //UIColor *borderColor=iImageView.layer.borderColor;
+    [self.layer setBorderColor:iImageView.layer.borderColor];
+    
+    self.tapsAcquired=0;
+    
     [self setTextAlignment:NSTextAlignmentCenter];
+    //gesture view
+    self.gestureView=[[UIView alloc] init];
+    self.gestureView.frame=iImageView.frame;
+    [self.gestureView setBackgroundColor:[UIColor clearColor]];
     
-    
-    [[self layer] setBorderWidth:2.0f];
-    [[self layer] setBorderColor:[UIColor blueColor].CGColor];
 }
-//-(BOOL)canBecomeFirstResponder
-//{
-//    BOOL result=NO;
-//    if(2==self.tapsAcquired)
-//        result=YES;
-//    return result;
-//}
-//-(void)removeGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-//{
-//
-//}
 //-(BOOL)becomeFirstResponder
 //{
 //    if(2==self.tapsAcquired)
+//    {
+//        NSLog(@"becomeFirstResponder");
 //        return [super becomeFirstResponder];
-//    else
-//        return NO;
+//    }
+//    return NO;
 //}
 @end
