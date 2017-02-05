@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface PicPranckTextView : UITextView
+
 @property NSInteger tapsAcquired;
 @property BOOL edited;
+@property UIImageView *imageView;
+@property UIView *gestureView;
 -(void)initWithDelegate:(id<UITextViewDelegate> )textViewDelegate ImageView:(UIImageView *)iImageView AndText:(NSString *)text;
 @end
