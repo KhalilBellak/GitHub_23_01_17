@@ -10,6 +10,12 @@
 #import "PicPranckTextView.h"
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 {
+    NSMutableArray *listOfTextViews;
+    NSMutableArray *listOfGestureViews;
+    
+    PicPranckTextView *tapedTextView;
+    UIColor *globalTint;
+    
     UIImagePickerController *picker;
     UIImage *image;
     
@@ -22,9 +28,7 @@
     
     IBOutlet UIImageView *imageViewArea3;
     PicPranckTextView *textView3;
-    
-    //UITapGestureRecognizer *tapOnce;
-    //UITapGestureRecognizer *tapTwice;
+
 }
 
 @end
