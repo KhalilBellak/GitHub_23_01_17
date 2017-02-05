@@ -22,6 +22,12 @@
     [self.view addSubview:button];
     [self.view bringSubviewToFront:button];
     
+    
+//    NSMutableArray *activityItems= [NSMutableArray arrayWithObjects:img, nil];
+//    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+//    activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,                                                         UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
+//    [self presentViewController:activityViewController animated:YES completion:nil];
+    
 //    UIGraphicsBeginImageContext(self.view.frame.size);
 //    //[[UIImage imageNamed:@"image.png"] drawInRect:self.view.bounds];
 //    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

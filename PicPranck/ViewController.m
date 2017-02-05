@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "PicPranckTextView.h"
-@interface ViewController ()//TEST 0
+@interface ViewController ()//TEST OF BRANCH
 
 @end
 #pragma mark -
@@ -32,11 +32,8 @@
             text=@"Visible Picture";
         PicPranckTextView *currTextView=[[PicPranckTextView alloc] init];
         [currTextView initWithDelegate:self ImageView:currImageView AndText:text];
-//        //Remove all gesture recognizers
-//        for (UIGestureRecognizer *recognizer in currTextView.gestureRecognizers)
-//            [self.view removeGestureRecognizer:recognizer];
-//        
-//        //Add gesture Recognizers
+
+        //Add gesture Recognizers
         UITapGestureRecognizer *tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnce:)];
         UITapGestureRecognizer *tapTwice = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTwice:)];
         tapOnce.cancelsTouchesInView=NO;
@@ -44,11 +41,6 @@
         tapOnce.numberOfTouchesRequired = 1;
         tapTwice.numberOfTapsRequired = 2;
         [tapOnce requireGestureRecognizerToFail:tapTwice];
-//        [currTextView addGestureRecognizer:tapOnce];
-//        [currTextView addGestureRecognizer:tapTwice];
-//        
-//        [listOfTextViews addObject:currTextView];
-//        [self.view addSubview:currTextView];
         //Remove all gesture recognizers
         for (UIGestureRecognizer *recognizer in currTextView.gestureView.gestureRecognizers)
             [self.view removeGestureRecognizer:recognizer];
@@ -62,10 +54,37 @@
         [listOfGestureViews addObject:currTextView.gestureView];
     }
 }
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-
-//}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+     if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
+     {
+         NSMutableArray *listOfImages=[[NSMutableArray alloc] init];
+         NSInteger maxWidth=0,totalHeight=0;
+         for(PicPranckTextView *currTextView in listOfTextViews)
+         {
+             UIImageView *currImageView=currTextView.imageView;
+             UIImage *currImage=currImageView.image;
+             [listOfImages addObject:currImage];
+             totalHeight+=currImage.size.height;
+             if(0==maxWidth)
+                 maxWidth=currImage.size.width;
+             else if(maxWidth<currImage.size.width)
+                 maxWidth=currImage.size.width;
+         }
+         CGSize size = CGSizeMake(maxWidth,totalHeight);
+         
+         UIGraphicsBeginImageContext(size);
+         NSInteger yBegining=0;
+         for(UIImage *currImage in listOfImages)
+         {
+             [currImage drawInRect:CGRectMake(0,yBegining,size.width,currImage.size.height)];
+             yBegining+=currImage.size.height;
+         }
+         UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+         UIGraphicsEndImageContext();
+         UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
+     }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -169,7 +188,8 @@
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    //textView.editable=YES;
+    UIColor *pWhiteColor=[UIColor whiteColor];
+   [textView setTextColor:pWhiteColor];
     
 }
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView
@@ -179,8 +199,6 @@
 }
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    //PicPranckTextView *picTextView=(PicPranckTextView *)textView;
-    //picTextView.tapsAcquired=0;
     textView.editable=NO;
     [textView endEditing:YES];
 }

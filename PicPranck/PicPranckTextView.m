@@ -34,23 +34,27 @@
     
     //self.imageView=iImageView;
     
-    UIColor *pColor=[UIColor whiteColor];
+    UIColor *pWhiteColor=[UIColor whiteColor];
+    
     if([text length]>0)
     {
         //TODO: fill text with white (not transparent)
         NSNumber *stroke=[[NSNumber alloc] init];
-        stroke=[NSNumber numberWithFloat:7.0];
+        stroke=[NSNumber numberWithFloat:-7.0];
         NSDictionary *typingAttributes = @{
                                            NSFontAttributeName: [UIFont fontWithName:@"Impact" size:22.0f],
-                                           NSForegroundColorAttributeName : pColor,
+                                           NSForegroundColorAttributeName : pWhiteColor,
                                            NSKernAttributeName : @(1.3f),
                                            NSStrokeColorAttributeName : [UIColor blackColor],
                                            NSStrokeWidthAttributeName :stroke
                                            };
-        NSAttributedString *attributedText=[[NSAttributedString alloc] initWithString:text attributes:typingAttributes];
+        NSMutableAttributedString *attributedText=[[NSMutableAttributedString alloc] initWithString:text attributes:typingAttributes];
+
         [self setAttributedText:attributedText ];
     }
     
+    //[self setTextColor:pWhiteColor];
+    //[self setAttributedTextColor:pWhiteColor];
     //LAYOUT
     self.frame=iImageView.frame;
     [self setBackgroundColor:[UIColor clearColor]];
