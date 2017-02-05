@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2541E47C30800B5FA26 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2521E47C30800B5FA26 /* AppViewController.m */; };
+		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
+		F904B2601E47D58000B5FA26 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F904B25C1E47D58000B5FA26 /* Bolts.framework */; };
+		F904B2611E47D58000B5FA26 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F904B25D1E47D58000B5FA26 /* FBSDKCoreKit.framework */; };
+		F904B2621E47D58000B5FA26 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F904B25E1E47D58000B5FA26 /* FBSDKLoginKit.framework */; };
+		F904B2631E47D58000B5FA26 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F904B25F1E47D58000B5FA26 /* FBSDKShareKit.framework */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
 		F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */; };
 		F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF51E34C0D600EE34E6 /* ViewController.m */; };
@@ -41,6 +46,11 @@
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2521E47C30800B5FA26 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
 		F904B2531E47C30800B5FA26 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
+		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		F904B25C1E47D58000B5FA26 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "FacebookSDKs-iOS-4.19.0/Bolts.framework"; sourceTree = "<group>"; };
+		F904B25D1E47D58000B5FA26 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "FacebookSDKs-iOS-4.19.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		F904B25E1E47D58000B5FA26 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "FacebookSDKs-iOS-4.19.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		F904B25F1E47D58000B5FA26 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "FacebookSDKs-iOS-4.19.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		F9A19DEB1E34C0D500EE34E6 /* PicPranck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicPranck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19DEF1E34C0D500EE34E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,6 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F904B2631E47D58000B5FA26 /* FBSDKShareKit.framework in Frameworks */,
+				F904B2601E47D58000B5FA26 /* Bolts.framework in Frameworks */,
+				F904B2611E47D58000B5FA26 /* FBSDKCoreKit.framework in Frameworks */,
+				F904B2621E47D58000B5FA26 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,9 +98,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F904B2591E47D53400B5FA26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F904B25C1E47D58000B5FA26 /* Bolts.framework */,
+				F904B25D1E47D58000B5FA26 /* FBSDKCoreKit.framework */,
+				F904B25E1E47D58000B5FA26 /* FBSDKLoginKit.framework */,
+				F904B25F1E47D58000B5FA26 /* FBSDKShareKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9A19DE21E34C0CD00EE34E6 = {
 			isa = PBXGroup;
 			children = (
+				F904B2591E47D53400B5FA26 /* Frameworks */,
 				F9A19DED1E34C0D500EE34E6 /* PicPranck */,
 				F9A19E071E34C0D700EE34E6 /* PicPranckTests */,
 				F9A19E121E34C0D700EE34E6 /* PicPranckUITests */,
@@ -127,6 +153,7 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F904B2571E47D4DB00B5FA26 /* Impact.ttf */,
 				F9A19DEF1E34C0D500EE34E6 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -257,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
 				F9A19DFB1E34C0D600EE34E6 /* Assets.xcassets in Resources */,
 				F9A19DF91E34C0D600EE34E6 /* Main.storyboard in Resources */,
@@ -436,6 +464,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDKs-iOS-4.19.0",
+				);
 				INFOPLIST_FILE = PicPranck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = khalil.PicPranck;
@@ -448,6 +480,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FacebookSDKs-iOS-4.19.0",
+				);
 				INFOPLIST_FILE = PicPranck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = khalil.PicPranck;

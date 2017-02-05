@@ -1,177 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TkP-9z-8EJ">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
-    <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-    </dependencies>
-    <scenes>
-        <!--PicPranck-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="261-6E-8BS">
-                                <rect key="frame" x="326" y="64" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </switch>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Split picture on upper and lower areas" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncV-hV-4oX">
-                                <rect key="frame" x="0.0" y="64" width="325" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                </accessibility>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
-                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Choose App and Send">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="9FB-fN-81c" kind="show" identifier="chooseAppButtonSegue" id="1TN-a6-AgO"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fg-WGr">
-                                <rect key="frame" x="67" y="121" width="240" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-Am-p9w">
-                                <rect key="frame" x="67" y="281" width="240" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKK-Zd-chr">
-                                <rect key="frame" x="67" y="282" width="238.99999999999994" height="159.99999999999989"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Visible Part"/>
-                                <connections>
-                                    <action selector="pressButtonArea:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zc7-0i-bMU"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="asw-Ac-Yqg">
-                                <rect key="frame" x="67" y="440" width="240" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZ2-HT-wmz">
-                                <rect key="frame" x="68" y="440" width="238.99999999999994" height="159.99999999999989"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Hidden Part"/>
-                                <connections>
-                                    <action selector="pressButtonArea:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GPe-4V-0Y4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wp-j6-YVP">
-                                <rect key="frame" x="67" y="122" width="238.99999999999994" height="159.99999999999989"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <state key="normal" title="Hidden Part"/>
-                                <connections>
-                                    <action selector="pressButtonArea:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ga5-8h-ubh"/>
-                                    <outletCollection property="gestureRecognizers" destination="3WW-B3-DWo" appends="YES" id="dNx-Cb-l0a"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ny-5D-0dx">
-                                <rect key="frame" x="166" y="157" width="42" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="PicPranck" id="CXL-Ku-FHh">
-                        <barButtonItem key="backBarButtonItem" title="Workshop" id="nfm-Im-IMB"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="buttonArea1" destination="9Wp-j6-YVP" id="qXH-1y-YEX"/>
-                        <outlet property="buttonArea2" destination="hKK-Zd-chr" id="SWW-bn-yrf"/>
-                        <outlet property="buttonArea3" destination="kZ2-HT-wmz" id="HKn-9R-ZkB"/>
-                        <outlet property="doubleTapArea1" destination="3WW-B3-DWo" id="onZ-yH-eB9"/>
-                        <outlet property="imageViewArea1" destination="pup-fg-WGr" id="PUC-sM-0h5"/>
-                        <outlet property="imageViewArea2" destination="Ngr-Am-p9w" id="K7L-dg-GvP"/>
-                        <outlet property="imageViewArea3" destination="asw-Ac-Yqg" id="63G-gC-WZN"/>
-                        <outlet property="labelArea1" destination="6Ny-5D-0dx" id="TWg-aE-gOP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="3WW-B3-DWo">
-                    <connections>
-                        <action selector="doubleTap:" destination="BYZ-38-t0r" id="uVg-Gq-sf7"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="832.79999999999995" y="792.95352323838085"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="MqU-Xw-NOd">
-            <objects>
-                <viewController id="9FB-fN-81c" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KJ6-oZ-Ikd"/>
-                        <viewControllerLayoutGuide type="bottom" id="j5L-IM-ES8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Huw-Fv-eZL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose an App &amp; Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tq-oI-q2a">
-                                <rect key="frame" x="103" y="-1" width="177" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose an App &amp; Send" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEn-3C-npK">
-                                <rect key="frame" x="65" y="602" width="244" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dHO-8P-QJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1688.8" y="1499.1004497751126"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7QP-se-6qm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TkP-9z-8EJ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RwF-Lp-ojq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ChR-z7-PNI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hhu-3e-qTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-79.200000000000003" y="792.95352323838085"/>
-        </scene>
-    </scenes>
+<device id="retina4_7" orientation="portrait">
+<adaptation id="fullscreen"/>
+</device>
+<dependencies>
+<deployment identifier="iOS"/>
+<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+</dependencies>
+<scenes>
+<!--PicPranck-->
+<scene sceneID="tne-QT-ifu">
+<objects>
+<viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+<layoutGuides>
+<viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+<viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+</layoutGuides>
+<view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+<rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<subviews>
+<switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="261-6E-8BS">
+<rect key="frame" x="326" y="64" width="51" height="31"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</switch>
+<textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Split picture on upper and lower areas" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ncV-hV-4oX">
+<rect key="frame" x="0.0" y="64" width="325" height="30"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+<accessibility key="accessibilityConfiguration">
+<accessibilityTraits key="traits" notEnabled="YES"/>
+</accessibility>
+<color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+<fontDescription key="fontDescription" type="system" pointSize="14"/>
+<textInputTraits key="textInputTraits"/>
+</textField>
+<button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
+<rect key="frame" x="0.0" y="627" width="375" height="40"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+<fontDescription key="fontDescription" type="system" pointSize="20"/>
+<state key="normal" title="Choose App and Send">
+<color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+<color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</state>
+<connections>
+<segue destination="9FB-fN-81c" kind="show" identifier="chooseAppButtonSegue" id="1TN-a6-AgO"/>
+</connections>
+</button>
+<imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fg-WGr">
+<rect key="frame" x="67" y="121" width="240" height="160"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+</imageView>
+<imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-Am-p9w">
+<rect key="frame" x="67" y="281" width="240" height="160"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+</imageView>
+<imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="asw-Ac-Yqg">
+<rect key="frame" x="67" y="440" width="240" height="160"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+</imageView>
+</subviews>
+<color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</view>
+<navigationItem key="navigationItem" title="PicPranck" id="CXL-Ku-FHh">
+<barButtonItem key="backBarButtonItem" title="Workshop" id="nfm-Im-IMB"/>
+</navigationItem>
+<connections>
+<outlet property="imageViewArea1" destination="pup-fg-WGr" id="PUC-sM-0h5"/>
+<outlet property="imageViewArea2" destination="Ngr-Am-p9w" id="K7L-dg-GvP"/>
+<outlet property="imageViewArea3" destination="asw-Ac-Yqg" id="63G-gC-WZN"/>
+</connections>
+</viewController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="832.79999999999995" y="792.95352323838085"/>
+</scene>
+<!--App View Controller-->
+<scene sceneID="MqU-Xw-NOd">
+<objects>
+<viewController id="9FB-fN-81c" customClass="AppViewController" sceneMemberID="viewController">
+<layoutGuides>
+<viewControllerLayoutGuide type="top" id="KJ6-oZ-Ikd"/>
+<viewControllerLayoutGuide type="bottom" id="j5L-IM-ES8"/>
+</layoutGuides>
+<view key="view" contentMode="scaleToFill" id="Huw-Fv-eZL">
+<rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<subviews>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose an App &amp; Send" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tq-oI-q2a">
+<rect key="frame" x="103" y="-1" width="177" height="21"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<fontDescription key="fontDescription" type="system" pointSize="17"/>
+<nil key="textColor"/>
+<nil key="highlightedColor"/>
+</label>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose an App &amp; Send" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEn-3C-npK">
+<rect key="frame" x="65" y="602" width="244" height="65"/>
+<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+<fontDescription key="fontDescription" type="system" pointSize="17"/>
+<nil key="textColor"/>
+<nil key="highlightedColor"/>
+</label>
+</subviews>
+<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+</view>
+</viewController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="dHO-8P-QJz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="1688.8" y="1499.1004497751126"/>
+</scene>
+<!--Navigation Controller-->
+<scene sceneID="7QP-se-6qm">
+<objects>
+<navigationController automaticallyAdjustsScrollViewInsets="NO" id="TkP-9z-8EJ" sceneMemberID="viewController">
+<toolbarItems/>
+<navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RwF-Lp-ojq">
+<rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+</navigationBar>
+<nil name="viewControllers"/>
+<connections>
+<segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ChR-z7-PNI"/>
+</connections>
+</navigationController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="hhu-3e-qTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="-79.200000000000003" y="792.95352323838085"/>
+</scene>
+</scenes>
 </document>

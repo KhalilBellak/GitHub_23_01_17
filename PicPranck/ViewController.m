@@ -179,7 +179,7 @@
 }
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    PicPranckTextView *picTextView=(PicPranckTextView *)textView;
+    //PicPranckTextView *picTextView=(PicPranckTextView *)textView;
     //picTextView.tapsAcquired=0;
     textView.editable=NO;
     [textView endEditing:YES];
