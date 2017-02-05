@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
+		F904B2541E47C30800B5FA26 /* AppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2521E47C30800B5FA26 /* AppViewController.m */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
 		F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */; };
 		F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF51E34C0D600EE34E6 /* ViewController.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckTextView.h; sourceTree = "<group>"; };
+		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
+		F904B2521E47C30800B5FA26 /* AppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppViewController.m; sourceTree = "<group>"; };
+		F904B2531E47C30800B5FA26 /* AppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppViewController.h; sourceTree = "<group>"; };
 		F9A19DEB1E34C0D500EE34E6 /* PicPranck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicPranck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19DEF1E34C0D500EE34E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,6 +107,10 @@
 		F9A19DED1E34C0D500EE34E6 /* PicPranck */ = {
 			isa = PBXGroup;
 			children = (
+				F904B2521E47C30800B5FA26 /* AppViewController.m */,
+				F904B2531E47C30800B5FA26 /* AppViewController.h */,
+				F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */,
+				F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */,
 				F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */,
 				F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */,
 				F9A19DF41E34C0D600EE34E6 /* ViewController.h */,
@@ -274,7 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F904B2541E47C30800B5FA26 /* AppViewController.m in Sources */,
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
+				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 			);
