@@ -48,13 +48,13 @@
         [currTextView.gestureView addGestureRecognizer:tapTwice];
         
         [listOfTextViews addObject:currTextView];
-        //TEST: put UIImageVIew in UITextView
+        //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
         CGRect newFrame = CGRectMake(0,0,currImageView.frame.size.width,currImageView.frame.size.height);
         currTextView.frame = newFrame;
-
+        currImageView.autoresizesSubviews = YES;
+        currTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [currImageView addSubview:currTextView];
-        
-        //[self.view addSubview:currTextView];
+        //Add gestureView to view to catch gestures
         [self.view addSubview:currTextView.gestureView];
         [self.view bringSubviewToFront:currTextView.gestureView];
         [listOfGestureViews addObject:currTextView.gestureView];
@@ -64,57 +64,59 @@
 {
      if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
      {
+         //TODO: handle cases when no image selected
+         //TODO: send image to AppViewController
+         //Creation of UIImageView which will contain all UIImageViews for later print
          UIImageView *imageViewContainer=[[UIImageView alloc] init];
-         [self.view sendSubviewToBack:imageViewContainer];
-         [imageViewContainer setBackgroundColor:[UIColor blackColor]];
+         //[self.view sendSubviewToBack:imageViewContainer];
+         [imageViewContainer setBackgroundColor:[UIColor clearColor]];
          imageViewContainer.clipsToBounds=YES;
          
-         NSInteger maxWidth=0,totalHeight=0,maxWidthBis=0,totalHeightBis=0;
-         //CGFloat ratio=1.1;
+         //Put all views in imageViewContainer and reframe if necessary
+         NSInteger maxWidth=0,totalHeight=0;
          PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
          CGFloat x=firstTextView.imageView.frame.origin.x;
          CGFloat y=firstTextView.imageView.frame.origin.y;
-//       CGFloat w=firstTextView.imageView.frame.size.width;
-//       CGFloat h=firstTextView.imageView.frame.size.height;
-//       CGFloat Xoffset=0.5*(ratio-1)*w;
-//       CGFloat Yoffset=3*0.5*(ratio-1)*h;
-         
+         CGFloat oldHeight=firstTextView.imageView.frame.size.height;
+         CGFloat oldWidth=firstTextView.imageView.frame.size.width;
          for(PicPranckTextView *currTextView in listOfTextViews)
          {
              UIImageView *currImageView=currTextView.imageView;
-             //CGRect newFrame = CGRectMake(Xoffset,Yoffset+totalHeight,currImageView.frame.size.width,currImageView.frame.size.height);
-             CGRect newFrame = CGRectMake(0,totalHeight,currImageView.frame.size.width,currImageView.frame.size.height);
-             currImageView.frame = newFrame;
+             UIImage *currImage=currImageView.image;
+             //TODO: ratio for font size not accurate
+             CGFloat ratio=0.0;
+             if(0<currImageView.frame.size.width)
+                 ratio=currImage.size.width/currImageView.frame.size.width;
+             CGRect newFrameImageView = CGRectMake(0,totalHeight,currImage.size.width,currImage.size.height);
+             currImageView.frame = newFrameImageView;
+             CGFloat oldFontSize=currTextView.font.pointSize;
+             [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
              [imageViewContainer addSubview:currImageView];
-             totalHeight+=currImageView.frame.size.height;
-             if(0==maxWidth || maxWidth<currImageView.frame.size.width)
-                 maxWidth=currImageView.frame.size.width;
+             totalHeight+=currImage.size.height;
+             if(0==maxWidth || maxWidth<currImage.size.width)
+                 maxWidth=currImage.size.width;
          }
-         //CGSize size = CGSizeMake(ratio*maxWidth,ratio*totalHeight);
+
          CGSize size = CGSizeMake(maxWidth,totalHeight);
-         //CGRect newFrame=CGRectMake(x-Xoffset,y-Yoffset,size.width,size.height);
          CGRect newFrame=CGRectMake(x,y,size.width,size.height);
          imageViewContainer.frame=newFrame;
+         
          
          [self.view addSubview:imageViewContainer];
          
          //Get Image with text
          CGFloat screenScale=[UIScreen mainScreen].scale;
-         UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, 5*screenScale);
+         UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, screenScale);
          CGContextRef context = UIGraphicsGetCurrentContext();
          CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
          [imageViewContainer.layer renderInContext:context];
          UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
          UIGraphicsEndImageContext();
-//         NSLog(@"-------------------------------");
-//         NSLog(@"Generated from UIImageVIewContainer:");
-//         NSLog(@"finalImage.size.width: %f" , finalImage.size.width);
-//         NSLog(@"finalImage.size.height:%f" , finalImage.size.height);
-//         NSLog(@"screenScale:%f" , screenScale);
-//         NSLog(@"-------------------------------");
-//
          UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
-
+         
+         //Back to old frame
+         CGRect oldFrame=CGRectMake(x,y,oldWidth,oldHeight);
+         imageViewContainer.frame=oldFrame;
      }
 }
 
@@ -220,8 +222,7 @@
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    UIColor *pWhiteColor=[UIColor whiteColor];
-   [textView setTextColor:pWhiteColor];
+    //TODO:move view while keyboard appears
     
 }
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView

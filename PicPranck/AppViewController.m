@@ -13,6 +13,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    //TODO: Position Add right content to FB share button
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL =[NSURL URLWithString:@"https://www.facebook.com/FacebookDevelopers"];
     NSInteger width=self.view.frame.size.width;
@@ -22,20 +23,11 @@
     [self.view addSubview:button];
     [self.view bringSubviewToFront:button];
     
-    
+    //TODO: Activities to allow
 //    NSMutableArray *activityItems= [NSMutableArray arrayWithObjects:img, nil];
 //    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
 //    activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,                                                         UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
 //    [self presentViewController:activityViewController animated:YES completion:nil];
-    
-//    UIGraphicsBeginImageContext(self.view.frame.size);
-//    //[[UIImage imageNamed:@"image.png"] drawInRect:self.view.bounds];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:_imageToSend];
-    //[_imageView setContentMode:UIViewContentModeCenter];
-    //_imageView.contentMode = UIViewContentMode.ScaleAspectFit;
     
 
 }
