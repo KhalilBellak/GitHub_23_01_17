@@ -52,21 +52,14 @@
 
         [self setAttributedText:attributedText ];
     }
-    
-    //[self setTextColor:pWhiteColor];
-    //[self setAttributedTextColor:pWhiteColor];
+
     //LAYOUT
-    self.frame=iImageView.frame;
     [self setBackgroundColor:[UIColor clearColor]];
     self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
-    //self.layer.borderWidth= 1.0f;
     [self.layer setBorderWidth:2.0f];
-    //UIColor *borderColor=iImageView.layer.borderColor;
     [self.layer setBorderColor:iImageView.layer.borderColor];
-    
-    self.tapsAcquired=0;
-    
+ 
     [self setTextAlignment:NSTextAlignmentCenter];
     //gesture view
     self.gestureView=[[UIView alloc] init];

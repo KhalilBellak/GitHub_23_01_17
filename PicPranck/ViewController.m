@@ -48,7 +48,13 @@
         [currTextView.gestureView addGestureRecognizer:tapTwice];
         
         [listOfTextViews addObject:currTextView];
-        [self.view addSubview:currTextView];
+        //TEST: put UIImageVIew in UITextView
+        CGRect newFrame = CGRectMake(0,0,currImageView.frame.size.width,currImageView.frame.size.height);
+        currTextView.frame = newFrame;
+
+        [currImageView addSubview:currTextView];
+        
+        //[self.view addSubview:currTextView];
         [self.view addSubview:currTextView.gestureView];
         [self.view bringSubviewToFront:currTextView.gestureView];
         [listOfGestureViews addObject:currTextView.gestureView];
@@ -58,31 +64,57 @@
 {
      if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
      {
-         NSMutableArray *listOfImages=[[NSMutableArray alloc] init];
-         NSInteger maxWidth=0,totalHeight=0;
+         UIImageView *imageViewContainer=[[UIImageView alloc] init];
+         [self.view sendSubviewToBack:imageViewContainer];
+         [imageViewContainer setBackgroundColor:[UIColor blackColor]];
+         imageViewContainer.clipsToBounds=YES;
+         
+         NSInteger maxWidth=0,totalHeight=0,maxWidthBis=0,totalHeightBis=0;
+         //CGFloat ratio=1.1;
+         PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
+         CGFloat x=firstTextView.imageView.frame.origin.x;
+         CGFloat y=firstTextView.imageView.frame.origin.y;
+//       CGFloat w=firstTextView.imageView.frame.size.width;
+//       CGFloat h=firstTextView.imageView.frame.size.height;
+//       CGFloat Xoffset=0.5*(ratio-1)*w;
+//       CGFloat Yoffset=3*0.5*(ratio-1)*h;
+         
          for(PicPranckTextView *currTextView in listOfTextViews)
          {
              UIImageView *currImageView=currTextView.imageView;
-             UIImage *currImage=currImageView.image;
-             [listOfImages addObject:currImage];
-             totalHeight+=currImage.size.height;
-             if(0==maxWidth)
-                 maxWidth=currImage.size.width;
-             else if(maxWidth<currImage.size.width)
-                 maxWidth=currImage.size.width;
+             //CGRect newFrame = CGRectMake(Xoffset,Yoffset+totalHeight,currImageView.frame.size.width,currImageView.frame.size.height);
+             CGRect newFrame = CGRectMake(0,totalHeight,currImageView.frame.size.width,currImageView.frame.size.height);
+             currImageView.frame = newFrame;
+             [imageViewContainer addSubview:currImageView];
+             totalHeight+=currImageView.frame.size.height;
+             if(0==maxWidth || maxWidth<currImageView.frame.size.width)
+                 maxWidth=currImageView.frame.size.width;
          }
+         //CGSize size = CGSizeMake(ratio*maxWidth,ratio*totalHeight);
          CGSize size = CGSizeMake(maxWidth,totalHeight);
+         //CGRect newFrame=CGRectMake(x-Xoffset,y-Yoffset,size.width,size.height);
+         CGRect newFrame=CGRectMake(x,y,size.width,size.height);
+         imageViewContainer.frame=newFrame;
          
-         UIGraphicsBeginImageContext(size);
-         NSInteger yBegining=0;
-         for(UIImage *currImage in listOfImages)
-         {
-             [currImage drawInRect:CGRectMake(0,yBegining,size.width,currImage.size.height)];
-             yBegining+=currImage.size.height;
-         }
+         [self.view addSubview:imageViewContainer];
+         
+         //Get Image with text
+         CGFloat screenScale=[UIScreen mainScreen].scale;
+         UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, 5*screenScale);
+         CGContextRef context = UIGraphicsGetCurrentContext();
+         CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+         [imageViewContainer.layer renderInContext:context];
          UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
          UIGraphicsEndImageContext();
+//         NSLog(@"-------------------------------");
+//         NSLog(@"Generated from UIImageVIewContainer:");
+//         NSLog(@"finalImage.size.width: %f" , finalImage.size.width);
+//         NSLog(@"finalImage.size.height:%f" , finalImage.size.height);
+//         NSLog(@"screenScale:%f" , screenScale);
+//         NSLog(@"-------------------------------");
+//
          UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
+
      }
 }
 
