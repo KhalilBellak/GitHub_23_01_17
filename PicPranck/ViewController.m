@@ -32,7 +32,7 @@
             text=@"Visible Picture";
         PicPranckTextView *currTextView=[[PicPranckTextView alloc] init];
         [currTextView initWithDelegate:self ImageView:currImageView AndText:text];
-
+        
         //Add gesture Recognizers
         UITapGestureRecognizer *tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnce:)];
         UITapGestureRecognizer *tapTwice = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTwice:)];
@@ -62,67 +62,23 @@
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-     if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
-     {
-         //TODO: handle cases when no image selected
-         //TODO: send image to AppViewController
-         //Creation of UIImageView which will contain all UIImageViews for later print
-         UIImageView *imageViewContainer=[[UIImageView alloc] init];
-         //[self.view sendSubviewToBack:imageViewContainer];
-         [imageViewContainer setBackgroundColor:[UIColor clearColor]];
-         imageViewContainer.clipsToBounds=YES;
-         
-         //Put all views in imageViewContainer and reframe if necessary
-         NSInteger maxWidth=0,totalHeight=0;
-         PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
-         CGFloat x=firstTextView.imageView.frame.origin.x;
-         CGFloat y=firstTextView.imageView.frame.origin.y;
-         CGFloat oldHeight=firstTextView.imageView.frame.size.height;
-         CGFloat oldWidth=firstTextView.imageView.frame.size.width;
-         for(PicPranckTextView *currTextView in listOfTextViews)
-         {
-             UIImageView *currImageView=currTextView.imageView;
-             UIImage *currImage=currImageView.image;
-             //TODO: ratio for font size not accurate
-             CGFloat ratio=0.0;
-             if(0<currImageView.frame.size.width)
-                 ratio=currImage.size.width/currImageView.frame.size.width;
-             CGRect newFrameImageView = CGRectMake(0,totalHeight,currImage.size.width,currImage.size.height);
-             currImageView.frame = newFrameImageView;
-             CGFloat oldFontSize=currTextView.font.pointSize;
-             [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
-             [imageViewContainer addSubview:currImageView];
-             totalHeight+=currImage.size.height;
-             if(0==maxWidth || maxWidth<currImage.size.width)
-                 maxWidth=currImage.size.width;
-         }
-
-         CGSize size = CGSizeMake(maxWidth,totalHeight);
-         CGRect newFrame=CGRectMake(x,y,size.width,size.height);
-         imageViewContainer.frame=newFrame;
-         
-         
-         [self.view addSubview:imageViewContainer];
-         
-         //Get Image with text
-         CGFloat screenScale=[UIScreen mainScreen].scale;
-         UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, screenScale);
-         CGContextRef context = UIGraphicsGetCurrentContext();
-         CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
-         [imageViewContainer.layer renderInContext:context];
-         UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
-         UIGraphicsEndImageContext();
-         UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
-         
-         //Back to old frame
-         CGRect oldFrame=CGRectMake(x,y,oldWidth,oldHeight);
-         imageViewContainer.frame=oldFrame;
-     }
+    if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
+    {
+        //Dispatch because picture can take time to generate and we should display all aavailable apps
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^(void){
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self generateImageToSend];
+            });
+        });
+        
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 #pragma mark Camera and Galery Actions
 
@@ -131,7 +87,7 @@
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     [imagePicker.view setFrame:CGRectMake(0, 80, 450, 350)];
     [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    imagePicker.allowsEditing = YES;
+    imagePicker.allowsEditing = NO;
     [imagePicker setDelegate:self];
     
     [picker presentViewController:imagePicker animated:YES completion:nil];
@@ -140,19 +96,22 @@
 {
     
     NSString *key=@"UIImagePickerControllerOriginalImage";
-    if(UIImagePickerControllerSourceTypePhotoLibrary==iPicker.sourceType)
-        key=@"UIImagePickerControllerEditedImage";
+    //if(UIImagePickerControllerSourceTypePhotoLibrary==iPicker.sourceType)
+    //    key=@"UIImagePickerControllerEditedImage";
     image=[info objectForKey:key];
-    tapedTextView.imageView.backgroundColor = [UIColor blackColor];
-    [tapedTextView.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [tapedTextView.imageView setImage:image];
-    [tapedTextView.layer setBorderWidth:0.0f];
-    [self.view bringSubviewToFront:tapedTextView];
-    [self.view bringSubviewToFront:tapedTextView.gestureView];
-    if(!tapedTextView.edited)
-        [tapedTextView setText:@""];
-    
+    [self setImage:image forTextView:tapedTextView];
     [self dismissViewControllerAnimated:TRUE completion:NULL];
+}
+-(void)setImage:(UIImage *)iImage forTextView:(PicPranckTextView *)pPTextView
+{
+    pPTextView.imageView.backgroundColor = [UIColor blackColor];
+    [pPTextView.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [pPTextView.imageView setImage:iImage];
+    [pPTextView.layer setBorderWidth:0.0f];
+    [self.view bringSubviewToFront:pPTextView];
+    [self.view bringSubviewToFront:pPTextView.gestureView];
+    if(!pPTextView.edited)
+        [pPTextView setText:@""];
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -166,7 +125,6 @@
     tapedTextView=[listOfTextViews objectAtIndex:iIndex];
     if(UIGestureRecognizerStateEnded==sender.state)
     {
-        //tapedTextView=(PicPranckTextView *)sender.view;
         tapedTextView.tapsAcquired=1;
         picker=[[UIImagePickerController alloc] init];
         if(nil!=picker)
@@ -193,7 +151,6 @@
     tapedTextView=[listOfTextViews objectAtIndex:iIndex];
     if(UIGestureRecognizerStateEnded==sender.state)
     {
-        //tapedTextView=(PicPranckTextView *)sender.view;
         tapedTextView.tapsAcquired=2;
         if(!tapedTextView.edited)
             [tapedTextView setText:@""];
@@ -234,5 +191,93 @@
 {
     textView.editable=NO;
     [textView endEditing:YES];
+}
+
+#pragma mark Generate Image To Send
+-(void)generateImageToSend
+{
+    //TODO: handle cases when no image selected
+    NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
+    //PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
+    CGFloat x=0.0,y=0.0,oldHeight=0.0,oldWidth=0.0;
+    UIImage *blackImage=nil;
+    for(PicPranckTextView *currTextView in listOfTextViews)
+    {
+        UIImageView *currImageView=currTextView.imageView;
+        UIImage *currImage=currImageView.image;
+        if(0==[listOfTextViews indexOfObject:currTextView])
+        {
+            x=currTextView.imageView.frame.origin.x;
+            y=currTextView.imageView.frame.origin.y;
+            oldHeight=currTextView.imageView.frame.size.height;
+            oldWidth=currTextView.imageView.frame.size.width;
+        }
+        //Create a black image
+        if(!currImage)
+        {
+            if(!blackImage)
+            {
+                CGSize imageSize = CGSizeMake(300,300);
+                UIColor *fillColor = [UIColor blackColor];
+                UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
+                CGContextRef context = UIGraphicsGetCurrentContext();
+                [fillColor setFill];
+                CGContextFillRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
+                blackImage= UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            }
+            [self setImage:blackImage forTextView:currTextView];
+        }
+        if(0==maxWidth || maxWidth<currImage.size.width)
+            maxWidth=currImage.size.width;
+        if(0==maxHeight || maxHeight<currImage.size.height)
+            maxHeight=currImage.size.height;
+    }
+    //TODO: send image to AppViewController
+    //Creation of UIImageView which will contain all UIImageViews for later print
+    UIImageView *imageViewContainer=[[UIImageView alloc] init];
+    [self.view sendSubviewToBack:imageViewContainer];
+    [imageViewContainer setBackgroundColor:[UIColor blackColor]];
+    imageViewContainer.clipsToBounds=YES;
+    
+    //Put all views in imageViewContainer and reframe if necessary
+    for(PicPranckTextView *currTextView in listOfTextViews)
+    {
+        UIImageView *currImageView=currTextView.imageView;
+        UIImage *currImage=currImageView.image;
+        //TODO: ratio for font size not accurate
+        CGFloat ratio=0.0;
+        if(0<currImageView.frame.size.width)
+            ratio=currImage.size.width/currImageView.frame.size.width;
+        //             CGRect newFrameImageView = CGRectMake(0.5*(maxWidth-currImage.size.width),totalHeight+0.5*(maxHeight-currImage.size.height),currImage.size.width,currImage.size.height);
+        CGRect newFrameImageView = CGRectMake(0.5*(maxWidth-currImage.size.width),totalHeight,currImage.size.width,currImage.size.height);
+        currImageView.frame = newFrameImageView;
+        CGFloat oldFontSize=currTextView.font.pointSize;
+        [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
+        [imageViewContainer addSubview:currImageView];
+        totalHeight+=currImage.size.height;
+    }
+    
+    
+    CGSize size = CGSizeMake(maxWidth,totalHeight);
+    CGRect newFrame=CGRectMake(x,y,size.width,size.height);
+    imageViewContainer.frame=newFrame;
+    
+    
+    [self.view addSubview:imageViewContainer];
+    
+    //Get Image with text
+    CGFloat screenScale=[UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, screenScale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    [imageViewContainer.layer renderInContext:context];
+    UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
+    
+    //Back to old frame
+    CGRect oldFrame=CGRectMake(x,y,oldWidth,oldHeight);
+    imageViewContainer.frame=oldFrame;
 }
 @end

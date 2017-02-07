@@ -17,6 +17,7 @@
  // Drawing code
  }
  */
+
 -(void)addGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
     if([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]])
@@ -26,9 +27,7 @@
 }
 -(void)initWithDelegate:(id<UITextViewDelegate> ) textViewDelegate ImageView:(UIImageView *)iImageView AndText:(NSString *)text
 {
-    self.tapsAcquired=0;
-    self.editable=YES;
-    self.edited=NO;
+    
     self.delegate=textViewDelegate;
     self.imageView=iImageView;
     
@@ -53,27 +52,23 @@
         [self setAttributedText:attributedText ];
     }
 
-    //LAYOUT
+    //Gestures
+    self.tapsAcquired=0;
+    //Test
+    self.editable=YES;
+    self.edited=NO;
+    [self setTextAlignment:NSTextAlignmentCenter];
+    //Layout
     [self setBackgroundColor:[UIColor clearColor]];
     self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
     [self.layer setBorderWidth:2.0f];
     [self.layer setBorderColor:iImageView.layer.borderColor];
- 
-    [self setTextAlignment:NSTextAlignmentCenter];
     //gesture view
     self.gestureView=[[UIView alloc] init];
     self.gestureView.frame=iImageView.frame;
     [self.gestureView setBackgroundColor:[UIColor clearColor]];
     
 }
-//-(BOOL)becomeFirstResponder
-//{
-//    if(2==self.tapsAcquired)
-//    {
-//        NSLog(@"becomeFirstResponder");
-//        return [super becomeFirstResponder];
-//    }
-//    return NO;
-//}
+
 @end
