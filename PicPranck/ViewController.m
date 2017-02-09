@@ -104,14 +104,19 @@
 }
 -(void)setImage:(UIImage *)iImage forTextView:(PicPranckTextView *)pPTextView
 {
-    pPTextView.imageView.backgroundColor = [UIColor blackColor];
-    [pPTextView.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [pPTextView.imageView setImage:iImage];
+    
+    [self setImage:iImage forImageView:pPTextView.imageView];
     [pPTextView.layer setBorderWidth:0.0f];
     [self.view bringSubviewToFront:pPTextView];
     [self.view bringSubviewToFront:pPTextView.gestureView];
     if(!pPTextView.edited)
         [pPTextView setText:@""];
+}
+-(void)setImage:(UIImage *)iImage forImageView:(UIImageView *)iImageView
+{
+    iImageView.backgroundColor = [UIColor blackColor];
+    [iImageView setContentMode:UIViewContentModeScaleAspectFit];
+    [iImageView setImage:iImage];
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
@@ -196,7 +201,12 @@
 #pragma mark Generate Image To Send
 -(void)generateImageToSend
 {
-    //TODO: handle cases when no image selected
+    //TODO: handle cases when no image selected (need to resize them)
+    //TODO: create new PicPrankTextViews to put in imageViewContainer
+    //Create clones of UIImageViews and UITextViews
+    NSMutableArray *listOfTextViewsClones=[[NSMutableArray alloc] init];
+    NSMutableArray *listOfImageViewsClones=[[NSMutableArray alloc] init];
+    //Clone UIImageViews
     NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
     //PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
     CGFloat x=0.0,y=0.0,oldHeight=0.0,oldWidth=0.0;
@@ -225,6 +235,7 @@
                 CGContextFillRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
                 blackImage= UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
+                currImage=blackImage;
             }
             [self setImage:blackImage forTextView:currTextView];
         }
@@ -232,16 +243,36 @@
             maxWidth=currImage.size.width;
         if(0==maxHeight || maxHeight<currImage.size.height)
             maxHeight=currImage.size.height;
+        //Clone UIImage View and Text View
+        UIImageView *imageViewClone=[[UIImageView alloc] init];
+        imageViewClone.frame=currImageView.frame;
+        imageViewClone.image=currImageView.image;
+        [self setImage:currImage forImageView:imageViewClone];
+        PicPranckTextView *textViewClone=[[PicPranckTextView alloc] init];
+        //[textViewClone initWithDelegate:self ImageView:imageViewClone AndText:currTextView.text];
+        [PicPranckTextView copyTextView:currTextView inOtherTextView:textViewClone withImageView:imageViewClone];
+        [textViewClone.layer setBorderWidth:0.0f];
+        imageViewClone.autoresizesSubviews = YES;
+        textViewClone.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [imageViewClone addSubview:textViewClone];
+        [imageViewClone bringSubviewToFront:textViewClone];
+        //Keep in array
+        [listOfTextViewsClones addObject:textViewClone];
+        [listOfImageViewsClones addObject:imageViewClone];
+        
     }
     //TODO: send image to AppViewController
+    
+    
     //Creation of UIImageView which will contain all UIImageViews for later print
     UIImageView *imageViewContainer=[[UIImageView alloc] init];
     [self.view sendSubviewToBack:imageViewContainer];
     [imageViewContainer setBackgroundColor:[UIColor blackColor]];
     imageViewContainer.clipsToBounds=YES;
-    
+    //Automatic Resize of imageViewContainer subviews
+    //imageViewContainer.autoresizesSubviews = YES;
     //Put all views in imageViewContainer and reframe if necessary
-    for(PicPranckTextView *currTextView in listOfTextViews)
+    for(PicPranckTextView *currTextView in listOfTextViewsClones)
     {
         UIImageView *currImageView=currTextView.imageView;
         UIImage *currImage=currImageView.image;
@@ -254,6 +285,7 @@
         currImageView.frame = newFrameImageView;
         CGFloat oldFontSize=currTextView.font.pointSize;
         [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
+        //currImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [imageViewContainer addSubview:currImageView];
         totalHeight+=currImage.size.height;
     }
@@ -264,7 +296,7 @@
     imageViewContainer.frame=newFrame;
     
     
-    [self.view addSubview:imageViewContainer];
+    //[self.view addSubview:imageViewContainer];
     
     //Get Image with text
     CGFloat screenScale=[UIScreen mainScreen].scale;

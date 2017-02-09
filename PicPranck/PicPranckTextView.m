@@ -31,13 +31,10 @@
     self.delegate=textViewDelegate;
     self.imageView=iImageView;
     
-    //self.imageView=iImageView;
-    
     UIColor *pWhiteColor=[UIColor whiteColor];
     
     if([text length]>0)
     {
-        //TODO: fill text with white (not transparent)
         NSNumber *stroke=[[NSNumber alloc] init];
         stroke=[NSNumber numberWithFloat:-7.0];
         NSDictionary *typingAttributes = @{
@@ -70,5 +67,12 @@
     [self.gestureView setBackgroundColor:[UIColor clearColor]];
     
 }
-
++(void)copyTextView:(PicPranckTextView *)textViewToCopy inOtherTextView:(PicPranckTextView *)targetTextView withImageView:(UIImageView *)iImageView
+{
+    if(textViewToCopy && targetTextView)
+    {
+        NSString *text = [NSString stringWithFormat:@"%@", textViewToCopy.text];
+        [targetTextView initWithDelegate:textViewToCopy.delegate ImageView:iImageView AndText:text];
+    }
+}
 @end

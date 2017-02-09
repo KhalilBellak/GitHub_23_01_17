@@ -14,5 +14,7 @@
 @property BOOL edited;
 @property UIImageView *imageView;
 @property UIView *gestureView;
+
 -(void)initWithDelegate:(id<UITextViewDelegate> )textViewDelegate ImageView:(UIImageView *)iImageView AndText:(NSString *)text;
++(void)copyTextView:(PicPranckTextView *)textViewToCopy inOtherTextView:(PicPranckTextView *)targetTextView withImageView:(UIImageView *)iImageView;
 @end
