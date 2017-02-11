@@ -18,11 +18,6 @@
     [super viewDidLoad];
     //Dictionary for size for every application
     dicOfSizes= [[NSMutableDictionary alloc] init];
-//    [dicOfSizes setValue:[NSArray arrayWithObjects:
-//                 [NSNumber numberWithInteger:1000],
-//                 [NSNumber numberWithInteger:1000],
-//                 nil]
-//         forKey:@"WhatsApp"];
     [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(1000, 1000)]
                   forKey:@"WhatsApp"];
     [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(500, 500)]
@@ -358,7 +353,7 @@
         //TODO: ratio for font size not accurate
         CGFloat ratio=0.0;
         if(0<currImageView.frame.size.width)
-            ratio=sizesForApp.width/currTextView.frame.size.width;
+            ratio=sizesForApp.width/currImageView.frame.size.width;
 //        CGFloat xOffset=0.5*(maxWidth-currImage.size.width);
 //        if(xOffset<0)
 //            xOffset=0;
