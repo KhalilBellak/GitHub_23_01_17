@@ -24,10 +24,12 @@
     [self.view bringSubviewToFront:button];
     
     //TODO: Activities to allow
-//    NSMutableArray *activityItems= [NSMutableArray arrayWithObjects:img, nil];
-//    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-//    activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,                                                         UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop];
-//    [self presentViewController:activityViewController animated:YES completion:nil];
+    //    [self generateImageToSend];
+    //    NSMutableArray *activityItems= [NSMutableArray arrayWithObjects:image, nil];
+    //    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    //    activityViewController.excludedActivityTypes = @[UIActivityTypeMail,UIActivityTypePostToTwitter,UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,                                                        UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop,
+    //                                                      @"com.apple.mobilenotes.SharingExtension"];
+    //    [self presentViewController:activityViewController animated:YES completion:nil];
     
 
 }

@@ -16,6 +16,19 @@
 #pragma mark View Controller methods
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Dictionary for size for every application
+    dicOfSizes= [[NSMutableDictionary alloc] init];
+//    [dicOfSizes setValue:[NSArray arrayWithObjects:
+//                 [NSNumber numberWithInteger:1000],
+//                 [NSNumber numberWithInteger:1000],
+//                 nil]
+//         forKey:@"WhatsApp"];
+    [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(1000, 1000)]
+                  forKey:@"WhatsApp"];
+    [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(500, 500)]
+                  forKey:@"Messenger"];
+    
+    applicationTarget=@"";
     //Get global tint
     globalTint= [self.view tintColor];
     // Do any additional setup after loading the view, typically from a nib.
@@ -59,6 +72,14 @@
         [self.view bringSubviewToFront:currTextView.gestureView];
         [listOfGestureViews addObject:currTextView.gestureView];
     }
+    //button for UIActivityControllerView
+    CGFloat x=self.view.frame.size.width;
+    CGFloat y=self.view.frame.size.height;
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x-100, 0.5*y-10, 100, 30)];
+    [button setTitle:@"Send" forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button addTarget:self action:@selector(sendPicture:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -125,7 +146,6 @@
 #pragma mark Action for Gesture Recognizers
 -(void) handleTapOnce: (UITapGestureRecognizer *)sender
 {
-    NSLog(@"SIMPLE TAP");
     NSInteger iIndex=[listOfGestureViews indexOfObject:sender.view];
     tapedTextView=[listOfTextViews objectAtIndex:iIndex];
     if(UIGestureRecognizerStateEnded==sender.state)
@@ -151,7 +171,6 @@
 }
 -(void) handleTapTwice: (UITapGestureRecognizer *)sender
 {
-    NSLog(@"DOUBLE TAP");
     NSInteger iIndex=[listOfGestureViews indexOfObject:sender.view];
     tapedTextView=[listOfTextViews objectAtIndex:iIndex];
     if(UIGestureRecognizerStateEnded==sender.state)
@@ -199,17 +218,61 @@
 }
 
 #pragma mark Generate Image To Send
+
+-(void)sendPicture:(id)sender
+{
+    if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]])
+    {
+    NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.wai"];
+    
+    [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
+    
+    _documentInteractionController = [PicPranckDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
+    _documentInteractionController.UTI = @"net.whatsapp.image";
+    _documentInteractionController.delegate = self;
+    
+    [_documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES]; 
+    }
+    
+}
+
+- (void)documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application
+{
+    applicationTarget=application;
+    if ([self isWhatsApplication:application])
+    {
+        NSString *savePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/PicPranck.wai"];
+        [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
+        controller.URL = [NSURL fileURLWithPath:savePath];
+        controller.UTI = @"net.whatsapp.image";
+        
+    }
+    [self generateImageToSend];
+}
+
+- (BOOL)isWhatsApplication:(NSString *)application {
+    if ([application rangeOfString:@"whats"].location == NSNotFound)
+        return NO;
+    else
+        return YES;
+}
 -(void)generateImageToSend
 {
     //TODO: handle cases when no image selected (need to resize them)
-    //TODO: create new PicPrankTextViews to put in imageViewContainer
     //Create clones of UIImageViews and UITextViews
+    NSString *keyForDico=[[NSString alloc] init];
+    if (0<[applicationTarget rangeOfString:@"whats"].location)
+        keyForDico=@"WhatsApp";
+    CGSize sizesForApp=[[dicOfSizes objectForKey:keyForDico] CGSizeValue];
+    
     NSMutableArray *listOfTextViewsClones=[[NSMutableArray alloc] init];
     NSMutableArray *listOfImageViewsClones=[[NSMutableArray alloc] init];
+    NSMutableArray *listOfSizes=[[NSMutableArray alloc] init];
     //Clone UIImageViews
     NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
+    NSInteger averageWidth=0,averageHeight=0;
     //PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
-    CGFloat x=0.0,y=0.0,oldHeight=0.0,oldWidth=0.0;
+    CGFloat x=0.0,y=0.0;
     UIImage *blackImage=nil;
     for(PicPranckTextView *currTextView in listOfTextViews)
     {
@@ -219,11 +282,15 @@
         {
             x=currTextView.imageView.frame.origin.x;
             y=currTextView.imageView.frame.origin.y;
-            oldHeight=currTextView.imageView.frame.size.height;
-            oldWidth=currTextView.imageView.frame.size.width;
+        }
+        //Keep width and height for average computing
+        if(currImage)
+        {
+            CGSize size= CGSizeMake(currImage.size.width, currImage.size.height);
+            [listOfSizes addObject:[NSValue valueWithCGSize:size]];
         }
         //Create a black image
-        if(!currImage)
+        else
         {
             if(!blackImage)
             {
@@ -243,13 +310,14 @@
             maxWidth=currImage.size.width;
         if(0==maxHeight || maxHeight<currImage.size.height)
             maxHeight=currImage.size.height;
+        
+        
         //Clone UIImage View and Text View
         UIImageView *imageViewClone=[[UIImageView alloc] init];
         imageViewClone.frame=currImageView.frame;
         imageViewClone.image=currImageView.image;
         [self setImage:currImage forImageView:imageViewClone];
         PicPranckTextView *textViewClone=[[PicPranckTextView alloc] init];
-        //[textViewClone initWithDelegate:self ImageView:imageViewClone AndText:currTextView.text];
         [PicPranckTextView copyTextView:currTextView inOtherTextView:textViewClone withImageView:imageViewClone];
         [textViewClone.layer setBorderWidth:0.0f];
         imageViewClone.autoresizesSubviews = YES;
@@ -260,6 +328,17 @@
         [listOfTextViewsClones addObject:textViewClone];
         [listOfImageViewsClones addObject:imageViewClone];
         
+    }
+    if(0<[listOfSizes count])
+    {
+        for(NSValue *currSize in listOfSizes)
+        {
+            CGSize currCGSize=[currSize CGSizeValue];
+            averageWidth+=currCGSize.width;
+            averageHeight+=currCGSize.height;
+        }
+        averageWidth*=(1/[listOfSizes count]);
+        averageHeight*=(1/[listOfSizes count]);
     }
     //TODO: send image to AppViewController
     
@@ -279,24 +358,38 @@
         //TODO: ratio for font size not accurate
         CGFloat ratio=0.0;
         if(0<currImageView.frame.size.width)
-            ratio=currImage.size.width/currImageView.frame.size.width;
-        //             CGRect newFrameImageView = CGRectMake(0.5*(maxWidth-currImage.size.width),totalHeight+0.5*(maxHeight-currImage.size.height),currImage.size.width,currImage.size.height);
-        CGRect newFrameImageView = CGRectMake(0.5*(maxWidth-currImage.size.width),totalHeight,currImage.size.width,currImage.size.height);
+            ratio=sizesForApp.width/currTextView.frame.size.width;
+//        CGFloat xOffset=0.5*(maxWidth-currImage.size.width);
+//        if(xOffset<0)
+//            xOffset=0;
+        CGRect newFrameImageView = CGRectMake(0,totalHeight,sizesForApp.width,sizesForApp.height);
         currImageView.frame = newFrameImageView;
         CGFloat oldFontSize=currTextView.font.pointSize;
         [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
-        //currImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [imageViewContainer addSubview:currImageView];
-        totalHeight+=currImage.size.height;
+        totalHeight+=sizesForApp.height;
     }
-    
-    
-    CGSize size = CGSizeMake(maxWidth,totalHeight);
+    //Add black square if whatsapp
+    if (0<[applicationTarget rangeOfString:@"whats"].location)
+    {
+        CGSize imageSize = CGSizeMake(sizesForApp.width,sizesForApp.height);
+        UIColor *fillColor = [UIColor blackColor];
+        UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        [fillColor setFill];
+        CGContextFillRect(context, CGRectMake(0, 0, imageSize.width, imageSize.height));
+        UIImage *blackImage= UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        UIImageView *blackImageView=[[UIImageView alloc] init];
+        CGRect frame=CGRectMake(0,totalHeight,sizesForApp.width,sizesForApp.height);
+        blackImageView.frame=frame;
+        [blackImageView setImage:blackImage];
+        [imageViewContainer addSubview:blackImageView];
+        totalHeight+=sizesForApp.height;
+    }
+    CGSize size = CGSizeMake(sizesForApp.width,totalHeight);
     CGRect newFrame=CGRectMake(x,y,size.width,size.height);
     imageViewContainer.frame=newFrame;
-    
-    
-    //[self.view addSubview:imageViewContainer];
     
     //Get Image with text
     CGFloat screenScale=[UIScreen mainScreen].scale;
@@ -307,9 +400,7 @@
     UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
-    
-    //Back to old frame
-    CGRect oldFrame=CGRectMake(x,y,oldWidth,oldHeight);
-    imageViewContainer.frame=oldFrame;
+    image=finalImage;
+ 
 }
 @end

@@ -18,10 +18,12 @@
 		F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */; };
 		F9A19E091E34C0D700EE34E6 /* PicPranckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E081E34C0D700EE34E6 /* PicPranckTests.m */; };
 		F9A19E141E34C0D700EE34E6 /* PicPranckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */; };
+		F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */; };
 		F9FCBFE11E48E6B90088B831 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDD1E48E6B90088B831 /* Bolts.framework */; };
 		F9FCBFE21E48E6B90088B831 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */; };
 		F9FCBFE31E48E6B90088B831 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */; };
 		F9FCBFE41E48E6B90088B831 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFE01E48E6B90088B831 /* FBSDKShareKit.framework */; };
+		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +65,13 @@
 		F9A19E0F1E34C0D700EE34E6 /* PicPranckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicPranckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicPranckUITests.m; sourceTree = "<group>"; };
 		F9A19E151E34C0D800EE34E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9E9EFC61E4F34B100828929 /* PicPranckDocumentInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckDocumentInteractionController.h; sourceTree = "<group>"; };
+		F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckDocumentInteractionController.m; sourceTree = "<group>"; };
 		F9FCBFDD1E48E6B90088B831 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../FacebookSDKs-iOS-4.19.0/Bolts.framework"; sourceTree = "<group>"; };
 		F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		F9FCBFE01E48E6B90088B831 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_finger_emoticon.png; path = Assets.xcassets/AppIcon.appiconset/middle_finger_emoticon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +151,8 @@
 				F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */,
 				F9A19DFF1E34C0D700EE34E6 /* Info.plist */,
 				F9A19DEE1E34C0D500EE34E6 /* Supporting Files */,
+				F9E9EFC61E4F34B100828929 /* PicPranckDocumentInteractionController.h */,
+				F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */,
 			);
 			path = PicPranck;
 			sourceTree = "<group>";
@@ -153,6 +160,7 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */,
 				F904B2571E47D4DB00B5FA26 /* Impact.ttf */,
 				F9A19DEF1E34C0D500EE34E6 /* main.m */,
 			);
@@ -287,6 +295,7 @@
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
 				F9A19DFB1E34C0D600EE34E6 /* Assets.xcassets in Resources */,
+				F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */,
 				F9A19DF91E34C0D600EE34E6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +324,7 @@
 				F904B2541E47C30800B5FA26 /* AppViewController.m in Sources */,
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
+				F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 			);
