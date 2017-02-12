@@ -253,7 +253,7 @@
             
             [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
             
-            _documentInteractionController = [PicPranckDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
+            _documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
             _documentInteractionController.UTI = @"net.whatsapp.image";
             _documentInteractionController.delegate = self;
             

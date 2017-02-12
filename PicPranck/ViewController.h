@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "PicPranckTextView.h"
-#import "PicPranckDocumentInteractionController.h"
+//#import "PicPranckDocumentInteractionController.h"
 
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UIDocumentInteractionControllerDelegate>
 {
     NSMutableDictionary *dicOfSizes;
     NSString *activityType;
-    PicPranckDocumentInteractionController *_documentInteractionController;
+    UIDocumentInteractionController *_documentInteractionController;
     UIActivityViewController *_activityViewController;
     NSMutableArray *listOfTextViews;
     NSMutableArray *listOfGestureViews;

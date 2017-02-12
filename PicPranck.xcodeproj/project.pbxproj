@@ -20,6 +20,13 @@
 		F9A19E141E34C0D700EE34E6 /* PicPranckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */; };
 		F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */; };
 		F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */; };
+		F9E9EFD01E50FA9800828929 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFCF1E50FA9800828929 /* gear.png */; };
+		F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD11E50FAAE00828929 /* paperbox.png */; };
+		F9E9EFD51E50FAC400828929 /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD31E50FAC400828929 /* pencil.png */; };
+		F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD41E50FAC400828929 /* photossimple.png */; };
+		F9E9EFDA1E51049900828929 /* Editimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD71E51049900828929 /* Editimage.png */; };
+		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
+		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
 		F9FCBFE11E48E6B90088B831 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDD1E48E6B90088B831 /* Bolts.framework */; };
 		F9FCBFE21E48E6B90088B831 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */; };
 		F9FCBFE31E48E6B90088B831 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */; };
@@ -70,6 +77,13 @@
 		F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckDocumentInteractionController.m; sourceTree = "<group>"; };
 		F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActivityItemProvider.h; sourceTree = "<group>"; };
 		F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckActivityItemProvider.m; sourceTree = "<group>"; };
+		F9E9EFCF1E50FA9800828929 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Assets.xcassets/AppIcon.appiconset/gear.png; sourceTree = "<group>"; };
+		F9E9EFD11E50FAAE00828929 /* paperbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paperbox.png; path = Assets.xcassets/AppIcon.appiconset/paperbox.png; sourceTree = "<group>"; };
+		F9E9EFD31E50FAC400828929 /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pencil.png; path = Assets.xcassets/AppIcon.appiconset/pencil.png; sourceTree = "<group>"; };
+		F9E9EFD41E50FAC400828929 /* photossimple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photossimple.png; path = Assets.xcassets/AppIcon.appiconset/photossimple.png; sourceTree = "<group>"; };
+		F9E9EFD71E51049900828929 /* Editimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Editimage.png; path = Assets.xcassets/AppIcon.appiconset/Editimage.png; sourceTree = "<group>"; };
+		F9E9EFD81E51049900828929 /* MiddleFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiddleFinger.png; path = Assets.xcassets/AppIcon.appiconset/MiddleFinger.png; sourceTree = "<group>"; };
+		F9E9EFD91E51049900828929 /* Settings50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings50.png; path = Assets.xcassets/AppIcon.appiconset/Settings50.png; sourceTree = "<group>"; };
 		F9FCBFDD1E48E6B90088B831 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../FacebookSDKs-iOS-4.19.0/Bolts.framework"; sourceTree = "<group>"; };
 		F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -165,6 +179,13 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9E9EFD71E51049900828929 /* Editimage.png */,
+				F9E9EFD81E51049900828929 /* MiddleFinger.png */,
+				F9E9EFD91E51049900828929 /* Settings50.png */,
+				F9E9EFD31E50FAC400828929 /* pencil.png */,
+				F9E9EFD41E50FAC400828929 /* photossimple.png */,
+				F9E9EFD11E50FAAE00828929 /* paperbox.png */,
+				F9E9EFCF1E50FA9800828929 /* gear.png */,
 				F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */,
 				F904B2571E47D4DB00B5FA26 /* Impact.ttf */,
 				F9A19DEF1E34C0D500EE34E6 /* main.m */,
@@ -297,11 +318,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */,
+				F9E9EFD51E50FAC400828929 /* pencil.png in Resources */,
+				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,
+				F9E9EFDC1E51049900828929 /* Settings50.png in Resources */,
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
+				F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */,
+				F9E9EFD01E50FA9800828929 /* gear.png in Resources */,
 				F9A19DFB1E34C0D600EE34E6 /* Assets.xcassets in Resources */,
 				F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */,
 				F9A19DF91E34C0D600EE34E6 /* Main.storyboard in Resources */,
+				F9E9EFDA1E51049900828929 /* Editimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,9 @@
     //    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     //    activityViewController.excludedActivityTypes = @[UIActivityTypeMail,UIActivityTypePostToTwitter,UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,                                                        UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop,
     //                                                      @"com.apple.mobilenotes.SharingExtension"];
+    // net.whatsapp.WhatsApp.ShareExtension
+    // com.facebook.Messenger.ShareExtension
+    // com.apple.UIKit.activity.Message
     //    [self presentViewController:activityViewController animated:YES completion:nil];
     
 
