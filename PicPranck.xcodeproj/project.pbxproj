@@ -19,6 +19,7 @@
 		F9A19E091E34C0D700EE34E6 /* PicPranckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E081E34C0D700EE34E6 /* PicPranckTests.m */; };
 		F9A19E141E34C0D700EE34E6 /* PicPranckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */; };
 		F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */; };
+		F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */; };
 		F9FCBFE11E48E6B90088B831 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDD1E48E6B90088B831 /* Bolts.framework */; };
 		F9FCBFE21E48E6B90088B831 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */; };
 		F9FCBFE31E48E6B90088B831 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */; };
@@ -67,6 +68,8 @@
 		F9A19E151E34C0D800EE34E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9E9EFC61E4F34B100828929 /* PicPranckDocumentInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckDocumentInteractionController.h; sourceTree = "<group>"; };
 		F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckDocumentInteractionController.m; sourceTree = "<group>"; };
+		F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActivityItemProvider.h; sourceTree = "<group>"; };
+		F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckActivityItemProvider.m; sourceTree = "<group>"; };
 		F9FCBFDD1E48E6B90088B831 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../FacebookSDKs-iOS-4.19.0/Bolts.framework"; sourceTree = "<group>"; };
 		F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				F9A19DEE1E34C0D500EE34E6 /* Supporting Files */,
 				F9E9EFC61E4F34B100828929 /* PicPranckDocumentInteractionController.h */,
 				F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */,
+				F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */,
+				F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */,
 			);
 			path = PicPranck;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
+				F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,8 +13,9 @@
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UIDocumentInteractionControllerDelegate>
 {
     NSMutableDictionary *dicOfSizes;
-    NSString *applicationTarget;
+    NSString *activityType;
     PicPranckDocumentInteractionController *_documentInteractionController;
+    UIActivityViewController *_activityViewController;
     NSMutableArray *listOfTextViews;
     NSMutableArray *listOfGestureViews;
     
@@ -34,7 +35,11 @@
     IBOutlet UIImageView *imageViewArea3;
     PicPranckTextView *textView3;
     
+    IBOutlet UIButton *buttonSend;
+    
 }
-
+- (IBAction)buttonSendClicked:(id)sender;
+-(void)generateImageToSendWithActivityType:(NSString *)iActivityType;
+-(UIImage *)getImage;
 @end
 

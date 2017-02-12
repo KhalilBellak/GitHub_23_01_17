@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 #import "PicPranckTextView.h"
+#import <objc/runtime.h>
+#import "PicPranckActivityItemProvider.h"
+
+#define USE_ACTIVITY_VIEW_CONTROLLER 1
 @interface ViewController ()//TEST OF BRANCH
 
 @end
@@ -20,10 +24,12 @@
     dicOfSizes= [[NSMutableDictionary alloc] init];
     [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(1000, 1000)]
                   forKey:@"WhatsApp"];
-    [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(500, 500)]
-                  forKey:@"Messenger"];
+    [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(300, 1000)]
+                  forKey:@"Facebook"];
+    [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(300, 400)]
+                  forKey:@"iMessage"];
     
-    applicationTarget=@"";
+    activityType=@"";
     //Get global tint
     globalTint= [self.view tintColor];
     // Do any additional setup after loading the view, typically from a nib.
@@ -67,14 +73,14 @@
         [self.view bringSubviewToFront:currTextView.gestureView];
         [listOfGestureViews addObject:currTextView.gestureView];
     }
-    //button for UIActivityControllerView
-    CGFloat x=self.view.frame.size.width;
-    CGFloat y=self.view.frame.size.height;
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x-100, 0.5*y-10, 100, 30)];
-    [button setTitle:@"Send" forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor redColor]];
-    [button addTarget:self action:@selector(sendPicture:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+//    //button for UIActivityControllerView
+//    CGFloat x=self.view.frame.size.width;
+//    CGFloat y=self.view.frame.size.height;
+//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x-100, 0.5*y-10, 100, 30)];
+//    [button setTitle:@"Send" forState:UIControlStateNormal];
+//    [button setBackgroundColor:[UIColor redColor]];
+//    [button addTarget:self action:@selector(sendPicture:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:button];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -216,27 +222,52 @@
 
 -(void)sendPicture:(id)sender
 {
-    if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]])
+    if(USE_ACTIVITY_VIEW_CONTROLLER)
     {
-    NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.wai"];
-    
-    [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
-    
-    _documentInteractionController = [PicPranckDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
-    _documentInteractionController.UTI = @"net.whatsapp.image";
-    _documentInteractionController.delegate = self;
-    
-    [_documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES]; 
+        PicPranckActivityItemProvider *message = [[PicPranckActivityItemProvider alloc] initWithPlaceholderItem:image];
+        message.viewController=self;
+        NSMutableArray *activityItems=[[NSMutableArray alloc] init];
+        [activityItems addObject:message];
+//        if (image) {
+//            activityItems = @[message, image];
+//        } else {
+//            activityItems = @[message];
+//        }
+            _activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+            _activityViewController.excludedActivityTypes = @[UIActivityTypeMail,UIActivityTypePostToTwitter,UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,                                                        UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop,
+                                                              @"com.apple.mobilenotes.SharingExtension"];
+            [self presentViewController:_activityViewController animated:YES completion:nil];
+        /////TEST
+//        int i=0;
+//        unsigned int mc = 0;
+//        Method * mlist = class_copyMethodList(object_getClass(_activityViewController), &mc);
+//        NSLog(@"%d methods", mc);
+//        for(i=0;i<mc;i++)
+//            NSLog(@"Method no #%d: %s", i, sel_getName(method_getName(mlist[i])));
     }
-    
+    else
+    {
+        if ([[UIApplication sharedApplication] canOpenURL: [NSURL URLWithString:@"whatsapp://app"]])
+        {
+            NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.png"];
+            
+            [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
+            
+            _documentInteractionController = [PicPranckDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
+            _documentInteractionController.UTI = @"net.whatsapp.image";
+            _documentInteractionController.delegate = self;
+            
+            [_documentInteractionController presentOpenInMenuFromRect:CGRectMake(0, 0, 0, 0) inView:self.view animated: YES];
+        }
+    }
 }
 
 - (void)documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application
 {
-    applicationTarget=application;
+    activityType=application;
     if ([self isWhatsApplication:application])
     {
-        NSString *savePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/PicPranck.wai"];
+        NSString *savePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/PicPranck.png"];
         [UIImageJPEGRepresentation(image, 1.0) writeToFile:savePath atomically:YES];
         controller.URL = [NSURL fileURLWithPath:savePath];
         controller.UTI = @"net.whatsapp.image";
@@ -251,14 +282,19 @@
     else
         return YES;
 }
+-(void)generateImageToSendWithActivityType:(NSString *)iActivityType
+{
+    activityType=iActivityType;
+    [self generateImageToSend];
+}
 -(void)generateImageToSend
 {
     //TODO: handle cases when no image selected (need to resize them)
     //Create clones of UIImageViews and UITextViews
-    NSString *keyForDico=[[NSString alloc] init];
-    if (0<[applicationTarget rangeOfString:@"whats"].location)
-        keyForDico=@"WhatsApp";
-    CGSize sizesForApp=[[dicOfSizes objectForKey:keyForDico] CGSizeValue];
+//    NSString *keyForDico=[[NSString alloc] init];
+//    if (0<[activityType rangeOfString:@"whats"].location)
+//        keyForDico=@"WhatsApp";
+    CGSize sizesForApp=[[dicOfSizes objectForKey:activityType] CGSizeValue];
     
     NSMutableArray *listOfTextViewsClones=[[NSMutableArray alloc] init];
     NSMutableArray *listOfImageViewsClones=[[NSMutableArray alloc] init];
@@ -365,7 +401,8 @@
         totalHeight+=sizesForApp.height;
     }
     //Add black square if whatsapp
-    if (0<[applicationTarget rangeOfString:@"whats"].location)
+    //if (0<[activityType rangeOfString:@"whats"].location)
+    if([activityType isEqualToString:@"WhatsApp"])
     {
         CGSize imageSize = CGSizeMake(sizesForApp.width,sizesForApp.height);
         UIColor *fillColor = [UIColor blackColor];
@@ -394,8 +431,15 @@
     [imageViewContainer.layer renderInContext:context];
     UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
+    //UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
     image=finalImage;
  
+}
+- (IBAction)buttonSendClicked:(id)sender {
+    [self sendPicture:sender];
+}
+-(UIImage *)getImage
+{
+    return image;
 }
 @end

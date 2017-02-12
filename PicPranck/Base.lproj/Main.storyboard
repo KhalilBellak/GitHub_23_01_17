@@ -47,7 +47,7 @@
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9FB-fN-81c" kind="show" identifier="chooseAppButtonSegue" id="1TN-a6-AgO"/>
+                                    <action selector="buttonSendClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a99-T9-9HZ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fg-WGr">
@@ -69,6 +69,7 @@
                         <barButtonItem key="backBarButtonItem" title="Workshop" id="nfm-Im-IMB"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="buttonSend" destination="UHD-Jc-2eT" id="AlS-0U-5sp"/>
                         <outlet property="imageViewArea1" destination="pup-fg-WGr" id="PUC-sM-0h5"/>
                         <outlet property="imageViewArea2" destination="Ngr-Am-p9w" id="K7L-dg-GvP"/>
                         <outlet property="imageViewArea3" destination="asw-Ac-Yqg" id="63G-gC-WZN"/>
