@@ -73,14 +73,18 @@
         [self.view bringSubviewToFront:currTextView.gestureView];
         [listOfGestureViews addObject:currTextView.gestureView];
     }
-//    //button for UIActivityControllerView
-//    CGFloat x=self.view.frame.size.width;
-//    CGFloat y=self.view.frame.size.height;
-//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x-100, 0.5*y-10, 100, 30)];
-//    [button setTitle:@"Send" forState:UIControlStateNormal];
-//    [button setBackgroundColor:[UIColor redColor]];
-//    [button addTarget:self action:@selector(sendPicture:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
+    //Add self as observer of Keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    //Remove observer
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    [super viewWillDisappear:animated];
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -180,7 +184,7 @@
         if(!tapedTextView.edited)
             [tapedTextView setText:@""];
         tapedTextView.edited=YES;
-        //    //Add Done button to keyboard
+        //Add Done button to keyboard
         UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
         [keyboardToolbar sizeToFit];
         UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
@@ -206,6 +210,11 @@
 {
     //TODO:move view while keyboard appears
     
+    
+}
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return TRUE;
 }
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
@@ -218,6 +227,48 @@
     [textView endEditing:YES];
 }
 
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    //tapedTextView
+    //[self.view setFrame:CGRectMake(0,-110,320,460)];
+    [self moveViewVertically:self.view withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [self moveViewVertically:self.view toPosition:0];
+}
+-(void)moveViewVertically:(UIView *)iView withTapedTextView:(PicPranckTextView *) iTapedTextView andKeyBoardFrame:(CGRect) keyBoardFrame
+{
+//    NSLog(@"center of view: %f",self.view.center.y);
+//    NSLog(@"height of view: %f",self.view.frame.size.height);
+//    NSLog(@"keyboard: %f",keyBoardFrame.origin.y);
+//    NSLog(@"image view: %f",iTapedTextView.imageView.frame.origin.y);
+//    NSLog(@"image view height: %f",iTapedTextView.imageView.frame.size.height);
+
+    CGFloat yDown=iTapedTextView.imageView.frame.origin.y+iTapedTextView.imageView.frame.size.height;
+    CGFloat yKeyboard=keyBoardFrame.origin.y-keyBoardFrame.size.height;
+    CGFloat dY=yDown-yKeyboard;
+    NSLog(@"MOVE WITH: %f",dY);
+    NSLog(@"VIEW origin: %f",self.view.frame.origin.y);
+    if(0<dY)
+        [self moveViewVertically:self.view toPosition:self.view.frame.origin.y-dY];
+}
+-(void)moveViewVertically:(UIView *)iView toPosition:(CGFloat)y
+{
+    [UIView animateWithDuration:0.1
+                          delay:0.0
+                        options: UIViewAnimationOptionCurveLinear
+                     animations:^
+     {
+         CGRect frame = iView.frame;
+         frame.origin.y=y;
+         iView.frame = frame;
+     }
+                     completion:nil];
+}
 #pragma mark Generate Image To Send
 
 -(void)sendPicture:(id)sender
@@ -228,22 +279,10 @@
         message.viewController=self;
         NSMutableArray *activityItems=[[NSMutableArray alloc] init];
         [activityItems addObject:message];
-//        if (image) {
-//            activityItems = @[message, image];
-//        } else {
-//            activityItems = @[message];
-//        }
             _activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
             _activityViewController.excludedActivityTypes = @[UIActivityTypeMail,UIActivityTypePostToTwitter,UIActivityTypePostToWeibo,UIActivityTypePrint,                                                         UIActivityTypeCopyToPasteboard,UIActivityTypeAssignToContact,UIActivityTypePostToFacebook,                                                        UIActivityTypeSaveToCameraRoll,UIActivityTypeAddToReadingList,                                                         UIActivityTypePostToFlickr,UIActivityTypePostToVimeo,                                                         UIActivityTypePostToTencentWeibo,UIActivityTypeAirDrop,
                                                               @"com.apple.mobilenotes.SharingExtension"];
             [self presentViewController:_activityViewController animated:YES completion:nil];
-        /////TEST
-//        int i=0;
-//        unsigned int mc = 0;
-//        Method * mlist = class_copyMethodList(object_getClass(_activityViewController), &mc);
-//        NSLog(@"%d methods", mc);
-//        for(i=0;i<mc;i++)
-//            NSLog(@"Method no #%d: %s", i, sel_getName(method_getName(mlist[i])));
     }
     else
     {
@@ -291,9 +330,6 @@
 {
     //TODO: handle cases when no image selected (need to resize them)
     //Create clones of UIImageViews and UITextViews
-//    NSString *keyForDico=[[NSString alloc] init];
-//    if (0<[activityType rangeOfString:@"whats"].location)
-//        keyForDico=@"WhatsApp";
     CGSize sizesForApp=[[dicOfSizes objectForKey:activityType] CGSizeValue];
     
     NSMutableArray *listOfTextViewsClones=[[NSMutableArray alloc] init];
@@ -302,7 +338,7 @@
     //Clone UIImageViews
     NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
     NSInteger averageWidth=0,averageHeight=0;
-    //PicPranckTextView *firstTextView=[listOfTextViews objectAtIndex:0];
+    
     CGFloat x=0.0,y=0.0;
     UIImage *blackImage=nil;
     for(PicPranckTextView *currTextView in listOfTextViews)
@@ -379,20 +415,16 @@
     [self.view sendSubviewToBack:imageViewContainer];
     [imageViewContainer setBackgroundColor:[UIColor blackColor]];
     imageViewContainer.clipsToBounds=YES;
-    //Automatic Resize of imageViewContainer subviews
-    //imageViewContainer.autoresizesSubviews = YES;
+    
     //Put all views in imageViewContainer and reframe if necessary
     for(PicPranckTextView *currTextView in listOfTextViewsClones)
     {
         UIImageView *currImageView=currTextView.imageView;
-        UIImage *currImage=currImageView.image;
         //TODO: ratio for font size not accurate
         CGFloat ratio=0.0;
         if(0<currImageView.frame.size.width)
             ratio=sizesForApp.width/currImageView.frame.size.width;
-//        CGFloat xOffset=0.5*(maxWidth-currImage.size.width);
-//        if(xOffset<0)
-//            xOffset=0;
+
         CGRect newFrameImageView = CGRectMake(0,totalHeight,sizesForApp.width,sizesForApp.height);
         currImageView.frame = newFrameImageView;
         CGFloat oldFontSize=currTextView.font.pointSize;
@@ -401,7 +433,7 @@
         totalHeight+=sizesForApp.height;
     }
     //Add black square if whatsapp
-    //if (0<[activityType rangeOfString:@"whats"].location)
+
     if([activityType isEqualToString:@"WhatsApp"])
     {
         CGSize imageSize = CGSizeMake(sizesForApp.width,sizesForApp.height);
