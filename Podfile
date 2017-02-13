@@ -7,6 +7,10 @@ target 'PicPranck' do
 
   # Pods for PicPranck
 
+  pod 'FBSDKShareKit'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  
   target 'PicPranckTests' do
     inherit! :search_paths
     # Pods for testing
