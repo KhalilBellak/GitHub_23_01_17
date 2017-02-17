@@ -7,7 +7,7 @@
 //
 
 #import "PicPranckTextView.h"
-
+#import <QuartzCore/QuartzCore.h>
 @implementation PicPranckTextView
 
 /*
@@ -57,10 +57,10 @@
     [self setTextAlignment:NSTextAlignmentCenter];
     //Layout
     [self setBackgroundColor:[UIColor clearColor]];
-    self.layer.cornerRadius=8.0f;
+    //self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
     [self.layer setBorderWidth:2.0f];
-    [self.layer setBorderColor:iImageView.layer.borderColor];
+    [self.layer setBorderColor:[[UIColor blackColor] CGColor]];
     //gesture view
     self.gestureView=[[UIView alloc] init];
     self.gestureView.frame=iImageView.frame;

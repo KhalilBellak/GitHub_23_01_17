@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
+		F90147761E53993D00F3069F /* ModelPicPranck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
@@ -17,7 +19,9 @@
 		F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */; };
 		F9A19E091E34C0D700EE34E6 /* PicPranckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E081E34C0D700EE34E6 /* PicPranckTests.m */; };
 		F9A19E141E34C0D700EE34E6 /* PicPranckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */; };
-		F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */; };
+		F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */; };
+		F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F31E565C9B009B54B1 /* TabBarViewController.m */; };
+		F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */; };
 		F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */; };
 		F9E9EFD01E50FA9800828929 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFCF1E50FA9800828929 /* gear.png */; };
 		F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD11E50FAAE00828929 /* paperbox.png */; };
@@ -26,10 +30,6 @@
 		F9E9EFDA1E51049900828929 /* Editimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD71E51049900828929 /* Editimage.png */; };
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
-		F9FCBFE11E48E6B90088B831 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDD1E48E6B90088B831 /* Bolts.framework */; };
-		F9FCBFE21E48E6B90088B831 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */; };
-		F9FCBFE31E48E6B90088B831 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */; };
-		F9FCBFE41E48E6B90088B831 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9FCBFE01E48E6B90088B831 /* FBSDKShareKit.framework */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F90147711E53586200F3069F /* PicPranckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewController.h; sourceTree = "<group>"; };
+		F90147721E53586200F3069F /* PicPranckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewController.m; sourceTree = "<group>"; };
+		F90147751E53993D00F3069F /* ModelPicPranck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelPicPranck.xcdatamodel; sourceTree = "<group>"; };
 		F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckTextView.h; sourceTree = "<group>"; };
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
@@ -70,8 +73,11 @@
 		F9A19E0F1E34C0D700EE34E6 /* PicPranckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicPranckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicPranckUITests.m; sourceTree = "<group>"; };
 		F9A19E151E34C0D800EE34E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F9E9EFC61E4F34B100828929 /* PicPranckDocumentInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckDocumentInteractionController.h; sourceTree = "<group>"; };
-		F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckDocumentInteractionController.m; sourceTree = "<group>"; };
+		F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_fuck_with_logo.png; path = Assets.xcassets/AppIcon.appiconset/simple_fuck_with_logo.png; sourceTree = "<group>"; };
+		F9D460F21E565C9B009B54B1 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		F9D460F31E565C9B009B54B1 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		F9D460F51E565EB6009B54B1 /* PicPranckImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImageView.h; sourceTree = "<group>"; };
+		F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImageView.m; sourceTree = "<group>"; };
 		F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActivityItemProvider.h; sourceTree = "<group>"; };
 		F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckActivityItemProvider.m; sourceTree = "<group>"; };
 		F9E9EFCF1E50FA9800828929 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Assets.xcassets/AppIcon.appiconset/gear.png; sourceTree = "<group>"; };
@@ -81,10 +87,6 @@
 		F9E9EFD71E51049900828929 /* Editimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Editimage.png; path = Assets.xcassets/AppIcon.appiconset/Editimage.png; sourceTree = "<group>"; };
 		F9E9EFD81E51049900828929 /* MiddleFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiddleFinger.png; path = Assets.xcassets/AppIcon.appiconset/MiddleFinger.png; sourceTree = "<group>"; };
 		F9E9EFD91E51049900828929 /* Settings50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings50.png; path = Assets.xcassets/AppIcon.appiconset/Settings50.png; sourceTree = "<group>"; };
-		F9FCBFDD1E48E6B90088B831 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../FacebookSDKs-iOS-4.19.0/Bolts.framework"; sourceTree = "<group>"; };
-		F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		F9FCBFE01E48E6B90088B831 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../FacebookSDKs-iOS-4.19.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_finger_emoticon.png; path = Assets.xcassets/AppIcon.appiconset/middle_finger_emoticon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,10 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9FCBFE41E48E6B90088B831 /* FBSDKShareKit.framework in Frameworks */,
-				F9FCBFE11E48E6B90088B831 /* Bolts.framework in Frameworks */,
-				F9FCBFE21E48E6B90088B831 /* FBSDKCoreKit.framework in Frameworks */,
-				F9FCBFE31E48E6B90088B831 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,10 +118,6 @@
 		F904B2591E47D53400B5FA26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F9FCBFDD1E48E6B90088B831 /* Bolts.framework */,
-				F9FCBFDE1E48E6B90088B831 /* FBSDKCoreKit.framework */,
-				F9FCBFDF1E48E6B90088B831 /* FBSDKLoginKit.framework */,
-				F9FCBFE01E48E6B90088B831 /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,14 +153,19 @@
 				F9A19DF41E34C0D600EE34E6 /* ViewController.h */,
 				F9A19DF51E34C0D600EE34E6 /* ViewController.m */,
 				F9A19DF71E34C0D600EE34E6 /* Main.storyboard */,
+				F90147711E53586200F3069F /* PicPranckViewController.h */,
+				F90147721E53586200F3069F /* PicPranckViewController.m */,
+				F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */,
 				F9A19DFA1E34C0D600EE34E6 /* Assets.xcassets */,
 				F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */,
 				F9A19DFF1E34C0D700EE34E6 /* Info.plist */,
 				F9A19DEE1E34C0D500EE34E6 /* Supporting Files */,
-				F9E9EFC61E4F34B100828929 /* PicPranckDocumentInteractionController.h */,
-				F9E9EFC71E4F34B100828929 /* PicPranckDocumentInteractionController.m */,
 				F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */,
 				F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */,
+				F9D460F21E565C9B009B54B1 /* TabBarViewController.h */,
+				F9D460F31E565C9B009B54B1 /* TabBarViewController.m */,
+				F9D460F51E565EB6009B54B1 /* PicPranckImageView.h */,
+				F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */,
 			);
 			path = PicPranck;
 			sourceTree = "<group>";
@@ -174,6 +173,7 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */,
 				F9E9EFD71E51049900828929 /* Editimage.png */,
 				F9E9EFD81E51049900828929 /* MiddleFinger.png */,
 				F9E9EFD91E51049900828929 /* Settings50.png */,
@@ -274,6 +274,7 @@
 					F9A19DEA1E34C0CE00EE34E6 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 9UNWQ87UJ9;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					F9A19E031E34C0D700EE34E6 = {
@@ -318,6 +319,7 @@
 				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,
 				F9E9EFDC1E51049900828929 /* Settings50.png in Resources */,
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
+				F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
 				F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */,
 				F9E9EFD01E50FA9800828929 /* gear.png in Resources */,
@@ -351,9 +353,12 @@
 			files = (
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
-				F9E9EFC81E4F34B100828929 /* PicPranckDocumentInteractionController.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
 				F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */,
+				F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */,
+				F90147731E53586200F3069F /* PicPranckViewController.m in Sources */,
+				F90147761E53993D00F3069F /* ModelPicPranck.xcdatamodeld in Sources */,
+				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0",
@@ -510,6 +516,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = khalil.PicPranck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -517,6 +525,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"/Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0",
@@ -526,6 +535,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = khalil.PicPranck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -615,6 +625,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F90147751E53993D00F3069F /* ModelPicPranck.xcdatamodel */,
+			);
+			currentVersion = F90147751E53993D00F3069F /* ModelPicPranck.xcdatamodel */;
+			path = ModelPicPranck.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F9A19DE31E34C0CD00EE34E6 /* Project object */;
 }

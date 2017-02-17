@@ -36,8 +36,10 @@
     PicPranckTextView *textView3;
     
     IBOutlet UIButton *buttonSend;
+    IBOutlet UIButton *saveButton;
     
 }
+- (IBAction)performSave:(id)sender;
 - (IBAction)buttonSendClicked:(id)sender;
 -(void)generateImageToSendWithActivityType:(NSString *)iActivityType;
 -(UIImage *)getImage;

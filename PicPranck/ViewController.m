@@ -10,6 +10,7 @@
 #import "PicPranckTextView.h"
 #import <objc/runtime.h>
 #import "PicPranckActivityItemProvider.h"
+#import "PicPranckViewController.h"
 
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
 @interface ViewController ()//TEST OF BRANCH
@@ -20,6 +21,9 @@
 #pragma mark View Controller methods
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Bring save button front
+    [self.view bringSubviewToFront:saveButton];
     //Dictionary for size for every application
     dicOfSizes= [[NSMutableDictionary alloc] init];
     [dicOfSizes setValue:[NSValue valueWithCGSize:CGSizeMake(1000, 1000)]
@@ -242,17 +246,9 @@
 }
 -(void)moveViewVertically:(UIView *)iView withTapedTextView:(PicPranckTextView *) iTapedTextView andKeyBoardFrame:(CGRect) keyBoardFrame
 {
-//    NSLog(@"center of view: %f",self.view.center.y);
-//    NSLog(@"height of view: %f",self.view.frame.size.height);
-//    NSLog(@"keyboard: %f",keyBoardFrame.origin.y);
-//    NSLog(@"image view: %f",iTapedTextView.imageView.frame.origin.y);
-//    NSLog(@"image view height: %f",iTapedTextView.imageView.frame.size.height);
-
     CGFloat yDown=iTapedTextView.imageView.frame.origin.y+iTapedTextView.imageView.frame.size.height;
     CGFloat yKeyboard=keyBoardFrame.origin.y-keyBoardFrame.size.height;
     CGFloat dY=yDown-yKeyboard;
-    NSLog(@"MOVE WITH: %f",dY);
-    NSLog(@"VIEW origin: %f",self.view.frame.origin.y);
     if(0<dY)
         [self moveViewVertically:self.view toPosition:self.view.frame.origin.y-dY];
 }
@@ -467,6 +463,19 @@
     image=finalImage;
  
 }
+- (IBAction)performSave:(id)sender {
+    NSArray *viewControllers=[self.tabBarController viewControllers];
+    for(UIViewController * currViewController in viewControllers)
+    {
+        if([currViewController isKindOfClass:[PicPranckViewController class]])
+        {
+            PicPranckViewController *PickPranckVC=(PicPranckViewController *)currViewController;
+            NSArray *listOfImages=[[NSArray alloc] initWithObjects:imageViewArea1.image,imageViewArea2.image,imageViewArea3.image, nil];
+            [PickPranckVC uploadImages:listOfImages];
+        }
+    }
+}
+
 - (IBAction)buttonSendClicked:(id)sender {
     [self sendPicture:sender];
 }

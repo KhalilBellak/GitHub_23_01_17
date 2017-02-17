@@ -21,12 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="middle_finger_emoticon.png" translatesAutoresizingMaskIntoConstraints="NO" id="n7p-V9-mbX">
-                                <rect key="frame" x="126.7809388335703" y="269.80938833570156" width="120" height="127.99999999999983"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="simple_fuck_with_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="m78-WL-1QP">
+                                <rect key="frame" x="85.717127949537826" y="234.69701615484269" width="200.00000000000017" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                </accessibility>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -38,6 +35,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="middle_finger_emoticon.png" width="120" height="120"/>
+        <image name="simple_fuck_with_logo.png" width="1" height="1"/>
     </resources>
+    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
