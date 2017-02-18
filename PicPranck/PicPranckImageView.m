@@ -7,6 +7,7 @@
 //
 
 #import "PicPranckImageView.h"
+#import "ViewController.h"
 
 #define X_OFFSET_FROM_CENTER_OF_SCREEN 20
 #define Y_OFFSET_FROM_BOTTOM_OF_SCREEN 60
@@ -23,6 +24,7 @@
     //Initialize attributes
     _managedObject=iManagedObject;
     _viewController=iViewController;
+    _listOfRotatedImgs=[[NSMutableArray alloc] init];
     //Init self
     self=[self init];
     //Gesture Recognizers
@@ -40,7 +42,7 @@
     [self setFrame:frame];
     [self setBackgroundColor:[UIColor blackColor]];
     
-    [_managedObject setValue:@(false) forKey:@"newPicPranck"];
+    [iManagedObject setValue:@(NO) forKey:@"newPicPranck"];
     
     [_viewController.collectionView addSubview:self];
     [_viewController.collectionView bringSubviewToFront:self];
@@ -91,7 +93,10 @@
                 [childImageView setFrame:childFrame];
                 [childImageView setBackgroundColor:[UIColor blackColor]];
                 [childImageView setContentMode:UIViewContentModeScaleAspectFit];
-                [childImageView setImage:[self rotate:image withOrientation:UIImageOrientationRight]];
+                //Keep rotated images
+                UIImage *rotatedImage=[self rotate:image withOrientation:UIImageOrientationRight];
+                [_listOfRotatedImgs addObject:rotatedImage];
+                [childImageView setImage:rotatedImage];
                 [_imageViewForPreview addSubview:childImageView];
             }
             
@@ -143,7 +148,18 @@
 }
 -(IBAction)useImage:(id)sender
 {
+    [_coverView removeFromSuperview];
     
+    NSArray *vcArray=[_viewController.tabBarController viewControllers];
+    for(UIViewController *currVc in vcArray)
+    {
+        if([currVc isKindOfClass:[ViewController class]])
+        {
+            ViewController *vc=(ViewController *)currVc;
+            [vc setImagesWithImages:_listOfRotatedImgs];
+            [_viewController.tabBarController setSelectedViewController:vc];
+        }
+    }
 }
 #pragma mark Method for Image manipulations
 static inline double radians (double degrees) {return degrees * M_PI/180;}

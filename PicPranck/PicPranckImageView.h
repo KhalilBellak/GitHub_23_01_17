@@ -15,6 +15,7 @@
 @property (strong,nonatomic) PicPranckViewController *viewController;
 @property (strong,nonatomic) UIView *coverView;
 @property (strong,nonatomic) UIImageView *imageViewForPreview;
+@property (strong,nonatomic) NSMutableArray *listOfRotatedImgs;
 -(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(NSManagedObject *)iManagedObject andFrame:(CGRect)frame;
 
 @end

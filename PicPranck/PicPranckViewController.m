@@ -35,6 +35,10 @@
     NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
     req.fetchBatchSize=10;
     req.fetchLimit=30;
+    //Predicate
+    //NSPredicate *predicate =[NSPredicate predicateWithFormat:@"newPicPranck == true"];
+    //[req setPredicate:predicate];
+    //Sort results by date
     NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
     [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
     //Getting the images
@@ -46,11 +50,11 @@
     CGFloat xOffset=X_OFFSET,yOffset=Y_OFFSET;
     for(NSManagedObject *currManObj in results)
     {
-        if([currManObj valueForKey:@"newPicPranck"])
+        bool newPicPranck=[[currManObj valueForKey:@"newPicPranck"] boolValue];
+        if(newPicPranck)
         {
             CGRect frame=CGRectMake(xOffset, yOffset, width, width);
             PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:self withManagedObject:currManObj andFrame:frame];
-            
         }
         xOffset+=(width+X_OFFSET);
         if(collViewFrame.size.width+collViewFrame.origin.x< xOffset+width)
@@ -59,7 +63,8 @@
             yOffset+=width+Y_OFFSET;
         }
     }
-
+    //Save that images are old ones
+    //bool saved=[managedObjectContext save:&err];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,21 +84,18 @@
         
         for(UIImage *image in listOfImages)
         {
-            NSData *imageData = UIImagePNGRepresentation(image);
+            //NSData *imageData = UIImagePNGRepresentation(image);
+            NSData *imageData = UIImageJPEGRepresentation(image,1.0);
             if(0==[listOfImages indexOfObject:image])
                 [newSavedImage setValue:imageData forKeyPath:@"upperImage"];
             else if(1==[listOfImages indexOfObject:image])
-            {
                 [newSavedImage setValue:imageData forKeyPath:@"visibleImage"];
-                NSLog(@"Retrieved image width: %f",image.size.width);
-                NSLog(@"Retrieved image height: %f",image.size.height);
                 
-            }
             else if(2==[listOfImages indexOfObject:image])
                 [newSavedImage setValue:imageData forKeyPath:@"lowerImage"];
         }
         [newSavedImage setValue:localDate forKey:@"dateOfCreation"];
-        [newSavedImage setValue:@(true) forKey:@"newPicPranck"];
+        [newSavedImage setValue:@(YES) forKey:@"newPicPranck"];
         NSError *err=[[NSError alloc] init];
         bool saved=[managedObjectContext save:&err];
         if(saved)

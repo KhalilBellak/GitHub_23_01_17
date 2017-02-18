@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PicPranckTextView.h"
+
 //#import "PicPranckDocumentInteractionController.h"
 
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UIDocumentInteractionControllerDelegate>
@@ -43,5 +44,6 @@
 - (IBAction)buttonSendClicked:(id)sender;
 -(void)generateImageToSendWithActivityType:(NSString *)iActivityType;
 -(UIImage *)getImage;
+-(void)setImagesWithImages:(NSMutableArray *)listOfImages;
 @end
 

@@ -148,6 +148,16 @@
     [iImageView setContentMode:UIViewContentModeScaleAspectFit];
     [iImageView setImage:iImage];
 }
+-(void)setImagesWithImages:(NSMutableArray *)listOfImages
+{
+    for(int i=0;i<3;i++)
+    {
+        PicPranckTextView *textViewToSet=[listOfTextViews objectAtIndex:i];
+        UIImage *curImage=[listOfImages objectAtIndex:i];
+        [textViewToSet setText:@""];
+        [self setImage:curImage forImageView:textViewToSet.imageView];
+    }
+}
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:TRUE completion:NULL];
