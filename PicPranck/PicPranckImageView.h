@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "PicPranckViewController.h"
-
+#import "SavedImage+CoreDataClass.h"
 @interface PicPranckImageView : UIImageView
-@property (strong,nonatomic) NSManagedObject *managedObject;
-@property (strong,nonatomic) PicPranckViewController *viewController;
-@property (strong,nonatomic) UIView *coverView;
-@property (strong,nonatomic) UIImageView *imageViewForPreview;
-@property (strong,nonatomic) NSMutableArray *listOfRotatedImgs;
--(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(NSManagedObject *)iManagedObject andFrame:(CGRect)frame;
+@property  SavedImage *managedObject;
+@property  PicPranckViewController *viewController;
+@property  UIView *coverView;
+@property  UIImageView *imageViewForPreview;
+@property  NSMutableArray *listOfRotatedImgs;
+-(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(SavedImage *)iManagedObject andFrame:(CGRect)frame;
 
 @end

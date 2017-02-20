@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
-		F90147761E53993D00F3069F /* ModelPicPranck.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
+		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
 		F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */; };
 		F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF51E34C0D600EE34E6 /* ViewController.m */; };
@@ -30,6 +30,10 @@
 		F9E9EFDA1E51049900828929 /* Editimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD71E51049900828929 /* Editimage.png */; };
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
+		F9F424931E59FF0C00BFE746 /* ImageOfArea+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F951415D1E59D761006262A2 /* ImageOfArea+CoreDataClass.m */; };
+		F9F424941E59FF0C00BFE746 /* ImageOfArea+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F951415F1E59D761006262A2 /* ImageOfArea+CoreDataProperties.m */; };
+		F9F424951E59FF0C00BFE746 /* SavedImage+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */; };
+		F9F424961E59FF0C00BFE746 /* SavedImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +61,16 @@
 		F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckTextView.h; sourceTree = "<group>"; };
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		F951414D1E59B2D5006262A2 /* PicPranckImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImage.h; sourceTree = "<group>"; };
+		F951414E1E59B2D5006262A2 /* PicPranckImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImage.m; sourceTree = "<group>"; };
+		F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
+		F951415D1E59D761006262A2 /* ImageOfArea+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataClass.m"; sourceTree = "<group>"; };
+		F951415E1E59D761006262A2 /* ImageOfArea+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F951415F1E59D761006262A2 /* ImageOfArea+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F95141601E59D761006262A2 /* SavedImage+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataClass.h"; sourceTree = "<group>"; };
+		F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataClass.m"; sourceTree = "<group>"; };
+		F95141621E59D761006262A2 /* SavedImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F9A19DEB1E34C0D500EE34E6 /* PicPranck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicPranck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19DEF1E34C0D500EE34E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -122,6 +136,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F951415B1E59D746006262A2 /* Core Data  */ = {
+			isa = PBXGroup;
+			children = (
+				F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */,
+				F951415D1E59D761006262A2 /* ImageOfArea+CoreDataClass.m */,
+				F951415E1E59D761006262A2 /* ImageOfArea+CoreDataProperties.h */,
+				F951415F1E59D761006262A2 /* ImageOfArea+CoreDataProperties.m */,
+				F95141601E59D761006262A2 /* SavedImage+CoreDataClass.h */,
+				F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */,
+				F95141621E59D761006262A2 /* SavedImage+CoreDataProperties.h */,
+				F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */,
+			);
+			name = "Core Data ";
+			sourceTree = "<group>";
+		};
 		F9A19DE21E34C0CD00EE34E6 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +175,7 @@
 		F9A19DED1E34C0D500EE34E6 /* PicPranck */ = {
 			isa = PBXGroup;
 			children = (
+				F951415B1E59D746006262A2 /* Core Data  */,
 				F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */,
 				F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */,
 				F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */,
@@ -166,6 +196,8 @@
 				F9D460F31E565C9B009B54B1 /* TabBarViewController.m */,
 				F9D460F51E565EB6009B54B1 /* PicPranckImageView.h */,
 				F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */,
+				F951414D1E59B2D5006262A2 /* PicPranckImage.h */,
+				F951414E1E59B2D5006262A2 /* PicPranckImage.m */,
 			);
 			path = PicPranck;
 			sourceTree = "<group>";
@@ -351,15 +383,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F424931E59FF0C00BFE746 /* ImageOfArea+CoreDataClass.m in Sources */,
+				F9F424941E59FF0C00BFE746 /* ImageOfArea+CoreDataProperties.m in Sources */,
+				F9F424951E59FF0C00BFE746 /* SavedImage+CoreDataClass.m in Sources */,
+				F9F424961E59FF0C00BFE746 /* SavedImage+CoreDataProperties.m in Sources */,
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
 				F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */,
 				F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */,
 				F90147731E53586200F3069F /* PicPranckViewController.m in Sources */,
-				F90147761E53993D00F3069F /* ModelPicPranck.xcdatamodeld in Sources */,
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
+				F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,10 +548,12 @@
 					"/Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0",
 					"$(inherited)",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = PicPranck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = khalil.PicPranck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PicPranck/PicPranck-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -531,10 +569,12 @@
 					"/Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0",
 					"$(inherited)",
 				);
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = PicPranck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = khalil.PicPranck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PicPranck/PicPranck-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

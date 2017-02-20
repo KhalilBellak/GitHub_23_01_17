@@ -8,6 +8,7 @@
 
 #import "PicPranckImageView.h"
 #import "ViewController.h"
+#import "ImageOfArea+CoreDataClass.h"
 
 #define X_OFFSET_FROM_CENTER_OF_SCREEN 20
 #define Y_OFFSET_FROM_BOTTOM_OF_SCREEN 60
@@ -17,7 +18,7 @@
 #define HEIGHT_PREVIEW 400
 @implementation PicPranckImageView
 
--(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(NSManagedObject *)iManagedObject andFrame:(CGRect)frame
+-(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(SavedImage *)iManagedObject andFrame:(CGRect)frame
 {
     if(!iManagedObject || !iViewController)
         return nil;
@@ -34,16 +35,24 @@
     [self addGestureRecognizer:tapOnce];
     self.userInteractionEnabled = YES;
     //Set Image
-    id idImage=[_managedObject valueForKey:@"visibleImage"];
+    NSInteger position=1;
+    NSPredicate *myPredicate = [NSPredicate predicateWithFormat:@"position == %@", @(position)];
+    NSObject *chosenImgOfArea = [_managedObject.imageChildren filteredSetUsingPredicate:myPredicate].anyObject;
+    id idImage=nil;
+    if([chosenImgOfArea isKindOfClass:[ImageOfArea class]])
+    {
+        ImageOfArea *imgOfArea=(ImageOfArea *) chosenImgOfArea;
+        idImage=imgOfArea.dataImage;
+    }
+    //Set image for thumbnail
     UIImage *image=[UIImage imageWithData:idImage];
     [self setContentMode:UIViewContentModeScaleAspectFit];
-    [self setImage:[self rotate:image withOrientation:UIImageOrientationRight]];
-    
+    //[self setImage:[self rotate:image withOrientation:UIImageOrientationRight]];
+    [self setImage:image];
     [self setFrame:frame];
     [self setBackgroundColor:[UIColor blackColor]];
     
-    [iManagedObject setValue:@(NO) forKey:@"newPicPranck"];
-    
+    iManagedObject.newPicPranck=NO;
     [_viewController.collectionView addSubview:self];
     [_viewController.collectionView bringSubviewToFront:self];
     return self;
@@ -70,21 +79,10 @@
             _imageViewForPreview=[[UIImageView alloc] initWithFrame:previewFrame];
             CGFloat totalHeight=0.0;
             CGFloat heightChildImageView=previewFrame.size.height/3;
-            for(int i=0;i<3;i++)
+            for(ImageOfArea *imgOfArea in _managedObject.imageChildren)
+            //for(int i=0;i<3;i++)
             {
-                id idImage=nil;
-                switch(i) {
-                    case 0:
-                        idImage=[_managedObject valueForKey:@"upperImage"];
-                        break;
-                    case 1:
-                        idImage=[_managedObject valueForKey:@"visibleImage"];
-                        break;
-                    default:
-                        idImage=[_managedObject valueForKey:@"lowerImage"];
-                        break;
-                
-                }
+                id idImage=imgOfArea.dataImage;
                 UIImage *image=[UIImage imageWithData:idImage];
                 //Set frame of child UIImageVIew
                 CGRect childFrame=CGRectMake(0, totalHeight, previewFrame.size.width, heightChildImageView);
@@ -94,9 +92,9 @@
                 [childImageView setBackgroundColor:[UIColor blackColor]];
                 [childImageView setContentMode:UIViewContentModeScaleAspectFit];
                 //Keep rotated images
-                UIImage *rotatedImage=[self rotate:image withOrientation:UIImageOrientationRight];
-                [_listOfRotatedImgs addObject:rotatedImage];
-                [childImageView setImage:rotatedImage];
+                //UIImage *rotatedImage=[self rotate:image withOrientation:UIImageOrientationRight];
+                [_listOfRotatedImgs addObject:image];
+                [childImageView setImage:image];
                 [_imageViewForPreview addSubview:childImageView];
             }
             
@@ -130,7 +128,6 @@
                 }];
             }];
         }];
-        
     }
 }
 #pragma mark Buttons on Cover View

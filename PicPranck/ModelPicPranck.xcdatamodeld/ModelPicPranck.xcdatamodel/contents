@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C68" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="ImageOfArea" representedClassName="ImageOfArea" syncable="YES" codeGenerationType="class">
+        <attribute name="dataImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SavedImage" inverseName="imageChildren" inverseEntity="SavedImage" syncable="YES"/>
+    </entity>
     <entity name="SavedImage" representedClassName="SavedImage" syncable="YES" codeGenerationType="class">
         <attribute name="dateOfCreation" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="lowerImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="newPicPranck" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="upperImage" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="visibleImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="imageChildren" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageOfArea" inverseName="parent" inverseEntity="ImageOfArea" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SavedImage" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="SavedImage" positionX="-54" positionY="-18" width="119" height="88"/>
+        <element name="ImageOfArea" positionX="-272" positionY="-45" width="128" height="88"/>
     </elements>
 </model>

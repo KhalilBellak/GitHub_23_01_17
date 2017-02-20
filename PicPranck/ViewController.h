@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PicPranckTextView.h"
+#import "PicPranckImage.h"
 
 //#import "PicPranckDocumentInteractionController.h"
 
@@ -24,7 +25,7 @@
     UIColor *globalTint;
     
     UIImagePickerController *picker;
-    UIImage *image;
+    PicPranckImage *image;
     
     PicPranckTextView *textView1;
     IBOutlet UIImageView *imageViewArea1;
@@ -38,6 +39,7 @@
     
     IBOutlet UIButton *buttonSend;
     IBOutlet UIButton *saveButton;
+    
     
 }
 - (IBAction)performSave:(id)sender;

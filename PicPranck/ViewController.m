@@ -5,12 +5,15 @@
 //  Created by El Khalil Bellakrid on 22/01/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
-
+#import "AppDelegate.h"
 #import "ViewController.h"
 #import "PicPranckTextView.h"
 #import <objc/runtime.h>
 #import "PicPranckActivityItemProvider.h"
 #import "PicPranckViewController.h"
+#import <CoreData/CoreData.h>
+#import "SavedImage+CoreDataClass.h"
+#import "ImageOfArea+CoreDataClass.h"
 
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
 @interface ViewController ()//TEST OF BRANCH
@@ -18,6 +21,7 @@
 @end
 #pragma mark -
 @implementation ViewController
+
 #pragma mark View Controller methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +40,7 @@
     activityType=@"";
     //Get global tint
     globalTint= [self.view tintColor];
+ 
     // Do any additional setup after loading the view, typically from a nib.
     listOfTextViews=[[NSMutableArray alloc] init];
     listOfGestureViews=[[NSMutableArray alloc] init];
@@ -128,8 +133,16 @@
     NSString *key=@"UIImagePickerControllerOriginalImage";
     //if(UIImagePickerControllerSourceTypePhotoLibrary==iPicker.sourceType)
     //    key=@"UIImagePickerControllerEditedImage";
-    image=[info objectForKey:key];
-    [self setImage:image forTextView:tapedTextView];
+    UIImage *imageFromPicker=[info objectForKey:key];
+    
+    //TO CHECKw
+//    if(image)
+//    {
+//        CGImageRelease([image CGImage]);
+//    }
+    image=[[PicPranckImage alloc] initWithImage:imageFromPicker];
+    UIImage *resImage=[image imageByScalingProportionallyToSize:tapedTextView.imageView.frame.size];
+    [self setImage:resImage forTextView:tapedTextView];
     [self dismissViewControllerAnimated:TRUE completion:NULL];
 }
 -(void)setImage:(UIImage *)iImage forTextView:(PicPranckTextView *)pPTextView
@@ -155,7 +168,7 @@
         PicPranckTextView *textViewToSet=[listOfTextViews objectAtIndex:i];
         UIImage *curImage=[listOfImages objectAtIndex:i];
         [textViewToSet setText:@""];
-        [self setImage:curImage forImageView:textViewToSet.imageView];
+        [self setImage:curImage forTextView:textViewToSet];
     }
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -220,16 +233,16 @@
 {
     [tapedTextView endEditing:YES];
 }
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    //TODO:move view while keyboard appears
-    
-    
-}
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    return TRUE;
-}
+//-(void)textViewDidBeginEditing:(UITextView *)textView
+//{
+//    //TODO:move view while keyboard appears
+//    
+//    
+//}
+//-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+//{
+//    return TRUE;
+//}
 -(BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
     [textView resignFirstResponder];
@@ -245,8 +258,6 @@
 - (void)keyboardDidShow:(NSNotification *)notification
 {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    //tapedTextView
-    //[self.view setFrame:CGRectMake(0,-110,320,460)];
     [self moveViewVertically:self.view withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
 }
 
@@ -473,19 +484,48 @@
     image=finalImage;
  
 }
-- (IBAction)performSave:(id)sender {
-    NSArray *viewControllers=[self.tabBarController viewControllers];
-    for(UIViewController * currViewController in viewControllers)
+- (IBAction)performSave:(id)sender
+{
+    NSArray *listOfImages=[[NSArray alloc] initWithObjects:imageViewArea1.image,imageViewArea2.image,imageViewArea3.image, nil];
+    [self uploadImages:listOfImages];
+}
+#pragma mark Uploading Images
+-(void)uploadImages:(NSArray *)listOfImages
+{
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *managedObjectContext=appDelegate.managedObjectContext;
+    if(managedObjectContext)
     {
-        if([currViewController isKindOfClass:[PicPranckViewController class]])
+        //Create a saved image object
+        SavedImage *newSavedImage =[NSEntityDescription insertNewObjectForEntityForName:@"SavedImage" inManagedObjectContext:managedObjectContext];
+        NSDate *localDate = [NSDate date];
+        for(UIImage *currImage in listOfImages)
         {
-            PicPranckViewController *PickPranckVC=(PicPranckViewController *)currViewController;
-            NSArray *listOfImages=[[NSArray alloc] initWithObjects:imageViewArea1.image,imageViewArea2.image,imageViewArea3.image, nil];
-            [PickPranckVC uploadImages:listOfImages];
+            NSInteger iIndex=[listOfImages indexOfObject:currImage];
+            NSData *imageData = UIImageJPEGRepresentation(currImage,1.0);
+            //Create Image area object
+            ImageOfArea *newImageOfArea =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfArea" inManagedObjectContext:managedObjectContext];
+            [newImageOfArea setParent:newSavedImage];
+            [newImageOfArea setPosition:iIndex];
+            [newImageOfArea setDataImage:imageData];
+            [newSavedImage addImageChildrenObject:newImageOfArea];
+        }
+        [newSavedImage setDateOfCreation:localDate];
+        [newSavedImage setNewPicPranck:YES];
+        NSError *err=[[NSError alloc] init];
+        bool saved=[managedObjectContext save:&err];
+        if(saved)
+        {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Saving" message:@"PickPranck saved !" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:ok];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }
 }
-
 - (IBAction)buttonSendClicked:(id)sender {
     [self sendPicture:sender];
 }
