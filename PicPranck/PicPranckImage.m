@@ -31,9 +31,33 @@
 
 -(CGImageRef)CGImageWithCorrectOrientation
 {
+    if (self.imageOrientation == UIImageOrientationDown) {
+        //retaining because caller expects to own the reference
+        CGImageRetain([self CGImage]);
+        return [self CGImage];
+    }
+    
+    UIGraphicsBeginImageContext(self.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (self.imageOrientation == UIImageOrientationRight) {
+        CGContextRotateCTM (context, 90 * M_PI/180);
+    } else if (self.imageOrientation == UIImageOrientationLeft) {
+        CGContextRotateCTM (context, -90 * M_PI/180);
+    } else if (self.imageOrientation == UIImageOrientationUp) {
+        CGContextRotateCTM (context, 180 * M_PI/180);
+    }
+    
+    [self drawAtPoint:CGPointMake(0, 0)];
+    
+    CGImageRef cgImage = CGBitmapContextCreateImage(context);
+    UIGraphicsEndImageContext();
+    
+    return cgImage;
     //retaining because caller expects to own the reference
-    CGImageRetain([self CGImage]);
-    return [self CGImage];
+    //CGImageRetain([self CGImage]);
+    //return [self CGImage];
 //    //if (self.imageOrientation == UIImageOrientationDown)
 //    CGFloat angle=0.0;
 //    
@@ -123,30 +147,31 @@
             angle=-90*M_PI/180;
             break;
         case UIImageOrientationDown:
-            angle=M_PI/180;
+            angle=M_PI;
+            break;
         default:
             angle=0;
             break;
     }
     //Get size of rotated image
     UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0,bounds.size.width, bounds.size.height)];
+    //[rotatedViewBox setBackgroundColor:[UIColor redColor]];
     CGAffineTransform t = CGAffineTransformMakeRotation(angle);
     rotatedViewBox.transform = t;
     CGSize rotatedSize = rotatedViewBox.frame.size;
-    
     //Create the context
     UIGraphicsBeginImageContext(rotatedSize);
     CGContextRef context = UIGraphicsGetCurrentContext();
     //Move origin of context to center
     CGContextTranslateCTM(context, rotatedSize.width/2, rotatedSize.height/2);
     //Now easy to rotate
-    CGContextRotateCTM (context, angle);
-    //CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextRotateCTM (context,angle);
     //Move back the origin and draw image
-    CGContextDrawImage(context, CGRectMake(-bounds.size.width / 2, -bounds.size.height / 2, bounds.size.width, bounds.size.height), [self CGImage]);
+    [self drawInRect: CGRectMake(-bounds.size.width / 2, -bounds.size.height / 2, bounds.size.width, bounds.size.height)];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+    //UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
+    //Return the PicPranckImage
     PicPranckImage *ppResizedImage=[[PicPranckImage alloc] initWithImage:image ];
     return ppResizedImage;
 }

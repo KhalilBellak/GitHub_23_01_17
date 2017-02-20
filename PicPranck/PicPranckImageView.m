@@ -25,7 +25,7 @@
     //Initialize attributes
     _managedObject=iManagedObject;
     _viewController=iViewController;
-    _listOfRotatedImgs=[[NSMutableArray alloc] init];
+    _listOfImgs=[[NSMutableArray alloc] init];
     //Init self
     self=[self init];
     //Gesture Recognizers
@@ -46,8 +46,8 @@
     }
     //Set image for thumbnail
     UIImage *image=[UIImage imageWithData:idImage];
+    //UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
     [self setContentMode:UIViewContentModeScaleAspectFit];
-    //[self setImage:[self rotate:image withOrientation:UIImageOrientationRight]];
     [self setImage:image];
     [self setFrame:frame];
     [self setBackgroundColor:[UIColor blackColor]];
@@ -79,7 +79,11 @@
             _imageViewForPreview=[[UIImageView alloc] initWithFrame:previewFrame];
             CGFloat totalHeight=0.0;
             CGFloat heightChildImageView=previewFrame.size.height/3;
-            for(ImageOfArea *imgOfArea in _managedObject.imageChildren)
+            //Sort the set
+            NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+            NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
+            NSArray *sortedArray=[_managedObject.imageChildren sortedArrayUsingDescriptors:arrayDsc];
+            for(ImageOfArea *imgOfArea in sortedArray)
             //for(int i=0;i<3;i++)
             {
                 id idImage=imgOfArea.dataImage;
@@ -92,8 +96,7 @@
                 [childImageView setBackgroundColor:[UIColor blackColor]];
                 [childImageView setContentMode:UIViewContentModeScaleAspectFit];
                 //Keep rotated images
-                //UIImage *rotatedImage=[self rotate:image withOrientation:UIImageOrientationRight];
-                [_listOfRotatedImgs addObject:image];
+                [_listOfImgs addObject:image];
                 [childImageView setImage:image];
                 [_imageViewForPreview addSubview:childImageView];
             }
@@ -153,7 +156,7 @@
         if([currVc isKindOfClass:[ViewController class]])
         {
             ViewController *vc=(ViewController *)currVc;
-            [vc setImagesWithImages:_listOfRotatedImgs];
+            [vc setImagesWithImages:_listOfImgs];
             [_viewController.tabBarController setSelectedViewController:vc];
         }
     }

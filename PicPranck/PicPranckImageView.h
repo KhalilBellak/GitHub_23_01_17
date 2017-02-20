@@ -15,7 +15,7 @@
 @property  PicPranckViewController *viewController;
 @property  UIView *coverView;
 @property  UIImageView *imageViewForPreview;
-@property  NSMutableArray *listOfRotatedImgs;
+@property  NSMutableArray *listOfImgs;
 -(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(SavedImage *)iManagedObject andFrame:(CGRect)frame;
 
 @end
