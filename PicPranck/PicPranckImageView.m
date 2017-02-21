@@ -7,6 +7,7 @@
 //
 
 #import "PicPranckImageView.h"
+#import "PicPranckImageServices.h"
 #import "ViewController.h"
 #import "ImageOfArea+CoreDataClass.h"
 
@@ -46,8 +47,6 @@
     }
     //Set image for thumbnail
     UIImage *image=[UIImage imageWithData:idImage];
-    NSLog(@"Size of image : (%f,%f)",image.size.width,image.size.height);
-    UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
     [self setContentMode:UIViewContentModeScaleAspectFit];
     [self setImage:image];
     [self setFrame:frame];
@@ -157,49 +156,9 @@
         if([currVc isKindOfClass:[ViewController class]])
         {
             ViewController *vc=(ViewController *)currVc;
-            [vc setImagesWithImages:_listOfImgs];
+            [PicPranckImageServices setImageAreasWithImages:_listOfImgs inViewController:vc];
             [_viewController.tabBarController setSelectedViewController:vc];
         }
     }
-}
-#pragma mark Method for Image manipulations
-static inline double radians (double degrees) {return degrees * M_PI/180;}
--(UIImage *)rotate:(UIImage *) src  withOrientation:(UIImageOrientation) orientation
-{
-    //Calculate the size of the rotated view's containing box for our drawing space
-    CGFloat nbDegrees=0.0;
-    switch(orientation)
-    {
-        case UIImageOrientationRight:
-            nbDegrees=90;
-            break;
-        case UIImageOrientationLeft:
-            nbDegrees=-90;
-            break;
-        default:
-            nbDegrees=0;
-            break;
-    }
-    
-    //Get size of rotated image
-    UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0,src.size.width, src.size.height)];
-    CGAffineTransform t = CGAffineTransformMakeRotation(nbDegrees * M_PI / 180);
-    rotatedViewBox.transform = t;
-    CGSize rotatedSize = rotatedViewBox.frame.size;
-    
-    //Create the context
-    UIGraphicsBeginImageContext(rotatedSize);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    //Move origin of context to center
-    CGContextTranslateCTM(context, rotatedSize.width/2, rotatedSize.height/2);
-    //Now easy to rotate
-    CGContextRotateCTM (context, radians(nbDegrees));
-    //CGContextScaleCTM(context, 1.0, -1.0);
-    //Move back the origin and draw image
-    CGContextDrawImage(context, CGRectMake(-src.size.width / 2, -src.size.height / 2, src.size.width, src.size.height), [src CGImage]);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
 }
 @end

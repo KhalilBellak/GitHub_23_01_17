@@ -9,6 +9,7 @@
 #import "PicPranckImage.h"
 
 @implementation PicPranckImage
+@synthesize originalImageOrientation=_originalImageOrientation;
 -(instancetype)initWithImage:(UIImage *)iImage
 {
     _originalImageOrientation=iImage.imageOrientation;

@@ -11,6 +11,8 @@
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
 		F931DD591E5B7F2F00FC913E /* ModelPicPranck.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
+		F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */; };
+		F931DD5F1E5CEC8000FC913E /* PicPranckCoreDataServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5E1E5CEC7F00FC913E /* PicPranckCoreDataServices.m */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
 		F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */; };
@@ -62,6 +64,10 @@
 		F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckTextView.h; sourceTree = "<group>"; };
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		F931DD5A1E5CCB1400FC913E /* PicPranckImageServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImageServices.h; sourceTree = "<group>"; };
+		F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImageServices.m; sourceTree = "<group>"; };
+		F931DD5D1E5CEC7F00FC913E /* PicPranckCoreDataServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckCoreDataServices.h; sourceTree = "<group>"; };
+		F931DD5E1E5CEC7F00FC913E /* PicPranckCoreDataServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCoreDataServices.m; sourceTree = "<group>"; };
 		F951414D1E59B2D5006262A2 /* PicPranckImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImage.h; sourceTree = "<group>"; };
 		F951414E1E59B2D5006262A2 /* PicPranckImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImage.m; sourceTree = "<group>"; };
 		F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -137,6 +143,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F931DD601E5CF59700FC913E /* PicPranckServices */ = {
+			isa = PBXGroup;
+			children = (
+				F931DD5A1E5CCB1400FC913E /* PicPranckImageServices.h */,
+				F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */,
+				F931DD5D1E5CEC7F00FC913E /* PicPranckCoreDataServices.h */,
+				F931DD5E1E5CEC7F00FC913E /* PicPranckCoreDataServices.m */,
+			);
+			name = PicPranckServices;
+			sourceTree = "<group>";
+		};
+		F931DD611E5CF67900FC913E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9A19DF41E34C0D600EE34E6 /* ViewController.h */,
+				F9A19DF51E34C0D600EE34E6 /* ViewController.m */,
+				F90147711E53586200F3069F /* PicPranckViewController.h */,
+				F90147721E53586200F3069F /* PicPranckViewController.m */,
+				F9D460F21E565C9B009B54B1 /* TabBarViewController.h */,
+				F9D460F31E565C9B009B54B1 /* TabBarViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F931DD621E5CF6D400FC913E /* PicPranck Objects */ = {
+			isa = PBXGroup;
+			children = (
+				F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */,
+				F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */,
+				F9D460F51E565EB6009B54B1 /* PicPranckImageView.h */,
+				F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */,
+				F951414D1E59B2D5006262A2 /* PicPranckImage.h */,
+				F951414E1E59B2D5006262A2 /* PicPranckImage.m */,
+			);
+			name = "PicPranck Objects";
+			sourceTree = "<group>";
+		};
 		F951415B1E59D746006262A2 /* Core Data  */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,29 +219,20 @@
 		F9A19DED1E34C0D500EE34E6 /* PicPranck */ = {
 			isa = PBXGroup;
 			children = (
+				F9A19DFA1E34C0D600EE34E6 /* Assets.xcassets */,
+				F931DD611E5CF67900FC913E /* View Controllers */,
+				F931DD621E5CF6D400FC913E /* PicPranck Objects */,
+				F931DD601E5CF59700FC913E /* PicPranckServices */,
 				F951415B1E59D746006262A2 /* Core Data  */,
-				F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */,
-				F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */,
+				F9A19DEE1E34C0D500EE34E6 /* Supporting Files */,
+				F9A19DF71E34C0D600EE34E6 /* Main.storyboard */,
+				F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */,
+				F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */,
+				F9A19DFF1E34C0D700EE34E6 /* Info.plist */,
 				F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */,
 				F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */,
-				F9A19DF41E34C0D600EE34E6 /* ViewController.h */,
-				F9A19DF51E34C0D600EE34E6 /* ViewController.m */,
-				F9A19DF71E34C0D600EE34E6 /* Main.storyboard */,
-				F90147711E53586200F3069F /* PicPranckViewController.h */,
-				F90147721E53586200F3069F /* PicPranckViewController.m */,
-				F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */,
-				F9A19DFA1E34C0D600EE34E6 /* Assets.xcassets */,
-				F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */,
-				F9A19DFF1E34C0D700EE34E6 /* Info.plist */,
-				F9A19DEE1E34C0D500EE34E6 /* Supporting Files */,
 				F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */,
 				F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */,
-				F9D460F21E565C9B009B54B1 /* TabBarViewController.h */,
-				F9D460F31E565C9B009B54B1 /* TabBarViewController.m */,
-				F9D460F51E565EB6009B54B1 /* PicPranckImageView.h */,
-				F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */,
-				F951414D1E59B2D5006262A2 /* PicPranckImage.h */,
-				F951414E1E59B2D5006262A2 /* PicPranckImage.m */,
 			);
 			path = PicPranck;
 			sourceTree = "<group>";
@@ -391,6 +425,7 @@
 				F9F424941E59FF0C00BFE746 /* ImageOfArea+CoreDataProperties.m in Sources */,
 				F9F424951E59FF0C00BFE746 /* SavedImage+CoreDataClass.m in Sources */,
 				F9F424961E59FF0C00BFE746 /* SavedImage+CoreDataProperties.m in Sources */,
+				F931DD5F1E5CEC8000FC913E /* PicPranckCoreDataServices.m in Sources */,
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
@@ -400,6 +435,7 @@
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 				F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */,
+				F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

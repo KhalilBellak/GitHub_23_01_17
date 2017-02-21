@@ -14,18 +14,15 @@
 
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UIDocumentInteractionControllerDelegate>
 {
-    NSMutableDictionary *dicOfSizes;
-    NSString *activityType;
-    UIDocumentInteractionController *_documentInteractionController;
-    UIActivityViewController *_activityViewController;
-    NSMutableArray *listOfTextViews;
+    
+    
     NSMutableArray *listOfGestureViews;
     
     PicPranckTextView *tapedTextView;
     UIColor *globalTint;
     
     UIImagePickerController *picker;
-    PicPranckImage *image;
+    
     
     PicPranckTextView *textView1;
     IBOutlet UIImageView *imageViewArea1;
@@ -43,11 +40,20 @@
     IBOutlet UIButton *resetButton;
     
 }
+
+@property NSMutableArray *listOfTextViews;
+
+@property PicPranckImage *ppImage;
+@property NSString *activityType;
+
+@property UIDocumentInteractionController *documentInteractionController;
+@property UIActivityViewController * activityViewController;
+
 - (IBAction)reset:(id)sender;
 - (IBAction)performSave:(id)sender;
 - (IBAction)buttonSendClicked:(id)sender;
 -(void)generateImageToSendWithActivityType:(NSString *)iActivityType;
 -(UIImage *)getImage;
--(void)setImagesWithImages:(NSMutableArray *)listOfImages;
+//-(void)setImagesWithImages:(NSMutableArray *)listOfImages;
 @end
 
