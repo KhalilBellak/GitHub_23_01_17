@@ -15,7 +15,7 @@
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UIDocumentInteractionControllerDelegate>
 {
     
-    
+    UIView *viewToMoveForKeyBoardAppearance;
     NSMutableArray *listOfGestureViews;
     
     PicPranckTextView *tapedTextView;
@@ -33,10 +33,9 @@
     
     IBOutlet UIImageView *imageViewArea3;
     PicPranckTextView *textView3;
-    
+    //Buttons
     IBOutlet UIButton *buttonSend;
     IBOutlet UIButton *saveButton;
-    
     IBOutlet UIButton *resetButton;
     
 }

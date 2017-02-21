@@ -32,10 +32,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Bring save button front
+    //Initialize view to move when keyboard appears
+    viewToMoveForKeyBoardAppearance=[[UIView alloc] initWithFrame:self.view.frame];
+    [viewToMoveForKeyBoardAppearance setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:viewToMoveForKeyBoardAppearance];
+    [self.view sendSubviewToBack:viewToMoveForKeyBoardAppearance];
+    //Bring buttons front
     [self.view bringSubviewToFront:saveButton];
-    
-    
+    [self.view bringSubviewToFront:buttonSend];
+    [self.view bringSubviewToFront:resetButton];
     _activityType=@"";
     //Get global tint
     globalTint= [self.view tintColor];
@@ -87,7 +92,7 @@
             [tapOnce requireGestureRecognizerToFail:tapTwice];
             //Remove all gesture recognizers
             for (UIGestureRecognizer *recognizer in currTextView.gestureView.gestureRecognizers)
-                [self.view removeGestureRecognizer:recognizer];
+                [viewToMoveForKeyBoardAppearance removeGestureRecognizer:recognizer];
             [currTextView.gestureView addGestureRecognizer:tapOnce];
             [currTextView.gestureView addGestureRecognizer:tapTwice];
             [_listOfTextViews addObject:currTextView];
@@ -100,8 +105,10 @@
         currTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [currImageView addSubview:currTextView];
         //Add gestureView to view to catch gestures
-        [self.view addSubview:currTextView.gestureView];
-        [self.view bringSubviewToFront:currTextView.gestureView];
+        [viewToMoveForKeyBoardAppearance addSubview:currImageView];
+        [viewToMoveForKeyBoardAppearance addSubview:currTextView.gestureView];
+        [viewToMoveForKeyBoardAppearance bringSubviewToFront:currTextView.gestureView];
+        
         [listOfGestureViews addObject:currTextView.gestureView];
     }
 }
@@ -225,12 +232,12 @@
 - (void)keyboardDidShow:(NSNotification *)notification
 {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    [self moveViewVertically:self.view withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
+    [self moveViewVertically:viewToMoveForKeyBoardAppearance withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
-    [self moveViewVertically:self.view toPosition:0];
+    [self moveViewVertically:viewToMoveForKeyBoardAppearance toPosition:0];
 }
 -(void)moveViewVertically:(UIView *)iView withTapedTextView:(PicPranckTextView *) iTapedTextView andKeyBoardFrame:(CGRect) keyBoardFrame
 {
@@ -238,7 +245,7 @@
     CGFloat yKeyboard=keyBoardFrame.origin.y-keyBoardFrame.size.height;
     CGFloat dY=yDown-yKeyboard;
     if(0<dY)
-        [self moveViewVertically:self.view toPosition:self.view.frame.origin.y-dY];
+        [self moveViewVertically:iView toPosition:iView.frame.origin.y-dY];
 }
 -(void)moveViewVertically:(UIView *)iView toPosition:(CGFloat)y
 {
