@@ -28,4 +28,6 @@
 +(UIImage *)croppedImage:(UIImage *)image withRect:(CGRect)rect;
 +(CGImageRef)CGImageWithCorrectOrientationFromImage:(UIImage *)image;
 +(UIImage *)rotate:(UIImage *) src  withOrientation:(UIImageOrientation) orientation;
+
++(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize;
 @end

@@ -10,7 +10,7 @@
 #import "PicPranckImageView.h"
 #import "AppDelegate.h"
 #import "PicPranckCoreDataServices.h"
-
+#import "PicPranckImageServices.h"
 
 @interface PicPranckViewController ()
 
@@ -20,6 +20,10 @@
 @synthesize collectionView=_collectionView;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [_collectionView setBackgroundColor:[UIColor clearColor]];
+    [_scrollView setBackgroundColor:[UIColor clearColor]];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:self.view.frame.size];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     // Do any additional setup after loading the view.
 }
 -(void)viewDidAppear:(BOOL)animated

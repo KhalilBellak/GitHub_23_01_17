@@ -353,6 +353,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     UIGraphicsEndImageContext();
     return image;
 }
-
+#pragma mark Generate image for background coloring
++(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize
+{
+    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:@"patchwork_big_25_.png"]];
+    return [ppBackGround imageByScalingProportionallyToSize:targetSize];
+}
 @end
 

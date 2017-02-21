@@ -32,6 +32,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:self.view.frame.size];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     //Initialize view to move when keyboard appears
     viewToMoveForKeyBoardAppearance=[[UIView alloc] initWithFrame:self.view.frame];
     [viewToMoveForKeyBoardAppearance setBackgroundColor:[UIColor clearColor]];
