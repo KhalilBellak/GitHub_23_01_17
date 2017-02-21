@@ -52,12 +52,12 @@
 }
 +(void)setImageAreasWithImages:(NSMutableArray *)listOfImages inViewController: (ViewController *)viewController
 {
-    for(int i=0;i<3;i++)
+    for(UIImage *currImage in listOfImages)
     {
-        PicPranckTextView *textViewToSet=[viewController.listOfTextViews objectAtIndex:i];
-        UIImage *curImage=[listOfImages objectAtIndex:i];
+        NSInteger iIndex=[listOfImages indexOfObject:currImage];
+        PicPranckTextView *textViewToSet=[viewController.listOfTextViews objectAtIndex:iIndex];
         [textViewToSet setText:@""];
-        [PicPranckImageServices setImage:curImage forPicPranckTextView:textViewToSet inViewController:viewController];
+        [PicPranckImageServices setImage:currImage forPicPranckTextView:textViewToSet inViewController:viewController];
     }
 }
 #pragma mark Send Picture
