@@ -25,5 +25,7 @@
 +(void)setImageAreasWithImages:(NSMutableArray *)listOfImages inViewController: (ViewController *)viewController;
 
 +(PicPranckImage*)drawImageInBounds:(CGRect)bounds inPicPranckImage:(PicPranckImage *)ppImage;
++(UIImage *)croppedImage:(UIImage *)image withRect:(CGRect)rect;
++(CGImageRef)CGImageWithCorrectOrientationFromImage:(UIImage *)image;
 +(UIImage *)rotate:(UIImage *) src  withOrientation:(UIImageOrientation) orientation;
 @end

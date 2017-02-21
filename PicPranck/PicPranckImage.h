@@ -12,7 +12,6 @@
 @property (nonatomic) UIImageOrientation originalImageOrientation;
 
 -(UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
--(UIImage*) croppedImageWithRect: (CGRect) rect;
 -(instancetype)initWithImage:(UIImage *)iImage;
 
 @end

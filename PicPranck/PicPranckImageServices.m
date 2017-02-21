@@ -274,6 +274,45 @@
     
     return ppResizedImage;
 }
++(UIImage *)croppedImage:(UIImage *)image withRect:(CGRect)rect
+{
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGRect drawRect = CGRectMake(-rect.origin.x, -rect.origin.y, image.size.width, image.size.height);
+    CGContextClipToRect(context, CGRectMake(0, 0, rect.size.width, rect.size.height));
+    [image drawInRect:drawRect];
+    UIImage* subImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return subImage;
+}
++(CGImageRef)CGImageWithCorrectOrientationFromImage:(UIImage *)image
+{
+    if (image.imageOrientation == UIImageOrientationDown) {
+        //retaining because caller expects to own the reference
+        CGImageRetain([image CGImage]);
+        return [image CGImage];
+    }
+    
+    UIGraphicsBeginImageContext(image.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    if (image.imageOrientation == UIImageOrientationRight) {
+        CGContextRotateCTM (context, 90 * M_PI/180);
+    } else if (image.imageOrientation == UIImageOrientationLeft) {
+        CGContextRotateCTM (context, -90 * M_PI/180);
+    } else if (image.imageOrientation == UIImageOrientationUp) {
+        CGContextRotateCTM (context, 180 * M_PI/180);
+    }
+    
+    [image drawAtPoint:CGPointMake(0, 0)];
+    
+    CGImageRef cgImage = CGBitmapContextCreateImage(context);
+    UIGraphicsEndImageContext();
+    
+    return cgImage;
+}
 //Unused for the moment
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 +(UIImage *)rotate:(UIImage *) src  withOrientation:(UIImageOrientation) orientation
