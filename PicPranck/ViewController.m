@@ -44,7 +44,18 @@
     // Do any additional setup after loading the view, typically from a nib.
     listOfTextViews=[[NSMutableArray alloc] init];
     listOfGestureViews=[[NSMutableArray alloc] init];
+    [self initializeAreas:YES];
+
+    //Add self as observer of Keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+}
+-(void) initializeAreas:(BOOL)firstInitialization
+{
     NSArray *listOfImageViews=[[NSArray alloc] initWithObjects:imageViewArea1,imageViewArea2,imageViewArea3,nil];
+    if(!firstInitialization && ([listOfImageViews count]!=[listOfTextViews count]))
+        return;
     for(UIImageView *currImageView in listOfImageViews)
     {
         //Initialization of PicPranckTextViews (text, layout ....)
@@ -53,24 +64,36 @@
         NSString *text=@"Hidden Picture";
         if(1==iIndex)
             text=@"Visible Picture";
-        PicPranckTextView *currTextView=[[PicPranckTextView alloc] init];
+        PicPranckTextView *currTextView=nil;
+        //When hitting reset button should set images to nil and background to clear
+        currImageView.image=nil;
+        [currImageView setBackgroundColor:[UIColor clearColor]];
+        //Create or get the text view
+        if(firstInitialization)
+            currTextView=[[PicPranckTextView alloc] init];
+        else
+            currTextView=[listOfTextViews objectAtIndex:iIndex];
+        
         [currTextView initWithDelegate:self ImageView:currImageView AndText:text];
         
-        //Add gesture Recognizers
-        UITapGestureRecognizer *tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnce:)];
-        UITapGestureRecognizer *tapTwice = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTwice:)];
-        tapOnce.cancelsTouchesInView=NO;
-        tapTwice.cancelsTouchesInView=NO;
-        tapOnce.numberOfTouchesRequired = 1;
-        tapTwice.numberOfTapsRequired = 2;
-        [tapOnce requireGestureRecognizerToFail:tapTwice];
-        //Remove all gesture recognizers
-        for (UIGestureRecognizer *recognizer in currTextView.gestureView.gestureRecognizers)
-            [self.view removeGestureRecognizer:recognizer];
-        [currTextView.gestureView addGestureRecognizer:tapOnce];
-        [currTextView.gestureView addGestureRecognizer:tapTwice];
+        if(firstInitialization)
+        {
+            //Add gesture Recognizers
+            UITapGestureRecognizer *tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnce:)];
+            UITapGestureRecognizer *tapTwice = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTwice:)];
+            tapOnce.cancelsTouchesInView=NO;
+            tapTwice.cancelsTouchesInView=NO;
+            tapOnce.numberOfTouchesRequired = 1;
+            tapTwice.numberOfTapsRequired = 2;
+            [tapOnce requireGestureRecognizerToFail:tapTwice];
+            //Remove all gesture recognizers
+            for (UIGestureRecognizer *recognizer in currTextView.gestureView.gestureRecognizers)
+                [self.view removeGestureRecognizer:recognizer];
+            [currTextView.gestureView addGestureRecognizer:tapOnce];
+            [currTextView.gestureView addGestureRecognizer:tapTwice];
+            [listOfTextViews addObject:currTextView];
+        }
         
-        [listOfTextViews addObject:currTextView];
         //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
         CGRect newFrame = CGRectMake(0,0,currImageView.frame.size.width,currImageView.frame.size.height);
         currTextView.frame = newFrame;
@@ -82,10 +105,6 @@
         [self.view bringSubviewToFront:currTextView.gestureView];
         [listOfGestureViews addObject:currTextView.gestureView];
     }
-    //Add self as observer of Keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -134,7 +153,7 @@
     //if(UIImagePickerControllerSourceTypePhotoLibrary==iPicker.sourceType)
     //    key=@"UIImagePickerControllerEditedImage";
     UIImage *imageFromPicker=[info objectForKey:key];
-    
+    NSLog(@"Size of imageFromPicker : (%f,%f)",imageFromPicker.size.width,imageFromPicker.size.height);
     //TO CHECKw
 //    if(image)
 //    {
@@ -142,7 +161,9 @@
 //    }
     image=[[PicPranckImage alloc] initWithImage:imageFromPicker];
     UIImage *resImage=[image imageByScalingProportionallyToSize:tapedTextView.imageView.frame.size];
+    NSLog(@"Size of image : (%f,%f)",resImage.size.width,resImage.size.height);
     [self setImage:resImage forTextView:tapedTextView];
+    UIImageWriteToSavedPhotosAlbum(resImage,nil,nil,nil);
     [self dismissViewControllerAnimated:TRUE completion:NULL];
 }
 -(void)setImage:(UIImage *)iImage forTextView:(PicPranckTextView *)pPTextView
@@ -484,12 +505,18 @@
     image=finalImage;
  
 }
+#pragma mark Reset
+- (IBAction)reset:(id)sender
+{
+    [self initializeAreas:NO];
+}
+
+#pragma mark Uploading Images
 - (IBAction)performSave:(id)sender
 {
     NSArray *listOfImages=[[NSArray alloc] initWithObjects:imageViewArea1.image,imageViewArea2.image,imageViewArea3.image, nil];
     [self uploadImages:listOfImages];
 }
-#pragma mark Uploading Images
 -(void)uploadImages:(NSArray *)listOfImages
 {
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -503,6 +530,7 @@
         for(UIImage *currImage in listOfImages)
         {
             NSInteger iIndex=[listOfImages indexOfObject:currImage];
+             NSLog(@"Size of currImage : (%f,%f)",currImage.size.width,currImage.size.height);
             NSData *imageData = UIImageJPEGRepresentation(currImage,1.0);
             //Create Image area object
             ImageOfArea *newImageOfArea =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfArea" inManagedObjectContext:managedObjectContext];

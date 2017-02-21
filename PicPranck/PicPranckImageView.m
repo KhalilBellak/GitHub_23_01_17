@@ -46,7 +46,8 @@
     }
     //Set image for thumbnail
     UIImage *image=[UIImage imageWithData:idImage];
-    //UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
+    NSLog(@"Size of image : (%f,%f)",image.size.width,image.size.height);
+    UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
     [self setContentMode:UIViewContentModeScaleAspectFit];
     [self setImage:image];
     [self setFrame:frame];

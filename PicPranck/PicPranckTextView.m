@@ -62,7 +62,8 @@
     [self.layer setBorderWidth:2.0f];
     [self.layer setBorderColor:[[UIColor blackColor] CGColor]];
     //gesture view
-    self.gestureView=[[UIView alloc] init];
+    if(!self.gestureView)
+        self.gestureView=[[UIView alloc] init];
     self.gestureView.frame=iImageView.frame;
     [self.gestureView setBackgroundColor:[UIColor clearColor]];
     

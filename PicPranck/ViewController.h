@@ -40,8 +40,10 @@
     IBOutlet UIButton *buttonSend;
     IBOutlet UIButton *saveButton;
     
+    IBOutlet UIButton *resetButton;
     
 }
+- (IBAction)reset:(id)sender;
 - (IBAction)performSave:(id)sender;
 - (IBAction)buttonSendClicked:(id)sender;
 -(void)generateImageToSendWithActivityType:(NSString *)iActivityType;

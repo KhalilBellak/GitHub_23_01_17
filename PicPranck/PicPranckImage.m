@@ -173,6 +173,7 @@
     //UIImageWriteToSavedPhotosAlbum(image,nil,nil,nil);
     //Return the PicPranckImage
     PicPranckImage *ppResizedImage=[[PicPranckImage alloc] initWithImage:image ];
+    
     return ppResizedImage;
 }
 
