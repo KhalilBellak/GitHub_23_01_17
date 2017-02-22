@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface PicPranckImage : UIImage
+@property UIImage *originalImage;
 @property (nonatomic) UIImageOrientation originalImageOrientation;
 
 -(UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize;
 -(instancetype)initWithImage:(UIImage *)iImage;
+
 
 @end

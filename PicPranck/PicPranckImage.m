@@ -11,6 +11,7 @@
 
 @implementation PicPranckImage
 
+@synthesize originalImage=_originalImage;
 @synthesize originalImageOrientation=_originalImageOrientation;
 
 -(instancetype)initWithImage:(UIImage *)iImage
@@ -18,7 +19,8 @@
     _originalImageOrientation=iImage.imageOrientation;
     return [super initWithCGImage:[iImage CGImage]];
 }
-- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize {
+- (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize
+{
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
         if ([[UIScreen mainScreen] scale] == 2.0) {

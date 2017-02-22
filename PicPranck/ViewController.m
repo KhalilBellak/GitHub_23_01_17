@@ -152,8 +152,8 @@
     UIImage *imageFromPicker=[info objectForKey:key];
     //Set it in the right image view
     _ppImage=[[PicPranckImage alloc] initWithImage:imageFromPicker];
-    UIImage *resImage=[_ppImage imageByScalingProportionallyToSize:tapedTextView.imageView.frame.size];
-    [PicPranckImageServices setImage:resImage forPicPranckTextView:tapedTextView inViewController:self];
+    //UIImage *resImage=[_ppImage imageByScalingProportionallyToSize:tapedTextView.imageView.frame.size];
+    [PicPranckImageServices setImage:imageFromPicker forPicPranckTextView:tapedTextView inViewController:self];
     [self dismissViewControllerAnimated:TRUE completion:NULL];
 }
 
