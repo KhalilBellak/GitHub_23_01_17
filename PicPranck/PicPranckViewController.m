@@ -11,35 +11,26 @@
 #import "AppDelegate.h"
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
+#import "PicPranckCollectionViewCell.h"
 
 @interface PicPranckViewController ()
 
 @end
 #pragma mark -
 @implementation PicPranckViewController
-@synthesize collectionView=_collectionView;
-- (void)viewDidLoad {
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    [_collectionView setBackgroundColor:[UIColor clearColor]];
-    [_scrollView setBackgroundColor:[UIColor clearColor]];
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:self.view.frame.size];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
+    [self.view setBackgroundColor:[UIColor clearColor]];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationFormSheet;
     // Do any additional setup after loading the view.
 }
--(void)viewDidAppear:(BOOL)animated
-{
-    [PicPranckCoreDataServices addThumbnailInPicPranckGallery:self];
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+/*// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

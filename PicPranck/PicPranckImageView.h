@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "PicPranckViewController.h"
+#import "PicPranckCollectionViewController.h"
 #import "SavedImage+CoreDataClass.h"
 @interface PicPranckImageView : UIImageView
+@property  NSInteger indexOfViewInCollectionView;
+@property  UIView *layerView;
 @property  SavedImage *managedObject;
-@property  PicPranckViewController *viewController;
+@property  PicPranckCollectionViewController *viewController;
 @property  UIView *coverView;
 @property  UIImageView *imageViewForPreview;
 @property  NSMutableArray *listOfImgs;
--(id)initFromViewController:(PicPranckViewController *)iViewController withManagedObject:(SavedImage *)iManagedObject andFrame:(CGRect)frame;
+-(id)initFromViewController:(PicPranckCollectionViewController *)iViewController withManagedObject:(SavedImage *)iManagedObject andFrame:(CGRect)frame;
 
 @end

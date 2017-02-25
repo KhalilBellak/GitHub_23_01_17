@@ -6,60 +6,56 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PickPrancks-->
-        <scene sceneID="BeR-5B-HDV">
+        <!--PicPranck-->
+        <scene sceneID="ubc-RH-Gch">
             <objects>
-                <viewController id="B5k-lv-8Et" customClass="PicPranckViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="d15-b1-M2f"/>
-                        <viewControllerLayoutGuide type="bottom" id="WB2-2W-dAA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yl6-yX-GXo">
+                <collectionViewController id="siM-TQ-suz" customClass="PicPranckCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HSH-hC-Xyq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4h-RR-2dA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dAA-bL-fbD">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SUc-eK-kgW">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="H55-2X-v47">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </view>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                </subviews>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="PickPrancks" image="MiddleFinger.png" id="aKW-B5-d3d"/>
-                    <connections>
-                        <outlet property="collectionView" destination="dAA-bL-fbD" id="W5N-fX-u9N"/>
-                        <outlet property="scrollView" destination="y4h-RR-2dA" id="s3Q-Sr-2xA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8eY-hF-abN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uR6-3U-DSz">
+                            <size key="itemSize" width="120" height="120"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="r62-vI-Rql" customClass="PicPranckCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fH1-mJ-vC2">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <size key="customSize" width="120" height="120"/>
+                                <connections>
+                                    <outlet property="imageViewInCell" destination="fH1-mJ-vC2" id="VFU-qo-Q1Y"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="siM-TQ-suz" id="cCv-aA-ZXM"/>
+                            <outlet property="delegate" destination="siM-TQ-suz" id="Mj3-Oi-KON"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="PicPranck" image="MiddleFinger.png" id="nV1-sv-okh"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0BT-oo-Rja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="1002.5487256371815"/>
+            <point key="canvasLocation" x="2228" y="912.5937031484259"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oOe-ZN-vOk">
@@ -115,10 +111,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fg-WGr">
-                                <rect key="frame" x="67" y="121" width="240" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-Am-p9w">
                                 <rect key="frame" x="67" y="281" width="240" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -127,9 +119,8 @@
                                 <rect key="frame" x="67" y="440" width="240" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
-                                <rect key="frame" x="292" y="20" width="80" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
+                                <rect key="frame" x="295" y="20" width="80" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Send">
@@ -140,20 +131,8 @@
                                     <action selector="buttonSendClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a99-T9-9HZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKK-Gr-7qX">
-                                <rect key="frame" x="0.0" y="20" width="80" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Reset">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sqq-UC-Lcf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-vF-7Cv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-vF-7Cv">
                                 <rect key="frame" x="147" y="20" width="80" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Save">
@@ -164,9 +143,42 @@
                                     <action selector="performSave:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yRz-Wj-JOc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKK-Gr-7qX">
+                                <rect key="frame" x="0.0" y="20" width="80" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="sF6-JB-wME"/>
+                                    <constraint firstAttribute="height" constant="40" id="tOn-mg-9W2"/>
+                                </constraints>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sqq-UC-Lcf"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fg-WGr">
+                                <rect key="frame" x="67" y="122" width="240" height="160"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="NKK-Gr-7qX" firstAttribute="baseline" secondItem="HKf-vF-7Cv" secondAttribute="baseline" id="071-pW-Mzg"/>
+                            <constraint firstItem="HKf-vF-7Cv" firstAttribute="baseline" secondItem="NKK-Gr-7qX" secondAttribute="firstBaseline" id="3Sb-S9-NTa"/>
+                            <constraint firstItem="HKf-vF-7Cv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Ep-F0-RGY"/>
+                            <constraint firstItem="UHD-Jc-2eT" firstAttribute="leading" secondItem="HKf-vF-7Cv" secondAttribute="trailing" constant="65" id="Ccf-xc-ZnB"/>
+                            <constraint firstItem="NKK-Gr-7qX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="FZZ-yn-vX8"/>
+                            <constraint firstItem="NKK-Gr-7qX" firstAttribute="top" secondItem="HKf-vF-7Cv" secondAttribute="top" id="KGA-KB-puI"/>
+                            <constraint firstItem="HKf-vF-7Cv" firstAttribute="top" secondItem="UHD-Jc-2eT" secondAttribute="top" id="MWK-uD-nBp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UHD-Jc-2eT" secondAttribute="trailing" constant="-13" id="SPm-dZ-lEK"/>
+                            <constraint firstItem="HKf-vF-7Cv" firstAttribute="baseline" secondItem="UHD-Jc-2eT" secondAttribute="firstBaseline" id="Um2-uo-8OM"/>
+                            <constraint firstItem="HKf-vF-7Cv" firstAttribute="leading" secondItem="NKK-Gr-7qX" secondAttribute="trailing" constant="67" id="fqY-DP-lbq"/>
+                            <constraint firstItem="HKf-vF-7Cv" firstAttribute="baseline" secondItem="UHD-Jc-2eT" secondAttribute="baseline" id="hiS-Tl-uuQ"/>
+                            <constraint firstItem="UHD-Jc-2eT" firstAttribute="baseline" secondItem="HKf-vF-7Cv" secondAttribute="firstBaseline" id="thy-TQ-2kL"/>
+                            <constraint firstItem="NKK-Gr-7qX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yVr-gZ-83k"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Custom" image="Editimage.png" id="ezL-PI-g18"/>
                     <navigationItem key="navigationItem" title="PicPranck" id="CXL-Ku-FHh">
@@ -197,7 +209,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="LzQ-BS-Lqp"/>
-                        <segue destination="B5k-lv-8Et" kind="relationship" relationship="viewControllers" id="MNe-Ow-RYb"/>
+                        <segue destination="siM-TQ-suz" kind="relationship" relationship="viewControllers" id="VwM-tg-2N1"/>
                         <segue destination="nJ6-qN-0Tg" kind="relationship" relationship="viewControllers" id="ktd-dW-dLt"/>
                         <segue destination="Wl5-A6-pUX" kind="relationship" relationship="viewControllers" id="9IX-Ef-DqL"/>
                     </connections>

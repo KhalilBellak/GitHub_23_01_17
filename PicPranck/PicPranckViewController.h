@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PicPranckViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+//@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 //-(void)uploadImages:(NSArray *)listOfImages;
 @end
 

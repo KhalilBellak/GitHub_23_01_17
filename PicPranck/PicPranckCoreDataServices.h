@@ -7,12 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @class ViewController;
-@class PicPranckViewController;
+@class PicPranckCollectionViewController;
+@class PicPranckCollectionViewCell;
+@class SavedImage;
+@class NSManagedObject;
 
 @interface PicPranckCoreDataServices : NSObject
 
++(int) initCount;
+
++(NSManagedObjectContext *)managedObjectContext;
+//+(NSInteger)nbOfSavedPicPrancks;
+
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController;
-+(void)addThumbnailInPicPranckGallery:(PicPranckViewController *)ppViewController;
+
++(void)addThumbnailInPicPranckGallery:(PicPranckCollectionViewController *)ppViewController;
++(void)addThumbnailInPicPranckCollectionView:(PicPranckCollectionViewController *)collecViewController inCell:(PicPranckCollectionViewCell *)collecViewCell;
+
++(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index;
+
++(SavedImage *)retrieveDataAtIndex:(NSInteger)index;
++(NSMutableArray *)retrieveImagesArrayFromDataAtIndex:(NSInteger)index;
++(NSArray *)retrieveAllSavedImages;
+
++(void)removeImages:(NSManagedObject *)objectToDelete;
++(NSInteger)getNumberOfSavedPicPrancks;
 @end
