@@ -21,6 +21,7 @@
 		F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
+		F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
 		F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */; };
 		F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF51E34C0D600EE34E6 /* ViewController.m */; };
@@ -97,6 +98,8 @@
 		F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F98BD3F51E623D9D00A65B8A /* PicPranckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckButton.h; sourceTree = "<group>"; };
 		F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckButton.m; sourceTree = "<group>"; };
+		F98BD3F81E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewControllerAnimatedTransitioning.h; sourceTree = "<group>"; };
+		F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewControllerAnimatedTransitioning.m; sourceTree = "<group>"; };
 		F9A19DEB1E34C0D500EE34E6 /* PicPranck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicPranck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19DEF1E34C0D500EE34E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				F931DD681E5E542900FC913E /* PicPranckCollectionViewCell.m */,
 				F98BD3F51E623D9D00A65B8A /* PicPranckButton.h */,
 				F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */,
+				F98BD3F81E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.h */,
+				F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */,
 			);
 			name = "PicPranck Objects";
 			sourceTree = "<group>";
@@ -470,6 +475,7 @@
 				F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */,
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
+				F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */,
 				F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */,
 				F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */,
 				F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "TabBarViewController.h"
-
+#import "PicPranckViewControllerAnimatedTransitioning.h"
 @interface TabBarViewController ()
 
 @end
@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.delegate=self;
     // Do any additional setup after loading the view.
     self.tabBar.barTintColor = [UIColor whiteColor];
     self.tabBar.tintColor = [UIColor blackColor];
@@ -34,7 +35,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark <UITabBarControllerDelegate>
+- (id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController animationControllerForTransitionFromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
+{
+    //NSLog(@"Selected Index: %@",self.selectedIndex);
+    PicPranckViewControllerAnimatedTransitioning *vcAnimTrans=[[PicPranckViewControllerAnimatedTransitioning alloc]  initWithtabBarController:self andIndex:tabBarController.selectedIndex];
+    return vcAnimTrans;
+}
+//-(id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController animationControllerForTransitionFromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 /*
 #pragma mark - Navigation
 

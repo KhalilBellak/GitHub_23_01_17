@@ -52,7 +52,7 @@
                         [UIView transitionFromView:button.ppCollectionVC.view
                                             toView:vc.view
                                           duration:0.5
-                                           options:UIViewAnimationOptionTransitionFlipFromRight
+                                           options:UIViewAnimationOptionTransitionCrossDissolve
                                         completion:^(BOOL finished) {
                                             if (finished) {
                                                 tabBarController.selectedIndex = iIndex;

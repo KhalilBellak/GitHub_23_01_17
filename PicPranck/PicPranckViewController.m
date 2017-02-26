@@ -24,7 +24,7 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor clearColor]];
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    self.modalPresentationStyle = UIModalPresentationFormSheet;
+    //self.modalPresentationStyle = UIModalPresentationFormSheet;
     // Do any additional setup after loading the view.
 }
 
