@@ -9,6 +9,7 @@
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckActionServices.h"
+#import "PicPranckViewControllerAnimatedTransitioning.h"
 #import "PicPranckButton.h"
 #import "ViewController.h"
 #import "PicPranckCollectionViewController.h"
@@ -65,37 +66,38 @@
             [childImageView setBackgroundColor:[UIColor blackColor]];
             [childImageView setContentMode:UIViewContentModeScaleAspectFit];
             //Keep rotated images
-            //[_listOfImgs addObject:image];
             [childImageView setImage:image];
             [imageViewForPreview addSubview:childImageView];
         }
-        
     }
+    
     //View of screen's size and semi-transparent
     UIView *coverView=[[UIView alloc] initWithFrame:frame];
-    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+    
     //Modal VC to display view
-    PicPranckViewController *modalViewController=[[PicPranckViewController alloc] init];
-    //[modalViewController.view setFrame:frame];
-    //[modalViewController.view setBackgroundColor:[UIColor clearColor]];
+    PicPranckViewController *modalViewController=[[PicPranckViewController alloc] initModalView];
     [modalViewController.view addSubview:coverView];
+    
     //Add button close
     CGRect closeFrame=CGRectMake(frame.size.width/2+X_OFFSET_FROM_CENTER_OF_SCREEN, frame.size.height- Y_OFFSET_FROM_BOTTOM_OF_SCREEN, BUTTON_WIDTH, BUTTON_HEIGHT);
     PicPranckButton *closeButton=[PicPranckCustomViewsServices addButtonInView:coverView withFrame:closeFrame text:@"Close" andSelector:@selector(closePreview:)];
     closeButton.tag=index;
-    //closeButton.modalVC=modalViewController;
+    closeButton.modalVC=modalViewController;
     closeButton.ppCollectionVC=vc;
-        //Add button Use
-        CGRect useFrame=CGRectMake(frame.size.width/2-(BUTTON_WIDTH+ X_OFFSET_FROM_CENTER_OF_SCREEN), frame.size.height- Y_OFFSET_FROM_BOTTOM_OF_SCREEN, BUTTON_WIDTH, BUTTON_HEIGHT);
+    
+    //Add button Use
+    CGRect useFrame=CGRectMake(frame.size.width/2-(BUTTON_WIDTH+ X_OFFSET_FROM_CENTER_OF_SCREEN), frame.size.height- Y_OFFSET_FROM_BOTTOM_OF_SCREEN, BUTTON_WIDTH, BUTTON_HEIGHT);
     PicPranckButton *useButton=[PicPranckCustomViewsServices addButtonInView:coverView withFrame:useFrame text:@"Use" andSelector:@selector(useImage:)];
     useButton.tag=index;
-    //useButton.modalVC=modalViewController;
+    useButton.modalVC=modalViewController;
     useButton.ppCollectionVC=vc;
+    
     //Add preview UIImageView to cover view
     [coverView addSubview:imageViewForPreview];
     [coverView bringSubviewToFront:imageViewForPreview];
 
-    //vc.modalPresentationStyle=UIModalPresentationCurrentContext;
+    //Handle animation of modal presentation
     [vc presentViewController:modalViewController animated:YES completion:nil];
     
 //    [UIView animateWithDuration:0.3/1.5 animations:^{

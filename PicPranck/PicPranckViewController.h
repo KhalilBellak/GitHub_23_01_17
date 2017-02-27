@@ -11,6 +11,7 @@
 @interface PicPranckViewController : UIViewController
 //@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 //-(void)uploadImages:(NSArray *)listOfImages;
+-(id)initModalView;
 @end
 
 

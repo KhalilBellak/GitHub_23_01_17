@@ -12,6 +12,6 @@
 @class PicPranckCollectionViewController;
 
 @interface PicPranckButton : UIButton
-//@property (weak,nonatomic)UIViewController *modalVC;
+@property (weak,nonatomic)UIViewController *modalVC;
 @property (weak,nonatomic)PicPranckCollectionViewController *ppCollectionVC;
 @end

@@ -18,12 +18,20 @@
 @end
 #pragma mark -
 @implementation PicPranckViewController
-
+-(id)initModalView
+{
+    self=[self init];
+    if(self)
+    {
+        [self.view setBackgroundColor:[UIColor clearColor]];
+        self.modalPresentationStyle =UIModalPresentationOverCurrentContext; //UIModalPresentationCurrentContext;
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor clearColor]];
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
     //self.modalPresentationStyle = UIModalPresentationFormSheet;
     // Do any additional setup after loading the view.
 }

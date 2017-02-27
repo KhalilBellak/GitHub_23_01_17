@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PicPranckViewControllerAnimatedTransitioning : NSObject <UIViewControllerAnimatedTransitioning>
+@property BOOL forModalView;
 @property UITabBarController *tabBarController;
 @property NSInteger index;
 @property id<UIViewControllerContextTransitioning>transitionContext;

@@ -38,7 +38,6 @@
 #pragma mark <UITabBarControllerDelegate>
 - (id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController animationControllerForTransitionFromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
-    //NSLog(@"Selected Index: %@",self.selectedIndex);
     PicPranckViewControllerAnimatedTransitioning *vcAnimTrans=[[PicPranckViewControllerAnimatedTransitioning alloc]  initWithtabBarController:self andIndex:tabBarController.selectedIndex];
     return vcAnimTrans;
 }

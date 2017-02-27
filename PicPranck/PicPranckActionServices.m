@@ -47,18 +47,24 @@
                     [PicPranckImageServices setImageAreasWithImages:[PicPranckCoreDataServices retrieveImagesArrayFromDataAtIndex:button.tag] inViewController:vc];
                     [button.superview removeFromSuperview];
                     //Disiss modal VC
-                    [button.ppCollectionVC dismissViewControllerAnimated:YES completion:^{
-                        //Animated transition to Main VC
-                        [UIView transitionFromView:button.ppCollectionVC.view
-                                            toView:vc.view
-                                          duration:0.5
-                                           options:UIViewAnimationOptionTransitionCrossDissolve
-                                        completion:^(BOOL finished) {
-                                            if (finished) {
-                                                tabBarController.selectedIndex = iIndex;
-                                            }
-                                        }];
-                        }];
+                    [button.modalVC dismissViewControllerAnimated:YES completion:^{
+                        //Dismiss collection view VC
+                        //[button.ppCollectionVC dismissViewControllerAnimated:YES completion:^{
+                            //Animated transition to Main VC
+                            [UIView transitionFromView:button.modalVC.view
+                                                toView:vc.view
+                                              duration:0.4
+                                               options:UIViewAnimationOptionTransitionFlipFromTop
+                                            completion:^(BOOL finished) {
+                                                if (finished) {
+                                                    [button.modalVC.view removeFromSuperview];
+                                                    //[button.ppCollectionVC.view removeFromSuperview];
+                                                    tabBarController.selectedIndex = iIndex;
+                                                }
+                                            }];
+                        //}];
+                        
+                    }];
                     
                     
                     
