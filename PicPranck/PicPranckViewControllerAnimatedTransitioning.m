@@ -32,7 +32,7 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    if(!fromViewController || !toViewController || !containerView) return;
+    if(!fromViewController || !toViewController) return; //|| !containerView) return;
     
     [containerView addSubview:toViewController.view];
     

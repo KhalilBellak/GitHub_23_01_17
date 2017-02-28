@@ -13,6 +13,8 @@
 @implementation PicPranckCollectionViewCell
 - (PicPranckImageView *) imageViewInCell
 {
+    //self.layer.shouldRasterize = YES;
+    //self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     if (!_imageViewInCell) {
         _imageViewInCell = [[PicPranckImageView alloc] initWithFrame:self.contentView.bounds];
         //Gesture Recognizers

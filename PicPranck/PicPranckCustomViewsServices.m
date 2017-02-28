@@ -21,8 +21,10 @@
 #define Y_OFFSET_FROM_BOTTOM_OF_SCREEN 60
 #define BUTTON_WIDTH 100
 #define BUTTON_HEIGHT 30
-#define WIDTH_PREVIEW 200
-#define HEIGHT_PREVIEW 400
+#define WIDTH_PREVIEW 400
+#define HEIGHT_PREVIEW 1200
+#define WIDTH_PREVIEW_RATIO 2
+#define HEIGHT_PREVIEW_RATIO 1.33 //4/3
 #define DELETE_BUTTON_RELATIVE_RADIUS 8
 
 @implementation PicPranckCustomViewsServices
@@ -44,7 +46,10 @@
     UIImageView *imageViewForPreview=[[UIImageView alloc] init];
     if(imageViewForPreview)
     {
-        CGRect previewFrame=CGRectMake((frame.size.width-WIDTH_PREVIEW)/2, Y_OFFSET_FROM_BOTTOM_OF_SCREEN, WIDTH_PREVIEW, HEIGHT_PREVIEW);
+        //Take half width of screen and 3/4 of height of screen for preview
+        CGFloat widthOfPreview=frame.size.width/WIDTH_PREVIEW_RATIO;
+        CGFloat heightOfPreview=frame.size.height/HEIGHT_PREVIEW_RATIO;
+        CGRect previewFrame=CGRectMake((frame.size.width-widthOfPreview)/2, (frame.size.height-heightOfPreview)/2, widthOfPreview, heightOfPreview);
         imageViewForPreview=[[UIImageView alloc] initWithFrame:previewFrame];
         CGFloat totalHeight=0.0;
         CGFloat heightChildImageView=previewFrame.size.height/3;

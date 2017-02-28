@@ -8,6 +8,8 @@
 
 #import "TabBarViewController.h"
 #import "PicPranckViewControllerAnimatedTransitioning.h"
+#import "PicPranckImageServices.h"
+
 @interface TabBarViewController ()
 
 @end
@@ -18,16 +20,16 @@
     [super viewDidLoad];
     self.delegate=self;
     // Do any additional setup after loading the view.
-    self.tabBar.barTintColor = [UIColor whiteColor];
-    self.tabBar.tintColor = [UIColor blackColor];
+    self.tabBar.barTintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:30];
+    self.tabBar.tintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:-40];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
-                                                        NSForegroundColorAttributeName : [UIColor blackColor]
+                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:-30]
                                                         } forState:UIControlStateSelected];
     
     
     // doing this results in an easier to read unselected state then the default iOS 7 one
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
-                                                        NSForegroundColorAttributeName : [UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1]
+                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:10]
                                                         } forState:UIControlStateNormal];
 }
 

@@ -12,6 +12,7 @@
 #import "ViewController.h"
 #import "PicPranckCollectionViewController.h"
 #import "PicPranckImageView.h"
+#import "PicPranckImage.h"
 #import "PicPranckCollectionViewCell.h"
 #import "PicPranckCollectionViewController.h"
 #import "SavedImage+CoreDataClass.h"
@@ -27,11 +28,16 @@
 
 // ClassA.m
 static int count = 0;
+static int newSavedCount=0;
 @implementation PicPranckCoreDataServices
 
 +(int) initCount
 {
     return count;
+}
++(int) initNewSavedCount
+{
+    return newSavedCount;
 }
 +(NSManagedObjectContext *)managedObjectContext
 {
@@ -82,6 +88,7 @@ static int count = 0;
             
             [viewController presentViewController:alertController animated:YES completion:nil];
             count++;
+            newSavedCount++;
         }
     }
 }
@@ -164,8 +171,9 @@ static int count = 0;
         }
         //Set image for thumbnail
         UIImage *image=[UIImage imageWithData:idImage];
+        PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
         [imgView setContentMode:UIViewContentModeScaleAspectFit];
-        [PicPranckImageServices setImage:image forImageView:imgView];
+        [PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:imgView.frame.size] forImageView:imgView];
     }
     
 }
@@ -232,5 +240,9 @@ static int count = 0;
         count=[results count];
     }
     return (NSInteger)count ;
+}
++(NSInteger)getNumberOfNewSavedPicPrancks
+{
+    return (NSInteger)newSavedCount ;
 }
 @end

@@ -28,7 +28,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.dataSource=self;
     //self.transitioningDelegate=
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:self.view.frame.size];
-    [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
+    [self.collectionView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -40,7 +40,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.collectionView reloadData];
+     [self.collectionView reloadData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

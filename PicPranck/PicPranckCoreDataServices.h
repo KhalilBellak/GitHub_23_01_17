@@ -17,6 +17,7 @@
 @interface PicPranckCoreDataServices : NSObject
 
 +(int) initCount;
++(int) initNewSavedCount;
 
 +(NSManagedObjectContext *)managedObjectContext;
 //+(NSInteger)nbOfSavedPicPrancks;
@@ -34,4 +35,5 @@
 
 +(void)removeImages:(NSManagedObject *)objectToDelete;
 +(NSInteger)getNumberOfSavedPicPrancks;
++(NSInteger)getNumberOfNewSavedPicPrancks;
 @end

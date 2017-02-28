@@ -22,6 +22,7 @@
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
 		F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */; };
+		F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */; };
 		F9A19DF01E34C0D500EE34E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DEF1E34C0D500EE34E6 /* main.m */; };
 		F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF21E34C0D600EE34E6 /* AppDelegate.m */; };
 		F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19DF51E34C0D600EE34E6 /* ViewController.m */; };
@@ -100,6 +101,7 @@
 		F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckButton.m; sourceTree = "<group>"; };
 		F98BD3F81E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewControllerAnimatedTransitioning.h; sourceTree = "<group>"; };
 		F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewControllerAnimatedTransitioning.m; sourceTree = "<group>"; };
+		F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pastel.png; path = Assets.xcassets/AppIcon.appiconset/blue_pastel.png; sourceTree = "<group>"; };
 		F9A19DEB1E34C0D500EE34E6 /* PicPranck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicPranck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19DEF1E34C0D500EE34E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F9A19DF11E34C0D600EE34E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */,
 				F931DD651E5D05A100FC913E /* patchwork_big_25_.png */,
 				F931DD631E5D058500FC913E /* green_pastel.png */,
 				F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */,
@@ -426,6 +429,7 @@
 				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,
 				F9E9EFDC1E51049900828929 /* Settings50.png in Resources */,
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
+				F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */,
 				F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
 				F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */,

@@ -356,8 +356,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 #pragma mark Generate image for background coloring
 +(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize
 {
-    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:@"patchwork_big_25_.png"]];
+    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:@"blue_pastel.png"]];
     return [ppBackGround imageByScalingProportionallyToSize:targetSize];
+}
+#pragma mark Colors
+//182 192 247
++(UIColor *)getGlobalTintWithLighterFactor:(NSInteger)factor
+{
+    return [UIColor colorWithRed:(182.0f+factor)/255.0f
+                           green:(192.0f+factor)/255.0f
+                            blue:(247.0f+factor)/255.0f
+                           alpha:1.0f];
 }
 @end
 

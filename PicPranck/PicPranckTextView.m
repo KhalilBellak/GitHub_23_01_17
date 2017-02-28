@@ -7,6 +7,7 @@
 //
 
 #import "PicPranckTextView.h"
+#import "PicPranckImageServices.h"
 #import <QuartzCore/QuartzCore.h>
 @implementation PicPranckTextView
 
@@ -60,7 +61,7 @@
     //self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
     [self.layer setBorderWidth:2.0f];
-    [self.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [self.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-50] CGColor]];
     //gesture view
     if(!self.gestureView)
         self.gestureView=[[UIView alloc] init];

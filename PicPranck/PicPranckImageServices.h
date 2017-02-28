@@ -30,4 +30,5 @@
 +(UIImage *)rotate:(UIImage *) src  withOrientation:(UIImageOrientation) orientation;
 
 +(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize;
++(UIColor *)getGlobalTintWithLighterFactor:(NSInteger)factor;
 @end

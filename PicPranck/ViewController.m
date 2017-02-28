@@ -32,21 +32,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:self.view.frame.size];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     //Initialize view to move when keyboard appears
     viewToMoveForKeyBoardAppearance=[[UIView alloc] initWithFrame:self.view.frame];
     [viewToMoveForKeyBoardAppearance setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:viewToMoveForKeyBoardAppearance];
     [self.view sendSubviewToBack:viewToMoveForKeyBoardAppearance];
-    //Bring buttons front
+    //Bring buttons front and change their colors
     [self.view bringSubviewToFront:saveButton];
     [self.view bringSubviewToFront:buttonSend];
     [self.view bringSubviewToFront:resetButton];
+    [saveButton setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-30]];
+    [buttonSend setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-30]];
+    [resetButton setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-30]];
+    
     _activityType=@"";
     //Get global tint
+    [self.view setTintColor:[PicPranckImageServices getGlobalTintWithLighterFactor:0]];
     globalTint= [self.view tintColor];
- 
     // Do any additional setup after loading the view, typically from a nib.
     _listOfTextViews=[[NSMutableArray alloc] init];
     listOfGestureViews=[[NSMutableArray alloc] init];
