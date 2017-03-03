@@ -94,59 +94,59 @@ static int newSavedCount=0;
 }
 +(void)addThumbnailInPicPranckGallery:(PicPranckCollectionViewController *)ppViewController
 {
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
-    //Fetch request
-    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
-    req.fetchBatchSize=10;
-    req.fetchLimit=30;
-    //Sort results by date
-    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
-    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
-    //Getting the images
-    NSError *err=[[NSError alloc] init];
-    NSArray *results=[managedObjCtx executeFetchRequest:req error:&err];
-    //Inserting thumbnails of created PickPrancks
-    CGRect collViewFrame=ppViewController.collectionView.frame;
-    CGFloat width=(collViewFrame.size.width-(NB_OF_IMG_BY_ROW+1)*X_OFFSET)/NB_OF_IMG_BY_ROW;
-    CGFloat xOffset=X_OFFSET,yOffset=Y_OFFSET;
-    for(SavedImage *currManObj in results)
-    {
-        if(currManObj.newPicPranck)
-        {
-            CGRect frame=CGRectMake(xOffset, yOffset, width, width);
-            PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:ppViewController withManagedObject:currManObj andFrame:frame];
-        }
-        xOffset+=(width+X_OFFSET);
-        if(collViewFrame.size.width+collViewFrame.origin.x< xOffset+width)
-        {
-            xOffset=X_OFFSET;
-            yOffset+=width+Y_OFFSET;
-        }
-    }
+//    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+//    //Fetch request
+//    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
+//    req.fetchBatchSize=10;
+//    req.fetchLimit=30;
+//    //Sort results by date
+//    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
+//    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
+//    //Getting the images
+//    NSError *err=[[NSError alloc] init];
+//    NSArray *results=[managedObjCtx executeFetchRequest:req error:&err];
+//    //Inserting thumbnails of created PickPrancks
+//    CGRect collViewFrame=ppViewController.collectionView.frame;
+//    CGFloat width=(collViewFrame.size.width-(NB_OF_IMG_BY_ROW+1)*X_OFFSET)/NB_OF_IMG_BY_ROW;
+//    CGFloat xOffset=X_OFFSET,yOffset=Y_OFFSET;
+//    for(SavedImage *currManObj in results)
+//    {
+//        if(currManObj.newPicPranck)
+//        {
+//            CGRect frame=CGRectMake(xOffset, yOffset, width, width);
+//            PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:ppViewController withManagedObject:currManObj andFrame:frame];
+//        }
+//        xOffset+=(width+X_OFFSET);
+//        if(collViewFrame.size.width+collViewFrame.origin.x< xOffset+width)
+//        {
+//            xOffset=X_OFFSET;
+//            yOffset+=width+Y_OFFSET;
+//        }
+//    }
     
 }
 +(void)addThumbnailInPicPranckCollectionView:(PicPranckCollectionViewController *)collecViewController inCell:(PicPranckCollectionViewCell *)collecViewCell
 {
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
-    //Fetch request
-    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
-    req.fetchBatchSize=10;
-    req.fetchLimit=30;
-    //Sort results by date
-    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
-    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
-    //Getting the images
-    NSError *err=[[NSError alloc] init];
-    NSArray *results=[managedObjCtx executeFetchRequest:req error:&err];
-    //Inserting thumbnails of created PickPrancks
-    for(SavedImage *currManObj in results)
-    {
-        if(currManObj.newPicPranck)
-        {
-            PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:collecViewController withManagedObject:currManObj andFrame:collecViewCell.frame];
-        }
-    }
-    //count++;
+//    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+//    //Fetch request
+//    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
+//    req.fetchBatchSize=10;
+//    req.fetchLimit=30;
+//    //Sort results by date
+//    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
+//    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
+//    //Getting the images
+//    NSError *err=[[NSError alloc] init];
+//    NSArray *results=[managedObjCtx executeFetchRequest:req error:&err];
+//    //Inserting thumbnails of created PickPrancks
+//    for(SavedImage *currManObj in results)
+//    {
+//        if(currManObj.newPicPranck)
+//        {
+//            PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:collecViewController withManagedObject:currManObj andFrame:collecViewCell.frame];
+//        }
+//    }
+//    //count++;
 }
 
 +(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index
@@ -237,7 +237,7 @@ static int newSavedCount=0;
     if(0==count)
     {
         NSArray *results=[PicPranckCoreDataServices retrieveAllSavedImages];
-        count=[results count];
+        count=(int)[results count];
     }
     return (NSInteger)count ;
 }

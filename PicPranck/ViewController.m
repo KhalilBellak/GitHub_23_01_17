@@ -14,6 +14,8 @@
 #import "PicPranckViewController.h"
 #import "PicPranckCoreDataServices.h"
 
+//#import "PureLayout.h"
+
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
 @interface ViewController ()
 @end
@@ -34,11 +36,8 @@
     
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
-    //Initialize view to move when keyboard appears
-    viewToMoveForKeyBoardAppearance=[[UIView alloc] initWithFrame:self.view.frame];
-    [viewToMoveForKeyBoardAppearance setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:viewToMoveForKeyBoardAppearance];
-    [self.view sendSubviewToBack:viewToMoveForKeyBoardAppearance];
+    [viewToMoveForKeyBoardAppearance bringSubviewToFront:areasStackView];
+    
     //Bring buttons front and change their colors
     [self.view bringSubviewToFront:saveButton];
     [self.view bringSubviewToFront:buttonSend];
@@ -63,14 +62,20 @@
 }
 -(void) initializeAreas:(BOOL)firstInitialization
 {
+    
     NSArray *listOfImageViews=[[NSArray alloc] initWithObjects:imageViewArea1,imageViewArea2,imageViewArea3,nil];
     if(!firstInitialization && ([listOfImageViews count]!=[_listOfTextViews count]))
         return;
     for(UIImageView *currImageView in listOfImageViews)
     {
+        NSLog(@"ImageView to move for keyboord (w,h)=(%f,%f)",currImageView.frame.size.width,currImageView.frame.size.height);
+        NSLog(@"ImageView to move for keyboord (x,y)=(%f,%f)",currImageView.frame.origin.x,currImageView.frame.origin.y);
+        currImageView.clipsToBounds=YES;
+        currImageView.contentMode=UIViewContentModeScaleAspectFit;
         //Initialization of PicPranckTextViews (text, layout ....)
         NSInteger iIndex=[listOfImageViews indexOfObject:currImageView];
-        [currImageView.layer setBorderColor:[globalTint CGColor]];
+        [currImageView.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-40] CGColor]];
+        
         NSString *text=@"Hidden Picture";
         if(1==iIndex)
             text=@"Visible Picture";
@@ -96,27 +101,50 @@
             tapOnce.numberOfTouchesRequired = 1;
             tapTwice.numberOfTapsRequired = 2;
             [tapOnce requireGestureRecognizerToFail:tapTwice];
-            //Remove all gesture recognizers
-            for (UIGestureRecognizer *recognizer in currTextView.gestureView.gestureRecognizers)
-                [viewToMoveForKeyBoardAppearance removeGestureRecognizer:recognizer];
+
             [currTextView.gestureView addGestureRecognizer:tapOnce];
             [currTextView.gestureView addGestureRecognizer:tapTwice];
             [_listOfTextViews addObject:currTextView];
         }
-        
-        //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
-        CGRect newFrame = CGRectMake(0,0,currImageView.frame.size.width,currImageView.frame.size.height);
-        currTextView.frame = newFrame;
-        currImageView.autoresizesSubviews = YES;
-        currTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [currImageView addSubview:currTextView];
-        //Add gestureView to view to catch gestures
-        [viewToMoveForKeyBoardAppearance addSubview:currImageView];
-        [viewToMoveForKeyBoardAppearance addSubview:currTextView.gestureView];
-        [viewToMoveForKeyBoardAppearance bringSubviewToFront:currTextView.gestureView];
-        
         [listOfGestureViews addObject:currTextView.gestureView];
+        [areasStackView bringSubviewToFront:currImageView];
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+//    NSLog(@"View to move for keyboord (w,h)=(%f,%f)",viewToMoveForKeyBoardAppearance.frame.size.width,viewToMoveForKeyBoardAppearance.frame.size.height);
+//    NSLog(@"View to move for keyboord (x,y)=(%f,%f)",viewToMoveForKeyBoardAppearance.frame.origin.x,viewToMoveForKeyBoardAppearance.frame.origin.y);
+//    NSLog(@"Stack View (w,h)=(%f,%f)",areasStackView.frame.size.width,areasStackView.frame.size.height);
+//    NSLog(@"Stack View (x,y)=(%f,%f)",areasStackView.frame.origin.x,areasStackView.frame.origin.y);
+//    
+    
+    //[areasStackView setBackgroundColor:[UIColor redColor]];
+    //NSLog(@"%@",[self recursiveDescription]);
+//    UIView *testView=[[UIView alloc] initWithFrame:areasStackView.frame];
+//    [testView.layer setBorderColor:[[UIColor redColor] CGColor]];
+//    [testView.layer setBorderWidth:2];
+//    [self.view addSubview:testView];
+//    [self.view bringSubviewToFront:testView];
+    
+
+    
+}
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    NSArray *listOfImageViews=[[NSArray alloc] initWithObjects:imageViewArea1,imageViewArea2,imageViewArea3,nil];
+    if([listOfImageViews count]!=[_listOfTextViews count])
+        return;
+    //Update Text view and gesture views frames
+    for(UIImageView *currImageView in listOfImageViews)
+    {
+        PicPranckTextView *currTextView=[_listOfTextViews objectAtIndex:[listOfImageViews indexOfObject:currImageView]];
+        CGRect newFrame = CGRectMake(0,0,currImageView.frame.size.width,currImageView.frame.size.height);
+        currTextView.frame=newFrame;
+        currTextView.gestureView.frame=newFrame;
+    }
+    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -239,11 +267,13 @@
 {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     [self moveViewVertically:viewToMoveForKeyBoardAppearance withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
+    //[self moveViewVertically:areasStackView withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
     [self moveViewVertically:viewToMoveForKeyBoardAppearance toPosition:0];
+    //[self moveViewVertically:areasStackView toPosition:0];
 }
 -(void)moveViewVertically:(UIView *)iView withTapedTextView:(PicPranckTextView *) iTapedTextView andKeyBoardFrame:(CGRect) keyBoardFrame
 {
@@ -320,4 +350,5 @@
     NSArray *listOfImages=[[NSArray alloc] initWithObjects:imageViewArea1.image,imageViewArea2.image,imageViewArea3.image, nil];
     [PicPranckCoreDataServices uploadImages:listOfImages withViewController:self];
 }
+
 @end

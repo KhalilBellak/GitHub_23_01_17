@@ -31,7 +31,8 @@
     
     self.delegate=textViewDelegate;
     self.imageView=iImageView;
-    
+    //self.imageView.contentMode=UIViewContentModeScaleAspectFit;
+    self.imageView.clipsToBounds=YES;
     UIColor *pWhiteColor=[UIColor whiteColor];
     
     if([text length]>0)
@@ -52,21 +53,35 @@
 
     //Gestures
     self.tapsAcquired=0;
-    //Test
+    //gesture view
+    if(!self.gestureView)
+        self.gestureView=[[UIView alloc] init];
+    [self.gestureView setBackgroundColor:[UIColor clearColor]];
+    iImageView.userInteractionEnabled=YES;
+    self.gestureView.userInteractionEnabled=YES;
+    //Edition of text view
     self.editable=YES;
     self.edited=NO;
     [self setTextAlignment:NSTextAlignmentCenter];
+    
     //Layout
     [self setBackgroundColor:[UIColor clearColor]];
     //self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
     [self.layer setBorderWidth:2.0f];
     [self.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-50] CGColor]];
-    //gesture view
-    if(!self.gestureView)
-        self.gestureView=[[UIView alloc] init];
-    self.gestureView.frame=iImageView.frame;
-    [self.gestureView setBackgroundColor:[UIColor clearColor]];
+    
+    
+    //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
+    CGRect newFrame = CGRectMake(0,0,iImageView.frame.size.width,iImageView.frame.size.height);
+    self.frame = newFrame;
+    self.gestureView.frame=newFrame;
+    
+    iImageView.autoresizesSubviews = YES;
+    iImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [iImageView addSubview:self];
+    [iImageView addSubview:self.gestureView];
+    [iImageView bringSubviewToFront:self.gestureView];
     
 }
 +(void)copyTextView:(PicPranckTextView *)textViewToCopy inOtherTextView:(PicPranckTextView *)targetTextView withImageView:(UIImageView *)iImageView

@@ -1,0 +1,43 @@
+PODS:
+  - AsyncDisplayKit (2.1):
+    - AsyncDisplayKit/PINRemoteImage (= 2.1)
+  - AsyncDisplayKit/Core (2.1)
+  - AsyncDisplayKit/PINRemoteImage (2.1):
+    - AsyncDisplayKit/Core
+    - PINRemoteImage/iOS (= 3.0.0-beta.7)
+    - PINRemoteImage/PINCache
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - FontAwesomeIconFactory (2.1.1)
+  - PINCache (3.0.1-beta.2):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.2)
+    - PINCache/Core (= 3.0.1-beta.2)
+  - PINCache/Arc-exception-safe (3.0.1-beta.2):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.2)
+  - PINRemoteImage/Core (3.0.0-beta.7)
+  - PINRemoteImage/iOS (3.0.0-beta.7):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.7):
+    - PINCache (= 3.0.1-beta.2)
+    - PINRemoteImage/Core
+  - PureLayout (3.0.2)
+
+DEPENDENCIES:
+  - AsyncDisplayKit
+  - FMDB
+  - FontAwesomeIconFactory
+  - PureLayout
+
+SPEC CHECKSUMS:
+  AsyncDisplayKit: 28de788f9d6ec573be7662f0fe8931e656357e93
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  FontAwesomeIconFactory: bb9ce26d3dd13044854a82d380023c8e7d3ebf1a
+  PINCache: 6d273a6e0754bd26e3f12a38a90dde73cc6a42b2
+  PINRemoteImage: ff63baf185088530db6cfa41cb665e2b5126b5c3
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+
+PODFILE CHECKSUM: c4cce791abe7014f24398dc7e522c7219817e407
+
+COCOAPODS: 1.2.0

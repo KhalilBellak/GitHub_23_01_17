@@ -39,8 +39,8 @@
     
     [PicPranckImageServices setImage:iImage forImageView:pPTextView.imageView];
     [pPTextView.layer setBorderWidth:0.0f];
-    [viewController.view bringSubviewToFront:pPTextView];
-    [viewController.view bringSubviewToFront:pPTextView.gestureView];
+    [pPTextView.imageView bringSubviewToFront:pPTextView];
+    [pPTextView.imageView bringSubviewToFront:pPTextView.gestureView];
     if(!pPTextView.edited)
         [pPTextView setText:@""];
 }

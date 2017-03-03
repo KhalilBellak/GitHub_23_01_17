@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EF9DE705EEEE11B59D4E680 /* libPods-PicPranck.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E69E0BE541A38E68375724B8 /* libPods-PicPranck.a */; };
+		5BA1CF11C64B0410E4ADCE23 /* libPods-PicPranckTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F670143494BC2713509F88 /* libPods-PicPranckTests.a */; };
+		F23F1AC7CE06F674B428F815 /* libPods-PicPranckUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B18D8408D6B234A838BB0958 /* libPods-PicPranckUITests.a */; };
 		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
 		F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */; };
 		F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CD1E5F8B0900966207 /* PicPranckActionServices.m */; };
-		F931DD591E5B7F2F00FC913E /* ModelPicPranck.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */; };
 		F931DD5F1E5CEC8000FC913E /* PicPranckCoreDataServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5E1E5CEC7F00FC913E /* PicPranckCoreDataServices.m */; };
 		F931DD641E5D058500FC913E /* green_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F931DD631E5D058500FC913E /* green_pastel.png */; };
@@ -20,6 +22,7 @@
 		F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD681E5E542900FC913E /* PicPranckCollectionViewCell.m */; };
 		F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
+		F9726E5E1E65BBD80095A434 /* ModelPicPranck.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
 		F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */; };
 		F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */; };
@@ -67,6 +70,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05C74D05397B193EF40714EA /* Pods-PicPranckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.release.xcconfig"; sourceTree = "<group>"; };
+		36F670143494BC2713509F88 /* libPods-PicPranckTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PicPranckTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C667854E6D8D239F99D069D /* Pods-PicPranckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6CFD28D05B1527B37982A7CF /* Pods-PicPranckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		716335EF6A8E85B1A50089D5 /* Pods-PicPranck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.debug.xcconfig"; sourceTree = "<group>"; };
+		B18D8408D6B234A838BB0958 /* libPods-PicPranckUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PicPranckUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40993448DFDCCEB8E62C8AA /* Pods-PicPranckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E69E0BE541A38E68375724B8 /* libPods-PicPranck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PicPranck.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90147711E53586200F3069F /* PicPranckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewController.h; sourceTree = "<group>"; };
 		F90147721E53586200F3069F /* PicPranckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewController.m; sourceTree = "<group>"; };
 		F90147751E53993D00F3069F /* ModelPicPranck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelPicPranck.xcdatamodel; sourceTree = "<group>"; };
@@ -133,6 +144,7 @@
 		F9E9EFD81E51049900828929 /* MiddleFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiddleFinger.png; path = Assets.xcassets/AppIcon.appiconset/MiddleFinger.png; sourceTree = "<group>"; };
 		F9E9EFD91E51049900828929 /* Settings50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings50.png; path = Assets.xcassets/AppIcon.appiconset/Settings50.png; sourceTree = "<group>"; };
 		F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_finger_emoticon.png; path = Assets.xcassets/AppIcon.appiconset/middle_finger_emoticon.png; sourceTree = "<group>"; };
+		FA65270B0F4DC4C5611207E6 /* Pods-PicPranck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF9DE705EEEE11B59D4E680 /* libPods-PicPranck.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA1CF11C64B0410E4ADCE23 /* libPods-PicPranckTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,15 +168,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23F1AC7CE06F674B428F815 /* libPods-PicPranckUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B83C917CA682B3F61340DF8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				716335EF6A8E85B1A50089D5 /* Pods-PicPranck.debug.xcconfig */,
+				FA65270B0F4DC4C5611207E6 /* Pods-PicPranck.release.xcconfig */,
+				4C667854E6D8D239F99D069D /* Pods-PicPranckTests.debug.xcconfig */,
+				05C74D05397B193EF40714EA /* Pods-PicPranckTests.release.xcconfig */,
+				6CFD28D05B1527B37982A7CF /* Pods-PicPranckUITests.debug.xcconfig */,
+				E40993448DFDCCEB8E62C8AA /* Pods-PicPranckUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F904B2591E47D53400B5FA26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E69E0BE541A38E68375724B8 /* libPods-PicPranck.a */,
+				36F670143494BC2713509F88 /* libPods-PicPranckTests.a */,
+				B18D8408D6B234A838BB0958 /* libPods-PicPranckUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -239,6 +270,7 @@
 				F9A19E071E34C0D700EE34E6 /* PicPranckTests */,
 				F9A19E121E34C0D700EE34E6 /* PicPranckUITests */,
 				F9A19DEC1E34C0D500EE34E6 /* Products */,
+				2B83C917CA682B3F61340DF8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,9 +351,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A19E181E34C0D800EE34E6 /* Build configuration list for PBXNativeTarget "PicPranck" */;
 			buildPhases = (
+				63C0C1AB3D23D44A0A9C0037 /* [CP] Check Pods Manifest.lock */,
 				F9A19DE71E34C0CE00EE34E6 /* Sources */,
 				F9A19DE81E34C0CE00EE34E6 /* Frameworks */,
 				F9A19DE91E34C0CE00EE34E6 /* Resources */,
+				7B368991CACC1D08F2847914 /* [CP] Embed Pods Frameworks */,
+				7EB0C2DE31DF6D23B32FF13E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -336,9 +371,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A19E1B1E34C0D800EE34E6 /* Build configuration list for PBXNativeTarget "PicPranckTests" */;
 			buildPhases = (
+				9E740E9E25D7759171FF3D98 /* [CP] Check Pods Manifest.lock */,
 				F9A19E001E34C0D700EE34E6 /* Sources */,
 				F9A19E011E34C0D700EE34E6 /* Frameworks */,
 				F9A19E021E34C0D700EE34E6 /* Resources */,
+				45F2FD0E5D9533D5489BBCFC /* [CP] Embed Pods Frameworks */,
+				5C8626BBFEA261D100B4C2C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -354,9 +392,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A19E1E1E34C0D800EE34E6 /* Build configuration list for PBXNativeTarget "PicPranckUITests" */;
 			buildPhases = (
+				2001AEB92EE6C8A3735C9CD0 /* [CP] Check Pods Manifest.lock */,
 				F9A19E0B1E34C0D700EE34E6 /* Sources */,
 				F9A19E0C1E34C0D700EE34E6 /* Frameworks */,
 				F9A19E0D1E34C0D700EE34E6 /* Resources */,
+				3755AE0ED708E550DCFE6793 /* [CP] Embed Pods Frameworks */,
+				7DA353D9CB4E2FC9B645127D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -422,7 +463,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F931DD591E5B7F2F00FC913E /* ModelPicPranck.xcdatamodeld in Resources */,
+				F9726E5E1E65BBD80095A434 /* ModelPicPranck.xcdatamodeld in Resources */,
 				F931DD661E5D05A100FC913E /* patchwork_big_25_.png in Resources */,
 				F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */,
 				F9E9EFD51E50FAC400828929 /* pencil.png in Resources */,
@@ -457,6 +498,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2001AEB92EE6C8A3735C9CD0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3755AE0ED708E550DCFE6793 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45F2FD0E5D9533D5489BBCFC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C8626BBFEA261D100B4C2C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63C0C1AB3D23D44A0A9C0037 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7B368991CACC1D08F2847914 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DA353D9CB4E2FC9B645127D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EB0C2DE31DF6D23B32FF13E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E740E9E25D7759171FF3D98 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9A19DE71E34C0CE00EE34E6 /* Sources */ = {
@@ -630,6 +809,7 @@
 		};
 		F9A19E191E34C0D800EE34E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 716335EF6A8E85B1A50089D5 /* Pods-PicPranck.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -653,6 +833,7 @@
 		};
 		F9A19E1A1E34C0D800EE34E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA65270B0F4DC4C5611207E6 /* Pods-PicPranck.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -675,6 +856,7 @@
 		};
 		F9A19E1C1E34C0D800EE34E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C667854E6D8D239F99D069D /* Pods-PicPranckTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -689,6 +871,7 @@
 		};
 		F9A19E1D1E34C0D800EE34E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05C74D05397B193EF40714EA /* Pods-PicPranckTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -703,6 +886,7 @@
 		};
 		F9A19E1F1E34C0D800EE34E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CFD28D05B1527B37982A7CF /* Pods-PicPranckUITests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
@@ -716,6 +900,7 @@
 		};
 		F9A19E201E34C0D800EE34E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E40993448DFDCCEB8E62C8AA /* Pods-PicPranckUITests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;

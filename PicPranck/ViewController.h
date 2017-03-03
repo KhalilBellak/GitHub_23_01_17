@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "PicPranckTextView.h"
 #import "PicPranckImage.h"
-
+#import "PicPranckImageView.h"
 //#import "PicPranckDocumentInteractionController.h"
 
 @interface ViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextViewDelegate,UIDocumentInteractionControllerDelegate>
 {
     
-    UIView *viewToMoveForKeyBoardAppearance;
+    //UIView *viewToMoveForKeyBoardAppearance;
     NSMutableArray *listOfGestureViews;
     
     PicPranckTextView *tapedTextView;
@@ -25,7 +25,8 @@
     
     
     PicPranckTextView *textView1;
-    IBOutlet UIImageView *imageViewArea1;
+    IBOutlet PicPranckImageView *imageViewArea1;
+    
     
     
     IBOutlet UIImageView *imageViewArea2;
@@ -37,6 +38,8 @@
     IBOutlet UIButton *buttonSend;
     IBOutlet UIButton *saveButton;
     IBOutlet UIButton *resetButton;
+    IBOutlet UIStackView *areasStackView;
+    IBOutlet UIView *viewToMoveForKeyBoardAppearance;
     
 }
 
