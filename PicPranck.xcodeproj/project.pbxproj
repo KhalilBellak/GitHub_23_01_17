@@ -13,6 +13,7 @@
 		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
+		F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */ = {isa = PBXBuildFile; fileRef = F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */; };
 		F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */; };
 		F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CD1E5F8B0900966207 /* PicPranckActionServices.m */; };
 		F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */; };
@@ -22,7 +23,6 @@
 		F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD681E5E542900FC913E /* PicPranckCollectionViewCell.m */; };
 		F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
-		F9726E5E1E65BBD80095A434 /* ModelPicPranck.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
 		F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */; };
 		F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */; };
@@ -84,6 +84,7 @@
 		F904B24F1E47C2AC00B5FA26 /* PicPranckTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckTextView.h; sourceTree = "<group>"; };
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pastel_light.png; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light.png; sourceTree = "<group>"; };
 		F91F91C91E5F836A00966207 /* PicPranckCustomViewsServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckCustomViewsServices.h; sourceTree = "<group>"; };
 		F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCustomViewsServices.m; sourceTree = "<group>"; };
 		F91F91CC1E5F8B0900966207 /* PicPranckActionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActionServices.h; sourceTree = "<group>"; };
@@ -308,6 +309,7 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */,
 				F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */,
 				F931DD651E5D05A100FC913E /* patchwork_big_25_.png */,
 				F931DD631E5D058500FC913E /* green_pastel.png */,
@@ -463,8 +465,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9726E5E1E65BBD80095A434 /* ModelPicPranck.xcdatamodeld in Resources */,
 				F931DD661E5D05A100FC913E /* patchwork_big_25_.png in Resources */,
+				F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */,
 				F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */,
 				F9E9EFD51E50FAC400828929 /* pencil.png in Resources */,
 				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,

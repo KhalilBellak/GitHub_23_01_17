@@ -18,6 +18,4 @@
 @property  UIView *coverView;
 @property  UIImageView *imageViewForPreview;
 @property  NSMutableArray *listOfImgs;
--(id)initFromViewController:(PicPranckCollectionViewController *)iViewController withManagedObject:(SavedImage *)iManagedObject andFrame:(CGRect)frame;
-
 @end

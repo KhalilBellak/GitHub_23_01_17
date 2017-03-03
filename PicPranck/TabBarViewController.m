@@ -10,6 +10,10 @@
 #import "PicPranckViewControllerAnimatedTransitioning.h"
 #import "PicPranckImageServices.h"
 
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h>
+
+
 @interface TabBarViewController ()
 
 @end
