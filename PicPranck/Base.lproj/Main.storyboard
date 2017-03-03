@@ -6,7 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
         <scene sceneID="ubc-RH-Gch">
             <objects>
                 <collectionViewController id="siM-TQ-suz" customClass="PicPranckCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HSH-hC-Xyq">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="HSH-hC-Xyq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -152,11 +152,11 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6vd-g3-ojw">
-                                <rect key="frame" x="46" y="28" width="283" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="45o-Fy-WI8">
+                                <rect key="frame" x="93.5" y="20" width="188" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKK-Gr-7qX">
-                                        <rect key="frame" x="0.0" y="0.0" width="81" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Reset">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -166,7 +166,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-vF-7Cv">
-                                        <rect key="frame" x="101" y="0.0" width="81" height="30"/>
+                                        <rect key="frame" x="72.5" y="0.0" width="43" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Save">
@@ -178,7 +178,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
-                                        <rect key="frame" x="202" y="0.0" width="81" height="30"/>
+                                        <rect key="frame" x="145.5" y="0.0" width="42.5" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Send">
@@ -197,11 +197,12 @@
                         <constraints>
                             <constraint firstItem="Szg-Rn-DFc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="CO1-Vw-jRG"/>
                             <constraint firstItem="Szg-Rn-DFc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ia0-V4-Veb"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6vd-g3-ojw" secondAttribute="trailing" constant="30" id="Ocf-lb-Kdw"/>
                             <constraint firstItem="Szg-Rn-DFc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Oum-hW-D8s"/>
                             <constraint firstItem="Szg-Rn-DFc" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="YQ0-M3-iDk"/>
-                            <constraint firstItem="6vd-g3-ojw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="cGk-ps-u0x"/>
-                            <constraint firstItem="6vd-g3-ojw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="kOJ-5E-hvJ"/>
+                            <constraint firstItem="45o-Fy-WI8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eAf-Sw-8HE"/>
+                            <constraint firstItem="45o-Fy-WI8" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="kIK-rc-oq7"/>
+                            <constraint firstItem="45o-Fy-WI8" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.075" id="mA0-4b-cyo"/>
+                            <constraint firstItem="45o-Fy-WI8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ntD-xf-4v0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Custom" image="Editimage.png" id="ezL-PI-g18"/>

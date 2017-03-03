@@ -14,6 +14,7 @@
 #import "PicPranckViewController.h"
 #import "PicPranckCoreDataServices.h"
 
+#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
 //#import "PureLayout.h"
 
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
@@ -38,13 +39,7 @@
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     [viewToMoveForKeyBoardAppearance bringSubviewToFront:areasStackView];
     
-    //Bring buttons front and change their colors
-    [self.view bringSubviewToFront:saveButton];
-    [self.view bringSubviewToFront:buttonSend];
-    [self.view bringSubviewToFront:resetButton];
-    [saveButton setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-30]];
-    [buttonSend setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-30]];
-    [resetButton setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-30]];
+    [self setButtons];
     
     _activityType=@"";
     //Get global tint
@@ -58,6 +53,45 @@
     //Add self as observer of Keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+    
+}
+-(void)setButtons
+{
+    [self setButton:@"Reset"];
+    [self setButton:@"Save"];
+    [self setButton:@"Send"];
+}
+-(void)setButton:(NSString *)nameOfButton
+{
+    UIButton *button=resetButton;
+    NIKFontAwesomeIcon icon=NIKFontAwesomeIconEraser;
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory textlessButtonIconFactory];
+    factory.size=0.5*button.frame.size.height;
+    //factory.colors = @[[UIColor redColor], [UIColor darkGrayColor]];
+    factory.strokeColor = [UIColor blackColor];
+    factory.strokeWidth = 1.0;
+    factory.square=YES;
+    if([nameOfButton isEqualToString:@"Send"])
+    {
+        icon=NIKFontAwesomeIconUpload;//NIKFontAwesomeIconSendO
+        button=buttonSend;
+    }
+    else if([nameOfButton isEqualToString:@"Save"])
+    {
+        icon=NIKFontAwesomeIconSave;
+        button=saveButton;
+    }
+    
+    button.layer.cornerRadius = button.frame.size.height/10;
+    button.clipsToBounds = YES;
+    [button.layer setBorderWidth:2.0f];
+    [button.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
+    
+    [self.view bringSubviewToFront:button];
+    [button setTitle:@"" forState:UIControlStateNormal];
+    [button setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+   [button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
+    
     
 }
 -(void) initializeAreas:(BOOL)firstInitialization

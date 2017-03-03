@@ -11,7 +11,7 @@
 #import "PicPranckImageServices.h"
 
 #import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
-#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h>
+//#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h>
 
 
 @interface TabBarViewController ()
@@ -23,17 +23,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate=self;
+    
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
+    
+//    UIBarButtonItem *leftItem = [UIBarButtonItem new];
+//    leftItem.image = [factory createImageForIcon:NIKFontAwesomeIconReply];
+//    leftItem.action = @selector(click);
+//    leftItem.target = self;
+//    leftItem.enabled = YES;
+//    leftItem.style = UIBarButtonItemStyleDone;
+    //_navbar.leftBarButtonItem = leftItem;
+    
+    NSArray *listOfItems=self.tabBar.items;
+    for(UITabBarItem *item in listOfItems)
+    {
+        NIKFontAwesomeIcon icon;
+        switch ([listOfItems indexOfObject:item])
+        {
+            case 0:
+                icon=NIKFontAwesomeIconEdit;
+                break;
+            case 1:
+                icon=NIKFontAwesomeIconInbox;
+                break;
+            case 2:
+                icon=NIKFontAwesomeIconPhoto;
+                break;
+            default:
+                icon=NIKFontAwesomeIconWrench;
+                break;
+        }
+        item.image=[factory createImageForIcon:icon];
+        item.selectedImage=[factory createImageForIcon:icon];
+    }
+    
     // Do any additional setup after loading the view.
     self.tabBar.barTintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:30];
     self.tabBar.tintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:-40];
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
-                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:-30]
+                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:-50]
                                                         } forState:UIControlStateSelected];
     
     
     // doing this results in an easier to read unselected state then the default iOS 7 one
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
-                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:10]
+                                                        NSForegroundColorAttributeName : [UIColor grayColor]
                                                         } forState:UIControlStateNormal];
 }
 

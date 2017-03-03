@@ -27,7 +27,7 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     //self.transitioningDelegate=
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:self.view.frame.size];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.collectionView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     
     // Uncomment the following line to preserve selection between presentations

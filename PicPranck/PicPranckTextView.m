@@ -69,13 +69,20 @@
     //self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
     [self.layer setBorderWidth:2.0f];
-    [self.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-50] CGColor]];
+    [self.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
+    
     
     
     //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
+    iImageView.layer.cornerRadius = self.frame.size.height/10;
+    iImageView.clipsToBounds = YES;
     CGRect newFrame = CGRectMake(0,0,iImageView.frame.size.width,iImageView.frame.size.height);
     self.frame = newFrame;
+    //self.layer=iImageView.layer;
     self.gestureView.frame=newFrame;
+    
+    self.layer.cornerRadius = self.frame.size.height/10;
+    self.clipsToBounds = YES;
     
     iImageView.autoresizesSubviews = YES;
     iImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
