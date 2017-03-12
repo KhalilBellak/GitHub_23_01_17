@@ -5,18 +5,24 @@
 //  Created by El Khalil Bellakrid on 21/02/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
+
+#import "AppDelegate.h"
+//Core Data
 #import <CoreData/CoreData.h>
+#import "SavedImage+CoreDataClass.h"
+#import "ImageOfArea+CoreDataClass.h"
+//View controller
+#import "PicPranckCollectionViewController.h"
+#import "ViewController.h"
+#import "TabBarViewController.h"
+//Services
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
-#import "AppDelegate.h"
-#import "ViewController.h"
-#import "PicPranckCollectionViewController.h"
+//PicPranck objects
 #import "PicPranckImageView.h"
 #import "PicPranckImage.h"
 #import "PicPranckCollectionViewCell.h"
-#import "PicPranckCollectionViewController.h"
-#import "SavedImage+CoreDataClass.h"
-#import "ImageOfArea+CoreDataClass.h"
+
 
 #define X_OFFSET 5
 #define Y_OFFSET 5
@@ -49,11 +55,7 @@ static int newSavedCount=0;
     }
     return moc;
 }
-//+(NSInteger)nbOfSavedPicPrancks
-//{
-//    static NSInteger count=0;
-//    return count;
-//}
+
 #pragma mark Uploading Images
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController
 {
@@ -89,66 +91,10 @@ static int newSavedCount=0;
             [viewController presentViewController:alertController animated:YES completion:nil];
             count++;
             newSavedCount++;
+            
         }
     }
 }
-+(void)addThumbnailInPicPranckGallery:(PicPranckCollectionViewController *)ppViewController
-{
-//    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
-//    //Fetch request
-//    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
-//    req.fetchBatchSize=10;
-//    req.fetchLimit=30;
-//    //Sort results by date
-//    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
-//    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
-//    //Getting the images
-//    NSError *err=[[NSError alloc] init];
-//    NSArray *results=[managedObjCtx executeFetchRequest:req error:&err];
-//    //Inserting thumbnails of created PickPrancks
-//    CGRect collViewFrame=ppViewController.collectionView.frame;
-//    CGFloat width=(collViewFrame.size.width-(NB_OF_IMG_BY_ROW+1)*X_OFFSET)/NB_OF_IMG_BY_ROW;
-//    CGFloat xOffset=X_OFFSET,yOffset=Y_OFFSET;
-//    for(SavedImage *currManObj in results)
-//    {
-//        if(currManObj.newPicPranck)
-//        {
-//            CGRect frame=CGRectMake(xOffset, yOffset, width, width);
-//            PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:ppViewController withManagedObject:currManObj andFrame:frame];
-//        }
-//        xOffset+=(width+X_OFFSET);
-//        if(collViewFrame.size.width+collViewFrame.origin.x< xOffset+width)
-//        {
-//            xOffset=X_OFFSET;
-//            yOffset+=width+Y_OFFSET;
-//        }
-//    }
-    
-}
-+(void)addThumbnailInPicPranckCollectionView:(PicPranckCollectionViewController *)collecViewController inCell:(PicPranckCollectionViewCell *)collecViewCell
-{
-//    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
-//    //Fetch request
-//    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
-//    req.fetchBatchSize=10;
-//    req.fetchLimit=30;
-//    //Sort results by date
-//    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
-//    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
-//    //Getting the images
-//    NSError *err=[[NSError alloc] init];
-//    NSArray *results=[managedObjCtx executeFetchRequest:req error:&err];
-//    //Inserting thumbnails of created PickPrancks
-//    for(SavedImage *currManObj in results)
-//    {
-//        if(currManObj.newPicPranck)
-//        {
-//            PicPranckImageView *ppImgView=[[PicPranckImageView alloc] initFromViewController:collecViewController withManagedObject:currManObj andFrame:collecViewCell.frame];
-//        }
-//    }
-//    //count++;
-}
-
 +(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index
 {
     if(!imgView)

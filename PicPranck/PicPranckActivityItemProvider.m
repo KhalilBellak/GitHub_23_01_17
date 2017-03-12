@@ -9,12 +9,8 @@
 #import "PicPranckActivityItemProvider.h"
 
 @implementation PicPranckActivityItemProvider
-//-(NSString *) activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(NSString *)activityType {
-//    return @"";
-//}
 - (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType
 {
-    //NSLog(@"%@",activityType);
     if(_viewController)
     {
         if ([activityType isEqualToString:@"com.apple.UIKit.activity.Message"])

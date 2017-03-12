@@ -5,17 +5,21 @@
 //  Created by El Khalil Bellakrid on 22/01/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
-#import "AppDelegate.h"
-#import "ViewController.h"
-#import "PicPranckTextView.h"
-#import "PicPranckImageServices.h"
-#import <objc/runtime.h>
-#import "PicPranckActivityItemProvider.h"
-#import "PicPranckViewController.h"
-#import "PicPranckCoreDataServices.h"
 
+#import <objc/runtime.h>
+#import "AppDelegate.h"
+//View Controllers
+#import "ViewController.h"
+#import "PicPranckViewController.h"
+//PicPranck Objects
+#import "PicPranckTextView.h"
+#import "PicPranckActivityItemProvider.h"
+//Services
+#import "PicPranckImageServices.h"
+#import "PicPranckCoreDataServices.h"
+//Pods
 #import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
-//#import "PureLayout.h"
+
 
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
 @interface ViewController ()
@@ -102,8 +106,6 @@
         return;
     for(UIImageView *currImageView in listOfImageViews)
     {
-        NSLog(@"ImageView to move for keyboord (w,h)=(%f,%f)",currImageView.frame.size.width,currImageView.frame.size.height);
-        NSLog(@"ImageView to move for keyboord (x,y)=(%f,%f)",currImageView.frame.origin.x,currImageView.frame.origin.y);
         currImageView.clipsToBounds=YES;
         currImageView.contentMode=UIViewContentModeScaleAspectFit;
         //Initialization of PicPranckTextViews (text, layout ....)
@@ -188,20 +190,20 @@
     
     [super viewWillDisappear:animated];
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
-    {
-        //Dispatch because picture can take time to generate and we should display all aavailable apps
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^(void){
-            dispatch_async(dispatch_get_main_queue(), ^(void){
-                [PicPranckImageServices generateImageToSend:self];
-            });
-        });
-        
-        
-    }
-}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
+//    {
+//        //Dispatch because picture can take time to generate and we should display all aavailable apps
+//        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^(void){
+//            dispatch_async(dispatch_get_main_queue(), ^(void){
+//                [PicPranckImageServices generateImageToSend:self];
+//            });
+//        });
+//        
+//        
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -301,13 +303,11 @@
 {
     CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     [self moveViewVertically:viewToMoveForKeyBoardAppearance withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
-    //[self moveViewVertically:areasStackView withTapedTextView:tapedTextView andKeyBoardFrame:keyboardFrame];
 }
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
     [self moveViewVertically:viewToMoveForKeyBoardAppearance toPosition:0];
-    //[self moveViewVertically:areasStackView toPosition:0];
 }
 -(void)moveViewVertically:(UIView *)iView withTapedTextView:(PicPranckTextView *) iTapedTextView andKeyBoardFrame:(CGRect) keyBoardFrame
 {

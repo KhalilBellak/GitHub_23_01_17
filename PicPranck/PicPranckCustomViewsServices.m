@@ -104,18 +104,6 @@
 
     //Handle animation of modal presentation
     [vc presentViewController:modalViewController animated:YES completion:nil];
-    
-//    [UIView animateWithDuration:0.3/1.5 animations:^{
-//        coverView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
-//    } completion:^(BOOL finished) {
-//        [UIView animateWithDuration:0.3/2 animations:^{
-//            coverView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.3/2 animations:^{
-//                coverView.transform = CGAffineTransformIdentity;
-//            }];
-//        }];
-//    }];
 }
 +(void)closePreview:(id)sender
 {

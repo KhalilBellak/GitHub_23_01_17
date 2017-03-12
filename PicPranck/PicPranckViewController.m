@@ -5,17 +5,20 @@
 //  Created by El Khalil Bellakrid on 14/02/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
-
-#import "PicPranckViewController.h"
-#import "PicPranckImageView.h"
 #import "AppDelegate.h"
+//View Controlles
+#import "PicPranckViewController.h"
+//Services
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
+//PicPranck objects
 #import "PicPranckCollectionViewCell.h"
+#import "PicPranckImageView.h"
 
 @interface PicPranckViewController ()
 
 @end
+
 #pragma mark -
 @implementation PicPranckViewController
 -(id)initModalView

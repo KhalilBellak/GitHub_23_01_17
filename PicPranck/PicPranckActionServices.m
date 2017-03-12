@@ -49,20 +49,17 @@
                     //Disiss modal VC
                     [button.modalVC dismissViewControllerAnimated:YES completion:^{
                         //Dismiss collection view VC
-                        //[button.ppCollectionVC dismissViewControllerAnimated:YES completion:^{
-                            //Animated transition to Main VC
-                            [UIView transitionFromView:button.modalVC.view
-                                                toView:vc.view
-                                              duration:0.4
-                                               options:UIViewAnimationOptionTransitionFlipFromTop
-                                            completion:^(BOOL finished) {
-                                                if (finished) {
-                                                    [button.modalVC.view removeFromSuperview];
-                                                    //[button.ppCollectionVC.view removeFromSuperview];
-                                                    tabBarController.selectedIndex = iIndex;
-                                                }
-                                            }];
-                        //}];
+                        //Animated transition to Main VC
+                        [UIView transitionFromView:button.modalVC.view
+                                            toView:vc.view
+                                          duration:0.4
+                                           options:UIViewAnimationOptionTransitionFlipFromTop
+                                        completion:^(BOOL finished) {
+                                            if (finished) {
+                                                [button.modalVC.view removeFromSuperview];
+                                                tabBarController.selectedIndex = iIndex;
+                                            }
+                                        }];
                         
                     }];
                     

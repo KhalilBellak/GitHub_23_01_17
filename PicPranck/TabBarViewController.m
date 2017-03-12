@@ -5,14 +5,14 @@
 //  Created by El Khalil Bellakrid on 16/02/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
-
+//View Controllers
 #import "TabBarViewController.h"
+//PicPranck Objects
 #import "PicPranckViewControllerAnimatedTransitioning.h"
+//Services
 #import "PicPranckImageServices.h"
-
+//Pods
 #import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
-//#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h>
-
 
 @interface TabBarViewController ()
 
@@ -20,19 +20,12 @@
 
 @implementation TabBarViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.delegate=self;
     
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
-    
-//    UIBarButtonItem *leftItem = [UIBarButtonItem new];
-//    leftItem.image = [factory createImageForIcon:NIKFontAwesomeIconReply];
-//    leftItem.action = @selector(click);
-//    leftItem.target = self;
-//    leftItem.enabled = YES;
-//    leftItem.style = UIBarButtonItemStyleDone;
-    //_navbar.leftBarButtonItem = leftItem;
     
     NSArray *listOfItems=self.tabBar.items;
     for(UITabBarItem *item in listOfItems)
@@ -74,6 +67,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(UIInterfaceOrientationMask)tabBarControllerSupportedInterfaceOrientations:(UITabBarController *)tabBarController
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 #pragma mark <UITabBarControllerDelegate>
 - (id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController animationControllerForTransitionFromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC

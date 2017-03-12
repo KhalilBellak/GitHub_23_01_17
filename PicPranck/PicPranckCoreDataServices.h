@@ -24,9 +24,6 @@
 
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController;
 
-+(void)addThumbnailInPicPranckGallery:(PicPranckCollectionViewController *)ppViewController;
-+(void)addThumbnailInPicPranckCollectionView:(PicPranckCollectionViewController *)collecViewController inCell:(PicPranckCollectionViewCell *)collecViewCell;
-
 +(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index;
 
 +(SavedImage *)retrieveDataAtIndex:(NSInteger)index;

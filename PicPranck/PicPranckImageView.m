@@ -99,23 +99,6 @@
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [iView addSubview:button];
 }
--(IBAction)closePreview:(id)sender
-{
-    //[_coverView removeFromSuperview];
-}
--(IBAction)useImage:(id)sender
-{
-//    [_coverView removeFromSuperview];
-//    
-//    NSArray *vcArray=[_viewController.tabBarController viewControllers];
-//    for(UIViewController *currVc in vcArray)
-//    {
-//        if([currVc isKindOfClass:[ViewController class]])
-//        {
-//            ViewController *vc=(ViewController *)currVc;
-//            [PicPranckImageServices setImageAreasWithImages:_listOfImgs inViewController:vc];
-//            [_viewController.tabBarController setSelectedViewController:vc];
-//        }
-//    }
-}
+
+
 @end

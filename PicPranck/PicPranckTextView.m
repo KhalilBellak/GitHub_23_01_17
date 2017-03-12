@@ -5,10 +5,12 @@
 //  Created by El Khalil Bellakrid on 28/01/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
-
-#import "PicPranckTextView.h"
-#import "PicPranckImageServices.h"
 #import <QuartzCore/QuartzCore.h>
+//PicPranck Objects
+#import "PicPranckTextView.h"
+//Services
+#import "PicPranckImageServices.h"
+
 @implementation PicPranckTextView
 
 /*
@@ -85,7 +87,7 @@
     self.clipsToBounds = YES;
     
     iImageView.autoresizesSubviews = YES;
-    iImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //iImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [iImageView addSubview:self];
     [iImageView addSubview:self.gestureView];
     [iImageView bringSubviewToFront:self.gestureView];

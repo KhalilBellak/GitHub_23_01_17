@@ -48,6 +48,7 @@
 {
     iImageView.backgroundColor = [UIColor blackColor];
     [iImageView setContentMode:UIViewContentModeScaleAspectFit];
+    iImageView.clipsToBounds=YES;
     [iImageView setImage:iImage];
 }
 +(void)setImageAreasWithImages:(NSMutableArray *)listOfImages inViewController: (ViewController *)viewController
@@ -102,7 +103,7 @@
     NSMutableArray *listOfSizes=[[NSMutableArray alloc] init];
     //Clone UIImageViews
     NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
-    NSInteger averageWidth=0,averageHeight=0;
+    //NSInteger averageWidth=0,averageHeight=0;
     
     CGFloat x=0.0,y=0.0;
     UIImage *blackImage=nil;
@@ -110,14 +111,16 @@
     {
         UIImageView *currImageView=currTextView.imageView;
         UIImage *currImage=currImageView.image;
+        UIView *stackView=[currTextView.imageView superview];
         if(0==[viewController.listOfTextViews indexOfObject:currTextView])
         {
-            x=currTextView.imageView.frame.origin.x;
-            y=currTextView.imageView.frame.origin.y;
+            x=stackView.frame.origin.x;
+            y=stackView.frame.origin.y;
         }
         //Keep width and height for average computing
         if(currImage)
         {
+            //UIImageWriteToSavedPhotosAlbum(currImage,nil,nil,nil);
             CGSize size= CGSizeMake(currImage.size.width, currImage.size.height);
             [listOfSizes addObject:[NSValue valueWithCGSize:size]];
         }
@@ -143,48 +146,30 @@
         if(0==maxHeight || maxHeight<currImage.size.height)
             maxHeight=currImage.size.height;
         
-        
         //Clone UIImage View and Text View
         UIImageView *imageViewClone=[[UIImageView alloc] init];
-        imageViewClone.frame=currImageView.frame;
-        imageViewClone.image=currImageView.image;
+        imageViewClone.frame=[stackView convertRect:currImageView.frame toView:viewController.view];
         [PicPranckImageServices setImage:currImage forImageView:imageViewClone];
         PicPranckTextView *textViewClone=[[PicPranckTextView alloc] init];
         [PicPranckTextView copyTextView:currTextView inOtherTextView:textViewClone withImageView:imageViewClone];
         [textViewClone.layer setBorderWidth:0.0f];
-        imageViewClone.autoresizesSubviews = YES;
         textViewClone.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [imageViewClone addSubview:textViewClone];
-        [imageViewClone bringSubviewToFront:textViewClone];
         //Keep in array
         [listOfTextViewsClones addObject:textViewClone];
         [listOfImageViewsClones addObject:imageViewClone];
         
     }
-    if(0<[listOfSizes count])
-    {
-        for(NSValue *currSize in listOfSizes)
-        {
-            CGSize currCGSize=[currSize CGSizeValue];
-            averageWidth+=currCGSize.width;
-            averageHeight+=currCGSize.height;
-        }
-        averageWidth*=(1/[listOfSizes count]);
-        averageHeight*=(1/[listOfSizes count]);
-    }
-    //TODO: send image to AppViewController
-    
     
     //Creation of UIImageView which will contain all UIImageViews for later print
     UIImageView *imageViewContainer=[[UIImageView alloc] init];
-    [viewController.view sendSubviewToBack:imageViewContainer];
-    [imageViewContainer setBackgroundColor:[UIColor blackColor]];
+    [imageViewContainer setBackgroundColor:[UIColor clearColor]];
     imageViewContainer.clipsToBounds=YES;
     
     //Put all views in imageViewContainer and reframe if necessary
     for(PicPranckTextView *currTextView in listOfTextViewsClones)
     {
         UIImageView *currImageView=currTextView.imageView;
+        //UIImageView *currImageView=[listOfImageViewsClones objectAtIndex:[listOfTextViewsClones indexOfObject:currTextView]];
         //TODO: ratio for font size not accurate
         CGFloat ratio=0.0;
         if(0<currImageView.frame.size.width)
@@ -194,7 +179,9 @@
         currImageView.frame = newFrameImageView;
         CGFloat oldFontSize=currTextView.font.pointSize;
         [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
+
         [imageViewContainer addSubview:currImageView];
+        [imageViewContainer bringSubviewToFront:currImageView];
         totalHeight+=sizesForApp.height;
     }
     //Add black square if whatsapp
@@ -219,16 +206,18 @@
     CGSize size = CGSizeMake(sizesForApp.width,totalHeight);
     CGRect newFrame=CGRectMake(x,y,size.width,size.height);
     imageViewContainer.frame=newFrame;
-    
+
     //Get Image with text
     CGFloat screenScale=[UIScreen mainScreen].scale;
     UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, screenScale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     [imageViewContainer.layer renderInContext:context];
+//  CGFloat scale = CGRectGetWidth(imageViewContainer.bounds) / CGRectGetWidth(viewController.view.bounds);
+//  CGContextScaleCTM(context, scale, scale);
     UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    //UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
+    UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
     PicPranckImage *ppFinalImage=[[PicPranckImage alloc] initWithImage:finalImage ];
     viewController.ppImage=ppFinalImage;
 }
