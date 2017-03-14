@@ -66,7 +66,7 @@
 {
     if(USE_ACTIVITY_VIEW_CONTROLLER)
     {
-        PicPranckActivityItemProvider *message = [[PicPranckActivityItemProvider alloc] initWithPlaceholderItem:viewController.ppImage];
+        PicPranckActivityItemProvider *message = [[PicPranckActivityItemProvider alloc] initWithPlaceholderItem:[viewController getImageOfAreaOfIndex:0]];
         message.viewController=viewController;
         NSMutableArray *activityItems=[[NSMutableArray alloc] init];
         [activityItems addObject:message];
@@ -81,7 +81,7 @@
         {
             NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.png"];
             
-            [UIImageJPEGRepresentation(viewController.ppImage, 1.0) writeToFile:savePath atomically:YES];
+            [UIImageJPEGRepresentation([viewController getImageOfAreaOfIndex:0], 1.0) writeToFile:savePath atomically:YES];
             
             viewController.documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:savePath]];
             viewController.documentInteractionController.UTI = @"net.whatsapp.image";
@@ -103,8 +103,6 @@
     NSMutableArray *listOfSizes=[[NSMutableArray alloc] init];
     //Clone UIImageViews
     NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
-    //NSInteger averageWidth=0,averageHeight=0;
-    
     CGFloat x=0.0,y=0.0;
     UIImage *blackImage=nil;
     for(PicPranckTextView *currTextView in viewController.listOfTextViews)
@@ -114,17 +112,17 @@
         UIView *stackView=[currTextView.imageView superview];
         if(0==[viewController.listOfTextViews indexOfObject:currTextView])
         {
+            //Get origin of container view
             x=stackView.frame.origin.x;
             y=stackView.frame.origin.y;
         }
         //Keep width and height for average computing
         if(currImage)
         {
-            //UIImageWriteToSavedPhotosAlbum(currImage,nil,nil,nil);
             CGSize size= CGSizeMake(currImage.size.width, currImage.size.height);
             [listOfSizes addObject:[NSValue valueWithCGSize:size]];
         }
-        //Create a black image
+        //Create a black image if no image taken
         else
         {
             if(!blackImage)
@@ -141,6 +139,7 @@
             }
             [PicPranckImageServices setImage:blackImage forPicPranckTextView:currTextView inViewController:viewController];
         }
+        
         if(0==maxWidth || maxWidth<currImage.size.width)
             maxWidth=currImage.size.width;
         if(0==maxHeight || maxHeight<currImage.size.height)
@@ -169,8 +168,6 @@
     for(PicPranckTextView *currTextView in listOfTextViewsClones)
     {
         UIImageView *currImageView=currTextView.imageView;
-        //UIImageView *currImageView=[listOfImageViewsClones objectAtIndex:[listOfTextViewsClones indexOfObject:currTextView]];
-        //TODO: ratio for font size not accurate
         CGFloat ratio=0.0;
         if(0<currImageView.frame.size.width)
             ratio=sizesForApp.width/currImageView.frame.size.width;
@@ -184,8 +181,7 @@
         [imageViewContainer bringSubviewToFront:currImageView];
         totalHeight+=sizesForApp.height;
     }
-    //Add black square if whatsapp
-    
+    //Add black square if whatsapp so the prank will work
     if([viewController.activityType isEqualToString:@"WhatsApp"])
     {
         CGSize imageSize = CGSizeMake(sizesForApp.width,sizesForApp.height);
@@ -217,9 +213,14 @@
 //  CGContextScaleCTM(context, scale, scale);
     UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+//    PicPranckImage *ppFinalImage=[[PicPranckImage alloc] initWithImage:finalImage ];
+//    UIImageWriteToSavedPhotosAlbum(ppFinalImage,nil,nil,nil);
+//    if([viewController.activityType isEqualToString:@"Facebook"])
+//        viewController.ppImage=(PicPranckImage *)finalImage;
+//    else
+//        viewController.ppImage=ppFinalImage;
     UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
-    PicPranckImage *ppFinalImage=[[PicPranckImage alloc] initWithImage:finalImage ];
-    viewController.ppImage=ppFinalImage;
+    viewController.ppImage=finalImage;
 }
 #pragma mark Methods for Image manipulations
 +(PicPranckImage*)drawImageInBounds:(CGRect)bounds inPicPranckImage:(PicPranckImage *)ppImage
@@ -345,7 +346,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 #pragma mark Generate image for background coloring
 +(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize
 {
-    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:@"blue_pastel_light.png"]];
+    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:@"blue_pastel_light.jpeg"]];
     return [ppBackGround imageByScalingProportionallyToSize:targetSize];
 }
 #pragma mark Colors

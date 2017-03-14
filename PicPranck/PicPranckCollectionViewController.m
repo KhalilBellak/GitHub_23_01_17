@@ -50,41 +50,17 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
-    NSLog(@"NUMBER OF FETCHED OBJECTS:%ld",[_fetchedResultsController.fetchedObjects count]);
-    //_shouldReloadCollectionView=NO;
-    
 //    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     // Do any additional setup after loading the view.
     
     
 }
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//    self.fetchedResultsController=nil;
-//}
-
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillDisappear:(BOOL)animated
 {
-     //[self.collectionView reloadData];
-//    _shouldReloadCollectionView=NO;
-//    if(_shouldReloadCollectionView)
-//    {
-//        NSError *error;
-//        if (![self.fetchedResultsController performFetch:&error])
-//        {
-//            // Update to handle the error appropriately.
-//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//            exit(-1);  // Fail
-//        }
-//        NSLog(@"NUMBER OF FETCHED OBJECTS:%ld",[_fetchedResultsController.fetchedObjects count]);
-//        _shouldReloadCollectionView=NO;
-//        //[self.collectionView reloadData];
-//        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-//    }
-    
-    //[self.collectionView reloadData];
+    //self.fetchedResultsController=nil;
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+    [managedObjCtx reset];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -112,9 +88,6 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
-
-    NSLog(@"NUMBER OF SECTIONS: %ld",[[self.fetchedResultsController sections] count]);
-    NSLog(@"NUMBER OF OBJECTS: %ld",[sectionInfo numberOfObjects]);
     return [sectionInfo numberOfObjects];
 }
 
@@ -139,10 +112,10 @@ static NSString * const reuseIdentifier = @"Cell";
             ImageOfArea *imgOfArea=[sortedArray objectAtIndex:1];
             id idImage=imgOfArea.dataImage;
             UIImage *image=[UIImage imageWithData:idImage];
-            [PicPranckImageServices setImage:image forImageView:cell.imageViewInCell];
-            //PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
-            //[cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
-            //[PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size] forImageView:cell.imageViewInCell];
+            //[PicPranckImageServices setImage:image forImageView:cell.imageViewInCell];
+            PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
+            [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
+            [PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size] forImageView:cell.imageViewInCell];
         }
     }
     return cell;

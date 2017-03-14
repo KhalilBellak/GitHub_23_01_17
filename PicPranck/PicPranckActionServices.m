@@ -43,8 +43,32 @@
                 {
                     NSInteger iIndex=[vcArray indexOfObject:currVc];
                     ViewController *vc=(ViewController *)currVc;
-                    
-                    [PicPranckImageServices setImageAreasWithImages:[PicPranckCoreDataServices retrieveImagesArrayFromDataAtIndex:button.tag] inViewController:vc];
+                    NSMutableArray *arrayOfImages=[[NSMutableArray alloc] init];
+                    NSArray *subViewsOfView=[button.modalVC.view subviews];
+                    NSLog(@"subViewsOfView = %lu",(unsigned long)[subViewsOfView count]);
+                    UIView *coverView=[subViewsOfView objectAtIndex:0];
+                    NSArray *subViewsOfCoverView=[coverView subviews];
+                     NSLog(@"subViewsOfCoverView = %lu",(unsigned long)[subViewsOfCoverView count]);
+                    for(UIView *subView in subViewsOfCoverView)
+                    {
+                        if(![subView isKindOfClass:[UIButton class]])
+                        {
+                            NSArray *subViewsOfContainerView=[subView subviews];
+                            
+                            NSLog(@"subViewsOfContainerView = %lu",(unsigned long)[subViewsOfContainerView count]);
+                            for(UIView *subViewOfCovecView in subViewsOfContainerView)
+                            {
+                                if([subViewOfCovecView isKindOfClass:[UIImageView class]])
+                                {
+                                    UIImageView *imgSubView=(UIImageView *)subViewOfCovecView;
+                                    [arrayOfImages insertObject:imgSubView.image atIndex:imgSubView.tag];
+                                }
+                            }
+                        }
+                    }
+                    //                    [PicPranckImageServices setImageAreasWithImages:[PicPranckCoreDataServices retrieveImagesArrayFromDataAtIndex:button.tag] inViewController:vc];
+                    [PicPranckImageServices setImageAreasWithImages:arrayOfImages inViewController:vc];
+                    [button removeFromSuperview];
                     [button.superview removeFromSuperview];
                     //Disiss modal VC
                     [button.modalVC dismissViewControllerAnimated:YES completion:^{

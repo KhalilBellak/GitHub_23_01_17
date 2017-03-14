@@ -72,7 +72,7 @@
     self.layer.masksToBounds=YES;
     [self.layer setBorderWidth:2.0f];
     [self.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
-    
+    //[self setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
     
     
     //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
@@ -88,6 +88,7 @@
     
     iImageView.autoresizesSubviews = YES;
     //iImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     [iImageView addSubview:self];
     [iImageView addSubview:self.gestureView];
     [iImageView bringSubviewToFront:self.gestureView];

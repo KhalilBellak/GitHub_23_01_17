@@ -43,20 +43,21 @@
         return;
     //Get frame
     CGRect frame = [UIScreen mainScreen].bounds;
-    UIImageView *imageViewForPreview=[[UIImageView alloc] init];
+    //Take half width of screen and 3/4 of height of screen for preview
+    CGFloat widthOfPreview=frame.size.width/WIDTH_PREVIEW_RATIO;
+    CGFloat heightOfPreview=frame.size.height/HEIGHT_PREVIEW_RATIO;
+    CGRect previewFrame=CGRectMake((frame.size.width-widthOfPreview)/2, (frame.size.height-heightOfPreview)/2, widthOfPreview, heightOfPreview);
+    UIView *imageViewForPreview=[[UIView alloc] initWithFrame:previewFrame];
+    
+    //UIImageView *imageViewForPreview=[[UIImageView alloc] init];
     if(imageViewForPreview)
     {
-        //Take half width of screen and 3/4 of height of screen for preview
-        CGFloat widthOfPreview=frame.size.width/WIDTH_PREVIEW_RATIO;
-        CGFloat heightOfPreview=frame.size.height/HEIGHT_PREVIEW_RATIO;
-        CGRect previewFrame=CGRectMake((frame.size.width-widthOfPreview)/2, (frame.size.height-heightOfPreview)/2, widthOfPreview, heightOfPreview);
-        imageViewForPreview=[[UIImageView alloc] initWithFrame:previewFrame];
         CGFloat totalHeight=0.0;
         CGFloat heightChildImageView=previewFrame.size.height/3;
         //Sort the set
         NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
         NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-       
+        
         NSArray *sortedArray=[managedObject.imageChildren sortedArrayUsingDescriptors:arrayDsc];
         
         for(ImageOfArea *imgOfArea in sortedArray)
@@ -67,6 +68,7 @@
             CGRect childFrame=CGRectMake(0, totalHeight, previewFrame.size.width, heightChildImageView);
             totalHeight+=heightChildImageView;
             UIImageView *childImageView=[[UIImageView alloc] init];
+            childImageView.tag=[sortedArray indexOfObject:imgOfArea];
             [childImageView setFrame:childFrame];
             [childImageView setBackgroundColor:[UIColor blackColor]];
             [childImageView setContentMode:UIViewContentModeScaleAspectFit];

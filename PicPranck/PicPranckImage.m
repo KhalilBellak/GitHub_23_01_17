@@ -11,12 +11,14 @@
 
 @implementation PicPranckImage
 
-@synthesize originalImage=_originalImage;
+//@synthesize originalImage=_originalImage;
 @synthesize originalImageOrientation=_originalImageOrientation;
 
 -(instancetype)initWithImage:(UIImage *)iImage
 {
     _originalImageOrientation=iImage.imageOrientation;
+    //TEST
+    //_originalImage=iImage;
     return [super initWithCGImage:[iImage CGImage]];
 }
 - (UIImage *)imageByScalingProportionallyToSize:(CGSize)targetSize

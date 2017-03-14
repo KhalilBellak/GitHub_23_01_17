@@ -21,7 +21,7 @@
         {
             [_viewController generateImageToSendWithActivityType:@"WhatsApp"];
             NSString    * savePath  = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/whatsAppTmp.png"];
-            [UIImageJPEGRepresentation([_viewController getImage], 1.0) writeToFile:savePath atomically:YES];
+            [UIImageJPEGRepresentation(_viewController.ppImage, 1.0) writeToFile:savePath atomically:YES];
             return [NSURL fileURLWithPath:savePath];
         }
         else if ([activityType isEqualToString:@"com.facebook.Messenger.ShareExtension"])
@@ -29,6 +29,6 @@
             [_viewController generateImageToSendWithActivityType:@"Facebook"];
         }
     }
-    return [_viewController getImage];
+    return _viewController.ppImage;
 }
 @end

@@ -45,7 +45,8 @@
 
 @property NSMutableArray *listOfTextViews;
 
-@property PicPranckImage *ppImage;
+//@property PicPranckImage *ppImage;
+@property UIImage *ppImage;
 @property NSString *activityType;
 
 @property UIDocumentInteractionController *documentInteractionController;
@@ -55,7 +56,8 @@
 - (IBAction)performSave:(id)sender;
 - (IBAction)buttonSendClicked:(id)sender;
 -(void)generateImageToSendWithActivityType:(NSString *)iActivityType;
--(UIImage *)getImage;
+//-(UIImage *)getImage;
+-(UIImage *)getImageOfAreaOfIndex:(NSInteger)index;
 //-(void)setImagesWithImages:(NSMutableArray *)listOfImages;
 @end
 

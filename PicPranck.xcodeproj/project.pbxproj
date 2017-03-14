@@ -24,6 +24,7 @@
 		F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD681E5E542900FC913E /* PicPranckCollectionViewCell.m */; };
 		F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
+		F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
 		F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */; };
 		F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */; };
@@ -110,6 +111,7 @@
 		F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataClass.m"; sourceTree = "<group>"; };
 		F95141621E59D761006262A2 /* SavedImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataProperties.h"; sourceTree = "<group>"; };
 		F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_pastel_light.jpeg; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light.jpeg; sourceTree = "<group>"; };
 		F98BD3F51E623D9D00A65B8A /* PicPranckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckButton.h; sourceTree = "<group>"; };
 		F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckButton.m; sourceTree = "<group>"; };
 		F98BD3F81E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewControllerAnimatedTransitioning.h; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */,
 				F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */,
 				F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */,
 				F931DD651E5D05A100FC913E /* patchwork_big_25_.png */,
@@ -471,6 +474,7 @@
 				F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */,
 				F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */,
 				F9E9EFD51E50FAC400828929 /* pencil.png in Resources */,
+				F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */,
 				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,
 				F9E9EFDC1E51049900828929 /* Settings50.png in Resources */,
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
@@ -820,10 +824,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
-				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = PicPranck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -844,10 +845,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9UNWQ87UJ9;
-				FRAMEWORK_SEARCH_PATHS = (
-					"/Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = PicPranck/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

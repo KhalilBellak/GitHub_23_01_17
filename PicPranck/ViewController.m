@@ -5,7 +5,8 @@
 //  Created by El Khalil Bellakrid on 22/01/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
-
+//Framework search paths
+///Users/Khalil/Desktop/Developer/FacebookSDKs-iOS-4.19.0 $(inherited)
 #import <objc/runtime.h>
 #import "AppDelegate.h"
 //View Controllers
@@ -32,7 +33,7 @@
 @synthesize listOfTextViews=_listOfTextViews;
 @synthesize  activityViewController=_activityViewController;
 @synthesize documentInteractionController=_documentInteractionController;
-@synthesize ppImage=_ppImage;
+//@synthesize ppImage=_ppImage;
 
 #pragma mark View Controller methods
 
@@ -219,7 +220,11 @@
     //Get image from UIImagePickerController
     UIImage *imageFromPicker=[info objectForKey:key];
     //Set it in the right image view
-    _ppImage=[[PicPranckImage alloc] initWithImage:imageFromPicker];
+    //if(!_ppImage)
+    //    _ppImage=[[PicPranckImage alloc] initWithImage:imageFromPicker];
+    //else
+    //    _ppImage=[imageFromPicker;
+    
     //UIImage *resImage=[_ppImage imageByScalingProportionallyToSize:tapedTextView.imageView.frame.size];
     [PicPranckImageServices setImage:imageFromPicker forPicPranckTextView:tapedTextView inViewController:self];
     [self dismissViewControllerAnimated:TRUE completion:NULL];
@@ -333,16 +338,16 @@
 #pragma mark Sharing methods
 - (void)documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application
 {
-    _activityType=application;
-    if ([self isWhatsApplication:application])
-    {
-        NSString *savePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/PicPranck.png"];
-        [UIImageJPEGRepresentation(_ppImage, 1.0) writeToFile:savePath atomically:YES];
-        controller.URL = [NSURL fileURLWithPath:savePath];
-        controller.UTI = @"net.whatsapp.image";
-        
-    }
-    [PicPranckImageServices generateImageToSend:self];
+//    _activityType=application;
+//    if ([self isWhatsApplication:application])
+//    {
+//        NSString *savePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/PicPranck.png"];
+//        [UIImageJPEGRepresentation(_ppImage, 1.0) writeToFile:savePath atomically:YES];
+//        controller.URL = [NSURL fileURLWithPath:savePath];
+//        controller.UTI = @"net.whatsapp.image";
+//        
+//    }
+//    [PicPranckImageServices generateImageToSend:self];
 }
 - (BOOL)isWhatsApplication:(NSString *)application {
     if ([application rangeOfString:@"whats"].location == NSNotFound)
@@ -355,9 +360,18 @@
     _activityType=iActivityType;
     [PicPranckImageServices generateImageToSend:self];
 }
--(UIImage *)getImage
+-(UIImage *)getImageOfAreaOfIndex:(NSInteger)index
 {
-    return _ppImage;
+    UIImage *result=nil;
+    if(2<index)
+        return result;
+    id textView=[_listOfTextViews objectAtIndex:index];
+    if([textView isKindOfClass:[PicPranckTextView class]])
+    {
+        PicPranckTextView *ppTextView=(PicPranckTextView *)textView;
+        result=ppTextView.imageView.image;
+    }
+    return result;
 }
 
 #pragma mark IBActions
