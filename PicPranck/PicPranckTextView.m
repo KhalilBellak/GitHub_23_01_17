@@ -10,6 +10,7 @@
 #import "PicPranckTextView.h"
 //Services
 #import "PicPranckImageServices.h"
+#import "PicPranckCustomViewsServices.h"
 
 @implementation PicPranckTextView
 
@@ -35,21 +36,11 @@
     self.imageView=iImageView;
     //self.imageView.contentMode=UIViewContentModeScaleAspectFit;
     self.imageView.clipsToBounds=YES;
-    UIColor *pWhiteColor=[UIColor whiteColor];
+    //UIColor *pWhiteColor=[UIColor whiteColor];
     
     if([text length]>0)
     {
-        NSNumber *stroke=[[NSNumber alloc] init];
-        stroke=[NSNumber numberWithFloat:-7.0];
-        NSDictionary *typingAttributes = @{
-                                           NSFontAttributeName: [UIFont fontWithName:@"Impact" size:22.0f],
-                                           NSForegroundColorAttributeName : pWhiteColor,
-                                           NSKernAttributeName : @(1.3f),
-                                           NSStrokeColorAttributeName : [UIColor blackColor],
-                                           NSStrokeWidthAttributeName :stroke
-                                           };
-        NSMutableAttributedString *attributedText=[[NSMutableAttributedString alloc] initWithString:text attributes:typingAttributes];
-
+        NSAttributedString *attributedText=[PicPranckCustomViewsServices getAttributedStringWithString:text];
         [self setAttributedText:attributedText ];
     }
 

@@ -7,10 +7,10 @@
 //
 
 #import "PicPranckButton.h"
-#import "PicPranckCollectionViewController.h"
+//#import "PicPranckCollectionViewController.h"
 @implementation PicPranckButton
 @synthesize modalVC=_modalVC;
-@synthesize ppCollectionVC=_ppCollectionVC;
+//@synthesize ppCollectionVC=_ppCollectionVC;
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

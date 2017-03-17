@@ -18,6 +18,7 @@
 //Services
 #import "PicPranckImageServices.h"
 #import "PicPranckCoreDataServices.h"
+#import "PicPranckCustomViewsServices.h"
 //Pods
 #import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
 
@@ -87,17 +88,11 @@
         button=saveButton;
     }
     
-    button.layer.cornerRadius = button.frame.size.height/10;
     button.clipsToBounds = YES;
-    [button.layer setBorderWidth:2.0f];
-    [button.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
-    
-    [self.view bringSubviewToFront:button];
     [button setTitle:@"" forState:UIControlStateNormal];
-    [button setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
-   [button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
-    
-    
+    [PicPranckCustomViewsServices setButtonDesign:button];
+    [button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
+    [self.view bringSubviewToFront:button];
 }
 -(void) initializeAreas:(BOOL)firstInitialization
 {

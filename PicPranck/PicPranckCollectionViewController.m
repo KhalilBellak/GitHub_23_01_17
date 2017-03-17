@@ -8,18 +8,20 @@
 
 #import "PicPranckCollectionViewController.h"
 #import "PicPranckViewController.h"
-#import "PicPranckImageView.h"
 #import "PicPranckImage.h"
 #import "AppDelegate.h"
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
+#import "PicPranckCustomViewsServices.h"
 #import "PicPranckCollectionViewCell.h"
 #import "ImageOfArea+CoreDataClass.h"
+#import "PicPranckCollectionViewFlowLayout.h"
+#import "ViewController.h"
 
 //TODO: initialize fetchedResultsController in view init and use all mechanisms of update
 
 @interface PicPranckCollectionViewController ()
-
+@property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 @end
 
 @implementation PicPranckCollectionViewController
@@ -55,11 +57,20 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+//    self.handle = [[FIRAuth auth]
+//                   addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
+//                       // ...
+//                   }];
+
+}
 -(void)viewWillDisappear:(BOOL)animated
 {
     //self.fetchedResultsController=nil;
     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
     [managedObjCtx reset];
+    //[[FIRAuth auth] removeAuthStateDidChangeListener:_handle];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,7 +110,10 @@ static NSString * const reuseIdentifier = @"Cell";
     // populate cell with image
     //[PicPranckCoreDataServices addThumbnailInImageView:cell.imageViewInCell withIndex:indexPath.row];
     cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
-    
+    cell.imageViewInCell.delegate=self;
+//    NSLog(@"Cell at index: %lu with frame: (x,y,w,h)=(%f,%f,%f,%f)",indexPath.row,cell.contentView.frame.origin.x,cell.contentView.frame.origin.y,cell.contentView.frame.size.width,cell.contentView.frame.size.height);
+//    [cell.contentView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+//    [cell.contentView.layer setBorderWidth:10];
     SavedImage *savedImg = [_fetchedResultsController objectAtIndexPath:indexPath];
     //Sort the set
     if(savedImg)
@@ -293,5 +307,95 @@ static NSString * const reuseIdentifier = @"Cell";
             originalCGP.y=yMin;
         [self.collectionView setContentOffset:originalCGP animated:NO];
     }
+}
+#pragma mark <UICollectionViewDelegateFlowLayout>
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 20;
+}
+
+- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 20;
+}
+
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([collectionViewLayout isKindOfClass:[PicPranckCollectionViewFlowLayout class]])
+    {
+        PicPranckCollectionViewFlowLayout *ppCollecViewLayout=(PicPranckCollectionViewFlowLayout *)collectionViewLayout;
+        return ppCollecViewLayout.itemSize;
+    }
+    return CGSizeMake(120, 120);
+}
+#pragma mark <PicPranckImageViewDelegate>
+-(void)cellTaped:(PicPranckImageView *)sender
+{
+    [PicPranckCustomViewsServices createPreviewInCollectionViewController:self WithIndex:sender.indexOfViewInCollectionView];
+}
+#pragma mark <PicPranckButtonDelegate>
+-(void)useImage:(PicPranckButton *)sender
+{
+    //UIViewController *vcRoot=[UIApplication sharedApplication].keyWindow.rootViewController;
+    //if([vcRoot isKindOfClass:[UITabBarController class]])
+    //{
+        UITabBarController *tabBarController=self.tabBarController;
+        NSArray *vcArray=[tabBarController viewControllers];
+        for(UIViewController *currVc in vcArray)
+        {
+            if([currVc isKindOfClass:[ViewController class]])
+            {
+                NSInteger iIndex=[vcArray indexOfObject:currVc];
+                ViewController *vc=(ViewController *)currVc;
+                NSMutableArray *arrayOfImages=[[NSMutableArray alloc] init];
+                NSArray *subViewsOfView=[sender.modalVC.view subviews];
+                UIView *coverView=[subViewsOfView objectAtIndex:0];
+                NSArray *subViewsOfCoverView=[coverView subviews];
+                for(UIView *subView in subViewsOfCoverView)
+                {
+                    if(![subView isKindOfClass:[UIButton class]])
+                    {
+                        NSArray *subViewsOfContainerView=[subView subviews];
+                        for(UIView *subViewOfCovecView in subViewsOfContainerView)
+                        {
+                            if([subViewOfCovecView isKindOfClass:[UIImageView class]])
+                            {
+                                UIImageView *imgSubView=(UIImageView *)subViewOfCovecView;
+                                [arrayOfImages insertObject:imgSubView.image atIndex:imgSubView.tag];
+                            }
+                        }
+                    }
+                }
+                //                    [PicPranckImageServices setImageAreasWithImages:[PicPranckCoreDataServices retrieveImagesArrayFromDataAtIndex:button.tag] inViewController:vc];
+                [PicPranckImageServices setImageAreasWithImages:arrayOfImages inViewController:vc];
+                [sender removeFromSuperview];
+                [sender.superview removeFromSuperview];
+                //Disiss modal VC
+                [sender.modalVC dismissViewControllerAnimated:YES completion:^{
+                    //Dismiss collection view VC
+                    //Animated transition to Main VC
+                    [UIView transitionFromView:sender.modalVC.view
+                                        toView:vc.view
+                                      duration:0.4
+                                       options:UIViewAnimationOptionTransitionFlipFromTop
+                                    completion:^(BOOL finished) {
+                                        if (finished) {
+                                            [sender.modalVC.view removeFromSuperview];
+                                            tabBarController.selectedIndex = iIndex;
+                                        }
+                                    }];
+                    
+                }];
+                
+                
+                
+                
+            }
+        }
+    //}
+}
+-(void)dismissViewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

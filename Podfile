@@ -11,6 +11,8 @@ target 'PicPranck' do
   pod 'FBSDKShareKit'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   # Pods for PicPranck
 
   target 'PicPranckTests' do

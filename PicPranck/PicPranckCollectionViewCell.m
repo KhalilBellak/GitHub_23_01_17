@@ -25,7 +25,6 @@
         [_imageViewInCell addGestureRecognizer:tapOnce];
         _imageViewInCell.userInteractionEnabled = YES;
         [self.contentView addSubview:_imageViewInCell];
-        
     }
     return _imageViewInCell;
 }

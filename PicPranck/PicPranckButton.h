@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-
-@class PicPranckCollectionViewController;
+@class PicPranckButton;
+@protocol PicPranckButtonDelegate < NSObject >
+-(void)useImage:(PicPranckButton *)sender;
+-(void)dismissViewController;
+@end
 
 @interface PicPranckButton : UIButton
 @property (weak,nonatomic)UIViewController *modalVC;
-@property (weak,nonatomic)PicPranckCollectionViewController *ppCollectionVC;
+@property (nonatomic, weak) id <PicPranckButtonDelegate> delegate;
 @end

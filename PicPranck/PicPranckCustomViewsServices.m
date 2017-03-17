@@ -9,6 +9,7 @@
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckActionServices.h"
+#import "PicPranckImageServices.h"
 #import "PicPranckViewControllerAnimatedTransitioning.h"
 #import "PicPranckButton.h"
 #import "ViewController.h"
@@ -91,15 +92,15 @@
     PicPranckButton *closeButton=[PicPranckCustomViewsServices addButtonInView:coverView withFrame:closeFrame text:@"Close" andSelector:@selector(closePreview:)];
     closeButton.tag=index;
     closeButton.modalVC=modalViewController;
-    closeButton.ppCollectionVC=vc;
-    
+    //closeButton.ppCollectionVC=vc;
+    closeButton.delegate=vc;
     //Add button Use
     CGRect useFrame=CGRectMake(frame.size.width/2-(BUTTON_WIDTH+ X_OFFSET_FROM_CENTER_OF_SCREEN), frame.size.height- Y_OFFSET_FROM_BOTTOM_OF_SCREEN, BUTTON_WIDTH, BUTTON_HEIGHT);
     PicPranckButton *useButton=[PicPranckCustomViewsServices addButtonInView:coverView withFrame:useFrame text:@"Use" andSelector:@selector(useImage:)];
     useButton.tag=index;
     useButton.modalVC=modalViewController;
-    useButton.ppCollectionVC=vc;
-    
+    //useButton.ppCollectionVC=vc;
+    useButton.delegate=vc;
     //Add preview UIImageView to cover view
     [coverView addSubview:imageViewForPreview];
     [coverView bringSubviewToFront:imageViewForPreview];
@@ -124,5 +125,27 @@
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [iView addSubview:button];
     return button;
+}
+#pragma mark Design of buttons (border, background, attributed text....)
++(void)setButtonDesign:(UIButton *)button
+{
+    button.layer.cornerRadius = button.frame.size.height/10;
+    [button.layer setBorderWidth:2.0f];
+    [button.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
+    [button setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+}
++(NSAttributedString *)getAttributedStringWithString:(NSString *)string
+{
+    NSNumber *stroke=[[NSNumber alloc] init];
+    stroke=[NSNumber numberWithFloat:-7.0];
+    NSDictionary *typingAttributes = @{
+                                       NSFontAttributeName: [UIFont fontWithName:@"Impact" size:22.0f],
+                                       NSForegroundColorAttributeName : [UIColor whiteColor],
+                                       NSKernAttributeName : @(1.3f),
+                                       NSStrokeColorAttributeName : [UIColor blackColor],
+                                       NSStrokeWidthAttributeName :stroke
+                                       };
+    NSMutableAttributedString *attributedText=[[NSMutableAttributedString alloc] initWithString:string attributes:typingAttributes];
+    return attributedText;
 }
 @end

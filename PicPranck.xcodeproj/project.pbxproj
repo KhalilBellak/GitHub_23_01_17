@@ -23,6 +23,11 @@
 		F931DD661E5D05A100FC913E /* patchwork_big_25_.png in Resources */ = {isa = PBXBuildFile; fileRef = F931DD651E5D05A100FC913E /* patchwork_big_25_.png */; };
 		F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD681E5E542900FC913E /* PicPranckCollectionViewCell.m */; };
 		F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */; };
+		F944759D1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F944759C1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m */; };
+		F944759F1E7A058000A9B7A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F944759E1E7A058000A9B7A9 /* GoogleService-Info.plist */; };
+		F94475A21E7B114E00A9B7A9 /* PicPranckSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94475A11E7B114E00A9B7A9 /* PicPranckSignInViewController.m */; };
+		F94475A51E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94475A41E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m */; };
+		F94475A91E7B17BA00A9B7A9 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F94475A81E7B17BA00A9B7A9 /* UIViewController+Alerts.m */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
 		F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
@@ -101,6 +106,15 @@
 		F931DD681E5E542900FC913E /* PicPranckCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCollectionViewCell.m; sourceTree = "<group>"; };
 		F931DD6A1E5E554E00FC913E /* PicPranckCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckCollectionViewController.h; sourceTree = "<group>"; };
 		F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCollectionViewController.m; sourceTree = "<group>"; };
+		F944759B1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		F944759C1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		F944759E1E7A058000A9B7A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F94475A01E7B114E00A9B7A9 /* PicPranckSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckSignInViewController.h; sourceTree = "<group>"; };
+		F94475A11E7B114E00A9B7A9 /* PicPranckSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckSignInViewController.m; sourceTree = "<group>"; };
+		F94475A31E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckEmailSignInViewController.h; sourceTree = "<group>"; };
+		F94475A41E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckEmailSignInViewController.m; sourceTree = "<group>"; };
+		F94475A71E7B17BA00A9B7A9 /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alerts.h"; sourceTree = "<group>"; };
+		F94475A81E7B17BA00A9B7A9 /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		F951414D1E59B2D5006262A2 /* PicPranckImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImage.h; sourceTree = "<group>"; };
 		F951414E1E59B2D5006262A2 /* PicPranckImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImage.m; sourceTree = "<group>"; };
 		F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -228,6 +242,10 @@
 				F9D460F31E565C9B009B54B1 /* TabBarViewController.m */,
 				F931DD6A1E5E554E00FC913E /* PicPranckCollectionViewController.h */,
 				F931DD6B1E5E554E00FC913E /* PicPranckCollectionViewController.m */,
+				F94475A01E7B114E00A9B7A9 /* PicPranckSignInViewController.h */,
+				F94475A11E7B114E00A9B7A9 /* PicPranckSignInViewController.m */,
+				F94475A31E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.h */,
+				F94475A41E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -247,8 +265,19 @@
 				F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */,
 				F98BD3F81E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.h */,
 				F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */,
+				F944759B1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.h */,
+				F944759C1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m */,
 			);
 			name = "PicPranck Objects";
+			sourceTree = "<group>";
+		};
+		F94475A61E7B174300A9B7A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F94475A71E7B17BA00A9B7A9 /* UIViewController+Alerts.h */,
+				F94475A81E7B17BA00A9B7A9 /* UIViewController+Alerts.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		F951415B1E59D746006262A2 /* Core Data  */ = {
@@ -291,11 +320,13 @@
 		F9A19DED1E34C0D500EE34E6 /* PicPranck */ = {
 			isa = PBXGroup;
 			children = (
+				F944759E1E7A058000A9B7A9 /* GoogleService-Info.plist */,
 				F9A19DFA1E34C0D600EE34E6 /* Assets.xcassets */,
 				F931DD611E5CF67900FC913E /* View Controllers */,
 				F931DD621E5CF6D400FC913E /* PicPranck Objects */,
 				F931DD601E5CF59700FC913E /* PicPranckServices */,
 				F951415B1E59D746006262A2 /* Core Data  */,
+				F94475A61E7B174300A9B7A9 /* Extensions */,
 				F9A19DEE1E34C0D500EE34E6 /* Supporting Files */,
 				F9A19DF71E34C0D600EE34E6 /* Main.storyboard */,
 				F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */,
@@ -486,6 +517,7 @@
 				F9A19DFB1E34C0D600EE34E6 /* Assets.xcassets in Resources */,
 				F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */,
 				F9A19DF91E34C0D600EE34E6 /* Main.storyboard in Resources */,
+				F944759F1E7A058000A9B7A9 /* GoogleService-Info.plist in Resources */,
 				F931DD641E5D058500FC913E /* green_pastel.png in Resources */,
 				F9E9EFDA1E51049900828929 /* Editimage.png in Resources */,
 			);
@@ -651,6 +683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F424931E59FF0C00BFE746 /* ImageOfArea+CoreDataClass.m in Sources */,
+				F94475A51E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m in Sources */,
 				F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */,
 				F9F424941E59FF0C00BFE746 /* ImageOfArea+CoreDataProperties.m in Sources */,
 				F9F424951E59FF0C00BFE746 /* SavedImage+CoreDataClass.m in Sources */,
@@ -660,10 +693,13 @@
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
 				F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */,
+				F94475A91E7B17BA00A9B7A9 /* UIViewController+Alerts.m in Sources */,
 				F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */,
 				F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */,
+				F94475A21E7B114E00A9B7A9 /* PicPranckSignInViewController.m in Sources */,
 				F90147731E53586200F3069F /* PicPranckViewController.m in Sources */,
 				F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */,
+				F944759D1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m in Sources */,
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 				F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */,
