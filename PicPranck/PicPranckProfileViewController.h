@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *userName;
 //@property (strong, nonatomic) IBOutlet UITableView *profileTableView;
 @property (strong, nonatomic) IBOutlet UIView *backGroungView;
-
+-(void)logOut;
+-(void)removeAll;
 @end

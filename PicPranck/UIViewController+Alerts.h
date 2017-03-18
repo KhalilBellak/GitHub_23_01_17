@@ -23,6 +23,7 @@ typedef void (^AlertPromptCompletionBlock)(BOOL userPressedOK, NSString *_Nullab
  */
 - (void)showMessagePrompt:(NSString *)message;
 
+-(void)showMessagePrompt:(NSString *)message withActionBlockOfType:(NSString *)type;
 /*! @fn showTextInputPromptWithMessage:completionBlock:
  @brief Shows a prompt with a text field and 'OK'/'Cancel' buttons.
  @param message The message to display.

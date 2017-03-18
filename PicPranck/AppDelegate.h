@@ -24,5 +24,9 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+-(void)initializeManagedObjectContext;
+-(void)initializePersistentStoreCoordinator;
+-(void)resetPersistencyObjects;
+
 @end
 

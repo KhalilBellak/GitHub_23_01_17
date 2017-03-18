@@ -40,14 +40,14 @@
     NSMutableArray *attributes = [NSMutableArray new];
     NSUInteger firstIndex = floorf(CGRectGetMinX(rect) / ITEM_WIDTH);
     NSUInteger lastIndex = MIN( ceilf(CGRectGetMaxX(rect) / ITEM_WIDTH),_nbOfElements-1);
-    //if(0<_nbOfElements)
-    //{
+    if(0<_nbOfElements)
+    {
         for (NSUInteger index = firstIndex; index <= lastIndex; index++)
         {
             NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndexes:(NSUInteger [2]){ 0, index } length:2];
             [attributes addObject:[self layoutAttributesForItemAtIndexPath:indexPath]];
         }
-    //}
+    }
     return attributes;
 }
 

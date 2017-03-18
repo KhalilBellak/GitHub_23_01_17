@@ -29,6 +29,8 @@
 		F94475A51E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94475A41E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m */; };
 		F94475A91E7B17BA00A9B7A9 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F94475A81E7B17BA00A9B7A9 /* UIViewController+Alerts.m */; };
 		F94475AC1E7D47E800A9B7A9 /* PicPranckProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F94475AB1E7D47E800A9B7A9 /* PicPranckProfileViewController.m */; };
+		F94475AE1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png in Resources */ = {isa = PBXBuildFile; fileRef = F94475AD1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png */; };
+		F94475B01E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png in Resources */ = {isa = PBXBuildFile; fileRef = F94475AF1E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
 		F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
@@ -118,6 +120,8 @@
 		F94475A81E7B17BA00A9B7A9 /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		F94475AA1E7D47E800A9B7A9 /* PicPranckProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckProfileViewController.h; sourceTree = "<group>"; };
 		F94475AB1E7D47E800A9B7A9 /* PicPranckProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckProfileViewController.m; sourceTree = "<group>"; };
+		F94475AD1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_fuck_with_logo_light.png; path = Assets.xcassets/AppIcon.appiconset/simple_fuck_with_logo_light.png; sourceTree = "<group>"; };
+		F94475AF1E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_fuck_with_logo_no_background.png; path = Assets.xcassets/AppIcon.appiconset/simple_fuck_with_logo_no_background.png; sourceTree = "<group>"; };
 		F951414D1E59B2D5006262A2 /* PicPranckImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImage.h; sourceTree = "<group>"; };
 		F951414E1E59B2D5006262A2 /* PicPranckImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImage.m; sourceTree = "<group>"; };
 		F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F94475AF1E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png */,
+				F94475AD1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png */,
 				F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */,
 				F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */,
 				F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */,
@@ -517,6 +523,7 @@
 				F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */,
 				F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
+				F94475AE1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png in Resources */,
 				F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */,
 				F9E9EFD01E50FA9800828929 /* gear.png in Resources */,
 				F9A19DFB1E34C0D600EE34E6 /* Assets.xcassets in Resources */,
@@ -524,6 +531,7 @@
 				F9A19DF91E34C0D600EE34E6 /* Main.storyboard in Resources */,
 				F944759F1E7A058000A9B7A9 /* GoogleService-Info.plist in Resources */,
 				F931DD641E5D058500FC913E /* green_pastel.png in Resources */,
+				F94475B01E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png in Resources */,
 				F9E9EFDA1E51049900828929 /* Editimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

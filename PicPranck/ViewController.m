@@ -40,7 +40,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     

@@ -24,7 +24,7 @@
 {
     [super viewDidLoad];
     self.delegate=self;
-    
+    _allPicPrancksRemovedMode=NO;
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
     
     NSArray *listOfItems=self.tabBar.items;
@@ -71,6 +71,7 @@
 }
 -(UIInterfaceOrientationMask)tabBarControllerSupportedInterfaceOrientations:(UITabBarController *)tabBarController
 {
+    //Prevent from rotating
     return UIInterfaceOrientationMaskPortrait;
 }
 #pragma mark <UITabBarControllerDelegate>

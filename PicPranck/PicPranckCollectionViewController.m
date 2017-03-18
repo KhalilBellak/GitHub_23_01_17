@@ -45,6 +45,13 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[PicPranckCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
+    [self performFetch];
+//    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    // Do any additional setup after loading the view.
+    
+}
+-(void)performFetch
+{
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error])
     {
@@ -52,10 +59,6 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         exit(-1);  // Fail
     }
-//    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    // Do any additional setup after loading the view.
-    
-    
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -63,12 +66,21 @@ static NSString * const reuseIdentifier = @"Cell";
 //                   addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
 //                       // ...
 //                   }];
+    //Refresh collection view
+    if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:self])
+    {
+        _fetchedResultsController=nil;
+        [self fetchedResultsController];
+        [self performFetch];
+        [self.collectionView reloadData];
+        NSLog(@"NUMBER OF FETCHED OBJECTS:%lu",[_fetchedResultsController.fetchedObjects count]);
+    }
 
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
     //self.fetchedResultsController=nil;
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:self];
     [managedObjCtx reset];
     //[[FIRAuth auth] removeAuthStateDidChangeListener:_handle];
 }
@@ -195,7 +207,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(NSFetchedResultsController *)initializeFRC
 {
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:[PicPranckCoreDataServices areAllPicPrancksDeletedMode:self] fromViewController:self];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"SavedImage" inManagedObjectContext:managedObjCtx];

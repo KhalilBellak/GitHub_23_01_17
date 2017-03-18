@@ -19,10 +19,11 @@
 +(int) initCount;
 +(int) initNewSavedCount;
 
-+(NSManagedObjectContext *)managedObjectContext;
+//+(NSManagedObjectContext *)managedObjectContext;
++(NSManagedObjectContext *)managedObjectContext:(bool)forceReset fromViewController:(UIViewController *)viewController;
 //+(NSInteger)nbOfSavedPicPrancks;
 
-+(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController;
++(void)uploadImages:(NSArray *)listOfImages withViewController: (UIViewController *)viewController;
 
 +(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index;
 
@@ -31,6 +32,10 @@
 +(NSArray *)retrieveAllSavedImages;
 
 +(void)removeImages:(NSManagedObject *)objectToDelete;
++(void)removeAllImages:(UIViewController *)sender;
+
++(BOOL)areAllPicPrancksDeletedMode:(UIViewController *)sender;
+
 +(NSInteger)getNumberOfSavedPicPrancks;
 +(NSInteger)getNumberOfNewSavedPicPrancks;
 @end

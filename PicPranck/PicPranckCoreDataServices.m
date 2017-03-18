@@ -15,6 +15,7 @@
 #import "PicPranckCollectionViewController.h"
 #import "ViewController.h"
 #import "TabBarViewController.h"
+#import "PicPranckProfileViewController.h"
 //Services
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
@@ -22,7 +23,8 @@
 #import "PicPranckImageView.h"
 #import "PicPranckImage.h"
 #import "PicPranckCollectionViewCell.h"
-
+//Extensions
+#import "UIViewController+Alerts.h"
 
 #define X_OFFSET 5
 #define Y_OFFSET 5
@@ -45,13 +47,23 @@ static int newSavedCount=0;
 {
     return newSavedCount;
 }
-+(NSManagedObjectContext *)managedObjectContext
++(NSManagedObjectContext *)managedObjectContext:(bool)forceReset fromViewController:(UIViewController *)viewController
 {
     static NSManagedObjectContext *moc=nil;
+    if(forceReset)
+        moc=nil;
     if(!moc)
     {
         AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
-        moc=appDelegate.managedObjectContext;
+        moc=[appDelegate managedObjectContext];
+        if(moc && viewController)
+        {
+            if([viewController.tabBarController isKindOfClass:[TabBarViewController class]])
+            {
+                TabBarViewController *tabBarVC=(TabBarViewController *)viewController.tabBarController;
+                tabBarVC.allPicPrancksRemovedMode=NO;
+            }
+        }
     }
     return moc;
 }
@@ -59,7 +71,18 @@ static int newSavedCount=0;
 #pragma mark Uploading Images
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController
 {
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+    bool forceRest=FALSE;
+    
+    if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:viewController])
+    {
+        if([viewController.tabBarController isKindOfClass:[TabBarViewController class]])
+        {
+            TabBarViewController *tabBarVC=(TabBarViewController *)viewController.tabBarController;
+            forceRest=tabBarVC.allPicPrancksRemovedMode;
+            tabBarVC.allPicPrancksRemovedMode=NO;
+        }
+    }
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:forceRest fromViewController:viewController];
     if(managedObjCtx)
     {
         //Create a saved image object
@@ -68,7 +91,6 @@ static int newSavedCount=0;
         for(UIImage *currImage in listOfImages)
         {
             NSInteger iIndex=[listOfImages indexOfObject:currImage];
-            NSLog(@"Size of currImage : (%f,%f)",currImage.size.width,currImage.size.height);
             NSData *imageData = UIImageJPEGRepresentation(currImage,1.0);
             //Create Image area object
             ImageOfArea *newImageOfArea =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfArea" inManagedObjectContext:managedObjCtx];
@@ -83,12 +105,13 @@ static int newSavedCount=0;
         bool saved=[managedObjCtx save:&err];
         if(saved)
         {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Saving" message:@"PickPranck saved !" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:ok];
-            
-            [viewController presentViewController:alertController animated:YES completion:nil];
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Saving" message:@"PickPranck saved !" preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+//            [alertController addAction:ok];
+//            
+//            [viewController presentViewController:alertController animated:YES completion:nil];
+            [viewController showMessagePrompt:@"PickPranck saved !"];
             count++;
             newSavedCount++;
             
@@ -138,7 +161,9 @@ static int newSavedCount=0;
 }
 +(NSArray *)retrieveAllSavedImages
 {
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+    
+    //NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO withViewController:nil];
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:nil];
     //Fetch request
     NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
     //Sort results by date
@@ -172,10 +197,111 @@ static int newSavedCount=0;
 #pragma mark Remove Images
 +(void)removeImages:(NSManagedObject *)objectToDelete
 {
-    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext];
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:nil];
     if(managedObjCtx)
         [managedObjCtx deleteObject:objectToDelete];
     count--;
+}
++(void)removeAllImages:(UIViewController *)sender
+{
+    if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:sender])
+    {
+        [sender showMessagePrompt:@"PicPranks were already deleted !"];
+        return;
+    }
+    NSManagedObjectContext *managedObjectContext=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:sender];
+    // retrieve the store URL
+    NSURL * storeURL = [[managedObjectContext persistentStoreCoordinator] URLForPersistentStore:[[[managedObjectContext persistentStoreCoordinator] persistentStores] lastObject]];
+    // lock the current context
+    //[managedObjectContext lock];
+    [managedObjectContext performBlock:^{
+        NSError * error;
+        [managedObjectContext reset];//to drop pending changes
+        //delete the store from the current managedObjectContext
+        if ([[managedObjectContext persistentStoreCoordinator] removePersistentStore:[[[managedObjectContext persistentStoreCoordinator] persistentStores] lastObject] error:&error])
+        {
+            // remove the file containing the data
+            [[NSFileManager defaultManager] removeItemAtURL:storeURL error:&error];
+            //recreate the store like in the  appDelegate method
+            [[managedObjectContext persistentStoreCoordinator] addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];//recreates the persistent store
+            if (error)
+                [sender showMessagePrompt:error.localizedDescription];
+            else
+                [sender showMessagePrompt:@"PicPranks removed Successfully !"];
+            //managedObjCtx.persistentStoreCoordinator=nil;
+            //managedObjCtx=nil;
+            
+            //[managedObjCtx save:&error];
+            AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+            if(appDelegate)
+            {
+                [appDelegate resetPersistencyObjects];
+                [appDelegate initializePersistentStoreCoordinator];
+                [appDelegate initializeManagedObjectContext];
+                //Let know tab bar controller that we removed all PicPrancks have been removed
+                if([sender isKindOfClass:[PicPranckProfileViewController class]])
+                {
+                    PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)sender;
+                    if([ppProfileVC.tabBarController isKindOfClass:[TabBarViewController class]])
+                    {
+                        TabBarViewController *tabBarVC=(TabBarViewController *)ppProfileVC.tabBarController;
+                        tabBarVC.allPicPrancksRemovedMode=YES;
+                    }
+                }
+                
+            }
+        }
+    }];
+    
+//    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO];
+//    if(managedObjCtx)
+//    {
+//        NSPersistentStore *store =[managedObjCtx.persistentStoreCoordinator.persistentStores lastObject];
+//        NSError *error;
+//        NSURL *storeURL = store.URL;
+//        NSPersistentStoreCoordinator *storeCoordinator =managedObjCtx.persistentStoreCoordinator;
+//        [storeCoordinator removePersistentStore:store error:&error];
+//        [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
+//        if (error)
+//            [sender showMessagePrompt:error.localizedDescription];
+//        else
+//            [sender showMessagePrompt:@"PicPranks removed Successfully !"];
+//        //managedObjCtx.persistentStoreCoordinator=nil;
+//        //managedObjCtx=nil;
+//        
+//        //[managedObjCtx save:&error];
+//        AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+//        if(appDelegate)
+//        {
+//            [appDelegate resetPersistencyObjects];
+//            [appDelegate initializePersistentStoreCoordinator];
+//            [appDelegate initializeManagedObjectContext];
+//            //Let know tab bar controller that we removed all PicPrancks have been removed
+//            if([sender isKindOfClass:[PicPranckProfileViewController class]])
+//            {
+//                PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)sender;
+//                if([ppProfileVC.tabBarController isKindOfClass:[TabBarViewController class]])
+//                {
+//                    TabBarViewController *tabBarVC=(TabBarViewController *)ppProfileVC.tabBarController;
+//                    tabBarVC.allPicPrancksRemovedMode=YES;
+//                }
+//            }
+//            
+//        }
+//    }
+}
++(BOOL)areAllPicPrancksDeletedMode:(UIViewController *)sender
+{
+    //if([sender isKindOfClass:[PicPranckProfileViewController class]])
+    //{
+        //PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)sender;
+        if([sender.tabBarController isKindOfClass:[TabBarViewController class]])
+        {
+            TabBarViewController *tabBarVC=(TabBarViewController *)sender.tabBarController;
+            return tabBarVC.allPicPrancksRemovedMode;
+        }
+    //}
+    return FALSE;
 }
 #pragma mark Infos about Core Data
 +(NSInteger)getNumberOfSavedPicPrancks

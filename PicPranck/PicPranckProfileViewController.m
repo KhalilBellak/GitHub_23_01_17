@@ -7,10 +7,15 @@
 //
 
 #import "PicPranckProfileViewController.h"
+#import "TabBarViewController.h"
+#import "UIViewController+Alerts.h"
+
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckImageServices.h"
+#import "PicPranckCoreDataServices.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+
 #import "UIImageView+AFNetworking.h"
 
 @import Firebase;
@@ -80,16 +85,34 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(1==indexPath.section && indexPath.row==[tableView numberOfRowsInSection:0]-1)
+    if(1==indexPath.section)
     {
-        FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-        [loginManager logOut];
-        NSError *signOutError;
-        BOOL status = [[FIRAuth auth] signOut:&signOutError];
-        if (!status) {
-            NSLog(@"Error signing out: %@", signOutError);
-        }
-        [self performSegueWithIdentifier:@"logOut" sender:self];
+        if(indexPath.row==[tableView numberOfRowsInSection:0]-1)
+            [self showMessagePrompt:@"Do you really want to Log out from PickPrank ?" withActionBlockOfType:@"Log out"];
+        else if (indexPath.row==[tableView numberOfRowsInSection:0]-2)
+            [self showMessagePrompt:@"Do you really want to delete all PickPranks ?" withActionBlockOfType:@"Remove all"];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+-(void)logOut
+{
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+    NSError *signOutError;
+    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Error signing out: %@", signOutError);
+    }
+    [self performSegueWithIdentifier:@"logOut" sender:self];
+}
+-(void)removeAll
+{
+    [PicPranckCoreDataServices removeAllImages:self];
+    //Let know other views that we've just wiped out all data (to re-initialize MOC)
+    if([self.tabBarController isKindOfClass:[TabBarViewController class]])
+    {
+        TabBarViewController *tabBarVC=(TabBarViewController *)self.tabBarController;
+        tabBarVC.allPicPrancksRemovedMode=YES;
     }
 }
 //#pragma mark <UITableViewDelegate>

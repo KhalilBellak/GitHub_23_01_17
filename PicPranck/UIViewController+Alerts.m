@@ -8,9 +8,11 @@
 
 #import "UIViewController+Alerts.h"
 #import <objc/runtime.h>
+#import "PicPranckProfileViewController.h"
 /*! @var kPleaseWaitAssociatedObjectKey
  @brief Key used to identify the "please wait" spinner associated object.
  */
+
 static NSString *const kPleaseWaitAssociatedObjectKey =
 @"_UIViewControllerAlertCategory_PleaseWaitScreenAssociatedObject";
 
@@ -81,7 +83,34 @@ NS_DESIGNATED_INITIALIZER;
         [self presentViewController:alertController animated:YES completion:nil];
     }
 }
-
+-(void)showMessagePrompt:(NSString *)message withActionBlockOfType:(NSString *)type
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleActionSheet];
+    __weak __typeof(self) weakSelf = self;
+    //(void (^)(UIPreviewAction *action, UIViewController *previewViewController))
+    NSString *okText=@"Log out";
+    if([type isEqualToString:@"Remove all"])
+        okText=@"Remove all";
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:okText style:UIAlertActionStyleDestructive handler:
+                         ^(UIAlertAction * action) {
+                             
+                             if([weakSelf isKindOfClass:[PicPranckProfileViewController class]])
+                             {
+                                 PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)weakSelf;
+                                 if([type isEqualToString:@"Log out"])
+                                     [ppProfileVC logOut];
+                                 else if([type isEqualToString:@"Remove all"])
+                                     [ppProfileVC removeAll];
+                             }
+                             
+                             
+                         }];
+    [alertController addAction:cancel];
+    [alertController addAction:ok];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 - (void)showTextInputPromptWithMessage:(NSString *)message
                        completionBlock:(AlertPromptCompletionBlock)completion {
     if ([self supportsAlertController]) {

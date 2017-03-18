@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TabBarViewController : UITabBarController <UITabBarControllerDelegate>
-
+@property bool allPicPrancksRemovedMode;
 @end

@@ -68,7 +68,11 @@ typedef enum : NSUInteger {
     [gestureView addGestureRecognizer:tapGR];
     gestureView.tag=0;
 }
-
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    //Prevent from rotating
+    return UIInterfaceOrientationMaskPortrait;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
