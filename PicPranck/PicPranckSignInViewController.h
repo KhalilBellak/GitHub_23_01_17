@@ -13,7 +13,15 @@
 
 @interface PicPranckSignInViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
 @property (strong, nonatomic) IBOutlet UIButton *logInButton;
+@property (strong, nonatomic) IBOutlet UIButton *forgotPassButton;
+- (IBAction)didTapEmailLogin:(id)sender;
+- (IBAction)didCreateAccount:(id)sender;
+
+- (IBAction)didRequestPasswordReset:(id)sender;
+
 @property BOOL hasSegued;
 @end

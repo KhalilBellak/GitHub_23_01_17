@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="simple_fuck_with_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="m78-WL-1QP">
-                                <rect key="frame" x="85.717127949537826" y="234.69701615484269" width="200.00000000000017" height="200"/>
+                                <rect key="frame" x="87" y="87" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

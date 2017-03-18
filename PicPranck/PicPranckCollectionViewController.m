@@ -104,16 +104,12 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"INDEX OF CELL: %ld",indexPath.row);
     PicPranckCollectionViewCell *cell =(PicPranckCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // populate cell with image
-    //[PicPranckCoreDataServices addThumbnailInImageView:cell.imageViewInCell withIndex:indexPath.row];
     cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
     cell.imageViewInCell.delegate=self;
-//    NSLog(@"Cell at index: %lu with frame: (x,y,w,h)=(%f,%f,%f,%f)",indexPath.row,cell.contentView.frame.origin.x,cell.contentView.frame.origin.y,cell.contentView.frame.size.width,cell.contentView.frame.size.height);
-//    [cell.contentView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-//    [cell.contentView.layer setBorderWidth:10];
+    
     SavedImage *savedImg = [_fetchedResultsController objectAtIndexPath:indexPath];
     //Sort the set
     if(savedImg)

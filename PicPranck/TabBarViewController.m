@@ -43,7 +43,8 @@
                 icon=NIKFontAwesomeIconPhoto;
                 break;
             default:
-                icon=NIKFontAwesomeIconWrench;
+                //icon=NIKFontAwesomeIconWrench;
+                icon=NIKFontAwesomeIconUser;
                 break;
         }
         item.image=[factory createImageForIcon:icon];

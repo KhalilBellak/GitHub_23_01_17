@@ -127,12 +127,12 @@
     return button;
 }
 #pragma mark Design of buttons (border, background, attributed text....)
-+(void)setButtonDesign:(UIButton *)button
++(void)setViewDesign:(UIView *)view
 {
-    button.layer.cornerRadius = button.frame.size.height/10;
-    [button.layer setBorderWidth:2.0f];
-    [button.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
-    [button setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+    view.layer.cornerRadius = view.frame.size.height/10;
+    [view.layer setBorderWidth:2.0f];
+    [view.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
+    [view setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
 }
 +(NSAttributedString *)getAttributedStringWithString:(NSString *)string
 {
