@@ -40,8 +40,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Set background image for main view
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
+//    //Set background image for stack view (containing areas)
+//    UIImage *imgStackView=[[UIImage alloc] initWithContentsOfFile:@"blue_pastel_light.jpeg"];
+//    [areasStackView setBackgroundColor:[UIColor colorWithPatternImage:imgStackView]];
     
     [viewToMoveForKeyBoardAppearance bringSubviewToFront:areasStackView];
     
@@ -66,6 +70,7 @@
     [self setButton:@"Reset"];
     [self setButton:@"Save"];
     [self setButton:@"Send"];
+    [self.view bringSubviewToFront:buttonsStackView];
 }
 -(void)setButton:(NSString *)nameOfButton
 {
@@ -92,7 +97,7 @@
     [button setTitle:@"" forState:UIControlStateNormal];
     [PicPranckCustomViewsServices setViewDesign:button];
     [button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
-    [self.view bringSubviewToFront:button];
+    [buttonsStackView bringSubviewToFront:button];
 }
 -(void) initializeAreas:(BOOL)firstInitialization
 {
@@ -106,7 +111,8 @@
         currImageView.contentMode=UIViewContentModeScaleAspectFit;
         //Initialization of PicPranckTextViews (text, layout ....)
         NSInteger iIndex=[listOfImageViews indexOfObject:currImageView];
-        [currImageView.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-40] CGColor]];
+        currImageView.tag=iIndex;
+//        [currImageView.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-40] CGColor]];
         
         NSString *text=@"Hidden Picture";
         if(1==iIndex)
@@ -114,7 +120,8 @@
         PicPranckTextView *currTextView=nil;
         //When hitting reset button should set images to nil and background to clear
         currImageView.image=nil;
-        [currImageView setBackgroundColor:[UIColor clearColor]];
+        
+        //[currImageView setBackgroundColor:[UIColor clearColor]];
         //Create or get the text view
         if(firstInitialization)
             currTextView=[[PicPranckTextView alloc] init];
@@ -122,7 +129,6 @@
             currTextView=[_listOfTextViews objectAtIndex:iIndex];
         
         [currTextView initWithDelegate:self ImageView:currImageView AndText:text];
-        
         if(firstInitialization)
         {
             //Add gesture Recognizers
@@ -186,21 +192,6 @@
     
     [super viewWillDisappear:animated];
 }
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if ([[segue identifier] isEqualToString:@"chooseAppButtonSegue"])
-//    {
-//        //Dispatch because picture can take time to generate and we should display all aavailable apps
-//        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^(void){
-//            dispatch_async(dispatch_get_main_queue(), ^(void){
-//                [PicPranckImageServices generateImageToSend:self];
-//            });
-//        });
-//        
-//        
-//    }
-//}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -210,17 +201,9 @@
 -(void)imagePickerController:(UIImagePickerController *)iPicker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     NSString *key=@"UIImagePickerControllerOriginalImage";
-    //if(UIImagePickerControllerSourceTypePhotoLibrary==iPicker.sourceType)
-    //    key=@"UIImagePickerControllerEditedImage";
     //Get image from UIImagePickerController
     UIImage *imageFromPicker=[info objectForKey:key];
     //Set it in the right image view
-    //if(!_ppImage)
-    //    _ppImage=[[PicPranckImage alloc] initWithImage:imageFromPicker];
-    //else
-    //    _ppImage=[imageFromPicker;
-    
-    //UIImage *resImage=[_ppImage imageByScalingProportionallyToSize:tapedTextView.imageView.frame.size];
     [PicPranckImageServices setImage:imageFromPicker forPicPranckTextView:tapedTextView inViewController:self];
     [self dismissViewControllerAnimated:TRUE completion:NULL];
 }

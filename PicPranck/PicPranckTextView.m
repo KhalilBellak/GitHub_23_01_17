@@ -56,33 +56,26 @@
     self.editable=YES;
     self.edited=NO;
     [self setTextAlignment:NSTextAlignmentCenter];
-    
     //Layout
     [self setBackgroundColor:[UIColor clearColor]];
-    //self.layer.cornerRadius=8.0f;
     self.layer.masksToBounds=YES;
-    [self.layer setBorderWidth:2.0f];
-    [self.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
-    //[self setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
-    
-    
-    //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
-    iImageView.layer.cornerRadius = self.frame.size.height/10;
-    iImageView.clipsToBounds = YES;
-    CGRect newFrame = CGRectMake(0,0,iImageView.frame.size.width,iImageView.frame.size.height);
-    self.frame = newFrame;
-    //self.layer=iImageView.layer;
-    self.gestureView.frame=newFrame;
-    
-    self.layer.cornerRadius = self.frame.size.height/10;
     self.clipsToBounds = YES;
     
+    CGRect newFrame = CGRectMake(0,0,iImageView.frame.size.width,iImageView.frame.size.height);
+    self.frame = newFrame;
+    self.gestureView.frame=newFrame;
+  
+    iImageView.clipsToBounds = YES;
     iImageView.autoresizesSubviews = YES;
-    //iImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
+    [iImageView setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+    iImageView.alpha=0.75;
+    if(1==iImageView.tag)
+        iImageView.alpha=1;
+    //Make UITextView as a subview of UIImageView (for print and auto-resize issues)
     [iImageView addSubview:self];
     [iImageView addSubview:self.gestureView];
     [iImageView bringSubviewToFront:self.gestureView];
+    
     
 }
 +(void)copyTextView:(PicPranckTextView *)textViewToCopy inOtherTextView:(PicPranckTextView *)targetTextView withImageView:(UIImageView *)iImageView

@@ -23,17 +23,15 @@
     
     UIImagePickerController *picker;
     
-    
     PicPranckTextView *textView1;
     IBOutlet PicPranckImageView *imageViewArea1;
-    
-    
     
     IBOutlet UIImageView *imageViewArea2;
     PicPranckTextView *textView2;
     
     IBOutlet UIImageView *imageViewArea3;
     PicPranckTextView *textView3;
+    
     //Buttons
     IBOutlet UIButton *buttonSend;
     IBOutlet UIButton *saveButton;
@@ -41,6 +39,7 @@
     IBOutlet UIStackView *areasStackView;
     IBOutlet UIView *viewToMoveForKeyBoardAppearance;
     
+    IBOutlet UIStackView *buttonsStackView;
 }
 
 @property NSMutableArray *listOfTextViews;
