@@ -40,7 +40,7 @@
     
     if([text length]>0)
     {
-        NSAttributedString *attributedText=[PicPranckCustomViewsServices getAttributedStringWithString:text];
+        NSAttributedString *attributedText=[PicPranckCustomViewsServices getAttributedStringWithString:text withFontSize:22.0f];
         [self setAttributedText:attributedText ];
     }
 

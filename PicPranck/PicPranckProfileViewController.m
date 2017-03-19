@@ -47,7 +47,7 @@ static NSString * const reuseIdentifier = @"profileCell";
             if (!error) {
                 //Set User's name
                 NSString *nameOfLoginUser = [result valueForKey:@"name"];
-                NSAttributedString *userName=[PicPranckCustomViewsServices getAttributedStringWithString:nameOfLoginUser];
+                NSAttributedString *userName=[PicPranckCustomViewsServices getAttributedStringWithString:nameOfLoginUser withFontSize:19.0];
                 [_userName setAttributedText:userName];
                 //Set Profile's picture
                 NSString *imageStringOfLoginUser = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
@@ -87,9 +87,9 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     if(1==indexPath.section)
     {
-        if(indexPath.row==[tableView numberOfRowsInSection:0]-1)
+        if(indexPath.row==[tableView numberOfRowsInSection:1]-1)
             [self showMessagePrompt:@"Do you really want to Log out from PickPrank ?" withActionBlockOfType:@"Log out"];
-        else if (indexPath.row==[tableView numberOfRowsInSection:0]-2)
+        else if (indexPath.row==[tableView numberOfRowsInSection:1]-2)
             [self showMessagePrompt:@"Do you really want to delete all PickPranks ?" withActionBlockOfType:@"Remove all"];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

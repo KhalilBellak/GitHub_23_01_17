@@ -134,12 +134,12 @@
     [view.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
     [view setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
 }
-+(NSAttributedString *)getAttributedStringWithString:(NSString *)string
++(NSAttributedString *)getAttributedStringWithString:(NSString *)string withFontSize:(CGFloat)size
 {
     NSNumber *stroke=[[NSNumber alloc] init];
     stroke=[NSNumber numberWithFloat:-7.0];
     NSDictionary *typingAttributes = @{
-                                       NSFontAttributeName: [UIFont fontWithName:@"Impact" size:22.0f],
+                                       NSFontAttributeName: [UIFont fontWithName:@"Impact" size:size],
                                        NSForegroundColorAttributeName : [UIColor whiteColor],
                                        NSKernAttributeName : @(1.3f),
                                        NSStrokeColorAttributeName : [UIColor blackColor],

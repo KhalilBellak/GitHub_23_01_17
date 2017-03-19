@@ -18,6 +18,6 @@
 +(void)createPreviewInCollectionViewController:(PicPranckCollectionViewController *)vc WithIndex:(NSInteger) index;
 +(PicPranckButton *)addButtonInView:(UIView *)iView withFrame:(CGRect)iFrame text:(NSString *)text andSelector:(SEL)action;
 +(void)setViewDesign:(UIView *)view;
-+(NSAttributedString *)getAttributedStringWithString:(NSString *)string;
++(NSAttributedString *)getAttributedStringWithString:(NSString *)string withFontSize:(CGFloat)size;
 
 @end

@@ -38,21 +38,12 @@ typedef enum : NSUInteger {
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     
-    [PicPranckCustomViewsServices setViewDesign:_logInButton];
-    NSAttributedString *buttonTitle=[PicPranckCustomViewsServices getAttributedStringWithString:@"Log In"];
-    [_logInButton setAttributedTitle:buttonTitle forState:UIControlStateNormal];
-    
-    [PicPranckCustomViewsServices setViewDesign:_signUpButton];
-    NSAttributedString *buttonTitleSign=[PicPranckCustomViewsServices getAttributedStringWithString:@"Sign Up"];
-    [_signUpButton setAttributedTitle:buttonTitleSign forState:UIControlStateNormal];
-    
-    [PicPranckCustomViewsServices setViewDesign:_forgotPassButton];
-    NSAttributedString *buttonTitleForgot=[PicPranckCustomViewsServices getAttributedStringWithString:@"Forgot Password ?"];
-    [_forgotPassButton setAttributedTitle:buttonTitleForgot forState:UIControlStateNormal];
+    [self setButtonsDesign:_logInButton withText:@"Log In"];
+    [self setButtonsDesign:_signUpButton withText:@"Sign Up"];
+    [self setButtonsDesign:_forgotPassButton withText:@"Forgot Password ?"];
     
     _emailTextField.placeholder=@"Email";
     _passwordTextField.placeholder=@"Password";
-    
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     CGPoint center=CGPointMake(_forgotPassButton.center.x,_forgotPassButton.center.y+SPACING_TO_FB_LOGIN);
@@ -67,6 +58,15 @@ typedef enum : NSUInteger {
     [tapGR setNumberOfTapsRequired:1];
     [gestureView addGestureRecognizer:tapGR];
     gestureView.tag=0;
+}
+-(void)setButtonsDesign:(UIButton *)button withText:(NSString *)string
+{
+    [button setBackgroundColor:[UIColor clearColor]];
+    CGFloat fontSize=18.0f;
+    if([string isEqualToString:@"Forgot Password ?"])
+        fontSize=15.0f;
+    NSAttributedString *buttonTitle=[PicPranckCustomViewsServices getAttributedStringWithString:string withFontSize:fontSize];
+    [button setAttributedTitle:buttonTitle forState:UIControlStateNormal];
 }
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
@@ -299,82 +299,30 @@ typedef enum : NSUInteger {
          }];
      }];
 }
-
-/** @fn getProvidersForEmail
- @brief Prompts the user for an email address, calls @c FIRAuth.getProvidersForEmail:callback:
- and displays the result.
- */
-- (IBAction)didGetProvidersForEmail:(id)sender {
-    [self
-     showTextInputPromptWithMessage:@"Email:"
-     completionBlock:^(BOOL userPressedOK, NSString *_Nullable userInput) {
-         if (!userPressedOK || !userInput.length) {
-             return;
-         }
-         
-         [self showSpinner:^{
-             // [START get_providers]
-             [[FIRAuth auth]
-              fetchProvidersForEmail:userInput
-              completion:^(NSArray<NSString *> *_Nullable providers,
-                           NSError *_Nullable error) {
-                  // [START_EXCLUDE]
-                  [self hideSpinner:^{
-                      if (error) {
-                          [self showMessagePrompt:error.localizedDescription];
-                          return;
-                      }
-                      
-                      [self showMessagePrompt:
-                       [providers componentsJoinedByString:@", "]];
-                  }];
-                  // [END_EXCLUDE]
-              }];
-             // [END get_providers]
-         }];
-     }];
-}
-
 - (IBAction)didCreateAccount:(id)sender {
-    [self
-     showTextInputPromptWithMessage:@"Email:"
-     completionBlock:^(BOOL userPressedOK, NSString *_Nullable email) {
-         if (!userPressedOK || !email.length) {
-             return;
-         }
-         
-         [self
-          showTextInputPromptWithMessage:@"Password:"
-          completionBlock:^(BOOL userPressedOK,
-                            NSString *_Nullable password) {
-              if (!userPressedOK || !password.length) {
-                  return;
-              }
-              
-              [self showSpinner:^{
-                  // [START create_user]
-                  [[FIRAuth auth]
-                   createUserWithEmail:email
-                   password:password
-                   completion:^(FIRUser *_Nullable user,
-                                NSError *_Nullable error) {
-                       // [START_EXCLUDE]
-                       [self hideSpinner:^{
-                           if (error) {
-                               [self
-                                showMessagePrompt:
-                                error
-                                .localizedDescription];
-                               return;
-                           }
-                           NSLog(@"%@ created", user.email);
-                           [self performSegueWithIdentifier:@"signInSucceeded" sender:self];
-                       }];
-                       // [END_EXCLUDE]
-                   }];
-                  // [END create_user]
-              }];
-          }];
-     }];
+
+    [self showSpinner:^{
+                          // [START create_user]
+                          [[FIRAuth auth]
+                           createUserWithEmail:_emailTextField.text
+                           password:_passwordTextField.text
+                           completion:^(FIRUser *_Nullable user,
+                                        NSError *_Nullable error) {
+                               // [START_EXCLUDE]
+                               [self hideSpinner:^{
+                                   if (error) {
+                                       [self
+                                        showMessagePrompt:
+                                        error
+                                        .localizedDescription];
+                                       return;
+                                   }
+                                   NSLog(@"%@ created", user.email);
+                                   [self performSegueWithIdentifier:@"signInSucceeded" sender:self];
+                               }];
+                               // [END_EXCLUDE]
+                           }];
+    }];
+    
 }
 @end

@@ -18,9 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *signUpButton;
 @property (strong, nonatomic) IBOutlet UIButton *logInButton;
 @property (strong, nonatomic) IBOutlet UIButton *forgotPassButton;
+
 - (IBAction)didTapEmailLogin:(id)sender;
 - (IBAction)didCreateAccount:(id)sender;
-
 - (IBAction)didRequestPasswordReset:(id)sender;
 
 @property BOOL hasSegued;
