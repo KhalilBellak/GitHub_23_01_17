@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PicPranckEmailSignInViewController : UIViewController
+@interface PicPranckEmailSignInViewController : UIViewController 
+@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
+- (IBAction)submit:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+- (IBAction)cancelSignUp:(id)sender;
 
 @end

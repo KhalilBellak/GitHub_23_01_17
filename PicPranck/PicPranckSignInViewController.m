@@ -7,11 +7,15 @@
 //
 
 #import "PicPranckSignInViewController.h"
+#import "PicPranckEmailSignInViewController.h"
 #import "UIViewController+Alerts.h"
 #import "PicPranckImageServices.h"
 #import "PicPranckCustomViewsServices.h"
+
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+@import Firebase;
+@import FirebaseAuth;
 
 #define SPACING_TO_FB_LOGIN 60
 typedef enum : NSUInteger {
@@ -29,21 +33,20 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    if ([FBSDKAccessToken currentAccessToken])
-    {
-        //Segue directly to next view controller
-    }
     _hasSegued=NO;
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     
-    [self setButtonsDesign:_logInButton withText:@"Log In"];
-    [self setButtonsDesign:_signUpButton withText:@"Sign Up"];
-    [self setButtonsDesign:_forgotPassButton withText:@"Forgot Password ?"];
+    [PicPranckCustomViewsServices setLogInButtonsDesign:_logInButton withText:@"Log In"];
+    [PicPranckCustomViewsServices setLogInButtonsDesign:_signUpButton withText:@"Sign Up"];
+    [PicPranckCustomViewsServices setLogInButtonsDesign:_forgotPassButton withText:@"Forgot Password ?"];
     
+    //Customize fields
     _emailTextField.placeholder=@"Email";
     _passwordTextField.placeholder=@"Password";
+    UIToolbar *customKeyboard=[self getCustomizedKeyboard];
+    _emailTextField.inputAccessoryView=customKeyboard;
+    _passwordTextField.inputAccessoryView=customKeyboard;
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     CGPoint center=CGPointMake(_forgotPassButton.center.x,_forgotPassButton.center.y+SPACING_TO_FB_LOGIN);
@@ -59,14 +62,25 @@ typedef enum : NSUInteger {
     [gestureView addGestureRecognizer:tapGR];
     gestureView.tag=0;
 }
--(void)setButtonsDesign:(UIButton *)button withText:(NSString *)string
+-(UIToolbar *)getCustomizedKeyboard
 {
-    [button setBackgroundColor:[UIColor clearColor]];
-    CGFloat fontSize=18.0f;
-    if([string isEqualToString:@"Forgot Password ?"])
-        fontSize=15.0f;
-    NSAttributedString *buttonTitle=[PicPranckCustomViewsServices getAttributedStringWithString:string withFontSize:fontSize];
-    [button setAttributedTitle:buttonTitle forState:UIControlStateNormal];
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
+    [keyboardToolbar sizeToFit];
+    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                      target:nil action:nil];
+    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                      target:self action:@selector(doneButtonPressed)];
+    keyboardToolbar.items = @[flexBarButton, doneBarButton];
+    return keyboardToolbar;
+}
+-(void)doneButtonPressed
+{
+    if(_emailTextField.isEditing)
+        [_emailTextField endEditing:YES];
+    else if(_passwordTextField.isEditing)
+        [_passwordTextField endEditing:YES];
 }
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
@@ -116,22 +130,7 @@ typedef enum : NSUInteger {
                                       }];
         }
     }];
-//    if(!_hasSegued)
-//        [self performSegueWithIdentifier:@"signInSucceeded" sender:self];
-//    _hasSegued=YES;
 }
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    UITabBarController *barViewController=segue.destinationViewController;
-//    UIViewController *vc=[barViewController.viewControllers objectAtIndex:0];
-//    if([vc isKindOfClass:[UINavigationController class]])
-//    {
-//        UINavigationController *navVC=(UINavigationController *)vc;
-//        UIViewController *targetVC=[navVC.viewControllers objectAtIndex:0];
-//        
-//    }
-//}
-
 - (void)showAuthPicker: (NSArray<NSNumber *>*) providers
 {
     for (NSNumber *provider in providers) {
@@ -299,30 +298,12 @@ typedef enum : NSUInteger {
          }];
      }];
 }
-- (IBAction)didCreateAccount:(id)sender {
-
-    [self showSpinner:^{
-                          // [START create_user]
-                          [[FIRAuth auth]
-                           createUserWithEmail:_emailTextField.text
-                           password:_passwordTextField.text
-                           completion:^(FIRUser *_Nullable user,
-                                        NSError *_Nullable error) {
-                               // [START_EXCLUDE]
-                               [self hideSpinner:^{
-                                   if (error) {
-                                       [self
-                                        showMessagePrompt:
-                                        error
-                                        .localizedDescription];
-                                       return;
-                                   }
-                                   NSLog(@"%@ created", user.email);
-                                   [self performSegueWithIdentifier:@"signInSucceeded" sender:self];
-                               }];
-                               // [END_EXCLUDE]
-                           }];
-    }];
-    
+- (IBAction)didCreateAccount:(id)sender
+{
+    //[self performSegueWithIdentifier:@"signUp" sender:self];
+    PicPranckEmailSignInViewController *ppEmailVC=[self.storyboard instantiateViewControllerWithIdentifier:@"EmailSignUpViewController"];
+    ppEmailVC.modalPresentationStyle=UIModalPresentationFormSheet;
+    ppEmailVC.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:ppEmailVC animated:YES completion:nil];
 }
 @end

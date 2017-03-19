@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@import Firebase;
-@import FirebaseAuth;
-
 @interface PicPranckSignInViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 

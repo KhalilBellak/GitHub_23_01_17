@@ -37,6 +37,7 @@
 //        vc=[[ViewController alloc] init];
 //    return vc;
 //}
+#pragma mark Preview creation
 +(void)createPreviewInCollectionViewController:(PicPranckCollectionViewController *)vc WithIndex:(NSInteger) index
 {
     SavedImage *managedObject=[PicPranckCoreDataServices retrieveDataAtIndex:index];
@@ -133,6 +134,15 @@
     [view.layer setBorderWidth:2.0f];
     [view.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-100] CGColor]];
     [view setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+}
++(void)setLogInButtonsDesign:(UIButton *)button withText:(NSString *)string
+{
+    [button setBackgroundColor:[UIColor clearColor]];
+    CGFloat fontSize=18.0f;
+    if([string isEqualToString:@"Forgot Password ?"])
+        fontSize=15.0f;
+    NSAttributedString *buttonTitle=[PicPranckCustomViewsServices getAttributedStringWithString:string withFontSize:fontSize];
+    [button setAttributedTitle:buttonTitle forState:UIControlStateNormal];
 }
 +(NSAttributedString *)getAttributedStringWithString:(NSString *)string withFontSize:(CGFloat)size
 {
