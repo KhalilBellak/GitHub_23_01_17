@@ -18,6 +18,7 @@
 
 - (CGSize)collectionViewContentSize
 {
+    
     self.cellSize=([UIScreen mainScreen].bounds.size.width-(NB_CELLS_IN_LINE+1)*ITEM_SPACING)/NB_CELLS_IN_LINE;
     //self.sectionInset=UIEdgeInsetsMake(10, 10, 30, 10);
     self.scrollDirection=UICollectionViewScrollDirectionVertical;
@@ -30,7 +31,7 @@
 {
     //NSUInteger index = [indexPath indexAtPosition:0];
     UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    NSLog(@"Index= %lu",indexPath.row);
+
     attributes.frame = CGRectMake((indexPath.row%NB_CELLS_IN_LINE) * (self.cellSize+ITEM_SPACING),floor(indexPath.row/NB_CELLS_IN_LINE)*(self.cellSize+LINE_SPACING), self.cellSize, self.cellSize);
     return attributes;
 }
@@ -57,4 +58,8 @@
     attributes.alpha = 0.0;
     return attributes;
 }
+//-(void)setHeaderReferenceSize:(CGSize)headerReferenceSize
+//{
+//    
+//}
 @end

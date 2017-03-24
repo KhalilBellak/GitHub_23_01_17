@@ -138,6 +138,7 @@
                 currImage=blackImage;
             }
             [PicPranckImageServices setImage:blackImage forPicPranckTextView:currTextView inViewController:viewController];
+            
         }
         
         if(0==maxWidth || maxWidth<currImage.size.width)
@@ -176,7 +177,10 @@
         currImageView.frame = newFrameImageView;
         CGFloat oldFontSize=currTextView.font.pointSize;
         [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
-
+        //Make background black and opaque
+        [currImageView setBackgroundColor:[UIColor blackColor]];
+        currImageView.alpha=1;
+        //Add to the container
         [imageViewContainer addSubview:currImageView];
         [imageViewContainer bringSubviewToFront:currImageView];
         totalHeight+=sizesForApp.height;

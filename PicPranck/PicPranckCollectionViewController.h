@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "CollectionViewController.h"
 #import "PicPranckImageView.h"
 #import "PicPranckButton.h"
 
+
 @import Firebase;
-@interface PicPranckCollectionViewController : UICollectionViewController <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, NSFetchedResultsControllerDelegate,PicPranckImageViewDelegate,PicPranckButtonDelegate>
-//@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property NSMutableArray *data;
+@interface PicPranckCollectionViewController : CollectionViewController <NSFetchedResultsControllerDelegate>
+
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property NSBlockOperation *blockOperation;
 @property BOOL shouldReloadCollectionView;

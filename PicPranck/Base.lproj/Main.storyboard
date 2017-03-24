@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PicPranck-->
+        <!--My PickPranks-->
         <scene sceneID="ubc-RH-Gch">
             <objects>
                 <collectionViewController id="siM-TQ-suz" customClass="PicPranckCollectionViewController" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="siM-TQ-suz" id="Mj3-Oi-KON"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="PicPranck" image="MiddleFinger.png" id="nV1-sv-okh"/>
+                    <tabBarItem key="tabBarItem" title="My PickPranks" id="nV1-sv-okh"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0BT-oo-Rja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -199,29 +199,6 @@
             </objects>
             <point key="canvasLocation" x="680.80000000000007" y="1653.8230884557722"/>
         </scene>
-        <!--Images-->
-        <scene sceneID="39P-pq-fuq">
-            <objects>
-                <viewController id="nJ6-qN-0Tg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4Oa-39-oJX"/>
-                        <viewControllerLayoutGuide type="bottom" id="0io-qw-nZP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QOX-mf-Egd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Images" image="photossimple.png" id="TMI-Qj-Mk4">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="keyPath" value="183EA44C-32C6-4546-AFDB-44B8F47BDCDD"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YRe-1t-uV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1353" y="-119"/>
-        </scene>
         <!--PicPranck-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -277,16 +254,16 @@
                                 <rect key="frame" x="5" y="0.0" width="365" height="667"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8Zp-xe-9cI">
-                                        <rect key="frame" x="18.5" y="75" width="328.5" height="533"/>
+                                        <rect key="frame" x="19" y="75" width="328" height="533"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pup-fg-WGr">
-                                                <rect key="frame" x="0.0" y="0.0" width="328.5" height="176"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="328" height="176"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ngr-Am-p9w">
-                                                <rect key="frame" x="0.0" y="176" width="328.5" height="181"/>
+                                                <rect key="frame" x="0.0" y="176" width="328" height="181"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="asw-Ac-Yqg">
-                                                <rect key="frame" x="0.0" y="357" width="328.5" height="176"/>
+                                                <rect key="frame" x="0.0" y="357" width="328" height="176"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -316,7 +293,7 @@
                             <constraint firstItem="8Zp-xe-9cI" firstAttribute="top" secondItem="45o-Fy-WI8" secondAttribute="bottom" constant="10" id="zlc-OE-bgJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Custom" image="Editimage.png" id="ezL-PI-g18"/>
+                    <tabBarItem key="tabBarItem" title="Create" id="ezL-PI-g18"/>
                     <navigationItem key="navigationItem" title="PicPranck" id="CXL-Ku-FHh">
                         <barButtonItem key="backBarButtonItem" title="Workshop" id="nfm-Im-IMB"/>
                     </navigationItem>
@@ -462,7 +439,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SS-II-BH6">
-                                <rect key="frame" x="137.5" y="497" width="100" height="30"/>
+                                <rect key="frame" x="138" y="497" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="3rX-FK-eaQ"/>
                                 </constraints>
@@ -521,7 +498,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="LzQ-BS-Lqp"/>
                         <segue destination="siM-TQ-suz" kind="relationship" relationship="viewControllers" id="VwM-tg-2N1"/>
-                        <segue destination="nJ6-qN-0Tg" kind="relationship" relationship="viewControllers" id="ktd-dW-dLt"/>
+                        <segue destination="6S8-VT-OSg" kind="relationship" relationship="viewControllers" id="HQk-Wk-CTJ"/>
                         <segue destination="JgD-GI-lWa" kind="relationship" relationship="viewControllers" id="2wi-go-ePM"/>
                     </connections>
                 </tabBarController>
@@ -529,12 +506,53 @@
             </objects>
             <point key="canvasLocation" x="832.80000000000007" y="792.95352323838085"/>
         </scene>
+        <!--Images-->
+        <scene sceneID="0JX-k4-ACE">
+            <objects>
+                <collectionViewController id="6S8-VT-OSg" customClass="AvailablePicPranckCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Rwp-QF-Mh6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Izt-O7-8TL" customClass="PicPranckCollectionViewFlowLayout">
+                            <size key="itemSize" width="110" height="110"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellFromAvailablePP" id="AgP-rI-a13" customClass="PicPranckCollectionViewCell">
+                                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a9I-9V-f9q">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <size key="customSize" width="110" height="110"/>
+                                <connections>
+                                    <outlet property="imageViewInCell" destination="a9I-9V-f9q" id="q23-Ms-R0U"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="6S8-VT-OSg" id="PWt-K1-XTx"/>
+                            <outlet property="delegate" destination="6S8-VT-OSg" id="Bzb-YX-4Ka"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Images" id="uC2-zm-HPw"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0bd-Qn-Gjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892" y="1592"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="183EA44C-32C6-4546-AFDB-44B8F47BDCDD" width="16" height="16"/>
-        <image name="Editimage.png" width="30" height="30"/>
-        <image name="MiddleFinger.png" width="30" height="30"/>
-        <image name="photossimple.png" width="30" height="30"/>
         <image name="simple_fuck_with_logo_no_background.png" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>

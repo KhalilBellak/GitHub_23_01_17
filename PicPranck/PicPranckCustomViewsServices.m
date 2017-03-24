@@ -14,6 +14,8 @@
 #import "PicPranckButton.h"
 #import "ViewController.h"
 #import "PicPranckCollectionViewController.h"
+#import "AvailablePicPranckCollectionViewController.h"
+#import "CollectionViewController.h"
 #import "PicPranckViewController.h"
 #import "SavedImage+CoreDataClass.h"
 #import "ImageOfArea+CoreDataClass.h"
@@ -30,19 +32,41 @@
 
 @implementation PicPranckCustomViewsServices
 
-//+(ViewController *)viewController
-//{
-//    static ViewController *vc=nil;
-//    if(!vc)
-//        vc=[[ViewController alloc] init];
-//    return vc;
-//}
 #pragma mark Preview creation
-+(void)createPreviewInCollectionViewController:(PicPranckCollectionViewController *)vc WithIndex:(NSInteger) index
++(void)createPreviewInCollectionViewController:(CollectionViewController *)vc WithIndex:(NSInteger) index
 {
-    SavedImage *managedObject=[PicPranckCoreDataServices retrieveDataAtIndex:index];
-    if(!managedObject)
-        return;
+    NSMutableArray *arrayOfImages=[[NSMutableArray alloc] init];
+    if([vc isKindOfClass:[PicPranckCollectionViewController class]])
+    {
+        SavedImage *managedObject=[PicPranckCoreDataServices retrieveDataAtIndex:index];
+        if(!managedObject)
+            return;
+        //Sort the set
+        NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+        NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
+        NSArray *sortedArray=[managedObject.imageChildren sortedArrayUsingDescriptors:arrayDsc];
+        for(ImageOfArea *imgOfArea in sortedArray)
+        {
+            id idImage=imgOfArea.dataImage;
+            UIImage *image=[UIImage imageWithData:idImage];
+            [arrayOfImages addObject:image];
+        }
+    }
+    else if([vc isKindOfClass:[AvailablePicPranckCollectionViewController class]])
+    {
+        AvailablePicPranckCollectionViewController *vcAvailablePPVC=(AvailablePicPranckCollectionViewController *)vc;
+        NSString *key=[[vcAvailablePPVC listOfKeys] objectAtIndex:index];
+        NSLog(@"NB OF ELEMENTS IN DICO: %lu",[[vcAvailablePPVC dicoNSURLOfAvailablePickPranks] count]);
+        NSLog(@"NB OF ELEMENTS IN LIST OF ELEMENTS: %lu",[[vcAvailablePPVC listOfKeys] count]);
+        NSLog(@"KEY: %@",key);
+        NSArray *arrayOfNSURL=[[vcAvailablePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
+        for(NSURL *url in arrayOfNSURL)
+        {
+            NSData *data=[NSData dataWithContentsOfURL:url];
+            UIImage *image=[[UIImage alloc] initWithData:data];
+            [arrayOfImages addObject:image];
+        }
+    }
     //Get frame
     CGRect frame = [UIScreen mainScreen].bounds;
     //Take half width of screen and 3/4 of height of screen for preview
@@ -56,21 +80,18 @@
     {
         CGFloat totalHeight=0.0;
         CGFloat heightChildImageView=previewFrame.size.height/3;
-        //Sort the set
-        NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
-        NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
         
-        NSArray *sortedArray=[managedObject.imageChildren sortedArrayUsingDescriptors:arrayDsc];
-        
-        for(ImageOfArea *imgOfArea in sortedArray)
+    
+        for(id imgOfArea in arrayOfImages)
         {
-            id idImage=imgOfArea.dataImage;
-            UIImage *image=[UIImage imageWithData:idImage];
+            if(![imgOfArea isKindOfClass:[UIImage class]])
+                continue;
+            UIImage *image=(UIImage *)imgOfArea;
             //Set frame of child UIImageVIew
             CGRect childFrame=CGRectMake(0, totalHeight, previewFrame.size.width, heightChildImageView);
             totalHeight+=heightChildImageView;
             UIImageView *childImageView=[[UIImageView alloc] init];
-            childImageView.tag=[sortedArray indexOfObject:imgOfArea];
+            childImageView.tag=[arrayOfImages indexOfObject:imgOfArea];
             [childImageView setFrame:childFrame];
             [childImageView setBackgroundColor:[UIColor blackColor]];
             [childImageView setContentMode:UIViewContentModeScaleAspectFit];

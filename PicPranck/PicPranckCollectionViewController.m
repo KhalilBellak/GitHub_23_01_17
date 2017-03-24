@@ -25,7 +25,7 @@
 @end
 
 @implementation PicPranckCollectionViewController
-
+@synthesize shouldReloadCollectionView=_shouldReloadCollectionView;
 @synthesize fetchedResultsController=_fetchedResultsController;
 static NSString * const reuseIdentifier = @"Cell";
 
@@ -33,22 +33,7 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     [super viewDidLoad];
     _shouldReloadCollectionView=YES;
-    self.collectionView.delegate=self;
-    self.collectionView.dataSource=self;
-    //self.transitioningDelegate=
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
-    [self.collectionView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    [self.collectionView registerClass:[PicPranckCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
     [self performFetch];
-//    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    // Do any additional setup after loading the view.
-    
 }
 -(void)performFetch
 {
@@ -102,26 +87,21 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
 }
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     id  sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(NSString *)getCellIdentifier
 {
-    PicPranckCollectionViewCell *cell =(PicPranckCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // populate cell with image
-    cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
-    cell.imageViewInCell.delegate=self;
-    
+    return reuseIdentifier;
+}
+-(id)getPreviewImageForCellAtIndexPath:(NSIndexPath *)indexPath
+{
     SavedImage *savedImg = [_fetchedResultsController objectAtIndexPath:indexPath];
     //Sort the set
     if(savedImg)
@@ -132,69 +112,13 @@ static NSString * const reuseIdentifier = @"Cell";
         if(1<[sortedArray count])
         {
             ImageOfArea *imgOfArea=[sortedArray objectAtIndex:1];
-            id idImage=imgOfArea.dataImage;
-            UIImage *image=[UIImage imageWithData:idImage];
-            //[PicPranckImageServices setImage:image forImageView:cell.imageViewInCell];
-            PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
-            [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
-            [PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size] forImageView:cell.imageViewInCell];
+            return imgOfArea.dataImage;
         }
     }
-    return cell;
+    return nil;
 }
 
 
-
-
-#pragma mark <UICollectionViewDelegate>
--(void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
--(void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
-//-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//}
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 #pragma mark <NSFetchedResultsControllerDelegate>
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -218,13 +142,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     [fetchRequest setFetchBatchSize:20];
-    
-    //    //Fetch request
-    //    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
-    //    //Sort results by date
-    //    NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
-    //    [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
-    
+
     NSFetchedResultsController *theFetchedResultsController =
     [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                         managedObjectContext:managedObjCtx sectionNameKeyPath:nil
@@ -304,106 +222,5 @@ static NSString * const reuseIdentifier = @"Cell";
         } completion:nil];
     }
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //Prevent from scrolling over top and below bottom
-    CGFloat yMin=[UIScreen mainScreen].bounds.origin.y;
-    if (scrollView.contentOffset.y < yMin)
-    {
-        CGPoint originalCGP=self.collectionView.contentOffset;
-        if(scrollView.contentOffset.y < yMin)
-            originalCGP.y=yMin;
-        [self.collectionView setContentOffset:originalCGP animated:NO];
-    }
-}
-#pragma mark <UICollectionViewDelegateFlowLayout>
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 20;
-}
 
-- (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 20;
-}
-
-- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if([collectionViewLayout isKindOfClass:[PicPranckCollectionViewFlowLayout class]])
-    {
-        PicPranckCollectionViewFlowLayout *ppCollecViewLayout=(PicPranckCollectionViewFlowLayout *)collectionViewLayout;
-        return ppCollecViewLayout.itemSize;
-    }
-    return CGSizeMake(120, 120);
-}
-#pragma mark <PicPranckImageViewDelegate>
--(void)cellTaped:(PicPranckImageView *)sender
-{
-    [PicPranckCustomViewsServices createPreviewInCollectionViewController:self WithIndex:sender.indexOfViewInCollectionView];
-}
-#pragma mark <PicPranckButtonDelegate>
--(void)useImage:(PicPranckButton *)sender
-{
-    //UIViewController *vcRoot=[UIApplication sharedApplication].keyWindow.rootViewController;
-    //if([vcRoot isKindOfClass:[UITabBarController class]])
-    //{
-        UITabBarController *tabBarController=self.tabBarController;
-        NSArray *vcArray=[tabBarController viewControllers];
-        for(UIViewController *currVc in vcArray)
-        {
-            if([currVc isKindOfClass:[ViewController class]])
-            {
-                NSInteger iIndex=[vcArray indexOfObject:currVc];
-                ViewController *vc=(ViewController *)currVc;
-                NSMutableArray *arrayOfImages=[[NSMutableArray alloc] init];
-                NSArray *subViewsOfView=[sender.modalVC.view subviews];
-                UIView *coverView=[subViewsOfView objectAtIndex:0];
-                NSArray *subViewsOfCoverView=[coverView subviews];
-                for(UIView *subView in subViewsOfCoverView)
-                {
-                    if(![subView isKindOfClass:[UIButton class]])
-                    {
-                        NSArray *subViewsOfContainerView=[subView subviews];
-                        for(UIView *subViewOfCovecView in subViewsOfContainerView)
-                        {
-                            if([subViewOfCovecView isKindOfClass:[UIImageView class]])
-                            {
-                                UIImageView *imgSubView=(UIImageView *)subViewOfCovecView;
-                                [arrayOfImages insertObject:imgSubView.image atIndex:imgSubView.tag];
-                            }
-                        }
-                    }
-                }
-                //                    [PicPranckImageServices setImageAreasWithImages:[PicPranckCoreDataServices retrieveImagesArrayFromDataAtIndex:button.tag] inViewController:vc];
-                [PicPranckImageServices setImageAreasWithImages:arrayOfImages inViewController:vc];
-                [sender removeFromSuperview];
-                [sender.superview removeFromSuperview];
-                //Disiss modal VC
-                [sender.modalVC dismissViewControllerAnimated:YES completion:^{
-                    //Dismiss collection view VC
-                    //Animated transition to Main VC
-                    [UIView transitionFromView:sender.modalVC.view
-                                        toView:vc.view
-                                      duration:0.4
-                                       options:UIViewAnimationOptionTransitionFlipFromTop
-                                    completion:^(BOOL finished) {
-                                        if (finished) {
-                                            [sender.modalVC.view removeFromSuperview];
-                                            tabBarController.selectedIndex = iIndex;
-                                        }
-                                    }];
-                    
-                }];
-                
-                
-                
-                
-            }
-        }
-    //}
-}
--(void)dismissViewController
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 @end

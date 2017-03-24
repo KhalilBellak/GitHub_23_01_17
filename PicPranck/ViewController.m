@@ -76,12 +76,12 @@
 {
     UIButton *button=resetButton;
     NIKFontAwesomeIcon icon=NIKFontAwesomeIconEraser;
-    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory textlessButtonIconFactory];
-    factory.size=0.5*button.frame.size.height;
-    //factory.colors = @[[UIColor redColor], [UIColor darkGrayColor]];
-    factory.strokeColor = [UIColor blackColor];
-    factory.strokeWidth = 1.0;
-    factory.square=YES;
+    //NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory textlessButtonIconFactory];
+    //factory.size=0.5*button.frame.size.height;
+    ////factory.colors = @[[UIColor redColor], [UIColor darkGrayColor]];
+    //factory.strokeColor = [UIColor blackColor];
+    //factory.strokeWidth = 1.0;
+    //factory.square=YES;
     if([nameOfButton isEqualToString:@"Send"])
     {
         icon=NIKFontAwesomeIconUpload;//NIKFontAwesomeIconSendO
@@ -96,7 +96,7 @@
     button.clipsToBounds = YES;
     [button setTitle:@"" forState:UIControlStateNormal];
     [PicPranckCustomViewsServices setViewDesign:button];
-    [button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
+    //[button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
     [buttonsStackView bringSubviewToFront:button];
 }
 -(void) initializeAreas:(BOOL)firstInitialization

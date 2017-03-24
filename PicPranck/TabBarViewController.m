@@ -25,7 +25,7 @@
     [super viewDidLoad];
     self.delegate=self;
     _allPicPrancksRemovedMode=NO;
-    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
+    //NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
     
     NSArray *listOfItems=self.tabBar.items;
     for(UITabBarItem *item in listOfItems)
@@ -47,8 +47,8 @@
                 icon=NIKFontAwesomeIconUser;
                 break;
         }
-        item.image=[factory createImageForIcon:icon];
-        item.selectedImage=[factory createImageForIcon:icon];
+        //item.image=[factory createImageForIcon:icon];
+        //item.selectedImage=[factory createImageForIcon:icon];
     }
     
     // Do any additional setup after loading the view.

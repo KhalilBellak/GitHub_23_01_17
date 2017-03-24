@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-@class PicPranckCollectionViewController;
+@class CollectionViewController;
+//@class PicPranckCollectionViewController;
 @class PicPranckButton;
 @interface PicPranckCustomViewsServices : NSObject
 
 @property UIViewController *modalViewController;
 
-+(void)createPreviewInCollectionViewController:(PicPranckCollectionViewController *)vc WithIndex:(NSInteger) index;
++(void)createPreviewInCollectionViewController:(CollectionViewController *)vc WithIndex:(NSInteger) index;
 +(PicPranckButton *)addButtonInView:(UIView *)iView withFrame:(CGRect)iFrame text:(NSString *)text andSelector:(SEL)action;
 +(void)setViewDesign:(UIView *)view;
 +(void)setLogInButtonsDesign:(UIButton *)button withText:(NSString *)string;
