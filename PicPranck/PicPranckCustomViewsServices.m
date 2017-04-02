@@ -55,16 +55,16 @@
     else if([vc isKindOfClass:[AvailablePicPranckCollectionViewController class]])
     {
         AvailablePicPranckCollectionViewController *vcAvailablePPVC=(AvailablePicPranckCollectionViewController *)vc;
-        NSString *key=[[vcAvailablePPVC listOfKeys] objectAtIndex:index];
-        NSLog(@"NB OF ELEMENTS IN DICO: %lu",[[vcAvailablePPVC dicoNSURLOfAvailablePickPranks] count]);
-        NSLog(@"NB OF ELEMENTS IN LIST OF ELEMENTS: %lu",[[vcAvailablePPVC listOfKeys] count]);
-        NSLog(@"KEY: %@",key);
-        NSArray *arrayOfNSURL=[[vcAvailablePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
-        for(NSURL *url in arrayOfNSURL)
+        if(index<[[vcAvailablePPVC listOfKeys] count])
         {
-            NSData *data=[NSData dataWithContentsOfURL:url];
-            UIImage *image=[[UIImage alloc] initWithData:data];
-            [arrayOfImages addObject:image];
+            NSString *key=[[vcAvailablePPVC listOfKeys] objectAtIndex:index];
+            NSArray *arrayOfNSURL=[[vcAvailablePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
+            for(NSURL *url in arrayOfNSURL)
+            {
+                NSData *data=[NSData dataWithContentsOfURL:url];
+                UIImage *image=[[UIImage alloc] initWithData:data];
+                [arrayOfImages addObject:image];
+            }
         }
     }
     //Get frame
@@ -128,7 +128,7 @@
     [coverView bringSubviewToFront:imageViewForPreview];
 
     //Handle animation of modal presentation
-    [vc presentViewController:modalViewController animated:YES completion:nil];
+    [vc.tabBarController presentViewController:modalViewController animated:YES completion:nil];
 }
 +(void)closePreview:(id)sender
 {
@@ -142,8 +142,9 @@
 +(PicPranckButton *)addButtonInView:(UIView *)iView withFrame:(CGRect)iFrame text:(NSString *)text andSelector:(SEL)action
 {
     PicPranckButton *button = [[PicPranckButton alloc] initWithFrame:iFrame];
-    [button setTitle:text forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor clearColor]];
+    
+    [PicPranckCustomViewsServices setLogInButtonsDesign:button withText:text];
+    
     [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
     [iView addSubview:button];
     return button;

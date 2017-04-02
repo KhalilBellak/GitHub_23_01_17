@@ -18,7 +18,6 @@
     return self;
 }
 
-
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     return 0.4;
@@ -32,7 +31,7 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    if(!fromViewController || !toViewController) return; //|| !containerView) return;
+    if(!fromViewController || !toViewController) return;
     
     [containerView addSubview:toViewController.view];
     
@@ -47,9 +46,7 @@
         toViewController.view.transform = CGAffineTransformIdentity;
         fromViewController.view.transform = CGAffineTransformMakeTranslation(-viewWidth, 0);
     } completion:^(BOOL finish){
-        //[self.transitionContext completeTransition:[self.transitionContext transitionWasCancelled]];
         [self.transitionContext completeTransition:YES];
-        //self.tabBarController.selectedIndex=lastIndex;
         fromViewController.view.transform = CGAffineTransformIdentity;
     }];
 }

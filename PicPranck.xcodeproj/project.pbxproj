@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D046B002C9EB33BDE20EB3C /* Pods_PicPranckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B3AA36C722C74A09B6700F5 /* Pods_PicPranckTests.framework */; };
-		6AE515E896DAE9531DD43736 /* Pods_PicPranckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5769F9C95CCB9A18CADBF78B /* Pods_PicPranckUITests.framework */; };
-		74E0285BECEF80DD87F79038 /* Pods_PicPranck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95071A3862D21B65F00B819D /* Pods_PicPranck.framework */; };
+		09175614BACEF684EA8BC0BE /* Pods_PicPranckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD48309857A524BA3608925 /* Pods_PicPranckUITests.framework */; };
+		AD96FA061E05C995C9BB0D2B /* Pods_PicPranckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6A67F75BF642E09990A2C9 /* Pods_PicPranckTests.framework */; };
+		D85D3E8001C2EE16A6352D14 /* Pods_PicPranck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D0FA1CADDE8815FA500E0E /* Pods_PicPranck.framework */; };
 		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
@@ -50,6 +50,8 @@
 		F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */; };
 		F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F31E565C9B009B54B1 /* TabBarViewController.m */; };
 		F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */; };
+		F9E16B051E9111EE00FA0D6B /* simple_fuck_no_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E16B041E9111ED00FA0D6B /* simple_fuck_no_back.png */; };
+		F9E16B071E91166000FA0D6B /* blue_pastel_darker_HQ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9E16B061E91166000FA0D6B /* blue_pastel_darker_HQ.jpg */; };
 		F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */; };
 		F9E9EFD01E50FA9800828929 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFCF1E50FA9800828929 /* gear.png */; };
 		F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD11E50FAAE00828929 /* paperbox.png */; };
@@ -84,12 +86,12 @@
 
 /* Begin PBXFileReference section */
 		05C74D05397B193EF40714EA /* Pods-PicPranckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.release.xcconfig"; sourceTree = "<group>"; };
-		2B3AA36C722C74A09B6700F5 /* Pods_PicPranckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FD48309857A524BA3608925 /* Pods_PicPranckUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C667854E6D8D239F99D069D /* Pods-PicPranckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5769F9C95CCB9A18CADBF78B /* Pods_PicPranckUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62D0FA1CADDE8815FA500E0E /* Pods_PicPranck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B6A67F75BF642E09990A2C9 /* Pods_PicPranckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFD28D05B1527B37982A7CF /* Pods-PicPranckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		716335EF6A8E85B1A50089D5 /* Pods-PicPranck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.debug.xcconfig"; sourceTree = "<group>"; };
-		95071A3862D21B65F00B819D /* Pods_PicPranck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40993448DFDCCEB8E62C8AA /* Pods-PicPranckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F90147711E53586200F3069F /* PicPranckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewController.h; sourceTree = "<group>"; };
 		F90147721E53586200F3069F /* PicPranckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewController.m; sourceTree = "<group>"; };
@@ -167,6 +169,8 @@
 		F9D460F31E565C9B009B54B1 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		F9D460F51E565EB6009B54B1 /* PicPranckImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImageView.h; sourceTree = "<group>"; };
 		F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImageView.m; sourceTree = "<group>"; };
+		F9E16B041E9111ED00FA0D6B /* simple_fuck_no_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_fuck_no_back.png; path = Assets.xcassets/AppIcon.appiconset/simple_fuck_no_back.png; sourceTree = "<group>"; };
+		F9E16B061E91166000FA0D6B /* blue_pastel_darker_HQ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_pastel_darker_HQ.jpg; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_darker_HQ.jpg; sourceTree = "<group>"; };
 		F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActivityItemProvider.h; sourceTree = "<group>"; };
 		F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckActivityItemProvider.m; sourceTree = "<group>"; };
 		F9E9EFCF1E50FA9800828929 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Assets.xcassets/AppIcon.appiconset/gear.png; sourceTree = "<group>"; };
@@ -185,7 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74E0285BECEF80DD87F79038 /* Pods_PicPranck.framework in Frameworks */,
+				D85D3E8001C2EE16A6352D14 /* Pods_PicPranck.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D046B002C9EB33BDE20EB3C /* Pods_PicPranckTests.framework in Frameworks */,
+				AD96FA061E05C995C9BB0D2B /* Pods_PicPranckTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AE515E896DAE9531DD43736 /* Pods_PicPranckUITests.framework in Frameworks */,
+				09175614BACEF684EA8BC0BE /* Pods_PicPranckUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,9 +228,9 @@
 		F904B2591E47D53400B5FA26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				95071A3862D21B65F00B819D /* Pods_PicPranck.framework */,
-				2B3AA36C722C74A09B6700F5 /* Pods_PicPranckTests.framework */,
-				5769F9C95CCB9A18CADBF78B /* Pods_PicPranckUITests.framework */,
+				62D0FA1CADDE8815FA500E0E /* Pods_PicPranck.framework */,
+				6B6A67F75BF642E09990A2C9 /* Pods_PicPranckTests.framework */,
+				0FD48309857A524BA3608925 /* Pods_PicPranckUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -364,6 +368,8 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9E16B061E91166000FA0D6B /* blue_pastel_darker_HQ.jpg */,
+				F9E16B041E9111ED00FA0D6B /* simple_fuck_no_back.png */,
 				F94475B31E7E966B00A9B7A9 /* blue_pastel_darker.jpg */,
 				F94475AF1E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png */,
 				F94475AD1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png */,
@@ -525,6 +531,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9092B311E808917007BB47F /* ModelPicPranck.xcdatamodeld in Resources */,
+				F9E16B071E91166000FA0D6B /* blue_pastel_darker_HQ.jpg in Resources */,
 				F931DD661E5D05A100FC913E /* patchwork_big_25_.png in Resources */,
 				F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */,
 				F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */,
@@ -532,6 +539,7 @@
 				F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */,
 				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,
 				F9E9EFDC1E51049900828929 /* Settings50.png in Resources */,
+				F9E16B051E9111EE00FA0D6B /* simple_fuck_no_back.png in Resources */,
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
 				F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */,
 				F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */,

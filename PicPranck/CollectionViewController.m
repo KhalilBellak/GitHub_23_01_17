@@ -8,9 +8,11 @@
 
 #import "CollectionViewController.h"
 #import "PicPranckViewController.h"
+#import "PicPranckCollectionViewController.h"
 #import "PicPranckImage.h"
 #import "AppDelegate.h"
 #import "PicPranckCoreDataServices.h"
+#import "PicPranckCustomViewsServices.h"
 #import "PicPranckImageServices.h"
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckCollectionViewCell.h"
@@ -31,18 +33,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    UIBarButtonItem *barButton=[[UIBarButtonItem alloc] initWithTitle:@"Custom" style:UIBarButtonItemStylePlain target:self action:@selector(backToCustom)];
+//    
+//    self.navigationItem.leftBarButtonItem=barButton;
+    
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
-    //self.transitioningDelegate=
+    
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
     [self.collectionView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
+    
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
     [self.collectionView registerClass:[PicPranckCollectionViewCell class] forCellWithReuseIdentifier:[self getCellIdentifier]];
-    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionViewHeader"];
+}
+-(IBAction)backToCustom
+{
+    [self.tabBarController setSelectedIndex:0];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -68,8 +79,18 @@
  // Pass the selected object to the new view controller.
  }
  */
+- (IBAction)goToCustomTab:(id)sender
+{
+     [self.tabBarController setSelectedIndex:0];
+}
 
+- (IBAction)selectElements:(id)sender
+{
+    
+}
 #pragma mark <UICollectionViewDataSource>
+
+
 -(id)getPreviewImageForCellAtIndexPath:(NSIndexPath *)indexPath
 {
     //To be implemented by subclasses
@@ -95,8 +116,6 @@
     
     return cell;
 }
-
-
 
 
 #pragma mark <UICollectionViewDelegate>
@@ -150,18 +169,18 @@
  */
 #pragma mark <UICollectionViewDelegateFlowLayout>
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //Prevent from scrolling over top and below bottom
-    CGFloat yMin=[UIScreen mainScreen].bounds.origin.y;
-    if (scrollView.contentOffset.y < yMin)
-    {
-        CGPoint originalCGP=self.collectionView.contentOffset;
-        if(scrollView.contentOffset.y < yMin)
-            originalCGP.y=yMin;
-        [self.collectionView setContentOffset:originalCGP animated:NO];
-    }
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    //Prevent from scrolling over top and below bottom
+//    CGFloat yMin=[UIScreen mainScreen].bounds.origin.y;
+//    if (scrollView.contentOffset.y < yMin)
+//    {
+//        CGPoint originalCGP=self.collectionView.contentOffset;
+//        if(scrollView.contentOffset.y < yMin)
+//            originalCGP.y=yMin;
+//        [self.collectionView setContentOffset:originalCGP animated:NO];
+//    }
+//}
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
@@ -182,6 +201,39 @@
     }
     return CGSizeMake(120, 120);
 }
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(self.collectionView.frame.size.width, [PicPranckCollectionViewFlowLayout getHeaderHeight]);
+}
+//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
+//                                            UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionViewHeader" forIndexPath:indexPath];
+//    if (kind == UICollectionElementKindSectionHeader)
+//    {
+//        [self updateSectionHeader:headerView forIndexPath:indexPath];
+//    }
+//    NSLog(@"header frame: (w,h)=(%f,%f)",headerView.frame.size.width,headerView.frame.size.height);
+//    return headerView;
+//}
+//
+//- (void)updateSectionHeader:(UICollectionReusableView *)header forIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSString *text = [NSString stringWithFormat:@"HEADER"];
+//    if([self isKindOfClass:[PicPranckCollectionViewController class]])
+//        text=@"My PickPranks";
+//    else
+//        text=@"Images";
+//    
+//    NSAttributedString *AttrText=[PicPranckCustomViewsServices getAttributedStringWithString:text withFontSize:15];
+//    
+//    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(self.collectionView.frame.origin.x,self.collectionView.frame.origin.y,self.collectionView.frame.size.width, header.frame.size.height)];
+//    //label.center=self.collectionView.center;
+//    
+//    [label setAttributedText:AttrText];
+//    [header addSubview:label];
+//    //header.label.text = text;
+//}
 #pragma mark <PicPranckImageViewDelegate>
 -(void)cellTaped:(PicPranckImageView *)sender
 {

@@ -11,4 +11,5 @@
 @interface PicPranckCollectionViewFlowLayout : UICollectionViewFlowLayout
 @property CGFloat cellSize;
 @property NSInteger nbOfElements;
++(CGFloat)getHeaderHeight;
 @end

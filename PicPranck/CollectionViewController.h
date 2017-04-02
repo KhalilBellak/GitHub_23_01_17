@@ -15,6 +15,12 @@
 
 @interface CollectionViewController : UICollectionViewController <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,PicPranckImageViewDelegate,PicPranckButtonDelegate>
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *buttonCustomView;
+- (IBAction)goToCustomTab:(id)sender;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *selectButton;
+- (IBAction)selectElements:(id)sender;
+
+
 -(id)getPreviewImageForCellAtIndexPath:(NSIndexPath *)indexPath;
 -(NSString *)getCellIdentifier;
 @end

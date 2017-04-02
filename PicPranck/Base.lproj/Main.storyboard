@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My PickPranks-->
+        <!--Pic Pranck Collection View Controller-->
         <scene sceneID="ubc-RH-Gch">
             <objects>
                 <collectionViewController id="siM-TQ-suz" customClass="PicPranckCollectionViewController" sceneMemberID="viewController">
@@ -49,11 +49,29 @@
                             <outlet property="delegate" destination="siM-TQ-suz" id="Mj3-Oi-KON"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="My PickPranks" id="nV1-sv-okh"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="pik-Ec-6DE">
+                        <barButtonItem key="backBarButtonItem" title="Custom" width="40" id="fP4-SH-x7G"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="Ukn-uJ-XNX">
+                            <connections>
+                                <action selector="goToCustomTab:" destination="siM-TQ-suz" id="zEv-Lu-vZy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Select" id="c0n-Mo-r1x">
+                            <connections>
+                                <action selector="selectElements:" destination="siM-TQ-suz" id="bmH-fe-ubJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="buttonCustomView" destination="Ukn-uJ-XNX" id="kgx-kr-6ka"/>
+                        <outlet property="selectButton" destination="c0n-Mo-r1x" id="mAb-i4-lY7"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0BT-oo-Rja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2228" y="912.5937031484259"/>
+            <point key="canvasLocation" x="3167.1999999999998" y="912.5937031484259"/>
         </scene>
         <!--Profile-->
         <scene sceneID="viW-ip-wP1">
@@ -497,8 +515,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="LzQ-BS-Lqp"/>
-                        <segue destination="siM-TQ-suz" kind="relationship" relationship="viewControllers" id="VwM-tg-2N1"/>
-                        <segue destination="6S8-VT-OSg" kind="relationship" relationship="viewControllers" id="HQk-Wk-CTJ"/>
+                        <segue destination="eLY-ei-8Eg" kind="relationship" relationship="viewControllers" id="VwM-tg-2N1"/>
+                        <segue destination="QAn-Uh-mVG" kind="relationship" relationship="viewControllers" id="HQk-Wk-CTJ"/>
                         <segue destination="JgD-GI-lWa" kind="relationship" relationship="viewControllers" id="2wi-go-ePM"/>
                     </connections>
                 </tabBarController>
@@ -506,7 +524,7 @@
             </objects>
             <point key="canvasLocation" x="832.80000000000007" y="792.95352323838085"/>
         </scene>
-        <!--Images-->
+        <!--Available Pic Pranck Collection View Controller-->
         <scene sceneID="0JX-k4-ACE">
             <objects>
                 <collectionViewController id="6S8-VT-OSg" customClass="AvailablePicPranckCollectionViewController" sceneMemberID="viewController">
@@ -545,11 +563,64 @@
                             <outlet property="delegate" destination="6S8-VT-OSg" id="Bzb-YX-4Ka"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Images" id="uC2-zm-HPw"/>
+                    <navigationItem key="navigationItem" id="sOW-bm-Bmf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="L8F-nb-wj3">
+                            <connections>
+                                <action selector="goToCustomTab:" destination="6S8-VT-OSg" id="xc5-jP-n0d"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Select" id="odM-7B-Eu8">
+                            <connections>
+                                <action selector="selectElements:" destination="6S8-VT-OSg" id="9Ol-Eo-35W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="buttonCustomView" destination="L8F-nb-wj3" id="RXA-p3-Tgd"/>
+                        <outlet property="selectButton" destination="odM-7B-Eu8" id="YzE-wv-7ju"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bd-Qn-Gjp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="1592"/>
+            <point key="canvasLocation" x="2831.1999999999998" y="1591.7541229385308"/>
+        </scene>
+        <!--My PickPranks-->
+        <scene sceneID="Qzx-D0-FHq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eLY-ei-8Eg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My PickPranks" id="nV1-sv-okh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cER-Gv-k85">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="siM-TQ-suz" kind="relationship" relationship="rootViewController" id="THR-5P-daQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4cv-Uy-ixA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2228" y="912.5937031484259"/>
+        </scene>
+        <!--Images-->
+        <scene sceneID="nj7-eG-AvQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QAn-Uh-mVG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Images" id="uC2-zm-HPw"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="a92-Tf-eAH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6S8-VT-OSg" kind="relationship" relationship="rootViewController" id="1eR-tZ-Mxk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDY-lG-RHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892" y="1591.7541229385308"/>
         </scene>
     </scenes>
     <resources>

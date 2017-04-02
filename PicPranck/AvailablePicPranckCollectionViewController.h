@@ -12,7 +12,7 @@
 @import FirebaseDatabase;
 @import FirebaseDatabaseUI;
 
-@interface AvailablePicPranckCollectionViewController : CollectionViewController
+@interface AvailablePicPranckCollectionViewController : CollectionViewController 
 @property FIRStorage *storage;
 @property (strong, nonatomic) FIRDatabaseReference *firebaseRef;
 @property (strong, nonatomic) FUICollectionViewDataSource *dataSource;
