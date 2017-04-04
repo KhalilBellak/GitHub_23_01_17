@@ -22,6 +22,16 @@
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     [FIRApp configure];
+    
+    if([[FIRAuth auth] currentUser])
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        UIViewController *viewController =[storyboard instantiateViewControllerWithIdentifier:@"TabBarViewController"];
+        
+        self.window.rootViewController = viewController;
+        [self.window makeKeyAndVisible];
+    }
     return YES;
 }
 - (BOOL)application:(UIApplication *)application

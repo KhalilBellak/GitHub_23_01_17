@@ -107,12 +107,33 @@
     cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
     cell.imageViewInCell.delegate=self;
     //Get image for preview
+    [cell.activityIndic startAnimating];
+    
     id idImage=[self getPreviewImageForCellAtIndexPath:indexPath];
     //Set it in imageView of Cell
-    UIImage *image=[UIImage imageWithData:idImage];
-    PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
-    [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
-    [PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size] forImageView:cell.imageViewInCell];
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^
+                   {
+                       UIImage *image=[UIImage imageWithData:idImage];
+                       PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
+                       UIImage *imageToUse=[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size];
+                       
+                       dispatch_async(dispatch_get_main_queue(), ^{
+                           [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
+                           [PicPranckImageServices setImage:imageToUse forImageView:cell.imageViewInCell];
+                           [cell.activityIndic stopAnimating];
+                       });
+                       
+                       
+                   });
+    
+    
+//    UIImage *image=[UIImage imageWithData:idImage];
+//    PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
+//    UIImage *imageToUse=[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size];
+//    [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
+//    [PicPranckImageServices setImage:imageToUse forImageView:cell.imageViewInCell];
+//    [cell.activityIndic stopAnimating];
     
     return cell;
 }

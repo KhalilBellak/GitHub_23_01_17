@@ -11,4 +11,5 @@
 
 @interface PicPranckCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) IBOutlet PicPranckImageView *imageViewInCell;
+@property (strong, nonatomic) UIActivityIndicatorView *activityIndic;
 @end

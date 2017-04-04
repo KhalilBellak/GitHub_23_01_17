@@ -66,7 +66,8 @@ static NSString * const reuseIdentifier = @"CellFromAvailablePP";
 {
     PicPranckCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
                                                                                   forIndexPath:indexPath];
-
+    [cell.activityIndic startAnimating];
+    
     NSString *pictureName=object.value;
     
     NSString *extension=@"png";
@@ -74,52 +75,66 @@ static NSString * const reuseIdentifier = @"CellFromAvailablePP";
     NSString *pathToPreview=[NSString stringWithFormat:@"%@/",pictureName];
     NSMutableArray *arrayOfURLs=[[NSMutableArray alloc] init];
     
-    for(int i=1;i<=3;i++)
-    {
-        
-        //Get a path to picture of type nameOfPicture/nameOfPicture_i.extension
-        NSString *currRelativeImagePath=[NSString stringWithFormat: @"%@%@%@%@%@",pictureName,@"_",[@(i) stringValue],@".",extension];
-        NSString *currImagePath=[NSString stringWithFormat:@"%@%@", pathToPreview,currRelativeImagePath];
-        UIImage *placeholderImage=[UIImage imageNamed:@"simple_fuck_no_back.png"];
-        FIRStorageReference *element = [self.availablePPRef child:currImagePath];
-        //Set thumbnail
-        if(2==i)
-            [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
-            
-        // Create local filesystem URL
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *local=[NSString stringWithFormat:@"%@/%@",documentsDirectory,currRelativeImagePath];
-        NSURL *localURL=[NSURL fileURLWithPath:local];
-        
-        NSNumber *isAFile;
-        NSError *err;
-        [localURL getResourceValue:&isAFile
-                            forKey:NSURLFileResourceTypeKey error:&err];
-        if(err)
-            [self showMessagePrompt:err.description];
-        
-        // Download to the local filesystem
-        if(0>=isAFile)
-        {
-            FIRStorageDownloadTask *downloadTask = [element writeToFile:localURL completion:^(NSURL *URL, NSError *error)
-                                                    {
-                                                        if(error)
-                                                        {
-                                                            [self showMessagePrompt:error.description];
-                                                            return;
-                                                        }
-                                                    }];
-            
-            
-        }
-        [arrayOfURLs addObject:localURL];
-    }
-    if(3==[arrayOfURLs count])
-    {
-        [_dicoNSURLOfAvailablePickPranks setValue:arrayOfURLs forKey:pictureName];
-        [_listOfKeys insertObject:pictureName atIndex:indexPath.row];
-    }
+    //QOS_CLASS_USER_INITIATED
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^
+                   {
+                       for(int i=1;i<=3;i++)
+                       {
+                           
+                           //Get a path to picture of type nameOfPicture/nameOfPicture_i.extension
+                           NSString *currRelativeImagePath=[NSString stringWithFormat: @"%@%@%@%@%@",pictureName,@"_",[@(i) stringValue],@".",extension];
+                           NSString *currImagePath=[NSString stringWithFormat:@"%@%@", pathToPreview,currRelativeImagePath];
+                           UIImage *placeholderImage=[UIImage imageNamed:@"simple_fuck_no_back.png"];
+                           FIRStorageReference *element = [self.availablePPRef child:currImagePath];
+                           
+                           // Create local filesystem URL
+                           NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                           NSString *documentsDirectory = [paths objectAtIndex:0];
+                           NSString *local=[NSString stringWithFormat:@"%@/%@",documentsDirectory,currRelativeImagePath];
+                           NSURL *localURL=[NSURL fileURLWithPath:local];
+                           
+                           NSNumber *isAFile;
+                           NSError *err;
+                           [localURL getResourceValue:&isAFile
+                                               forKey:NSURLFileResourceTypeKey error:&err];
+                           //if(err)
+                           //    [self showMessagePrompt:err.description];
+                           
+                           // Download to the local filesystem
+                           if(0>=isAFile)
+                           {
+                               FIRStorageDownloadTask *downloadTask = [element writeToFile:localURL completion:^(NSURL *URL, NSError *error)
+                                                                       {
+                                                                           if(error)
+                                                                           {
+                                                                               [self showMessagePrompt:error.description];
+                                                                               return;
+                                                                           }
+                                                                       }];
+                           }
+                           [arrayOfURLs addObject:localURL];
+                           
+                           //Set thumbnail
+                           if(2==i)
+                           {
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
+                                   [cell.activityIndic stopAnimating];
+                               });
+                               
+                           }
+                       }
+                       if(3==[arrayOfURLs count])
+                       {
+                           [_dicoNSURLOfAvailablePickPranks setValue:arrayOfURLs forKey:pictureName];
+                           if(indexPath.row<=[_listOfKeys count])
+                               [_listOfKeys insertObject:pictureName atIndex:indexPath.row];
+                           else
+                               [_listOfKeys addObject:pictureName];
+                           
+                       }
+                       
+                   });
     cell.imageViewInCell.delegate=self;
     cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
     return cell;

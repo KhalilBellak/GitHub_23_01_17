@@ -505,7 +505,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="YvF-d1-BIa">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="37n-F5-F39" customClass="TabBarViewController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" automaticallyAdjustsScrollViewInsets="NO" id="37n-F5-F39" customClass="TabBarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Hy7-1J-vIt"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="yDl-4A-Et5">

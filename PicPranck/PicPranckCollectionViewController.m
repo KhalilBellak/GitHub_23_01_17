@@ -35,6 +35,7 @@ static NSString * const reuseIdentifier = @"Cell";
     _shouldReloadCollectionView=YES;
     [self performFetch];
 }
+
 -(void)performFetch
 {
     NSError *error;
@@ -51,6 +52,7 @@ static NSString * const reuseIdentifier = @"Cell";
 //                   addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
 //                       // ...
 //                   }];
+
     //Refresh collection view
     if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:self])
     {
@@ -131,6 +133,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(NSFetchedResultsController *)initializeFRC
 {
+    
     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:[PicPranckCoreDataServices areAllPicPrancksDeletedMode:self] fromViewController:self];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription

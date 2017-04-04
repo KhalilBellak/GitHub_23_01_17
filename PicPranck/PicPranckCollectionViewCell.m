@@ -8,6 +8,7 @@
 
 #import "PicPranckCollectionViewCell.h"
 #import "PicPranckActionServices.h"
+#import "PicPranckImageServices.h"
 #import "PicPranckImageView.h"
 
 @implementation PicPranckCollectionViewCell
@@ -27,6 +28,19 @@
         [self.contentView addSubview:_imageViewInCell];
     }
     return _imageViewInCell;
+}
+-(UIActivityIndicatorView *)activityIndic
+{
+    if(!_activityIndic)
+    {
+        _activityIndic=[[UIActivityIndicatorView alloc] initWithFrame:self.contentView.bounds];
+        [_activityIndic setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+        _activityIndic.alpha=0.75;
+        [self.contentView addSubview:_activityIndic];
+        
+         [_activityIndic startAnimating];
+    }
+    return _activityIndic;
 }
 -(void)handleTapOnce:(id)sender
 {
