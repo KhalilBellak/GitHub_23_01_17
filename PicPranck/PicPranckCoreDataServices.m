@@ -11,6 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "SavedImage+CoreDataClass.h"
 #import "ImageOfArea+CoreDataClass.h"
+#import "ImageOfAreaDetails+CoreDataClass.h"
 //View controller
 #import "PicPranckCollectionViewController.h"
 #import "ViewController.h"
@@ -93,11 +94,15 @@ static int newSavedCount=0;
             NSInteger iIndex=[listOfImages indexOfObject:currImage];
             NSData *imageData = UIImageJPEGRepresentation(currImage,1.0);
             //Create Image area object
+            ImageOfAreaDetails *newImageOfAreaDetails =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfAreaDetails" inManagedObjectContext:managedObjCtx];
+            [newImageOfAreaDetails setOwner:newSavedImage];
             ImageOfArea *newImageOfArea =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfArea" inManagedObjectContext:managedObjCtx];
-            [newImageOfArea setParent:newSavedImage];
-            [newImageOfArea setPosition:iIndex];
+             [newImageOfAreaDetails setPosition:iIndex];
             [newImageOfArea setDataImage:imageData];
-            [newSavedImage addImageChildrenObject:newImageOfArea];
+            [newImageOfArea setOwner:newImageOfAreaDetails];
+            [newImageOfAreaDetails setOwner:newSavedImage];
+            //[newSavedImage addImageChildrenObject:newImageOfArea];
+            
         }
         [newSavedImage setDateOfCreation:localDate];
         [newSavedImage setNewPicPranck:YES];
@@ -105,17 +110,15 @@ static int newSavedCount=0;
         bool saved=[managedObjCtx save:&err];
         if(saved)
         {
-//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Saving" message:@"PickPranck saved !" preferredStyle:UIAlertControllerStyleAlert];
-//            
-//            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-//            [alertController addAction:ok];
-//            
-//            [viewController presentViewController:alertController animated:YES completion:nil];
             [viewController showMessagePrompt:@"PickPranck saved !"];
             count++;
             newSavedCount++;
-            
         }
+        else if(err)
+            [viewController showMessagePrompt:err.localizedDescription];
+        
+        [managedObjCtx reset];
+        
     }
 }
 +(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index
@@ -131,12 +134,13 @@ static int newSavedCount=0;
         NSInteger position=1;
         NSPredicate *myPredicate = [NSPredicate predicateWithFormat:@"position == %@", @(position)];
         
-        NSObject *chosenImgOfArea = [currManObj.imageChildren filteredSetUsingPredicate:myPredicate].anyObject;
+        NSObject *chosenImgOfAreaDetails = [currManObj.imageOfAreaDetails filteredSetUsingPredicate:myPredicate].anyObject;
         id idImage=nil;
-        if([chosenImgOfArea isKindOfClass:[ImageOfArea class]])
+        if([chosenImgOfAreaDetails isKindOfClass:[ImageOfAreaDetails class]])
         {
-            ImageOfArea *imgOfArea=(ImageOfArea *) chosenImgOfArea;
-            idImage=imgOfArea.dataImage;
+            ImageOfAreaDetails *imgOfAreaDetails=(ImageOfAreaDetails *) chosenImgOfAreaDetails;
+            
+            idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
         }
         //Set image for thumbnail
         UIImage *image=[UIImage imageWithData:idImage];
@@ -183,10 +187,10 @@ static int newSavedCount=0;
         //Sort the set
         NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
         NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-        NSArray *sortedArray=[savedImg.imageChildren sortedArrayUsingDescriptors:arrayDsc];
-        for(ImageOfArea *imgOfArea in sortedArray)
+        NSArray *sortedArray=[savedImg.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
+        for(ImageOfAreaDetails *imgOfAreaDetails in sortedArray)
         {
-            id idImage=imgOfArea.dataImage;
+            id idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
             UIImage *image=[UIImage imageWithData:idImage];
             [arrayOfImgs addObject:image];
         }

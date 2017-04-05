@@ -1,5 +1,5 @@
 //
-//  SavedImage+CoreDataClass.m
+//  ImageOfAreaDetails+CoreDataClass.m
 //  PicPranck
 //
 //  Created by El Khalil Bellakrid on 05/04/2017.
@@ -7,8 +7,9 @@
 //  This file was automatically generated and should not be edited.
 //
 
-#import "SavedImage+CoreDataClass.h"
 #import "ImageOfAreaDetails+CoreDataClass.h"
-@implementation SavedImage
+#import "ImageOfArea+CoreDataClass.h"
+#import "SavedImage+CoreDataClass.h"
+@implementation ImageOfAreaDetails
 
 @end

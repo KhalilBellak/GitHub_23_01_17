@@ -41,24 +41,44 @@ static NSString * const reuseIdentifier = @"profileCell";
     _profilePicture.layer.cornerRadius = _profilePicture.frame.size.height/2;
     _profilePicture.clipsToBounds=YES;
     
-    //Set User's name and picture
-    if ([FBSDKAccessToken currentAccessToken]) {
-        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"id,name,picture.width(100).height(100)"}] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-            if (!error) {
-                //Set User's name
-                NSString *nameOfLoginUser = [result valueForKey:@"name"];
-                NSAttributedString *userName=[PicPranckCustomViewsServices getAttributedStringWithString:nameOfLoginUser withFontSize:19.0];
-                [_userName setAttributedText:userName];
-                //Set Profile's picture
-                NSString *imageStringOfLoginUser = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
-                NSURL *url = [[NSURL alloc] initWithString:imageStringOfLoginUser];
-                [_profilePicture setImageWithURL:url placeholderImage: nil];
-            }
-        }];
-    }
+    //Hide views
+    
+    
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        //Set User's name and picture
+        if ([FBSDKAccessToken currentAccessToken]) {
+            [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"id,name,picture.width(100).height(100)"}] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                if (!error) {
+                    //Set User's name
+                    NSString *nameOfLoginUser = [result valueForKey:@"name"];
+                    NSAttributedString *userName;
+                    if(0<[nameOfLoginUser length])
+                        userName=[PicPranckCustomViewsServices getAttributedStringWithString:nameOfLoginUser withFontSize:19.0];
+                    else
+                        userName=[PicPranckCustomViewsServices getAttributedStringWithString:@"User Name" withFontSize:19.0];
+                    
+                    
+                    //Set Profile's picture
+                    NSString *imageStringOfLoginUser = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+                    NSURL *url = [[NSURL alloc] initWithString:imageStringOfLoginUser];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [_profilePicture setImageWithURL:url placeholderImage: nil];
+                        [_userName setAttributedText:userName];
+                        [_userName setAlpha:1];
+                        [_profilePicture setAlpha:1];
+                    });
+                   
+                }
+            }];
+        }
+    });
+    
     
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

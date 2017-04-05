@@ -19,6 +19,7 @@
 #import "PicPranckViewController.h"
 #import "SavedImage+CoreDataClass.h"
 #import "ImageOfArea+CoreDataClass.h"
+#import "ImageOfAreaDetails+CoreDataClass.h"
 
 #define X_OFFSET_FROM_CENTER_OF_SCREEN 20
 #define Y_OFFSET_FROM_BOTTOM_OF_SCREEN 60
@@ -44,10 +45,10 @@
         //Sort the set
         NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
         NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-        NSArray *sortedArray=[managedObject.imageChildren sortedArrayUsingDescriptors:arrayDsc];
-        for(ImageOfArea *imgOfArea in sortedArray)
+        NSArray *sortedArray=[managedObject.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
+        for(ImageOfAreaDetails *imgOfAreaDetails in sortedArray)
         {
-            id idImage=imgOfArea.dataImage;
+            id idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
             UIImage *image=[UIImage imageWithData:idImage];
             [arrayOfImages addObject:image];
         }

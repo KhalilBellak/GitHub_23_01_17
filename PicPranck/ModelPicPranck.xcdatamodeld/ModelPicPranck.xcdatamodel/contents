@@ -2,16 +2,21 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C68" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="ImageOfArea" representedClassName="ImageOfArea" syncable="YES" codeGenerationType="class">
         <attribute name="dataImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ImageOfAreaDetails" inverseName="imageOfAreaWithData" inverseEntity="ImageOfAreaDetails" syncable="YES"/>
+    </entity>
+    <entity name="ImageOfAreaDetails" representedClassName="ImageOfAreaDetails" syncable="YES" codeGenerationType="class">
         <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SavedImage" inverseName="imageChildren" inverseEntity="SavedImage" syncable="YES"/>
+        <relationship name="imageOfAreaWithData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ImageOfArea" inverseName="owner" inverseEntity="ImageOfArea" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SavedImage" inverseName="imageOfAreaDetails" inverseEntity="SavedImage" syncable="YES"/>
     </entity>
     <entity name="SavedImage" representedClassName="SavedImage" syncable="YES" codeGenerationType="class">
         <attribute name="dateOfCreation" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="newPicPranck" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="imageChildren" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageOfArea" inverseName="parent" inverseEntity="ImageOfArea" syncable="YES"/>
+        <relationship name="imageOfAreaDetails" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageOfAreaDetails" inverseName="owner" inverseEntity="ImageOfAreaDetails" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SavedImage" positionX="-54" positionY="-18" width="119" height="88"/>
-        <element name="ImageOfArea" positionX="-272" positionY="-45" width="128" height="88"/>
+        <element name="ImageOfArea" positionX="-272" positionY="-45" width="128" height="73"/>
+        <element name="SavedImage" positionX="7" positionY="-9" width="119" height="88"/>
+        <element name="ImageOfAreaDetails" positionX="-270" positionY="90" width="128" height="88"/>
     </elements>
 </model>

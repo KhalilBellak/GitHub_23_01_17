@@ -15,6 +15,7 @@
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckCollectionViewCell.h"
 #import "ImageOfArea+CoreDataClass.h"
+#import "ImageOfAreaDetails+CoreDataClass.h"
 #import "PicPranckCollectionViewFlowLayout.h"
 #import "ViewController.h"
 
@@ -110,11 +111,11 @@ static NSString * const reuseIdentifier = @"Cell";
     {
         NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
         NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-        NSArray *sortedArray=[savedImg.imageChildren sortedArrayUsingDescriptors:arrayDsc];
+        NSArray *sortedArray=[savedImg.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
         if(1<[sortedArray count])
         {
-            ImageOfArea *imgOfArea=[sortedArray objectAtIndex:1];
-            return imgOfArea.dataImage;
+            ImageOfAreaDetails *imgOfAreaDetails=[sortedArray objectAtIndex:1];
+            return [imgOfAreaDetails.imageOfAreaWithData dataImage];
         }
     }
     return nil;

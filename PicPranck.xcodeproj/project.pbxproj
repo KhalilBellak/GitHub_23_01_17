@@ -60,10 +60,12 @@
 		F9E9EFDA1E51049900828929 /* Editimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD71E51049900828929 /* Editimage.png */; };
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
-		F9F424931E59FF0C00BFE746 /* ImageOfArea+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F951415D1E59D761006262A2 /* ImageOfArea+CoreDataClass.m */; };
-		F9F424941E59FF0C00BFE746 /* ImageOfArea+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F951415F1E59D761006262A2 /* ImageOfArea+CoreDataProperties.m */; };
-		F9F424951E59FF0C00BFE746 /* SavedImage+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */; };
-		F9F424961E59FF0C00BFE746 /* SavedImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */; };
+		F9EAD3371E9511C2002651DF /* ImageOfArea+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD32C1E9511C2002651DF /* ImageOfArea+CoreDataClass.m */; };
+		F9EAD3381E9511C2002651DF /* ImageOfArea+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD32E1E9511C2002651DF /* ImageOfArea+CoreDataProperties.m */; };
+		F9EAD3391E9511C2002651DF /* SavedImage+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3301E9511C2002651DF /* SavedImage+CoreDataClass.m */; };
+		F9EAD33A1E9511C2002651DF /* SavedImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3321E9511C2002651DF /* SavedImage+CoreDataProperties.m */; };
+		F9EAD33B1E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3341E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m */; };
+		F9EAD33C1E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3361E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
 /* End PBXBuildFile section */
 
@@ -130,14 +132,6 @@
 		F94475B31E7E966B00A9B7A9 /* blue_pastel_darker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_pastel_darker.jpg; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_darker.jpg; sourceTree = "<group>"; };
 		F951414D1E59B2D5006262A2 /* PicPranckImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImage.h; sourceTree = "<group>"; };
 		F951414E1E59B2D5006262A2 /* PicPranckImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImage.m; sourceTree = "<group>"; };
-		F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
-		F951415D1E59D761006262A2 /* ImageOfArea+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataClass.m"; sourceTree = "<group>"; };
-		F951415E1E59D761006262A2 /* ImageOfArea+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F951415F1E59D761006262A2 /* ImageOfArea+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F95141601E59D761006262A2 /* SavedImage+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataClass.h"; sourceTree = "<group>"; };
-		F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataClass.m"; sourceTree = "<group>"; };
-		F95141621E59D761006262A2 /* SavedImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F964C8AC1E7F1AD600BFAFDD /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		F964C8AD1E7F1AD600BFAFDD /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		F964C8AF1E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailablePicPranckCollectionViewController.h; sourceTree = "<group>"; };
@@ -180,6 +174,18 @@
 		F9E9EFD71E51049900828929 /* Editimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Editimage.png; path = Assets.xcassets/AppIcon.appiconset/Editimage.png; sourceTree = "<group>"; };
 		F9E9EFD81E51049900828929 /* MiddleFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiddleFinger.png; path = Assets.xcassets/AppIcon.appiconset/MiddleFinger.png; sourceTree = "<group>"; };
 		F9E9EFD91E51049900828929 /* Settings50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings50.png; path = Assets.xcassets/AppIcon.appiconset/Settings50.png; sourceTree = "<group>"; };
+		F9EAD32B1E9511C2002651DF /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9EAD32C1E9511C2002651DF /* ImageOfArea+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9EAD32D1E9511C2002651DF /* ImageOfArea+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9EAD32E1E9511C2002651DF /* ImageOfArea+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9EAD32F1E9511C2002651DF /* SavedImage+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9EAD3301E9511C2002651DF /* SavedImage+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9EAD3311E9511C2002651DF /* SavedImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9EAD3321E9511C2002651DF /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F9EAD3331E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataClass.h"; sourceTree = "<group>"; };
+		F9EAD3341E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataClass.m"; sourceTree = "<group>"; };
+		F9EAD3351E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F9EAD3361E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_finger_emoticon.png; path = Assets.xcassets/AppIcon.appiconset/middle_finger_emoticon.png; sourceTree = "<group>"; };
 		FA65270B0F4DC4C5611207E6 /* Pods-PicPranck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -308,14 +314,18 @@
 		F951415B1E59D746006262A2 /* Core Data  */ = {
 			isa = PBXGroup;
 			children = (
-				F951415C1E59D761006262A2 /* ImageOfArea+CoreDataClass.h */,
-				F951415D1E59D761006262A2 /* ImageOfArea+CoreDataClass.m */,
-				F951415E1E59D761006262A2 /* ImageOfArea+CoreDataProperties.h */,
-				F951415F1E59D761006262A2 /* ImageOfArea+CoreDataProperties.m */,
-				F95141601E59D761006262A2 /* SavedImage+CoreDataClass.h */,
-				F95141611E59D761006262A2 /* SavedImage+CoreDataClass.m */,
-				F95141621E59D761006262A2 /* SavedImage+CoreDataProperties.h */,
-				F95141631E59D761006262A2 /* SavedImage+CoreDataProperties.m */,
+				F9EAD32B1E9511C2002651DF /* ImageOfArea+CoreDataClass.h */,
+				F9EAD32C1E9511C2002651DF /* ImageOfArea+CoreDataClass.m */,
+				F9EAD32D1E9511C2002651DF /* ImageOfArea+CoreDataProperties.h */,
+				F9EAD32E1E9511C2002651DF /* ImageOfArea+CoreDataProperties.m */,
+				F9EAD32F1E9511C2002651DF /* SavedImage+CoreDataClass.h */,
+				F9EAD3301E9511C2002651DF /* SavedImage+CoreDataClass.m */,
+				F9EAD3311E9511C2002651DF /* SavedImage+CoreDataProperties.h */,
+				F9EAD3321E9511C2002651DF /* SavedImage+CoreDataProperties.m */,
+				F9EAD3331E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.h */,
+				F9EAD3341E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m */,
+				F9EAD3351E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.h */,
+				F9EAD3361E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m */,
 			);
 			name = "Core Data ";
 			sourceTree = "<group>";
@@ -718,17 +728,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F94475AC1E7D47E800A9B7A9 /* PicPranckProfileViewController.m in Sources */,
-				F9F424931E59FF0C00BFE746 /* ImageOfArea+CoreDataClass.m in Sources */,
 				F94475A51E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m in Sources */,
 				F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */,
-				F9F424941E59FF0C00BFE746 /* ImageOfArea+CoreDataProperties.m in Sources */,
-				F9F424951E59FF0C00BFE746 /* SavedImage+CoreDataClass.m in Sources */,
+				F9EAD33A1E9511C2002651DF /* SavedImage+CoreDataProperties.m in Sources */,
 				F964C8B11E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.m in Sources */,
-				F9F424961E59FF0C00BFE746 /* SavedImage+CoreDataProperties.m in Sources */,
+				F9EAD3381E9511C2002651DF /* ImageOfArea+CoreDataProperties.m in Sources */,
 				F931DD5F1E5CEC8000FC913E /* PicPranckCoreDataServices.m in Sources */,
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
+				F9EAD33C1E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m in Sources */,
 				F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */,
 				F94475A91E7B17BA00A9B7A9 /* UIViewController+Alerts.m in Sources */,
 				F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */,
@@ -737,12 +746,15 @@
 				F90147731E53586200F3069F /* PicPranckViewController.m in Sources */,
 				F964C8AE1E7F1AD600BFAFDD /* CollectionViewController.m in Sources */,
 				F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */,
+				F9EAD33B1E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m in Sources */,
 				F944759D1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m in Sources */,
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 				F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */,
+				F9EAD3391E9511C2002651DF /* SavedImage+CoreDataClass.m in Sources */,
 				F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */,
 				F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */,
+				F9EAD3371E9511C2002651DF /* ImageOfArea+CoreDataClass.m in Sources */,
 				F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */,
 				F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */,
 			);

@@ -2,7 +2,7 @@
 //  SavedImage+CoreDataProperties.h
 //  PicPranck
 //
-//  Created by El Khalil Bellakrid on 19/02/2017.
+//  Created by El Khalil Bellakrid on 05/04/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
@@ -18,16 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSDate *dateOfCreation;
 @property (nonatomic) BOOL newPicPranck;
-@property (nullable, nonatomic, retain) NSSet<ImageOfArea *> *imageChildren;
+@property (nullable, nonatomic, retain) NSSet<ImageOfAreaDetails *> *imageOfAreaDetails;
 
 @end
 
 @interface SavedImage (CoreDataGeneratedAccessors)
 
-- (void)addImageChildrenObject:(ImageOfArea *)value;
-- (void)removeImageChildrenObject:(ImageOfArea *)value;
-- (void)addImageChildren:(NSSet<ImageOfArea *> *)values;
-- (void)removeImageChildren:(NSSet<ImageOfArea *> *)values;
+- (void)addImageOfAreaDetailsObject:(ImageOfAreaDetails *)value;
+- (void)removeImageOfAreaDetailsObject:(ImageOfAreaDetails *)value;
+- (void)addImageOfAreaDetails:(NSSet<ImageOfAreaDetails *> *)values;
+- (void)removeImageOfAreaDetails:(NSSet<ImageOfAreaDetails *> *)values;
 
 @end
 

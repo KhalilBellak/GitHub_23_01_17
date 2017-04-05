@@ -1,5 +1,5 @@
 //
-//  SavedImage+CoreDataClass.h
+//  ImageOfAreaDetails+CoreDataClass.h
 //  PicPranck
 //
 //  Created by El Khalil Bellakrid on 05/04/2017.
@@ -10,14 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ImageOfAreaDetails;
+@class ImageOfArea, SavedImage;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SavedImage : NSManagedObject
+@interface ImageOfAreaDetails : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "SavedImage+CoreDataProperties.h"
+#import "ImageOfAreaDetails+CoreDataProperties.h"
