@@ -42,7 +42,12 @@ static NSString * const reuseIdentifier = @"profileCell";
     _profilePicture.clipsToBounds=YES;
     
     //Hide views
-    
+    [_userName setAlpha:0];
+    //Add activity indicator
+    UIActivityIndicatorView * activityIndic=[[UIActivityIndicatorView alloc] initWithFrame:_profilePicture.bounds];
+    [activityIndic setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+    [_profilePicture addSubview:activityIndic];
+    [activityIndic startAnimating];
     
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
         //Set User's name and picture
@@ -65,7 +70,7 @@ static NSString * const reuseIdentifier = @"profileCell";
                         [_profilePicture setImageWithURL:url placeholderImage: nil];
                         [_userName setAttributedText:userName];
                         [_userName setAlpha:1];
-                        [_profilePicture setAlpha:1];
+                        [activityIndic stopAnimating];
                     });
                    
                 }
