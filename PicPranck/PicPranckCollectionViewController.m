@@ -109,14 +109,17 @@ static NSString * const reuseIdentifier = @"Cell";
     //Sort the set
     if(savedImg)
     {
-        NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
-        NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-        NSArray *sortedArray=[savedImg.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
-        if(1<[sortedArray count])
-        {
-            ImageOfAreaDetails *imgOfAreaDetails=[sortedArray objectAtIndex:1];
-            return [imgOfAreaDetails.imageOfAreaWithData dataImage];
-        }
+        return savedImg.imageOfAreaDetails.thumbnail;
+//        NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+//        NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
+//        
+//        NSArray *sortedArray=[savedImg.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
+//        if(1<[sortedArray count])
+//        {
+//            ImageOfAreaDetails *imgOfAreaDetails=[sortedArray objectAtIndex:1];
+//            //return [imgOfAreaDetails.imageOfAreaWithData dataImage];
+//            
+//        }
     }
     return nil;
 }

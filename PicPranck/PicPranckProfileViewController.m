@@ -62,7 +62,6 @@ static NSString * const reuseIdentifier = @"profileCell";
                     else
                         userName=[PicPranckCustomViewsServices getAttributedStringWithString:@"User Name" withFontSize:19.0];
                     
-                    
                     //Set Profile's picture
                     NSString *imageStringOfLoginUser = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
                     NSURL *url = [[NSURL alloc] initWithString:imageStringOfLoginUser];

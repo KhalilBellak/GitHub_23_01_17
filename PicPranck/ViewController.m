@@ -114,9 +114,9 @@
         currImageView.tag=iIndex;
 //        [currImageView.layer setBorderColor:[[PicPranckImageServices getGlobalTintWithLighterFactor:-40] CGColor]];
         
-        NSString *text=@"Hidden Picture";
+        NSString *text=@"HIDDEN PICTURE";
         if(1==iIndex)
-            text=@"Visible Picture";
+            text=@"VISIBLE PICTURE";
         PicPranckTextView *currTextView=nil;
         //When hitting reset button should set images to nil and background to clear
         currImageView.image=nil;

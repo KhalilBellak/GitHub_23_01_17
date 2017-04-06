@@ -25,11 +25,11 @@
 
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (UIViewController *)viewController;
 
-+(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index;
+//+(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index;
 
-+(SavedImage *)retrieveDataAtIndex:(NSInteger)index;
++(id)retrieveDataAtIndex:(NSInteger)index withType:(NSString *)type;
 +(NSMutableArray *)retrieveImagesArrayFromDataAtIndex:(NSInteger)index;
-+(NSArray *)retrieveAllSavedImages;
++(NSArray *)retrieveAllSavedImagesWithType:(NSString *)type;
 
 +(void)removeImages:(NSManagedObject *)objectToDelete;
 +(void)removeAllImages:(UIViewController *)sender;

@@ -12,6 +12,7 @@
 #import "SavedImage+CoreDataClass.h"
 #import "ImageOfArea+CoreDataClass.h"
 #import "ImageOfAreaDetails+CoreDataClass.h"
+#import "Bridge+CoreDataClass.h"
 //View controller
 #import "PicPranckCollectionViewController.h"
 #import "ViewController.h"
@@ -24,6 +25,7 @@
 #import "PicPranckImageView.h"
 #import "PicPranckImage.h"
 #import "PicPranckCollectionViewCell.h"
+#import "PicPranckCollectionViewFlowLayout.h"
 //Extensions
 #import "UIViewController+Alerts.h"
 
@@ -86,26 +88,40 @@ static int newSavedCount=0;
     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:forceRest fromViewController:viewController];
     if(managedObjCtx)
     {
+        UIImage *imageToUse;
         //Create a saved image object
         SavedImage *newSavedImage =[NSEntityDescription insertNewObjectForEntityForName:@"SavedImage" inManagedObjectContext:managedObjCtx];
-        NSDate *localDate = [NSDate date];
+        ImageOfAreaDetails *newImageOfAreaDetails =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfAreaDetails" inManagedObjectContext:managedObjCtx];
+        Bridge *bridge =[NSEntityDescription insertNewObjectForEntityForName:@"Bridge" inManagedObjectContext:managedObjCtx];
         for(UIImage *currImage in listOfImages)
         {
             NSInteger iIndex=[listOfImages indexOfObject:currImage];
             NSData *imageData = UIImageJPEGRepresentation(currImage,1.0);
             //Create Image area object
-            ImageOfAreaDetails *newImageOfAreaDetails =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfAreaDetails" inManagedObjectContext:managedObjCtx];
-            [newImageOfAreaDetails setOwner:newSavedImage];
             ImageOfArea *newImageOfArea =[NSEntityDescription insertNewObjectForEntityForName:@"ImageOfArea" inManagedObjectContext:managedObjCtx];
-             [newImageOfAreaDetails setPosition:iIndex];
+            //Create thumbnail
+            if(1==iIndex)
+            {
+                PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:currImage];
+                imageToUse=[ppImg imageByScalingProportionallyToSize:[PicPranckCollectionViewFlowLayout getCellSize]];
+                NSData *thumbnailData = UIImageJPEGRepresentation(currImage,1.0);
+                [newImageOfAreaDetails setThumbnail:thumbnailData];
+            }
+            //Set Attributes
+            [newImageOfArea setPosition:iIndex];
             [newImageOfArea setDataImage:imageData];
-            [newImageOfArea setOwner:newImageOfAreaDetails];
-            [newImageOfAreaDetails setOwner:newSavedImage];
-            //[newSavedImage addImageChildrenObject:newImageOfArea];
-            
+            //Set Relationships
+            [newImageOfArea setOwner:bridge];
         }
+        
+        NSDate *localDate = [NSDate date];
         [newSavedImage setDateOfCreation:localDate];
+        [bridge setDateOfCreation:localDate];
+        
         [newSavedImage setNewPicPranck:YES];
+        
+        [newImageOfAreaDetails setOwner:newSavedImage];
+        
         NSError *err=[[NSError alloc] init];
         bool saved=[managedObjCtx save:&err];
         if(saved)
@@ -121,41 +137,41 @@ static int newSavedCount=0;
         
     }
 }
-+(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index
-{
-    if(!imgView)
-        imgView=[[UIImageView alloc] init];
-    SavedImage *currManObj=[PicPranckCoreDataServices retrieveDataAtIndex:index];
-    //Find core data element with right index
-    if(currManObj)
-    {
-        //Put right image in Image View
-        //Take the middle one
-        NSInteger position=1;
-        NSPredicate *myPredicate = [NSPredicate predicateWithFormat:@"position == %@", @(position)];
-        
-        NSObject *chosenImgOfAreaDetails = [currManObj.imageOfAreaDetails filteredSetUsingPredicate:myPredicate].anyObject;
-        id idImage=nil;
-        if([chosenImgOfAreaDetails isKindOfClass:[ImageOfAreaDetails class]])
-        {
-            ImageOfAreaDetails *imgOfAreaDetails=(ImageOfAreaDetails *) chosenImgOfAreaDetails;
-            
-            idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
-        }
-        //Set image for thumbnail
-        UIImage *image=[UIImage imageWithData:idImage];
-        PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
-        [imgView setContentMode:UIViewContentModeScaleAspectFit];
-        [PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:imgView.frame.size] forImageView:imgView];
-    }
-    
-}
+//+(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index
+//{
+//    if(!imgView)
+//        imgView=[[UIImageView alloc] init];
+//    SavedImage *currManObj=[PicPranckCoreDataServices retrieveDataAtIndex:index];
+//    //Find core data element with right index
+//    if(currManObj)
+//    {
+//        //Put right image in Image View
+//        //Take the middle one
+//        NSInteger position=1;
+//        NSPredicate *myPredicate = [NSPredicate predicateWithFormat:@"position == %@", @(position)];
+//        
+//        NSObject *chosenImgOfAreaDetails = [currManObj.imageOfAreaDetails filteredSetUsingPredicate:myPredicate].anyObject;
+//        id idImage=nil;
+//        if([chosenImgOfAreaDetails isKindOfClass:[ImageOfAreaDetails class]])
+//        {
+//            ImageOfAreaDetails *imgOfAreaDetails=(ImageOfAreaDetails *) chosenImgOfAreaDetails;
+//            
+//            idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
+//        }
+//        //Set image for thumbnail
+//        UIImage *image=[UIImage imageWithData:idImage];
+//        PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
+//        [imgView setContentMode:UIViewContentModeScaleAspectFit];
+//        [PicPranckImageServices setImage:[ppImg imageByScalingProportionallyToSize:imgView.frame.size] forImageView:imgView];
+//    }
+//    
+//}
 #pragma mark Retrieve methods
-+(SavedImage *)retrieveDataAtIndex:(NSInteger)index
++(id)retrieveDataAtIndex:(NSInteger)index withType:(NSString *)type
 {
-    NSArray *results=[PicPranckCoreDataServices retrieveAllSavedImages];
+    NSArray *results=[PicPranckCoreDataServices retrieveAllSavedImagesWithType:type];
     //Inserting thumbnails of created PickPrancks
-    for(SavedImage *currManObj in results)
+    for(id currManObj in results)
     {
         //Find core data element with right index
         if(index==[results indexOfObject:currManObj])
@@ -163,13 +179,14 @@ static int newSavedCount=0;
     }
     return nil;
 }
-+(NSArray *)retrieveAllSavedImages
++(NSArray *)retrieveAllSavedImagesWithType:(NSString *)type
 {
     
     //NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO withViewController:nil];
     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:nil];
     //Fetch request
-    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:@"SavedImage"];
+    
+    NSFetchRequest *req=[[NSFetchRequest alloc] initWithEntityName:type];
     //Sort results by date
     NSSortDescriptor *sortDesc=[[NSSortDescriptor alloc] initWithKey:@"dateOfCreation" ascending:YES];
     [req setSortDescriptors:[[NSArray alloc] initWithObjects:sortDesc,nil] ];
@@ -181,18 +198,21 @@ static int newSavedCount=0;
 +(NSMutableArray *)retrieveImagesArrayFromDataAtIndex:(NSInteger)index
 {
     NSMutableArray *arrayOfImgs=[[NSMutableArray alloc] init];
-    SavedImage *savedImg=[PicPranckCoreDataServices retrieveDataAtIndex:index];
-    if(savedImg)
+    Bridge *bridge=[PicPranckCoreDataServices retrieveDataAtIndex:index withType:@"Bridge"];
+    if(bridge)
     {
         //Sort the set
         NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
         NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-        NSArray *sortedArray=[savedImg.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
-        for(ImageOfAreaDetails *imgOfAreaDetails in sortedArray)
+        
+        //Bridge *savedImg=[PicPranckCoreDataServices retrieveDataAtIndex:index withType:@"Bridge"];
+        
+        NSArray *sortedArray=[bridge.imagesOfArea sortedArrayUsingDescriptors:arrayDsc];
+        for(ImageOfArea *imgOfArea in sortedArray)
         {
-            id idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
-            UIImage *image=[UIImage imageWithData:idImage];
-            [arrayOfImgs addObject:image];
+//            id idImage=[imgOfAreaDetails.bridge.imageOfArea dataImage];
+//            UIImage *image=[UIImage imageWithData:idImage];
+            [arrayOfImgs addObject:imgOfArea.dataImage];
         }
         
     }
@@ -312,7 +332,7 @@ static int newSavedCount=0;
 {
     if(0==count)
     {
-        NSArray *results=[PicPranckCoreDataServices retrieveAllSavedImages];
+        NSArray *results=[PicPranckCoreDataServices retrieveAllSavedImagesWithType:@"SavedImage"];
         count=(int)[results count];
     }
     return (NSInteger)count ;

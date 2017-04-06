@@ -76,6 +76,10 @@
 {
     return HEADER_HEIGHT;
 }
++(CGSize)getCellSize
+{
+    return CGSizeMake(ITEM_WIDTH, ITEM_HEIGHT);
+}
 //-(void)setHeaderReferenceSize:(CGSize)headerReferenceSize
 //{
 //    

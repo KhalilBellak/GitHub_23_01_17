@@ -2,7 +2,7 @@
 //  ImageOfArea+CoreDataProperties.h
 //  PicPranck
 //
-//  Created by El Khalil Bellakrid on 05/04/2017.
+//  Created by El Khalil Bellakrid on 06/04/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<ImageOfArea *> *)fetchRequest;
 
 @property (nullable, nonatomic, retain) NSData *dataImage;
-@property (nullable, nonatomic, retain) ImageOfAreaDetails *owner;
+@property (nonatomic) int16_t position;
+@property (nullable, nonatomic, copy) NSString *text;
+@property (nullable, nonatomic, retain) Bridge *owner;
 
 @end
 

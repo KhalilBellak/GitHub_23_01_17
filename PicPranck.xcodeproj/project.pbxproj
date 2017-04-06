@@ -15,6 +15,14 @@
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
 		F9092B311E808917007BB47F /* ModelPicPranck.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */ = {isa = PBXBuildFile; fileRef = F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */; };
+		F91C0A8F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A801E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m */; };
+		F91C0A901E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A821E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m */; };
+		F91C0A911E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A841E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m */; };
+		F91C0A921E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A861E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.m */; };
+		F91C0A931E96C8FD00F7728D /* SavedImage+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A881E96C8FD00F7728D /* SavedImage+CoreDataClass.m */; };
+		F91C0A941E96C8FD00F7728D /* SavedImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A8A1E96C8FD00F7728D /* SavedImage+CoreDataProperties.m */; };
+		F91C0A951E96C8FD00F7728D /* Bridge+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A8C1E96C8FD00F7728D /* Bridge+CoreDataClass.m */; };
+		F91C0A961E96C8FD00F7728D /* Bridge+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A8E1E96C8FD00F7728D /* Bridge+CoreDataProperties.m */; };
 		F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */; };
 		F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CD1E5F8B0900966207 /* PicPranckActionServices.m */; };
 		F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */; };
@@ -60,12 +68,6 @@
 		F9E9EFDA1E51049900828929 /* Editimage.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD71E51049900828929 /* Editimage.png */; };
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
-		F9EAD3371E9511C2002651DF /* ImageOfArea+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD32C1E9511C2002651DF /* ImageOfArea+CoreDataClass.m */; };
-		F9EAD3381E9511C2002651DF /* ImageOfArea+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD32E1E9511C2002651DF /* ImageOfArea+CoreDataProperties.m */; };
-		F9EAD3391E9511C2002651DF /* SavedImage+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3301E9511C2002651DF /* SavedImage+CoreDataClass.m */; };
-		F9EAD33A1E9511C2002651DF /* SavedImage+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3321E9511C2002651DF /* SavedImage+CoreDataProperties.m */; };
-		F9EAD33B1E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3341E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m */; };
-		F9EAD33C1E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAD3361E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,22 @@
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pastel_light.png; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light.png; sourceTree = "<group>"; };
+		F91C0A7F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataClass.h"; sourceTree = "<group>"; };
+		F91C0A801E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataClass.m"; sourceTree = "<group>"; };
+		F91C0A811E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F91C0A821E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F91C0A831E96C8FD00F7728D /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
+		F91C0A841E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataClass.m"; sourceTree = "<group>"; };
+		F91C0A851E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F91C0A861E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F91C0A871E96C8FD00F7728D /* SavedImage+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataClass.h"; sourceTree = "<group>"; };
+		F91C0A881E96C8FD00F7728D /* SavedImage+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataClass.m"; sourceTree = "<group>"; };
+		F91C0A891E96C8FD00F7728D /* SavedImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F91C0A8A1E96C8FD00F7728D /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
+		F91C0A8B1E96C8FD00F7728D /* Bridge+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridge+CoreDataClass.h"; sourceTree = "<group>"; };
+		F91C0A8C1E96C8FD00F7728D /* Bridge+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bridge+CoreDataClass.m"; sourceTree = "<group>"; };
+		F91C0A8D1E96C8FD00F7728D /* Bridge+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridge+CoreDataProperties.h"; sourceTree = "<group>"; };
+		F91C0A8E1E96C8FD00F7728D /* Bridge+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bridge+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F91F91C91E5F836A00966207 /* PicPranckCustomViewsServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckCustomViewsServices.h; sourceTree = "<group>"; };
 		F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCustomViewsServices.m; sourceTree = "<group>"; };
 		F91F91CC1E5F8B0900966207 /* PicPranckActionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActionServices.h; sourceTree = "<group>"; };
@@ -174,18 +192,6 @@
 		F9E9EFD71E51049900828929 /* Editimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Editimage.png; path = Assets.xcassets/AppIcon.appiconset/Editimage.png; sourceTree = "<group>"; };
 		F9E9EFD81E51049900828929 /* MiddleFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiddleFinger.png; path = Assets.xcassets/AppIcon.appiconset/MiddleFinger.png; sourceTree = "<group>"; };
 		F9E9EFD91E51049900828929 /* Settings50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings50.png; path = Assets.xcassets/AppIcon.appiconset/Settings50.png; sourceTree = "<group>"; };
-		F9EAD32B1E9511C2002651DF /* ImageOfArea+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataClass.h"; sourceTree = "<group>"; };
-		F9EAD32C1E9511C2002651DF /* ImageOfArea+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataClass.m"; sourceTree = "<group>"; };
-		F9EAD32D1E9511C2002651DF /* ImageOfArea+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfArea+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F9EAD32E1E9511C2002651DF /* ImageOfArea+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfArea+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F9EAD32F1E9511C2002651DF /* SavedImage+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataClass.h"; sourceTree = "<group>"; };
-		F9EAD3301E9511C2002651DF /* SavedImage+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataClass.m"; sourceTree = "<group>"; };
-		F9EAD3311E9511C2002651DF /* SavedImage+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SavedImage+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F9EAD3321E9511C2002651DF /* SavedImage+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SavedImage+CoreDataProperties.m"; sourceTree = "<group>"; };
-		F9EAD3331E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataClass.h"; sourceTree = "<group>"; };
-		F9EAD3341E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataClass.m"; sourceTree = "<group>"; };
-		F9EAD3351E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
-		F9EAD3361E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataProperties.m"; sourceTree = "<group>"; };
 		F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_finger_emoticon.png; path = Assets.xcassets/AppIcon.appiconset/middle_finger_emoticon.png; sourceTree = "<group>"; };
 		FA65270B0F4DC4C5611207E6 /* Pods-PicPranck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -314,18 +320,22 @@
 		F951415B1E59D746006262A2 /* Core Data  */ = {
 			isa = PBXGroup;
 			children = (
-				F9EAD32B1E9511C2002651DF /* ImageOfArea+CoreDataClass.h */,
-				F9EAD32C1E9511C2002651DF /* ImageOfArea+CoreDataClass.m */,
-				F9EAD32D1E9511C2002651DF /* ImageOfArea+CoreDataProperties.h */,
-				F9EAD32E1E9511C2002651DF /* ImageOfArea+CoreDataProperties.m */,
-				F9EAD32F1E9511C2002651DF /* SavedImage+CoreDataClass.h */,
-				F9EAD3301E9511C2002651DF /* SavedImage+CoreDataClass.m */,
-				F9EAD3311E9511C2002651DF /* SavedImage+CoreDataProperties.h */,
-				F9EAD3321E9511C2002651DF /* SavedImage+CoreDataProperties.m */,
-				F9EAD3331E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.h */,
-				F9EAD3341E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m */,
-				F9EAD3351E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.h */,
-				F9EAD3361E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m */,
+				F91C0A7F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.h */,
+				F91C0A801E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m */,
+				F91C0A811E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.h */,
+				F91C0A821E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m */,
+				F91C0A831E96C8FD00F7728D /* ImageOfArea+CoreDataClass.h */,
+				F91C0A841E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m */,
+				F91C0A851E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.h */,
+				F91C0A861E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.m */,
+				F91C0A871E96C8FD00F7728D /* SavedImage+CoreDataClass.h */,
+				F91C0A881E96C8FD00F7728D /* SavedImage+CoreDataClass.m */,
+				F91C0A891E96C8FD00F7728D /* SavedImage+CoreDataProperties.h */,
+				F91C0A8A1E96C8FD00F7728D /* SavedImage+CoreDataProperties.m */,
+				F91C0A8B1E96C8FD00F7728D /* Bridge+CoreDataClass.h */,
+				F91C0A8C1E96C8FD00F7728D /* Bridge+CoreDataClass.m */,
+				F91C0A8D1E96C8FD00F7728D /* Bridge+CoreDataProperties.h */,
+				F91C0A8E1E96C8FD00F7728D /* Bridge+CoreDataProperties.m */,
 			);
 			name = "Core Data ";
 			sourceTree = "<group>";
@@ -728,17 +738,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F94475AC1E7D47E800A9B7A9 /* PicPranckProfileViewController.m in Sources */,
+				F91C0A911E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m in Sources */,
+				F91C0A921E96C8FD00F7728D /* ImageOfArea+CoreDataProperties.m in Sources */,
 				F94475A51E7B12F500A9B7A9 /* PicPranckEmailSignInViewController.m in Sources */,
 				F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */,
-				F9EAD33A1E9511C2002651DF /* SavedImage+CoreDataProperties.m in Sources */,
 				F964C8B11E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.m in Sources */,
-				F9EAD3381E9511C2002651DF /* ImageOfArea+CoreDataProperties.m in Sources */,
 				F931DD5F1E5CEC8000FC913E /* PicPranckCoreDataServices.m in Sources */,
 				F9A19DF61E34C0D600EE34E6 /* ViewController.m in Sources */,
+				F91C0A901E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m in Sources */,
 				F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */,
 				F9A19DF31E34C0D600EE34E6 /* AppDelegate.m in Sources */,
-				F9EAD33C1E9511C2002651DF /* ImageOfAreaDetails+CoreDataProperties.m in Sources */,
+				F91C0A8F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m in Sources */,
 				F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */,
+				F91C0A941E96C8FD00F7728D /* SavedImage+CoreDataProperties.m in Sources */,
 				F94475A91E7B17BA00A9B7A9 /* UIViewController+Alerts.m in Sources */,
 				F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */,
 				F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */,
@@ -746,16 +758,16 @@
 				F90147731E53586200F3069F /* PicPranckViewController.m in Sources */,
 				F964C8AE1E7F1AD600BFAFDD /* CollectionViewController.m in Sources */,
 				F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */,
-				F9EAD33B1E9511C2002651DF /* ImageOfAreaDetails+CoreDataClass.m in Sources */,
 				F944759D1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m in Sources */,
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
+				F91C0A951E96C8FD00F7728D /* Bridge+CoreDataClass.m in Sources */,
+				F91C0A931E96C8FD00F7728D /* SavedImage+CoreDataClass.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 				F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */,
-				F9EAD3391E9511C2002651DF /* SavedImage+CoreDataClass.m in Sources */,
 				F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */,
 				F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */,
-				F9EAD3371E9511C2002651DF /* ImageOfArea+CoreDataClass.m in Sources */,
 				F931DD6C1E5E554E00FC913E /* PicPranckCollectionViewController.m in Sources */,
+				F91C0A961E96C8FD00F7728D /* Bridge+CoreDataProperties.m in Sources */,
 				F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

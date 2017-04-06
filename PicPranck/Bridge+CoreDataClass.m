@@ -1,5 +1,5 @@
 //
-//  ImageOfAreaDetails+CoreDataClass.m
+//  Bridge+CoreDataClass.m
 //  PicPranck
 //
 //  Created by El Khalil Bellakrid on 06/04/2017.
@@ -7,8 +7,8 @@
 //  This file was automatically generated and should not be edited.
 //
 
-#import "ImageOfAreaDetails+CoreDataClass.h"
-#import "SavedImage+CoreDataClass.h"
-@implementation ImageOfAreaDetails
+#import "Bridge+CoreDataClass.h"
+#import "ImageOfArea+CoreDataClass.h"
+@implementation Bridge
 
 @end

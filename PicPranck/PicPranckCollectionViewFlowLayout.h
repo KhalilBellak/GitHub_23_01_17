@@ -12,4 +12,5 @@
 @property CGFloat cellSize;
 @property NSInteger nbOfElements;
 +(CGFloat)getHeaderHeight;
++(CGSize)getCellSize;
 @end

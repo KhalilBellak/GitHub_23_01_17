@@ -1,5 +1,5 @@
 //
-//  SavedImage+CoreDataClass.h
+//  Bridge+CoreDataClass.h
 //  PicPranck
 //
 //  Created by El Khalil Bellakrid on 06/04/2017.
@@ -10,14 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ImageOfAreaDetails;
+@class ImageOfArea;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SavedImage : NSManagedObject
+@interface Bridge : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "SavedImage+CoreDataProperties.h"
+#import "Bridge+CoreDataProperties.h"

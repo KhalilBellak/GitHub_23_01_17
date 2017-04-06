@@ -20,6 +20,7 @@
 #import "SavedImage+CoreDataClass.h"
 #import "ImageOfArea+CoreDataClass.h"
 #import "ImageOfAreaDetails+CoreDataClass.h"
+#import "Bridge+CoreDataClass.h"
 
 #define X_OFFSET_FROM_CENTER_OF_SCREEN 20
 #define Y_OFFSET_FROM_BOTTOM_OF_SCREEN 60
@@ -39,19 +40,19 @@
     NSMutableArray *arrayOfImages=[[NSMutableArray alloc] init];
     if([vc isKindOfClass:[PicPranckCollectionViewController class]])
     {
-        SavedImage *managedObject=[PicPranckCoreDataServices retrieveDataAtIndex:index];
+        Bridge *managedObject=[PicPranckCoreDataServices retrieveDataAtIndex:index withType:@"Bridge"];
         if(!managedObject)
             return;
         //Sort the set
         NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
         NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-        NSArray *sortedArray=[managedObject.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
-        for(ImageOfAreaDetails *imgOfAreaDetails in sortedArray)
+        NSArray *sortedArray=[managedObject.imagesOfArea sortedArrayUsingDescriptors:arrayDsc];
+        for(ImageOfArea *imgOfArea in sortedArray)
         {
-            id idImage=[imgOfAreaDetails.imageOfAreaWithData dataImage];
-            UIImage *image=[UIImage imageWithData:idImage];
-            [arrayOfImages addObject:image];
+            UIImage *img=[UIImage imageWithData:imgOfArea.dataImage];
+            [arrayOfImages addObject:img];
         }
+        
     }
     else if([vc isKindOfClass:[AvailablePicPranckCollectionViewController class]])
     {
@@ -67,6 +68,7 @@
                 [arrayOfImages addObject:image];
             }
         }
+        
     }
     //Get frame
     CGRect frame = [UIScreen mainScreen].bounds;

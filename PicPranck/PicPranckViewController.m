@@ -34,11 +34,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     //self.modalPresentationStyle = UIModalPresentationFormSheet;
     // Do any additional setup after loading the view.
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:nil];
+    [managedObjCtx reset];
+}
 #pragma mark - Navigation
 
 /*// In a storyboard-based application, you will often want to do a little preparation before navigation
