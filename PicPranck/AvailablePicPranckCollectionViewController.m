@@ -136,7 +136,7 @@ static NSString * const reuseIdentifier = @"CellFromAvailablePP";
                        
                    });
     cell.imageViewInCell.delegate=self;
-    cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
+    //cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
     return cell;
 }
 
