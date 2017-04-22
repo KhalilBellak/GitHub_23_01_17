@@ -5,6 +5,7 @@
 //  Created by El Khalil Bellakrid on 23/02/2017.
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
+#import "CollectionViewController.h"
 
 #import "PicPranckCollectionViewCell.h"
 #import "PicPranckActionServices.h"
@@ -25,8 +26,11 @@
         //tapOnce.cancelsTouchesInView=NO;
         [_imageViewInCell addGestureRecognizer:tapOnce];
         _imageViewInCell.userInteractionEnabled = YES;
+        //self.acces
         [self.contentView addSubview:_imageViewInCell];
     }
+    
+    
     return _imageViewInCell;
 }
 -(UIActivityIndicatorView *)activityIndic
@@ -54,4 +58,15 @@
     [self.imageViewInCell removeFromSuperview];
     self.imageViewInCell = nil;
 }
+//-(void)setSelected:(BOOL)selected
+//{
+//    [super setSelected:selected];
+//    NSInteger collectionViewMode=[CollectionViewController getModeOfCollectionView];
+//    [self.contentView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+//    if(selected && 1==collectionViewMode)
+//        [self.contentView.layer setBorderWidth:2];
+//    else
+//        [self.contentView.layer setBorderWidth:0];
+//    
+//}
 @end

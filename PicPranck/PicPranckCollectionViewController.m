@@ -8,16 +8,24 @@
 
 #import "PicPranckCollectionViewController.h"
 #import "PicPranckViewController.h"
-#import "PicPranckImage.h"
+#import "ViewController.h"
+
 #import "AppDelegate.h"
+
+#import "PicPranckImage.h"
+#import "PicPranckCollectionViewCell.h"
+#import "PicPranckCollectionViewFlowLayout.h"
+
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
 #import "PicPranckCustomViewsServices.h"
-#import "PicPranckCollectionViewCell.h"
+
 #import "ImageOfArea+CoreDataClass.h"
 #import "ImageOfAreaDetails+CoreDataClass.h"
-#import "PicPranckCollectionViewFlowLayout.h"
-#import "ViewController.h"
+#import "SavedImage+CoreDataClass.h"
+#import "Bridge+CoreDataClass.h"
+
+
 
 //TODO: initialize fetchedResultsController in view init and use all mechanisms of update
 
@@ -49,11 +57,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-//    self.handle = [[FIRAuth auth]
-//                   addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
-//                       // ...
-//                   }];
-
     //Refresh collection view
     if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:self])
     {
@@ -67,26 +70,14 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
-    //self.fetchedResultsController=nil;
     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:self];
     [managedObjCtx reset];
-    //[[FIRAuth auth] removeAuthStateDidChangeListener:_handle];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -108,19 +99,7 @@ static NSString * const reuseIdentifier = @"Cell";
     SavedImage *savedImg = [_fetchedResultsController objectAtIndexPath:indexPath];
     //Sort the set
     if(savedImg)
-    {
         return savedImg.imageOfAreaDetails.thumbnail;
-//        NSSortDescriptor *sortDsc=[[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
-//        NSArray *arrayDsc=[[NSArray alloc] initWithObjects:sortDsc, nil];
-//        
-//        NSArray *sortedArray=[savedImg.imageOfAreaDetails sortedArrayUsingDescriptors:arrayDsc];
-//        if(1<[sortedArray count])
-//        {
-//            ImageOfAreaDetails *imgOfAreaDetails=[sortedArray objectAtIndex:1];
-//            //return [imgOfAreaDetails.imageOfAreaWithData dataImage];
-//            
-//        }
-    }
     return nil;
 }
 
@@ -164,7 +143,31 @@ static NSString * const reuseIdentifier = @"Cell";
     self.shouldReloadCollectionView = NO;
     self.blockOperation = [[NSBlockOperation alloc] init];
 }
-
+-(void)deleteSelectedElements:(id)sender
+{
+    NSLog(@"deleteSelectedElements");
+    NSMutableArray *arrayOfIdxPaths=[[NSMutableArray alloc] init];
+    //Sort
+    NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self"
+                                                               ascending: YES];
+    [self.selectedIndices sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
+     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:[PicPranckCoreDataServices areAllPicPrancksDeletedMode:self] fromViewController:self];
+    for(id row in self.selectedIndices)
+    {
+        NSIndexPath *indexPath=[NSIndexPath indexPathForItem:[row integerValue] inSection:0];
+        [arrayOfIdxPaths addObject:indexPath];
+        NSLog(@"row:%ld",(long)indexPath.row);
+        NSLog(@"section:%ld",(long)indexPath.section);
+        Bridge *bridge=[PicPranckCoreDataServices retrieveDataAtIndex:indexPath.row withType:@"Bridge"];
+        SavedImage *savedImage=[PicPranckCoreDataServices retrieveDataAtIndex:indexPath.row withType:@"SavedImage"];
+        [managedObjCtx deleteObject:bridge];
+        [managedObjCtx deleteObject:savedImage];
+    }
+    [self.selectedIndices removeAllObjects];
+    [self backToInitialStateFromBarButtonItem:self.selectButton];
+    NSError *err;
+    [managedObjCtx save:&err];
+}
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
     __weak UICollectionView *collectionView = self.collectionView;
@@ -219,7 +222,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    // Checks if we should reload the collection view to fix a bug @ http://openradar.appspot.com/12954582
     if (self.shouldReloadCollectionView)
         [self.collectionView reloadData];
     else

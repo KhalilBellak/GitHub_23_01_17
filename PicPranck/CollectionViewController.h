@@ -19,10 +19,13 @@
 - (IBAction)goToCustomTab:(id)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *selectButton;
 - (IBAction)selectElements:(id)sender;
-
-
+@property (strong, nonatomic) UIBarButtonItem *trashButton;
+@property (strong,nonatomic) NSMutableArray *selectedIndices;
 -(id)getPreviewImageForCellAtIndexPath:(NSIndexPath *)indexPath;
 -(NSString *)getCellIdentifier;
+-(void)deleteSelectedElements:(id)sender;
+-(void)backToInitialStateFromBarButtonItem:(UIBarButtonItem *)barButton;
++(NSInteger)getModeOfCollectionView;
 @end
 
 

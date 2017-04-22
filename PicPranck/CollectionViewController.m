@@ -21,7 +21,7 @@
 #import "ViewController.h"
 
 //TODO: initialize fetchedResultsController in view init and use all mechanisms of update
-
+static int collectionViewMode = 0;
 @interface CollectionViewController ()
 @property(strong, nonatomic) FIRAuthStateDidChangeListenerHandle handle;
 
@@ -33,10 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    UIBarButtonItem *barButton=[[UIBarButtonItem alloc] initWithTitle:@"Custom" style:UIBarButtonItemStylePlain target:self action:@selector(backToCustom)];
-//    
-//    self.navigationItem.leftBarButtonItem=barButton;
-    
+    [self.collectionView setAllowsMultipleSelection:YES];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     
@@ -50,35 +47,17 @@
     // Register cell classes
     [self.collectionView registerClass:[PicPranckCollectionViewCell class] forCellWithReuseIdentifier:[self getCellIdentifier]];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionViewHeader"];
+    
+    _selectedIndices=[[NSMutableArray alloc] init];
 }
 -(IBAction)backToCustom
 {
     [self.tabBarController setSelectedIndex:0];
 }
-
--(void)viewWillAppear:(BOOL)animated
-{
-    //    self.handle = [[FIRAuth auth]
-    //                   addAuthStateDidChangeListener:^(FIRAuth *_Nonnull auth, FIRUser *_Nullable user) {
-    //                       // ...
-    //                   }];
-    //Refresh collection view
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 - (IBAction)goToCustomTab:(id)sender
 {
      [self.tabBarController setSelectedIndex:0];
@@ -86,6 +65,66 @@
 
 - (IBAction)selectElements:(id)sender
 {
+    if([sender isKindOfClass:[UIBarButtonItem class]])
+    {
+        UINavigationItem *navigVC=self.navigationItem;
+        UITabBarController *tabBarVC=self.tabBarController;
+        
+        UIBarButtonItem *button=(UIBarButtonItem *)sender;
+        if(0==button.tag)
+        {
+            //Replace Select by Delete (in red)
+            [button setTitle:@"Cancel"];
+            //Replace custom button icon with trash button
+            if(!_trashButton)
+                _trashButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteSelectedElements:)];
+                
+            [navigVC setTitle:@"Selected Items"];
+            _trashButton.customView.frame=navigVC.leftBarButtonItem.customView.bounds;
+            [navigVC setLeftBarButtonItem:_trashButton];
+            [_trashButton setEnabled:NO];
+            //Hide tab bar
+            [tabBarVC.tabBar setHidden:YES];
+            button.tag=1;
+        }
+        else if(1==button.tag)
+            [self backToInitialStateFromBarButtonItem:button];
+    }
+}
+-(void)backToInitialStateFromBarButtonItem:(UIBarButtonItem *)barButton
+{
+    UINavigationItem *navigVC=self.navigationItem;
+    UITabBarController *tabBarVC=self.tabBarController;
+    //Put back select button
+    [barButton setTitle:@"Select"];
+    [barButton setTintColor:self.collectionView.tintColor];
+    //Title for tab
+    [navigVC setTitle:@""];
+    //Put back custom button
+    [navigVC setLeftBarButtonItem:_buttonCustomView];
+    //show tab bar
+    [tabBarVC.tabBar setHidden:NO];
+    //Deselect all items
+    for(id row in _selectedIndices)
+    {
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:[row integerValue] inSection:0];
+        UICollectionViewCell *cell=[self.collectionView cellForItemAtIndexPath:indexPath];
+        if([cell isKindOfClass:[PicPranckCollectionViewCell class]])
+        {
+            PicPranckCollectionViewCell *ppCell=(PicPranckCollectionViewCell *)cell;
+            if(ppCell.imageViewInCell)
+                [ppCell.imageViewInCell.layer setBorderWidth:0];
+        }
+    }
+    [_selectedIndices removeAllObjects];
+    
+    if(_trashButton)
+        [_trashButton setEnabled:NO];
+    barButton.tag=0;
+}
+-(void)deleteSelectedElements:(id)sender
+{
+    //To be implemented by subclass
     
 }
 #pragma mark <UICollectionViewDataSource>
@@ -104,31 +143,14 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PicPranckCollectionViewCell *cell =(PicPranckCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:[self getCellIdentifier] forIndexPath:indexPath];
-    cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
+    //cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
     cell.imageViewInCell.delegate=self;
     //Get image for preview
     [cell.activityIndic startAnimating];
     
     id idImage=[self getPreviewImageForCellAtIndexPath:indexPath];
     UIImage *image=[UIImage imageWithData:idImage];
-    
-    //UIImage *image=[self getPreviewImageForCellAtIndexPath:indexPath];
-    //Set it in imageView of Cell
-    
-//    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^
-//                   {
-//                       UIImage *image=[UIImage imageWithData:idImage];
-//                       PicPranckImage *ppImg=[[PicPranckImage alloc] initWithImage:image];
-//                       UIImage *imageToUse=[ppImg imageByScalingProportionallyToSize:cell.imageViewInCell.frame.size];
-//                       
-//                       dispatch_async(dispatch_get_main_queue(), ^{
-//                           [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
-//                           [PicPranckImageServices setImage:imageToUse forImageView:cell.imageViewInCell];
-//                           [cell.activityIndic stopAnimating];
-//                       });
-//                       
-//                       
-//                   });
+
     [cell.imageViewInCell setContentMode:UIViewContentModeScaleAspectFit];
     [PicPranckImageServices setImage:image forImageView:cell.imageViewInCell];
     [cell.activityIndic stopAnimating];
@@ -147,10 +169,27 @@
 }
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+//    NSLog(@"didDeselectItemAtIndexPath:%ld",indexPath.row);
+//    if(1==_selectButton.tag)
+//        [_selectedIndices removeObject:@(indexPath.row)];
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSLog(@"didSelectItemAtIndexPath:%ld",indexPath.row);
+//    
+//    PicPranckCollectionViewCell *cell =(PicPranckCollectionViewCell *) [collectionView dequeueReusableCellWithReuseIdentifier:[self getCellIdentifier] forIndexPath:indexPath];
+//    collectionViewMode=(int)_selectButton.tag;
+//    [self cellTaped:cell.imageViewInCell withIndex:indexPath.row];
+//    //Highlight cell
+//    [cell.contentView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+//        if(1==collectionViewMode)
+//            [cell.contentView.layer setBorderWidth:2];
+//        else
+//            [cell.contentView.layer setBorderWidth:0];
+//    
+//        //[cell setSelected:NO];
+//    if(0==_selectButton.tag)
+//        [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     
 }
 //-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -199,7 +238,6 @@
 //        [self.collectionView setContentOffset:originalCGP animated:NO];
 //    }
 //}
-
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     return 20;
@@ -223,39 +261,44 @@
 {
     return CGSizeMake(self.collectionView.frame.size.width, [PicPranckCollectionViewFlowLayout getHeaderHeight]);
 }
-//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
-//                                            UICollectionElementKindSectionHeader withReuseIdentifier:@"collectionViewHeader" forIndexPath:indexPath];
-//    if (kind == UICollectionElementKindSectionHeader)
-//    {
-//        [self updateSectionHeader:headerView forIndexPath:indexPath];
-//    }
-//    NSLog(@"header frame: (w,h)=(%f,%f)",headerView.frame.size.width,headerView.frame.size.height);
-//    return headerView;
-//}
-//
-//- (void)updateSectionHeader:(UICollectionReusableView *)header forIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSString *text = [NSString stringWithFormat:@"HEADER"];
-//    if([self isKindOfClass:[PicPranckCollectionViewController class]])
-//        text=@"My PickPranks";
-//    else
-//        text=@"Images";
-//    
-//    NSAttributedString *AttrText=[PicPranckCustomViewsServices getAttributedStringWithString:text withFontSize:15];
-//    
-//    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(self.collectionView.frame.origin.x,self.collectionView.frame.origin.y,self.collectionView.frame.size.width, header.frame.size.height)];
-//    //label.center=self.collectionView.center;
-//    
-//    [label setAttributedText:AttrText];
-//    [header addSubview:label];
-//    //header.label.text = text;
-//}
+
 #pragma mark <PicPranckImageViewDelegate>
--(void)cellTaped:(PicPranckImageView *)sender
+-(void)cellTaped:(PicPranckImageView *)sender //withIndex:(NSInteger)index
 {
-    [PicPranckCustomViewsServices createPreviewInCollectionViewController:self WithIndex:sender.indexOfViewInCollectionView];
+    NSInteger index=0;
+    UIView *cell=[[sender superview] superview];
+    PicPranckCollectionViewCell *ppCell;
+    if([cell isKindOfClass:[PicPranckCollectionViewCell class]])
+    {
+        ppCell=(PicPranckCollectionViewCell *)cell;
+        index=[[self.collectionView indexPathForCell:ppCell] row];
+    }
+    if(0==_selectButton.tag)
+        [PicPranckCustomViewsServices createPreviewInCollectionViewController:self WithIndex:index];
+    else if(1==_selectButton.tag)
+    {
+        CGFloat borderWidth=0;
+        if(_trashButton && ![_trashButton isEnabled])
+            [_trashButton setEnabled:YES];
+        
+        if([self elementIsAlreadySelectedAtIndex:index])
+        {
+            [_selectedIndices removeObject:@(index)];
+            if(0==[_selectedIndices count])
+               [_trashButton setEnabled:NO];
+        }
+        else
+        {
+            [_selectedIndices addObject:@(index)];
+            borderWidth=4;
+        }
+        //Highlight Cell
+        if(ppCell)
+        {
+            [ppCell.imageViewInCell.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+            [ppCell.imageViewInCell.layer setBorderWidth:borderWidth];
+        }
+    }
 }
 #pragma mark <PicPranckButtonDelegate>
 -(void)useImage:(PicPranckButton *)sender
@@ -316,5 +359,20 @@
 -(void)dismissViewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(BOOL)elementIsAlreadySelectedAtIndex:(NSInteger)index
+{
+    bool result=NO;
+    for(id currId in _selectedIndices)
+    {
+        NSInteger iId=[currId integerValue];
+        if(iId==index)
+            result=YES;
+    }
+    return result;
+}
++(NSInteger)getModeOfCollectionView
+{
+    return collectionViewMode ;
 }
 @end

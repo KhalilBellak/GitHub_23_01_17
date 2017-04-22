@@ -44,8 +44,9 @@
         if([sender.view isKindOfClass:[PicPranckImageView class]])
         {
             PicPranckImageView *imgView=(PicPranckImageView *)sender.view;
-            [imgView.delegate cellTaped:imgView];
+            [imgView.delegate cellTaped:imgView ];//withIndex:0];
         }
     }
 }
+
 @end

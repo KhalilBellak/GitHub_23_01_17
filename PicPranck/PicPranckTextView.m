@@ -31,7 +31,7 @@
 }
 -(void)initWithDelegate:(id<UITextViewDelegate> ) textViewDelegate ImageView:(UIImageView *)iImageView AndText:(NSString *)text
 {
-    
+    self.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.delegate=textViewDelegate;
     self.imageView=iImageView;
     //self.imageView.contentMode=UIViewContentModeScaleAspectFit;

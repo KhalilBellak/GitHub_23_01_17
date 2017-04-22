@@ -23,7 +23,7 @@
 //TODO: To delete later
 
 @implementation PicPranckImageView
-@synthesize indexOfViewInCollectionView=_indexOfViewInCollectionView;
+//@synthesize indexOfViewInCollectionView=_indexOfViewInCollectionView;
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -34,56 +34,16 @@
 */
 #pragma mark Gesture Recognizers
 
--(void) longPress: (UILongPressGestureRecognizer *)sender
-{
-//    if ( sender.state == UIGestureRecognizerStateBegan)
+//-(void)deleteImageView: (UITapGestureRecognizer *)sender
+//{
+//    if ( sender.state == UIGestureRecognizerStateEnded )
 //    {
-//        //View to remove the delete button when clicking somewhere else than delete button
-//        _layerView=[[UIView alloc] initWithFrame:self.viewController.view.frame];
-//        [_layerView setBackgroundColor:[UIColor clearColor]];
-//        [self.viewController.view addSubview:_layerView];
-//        //Gesture recognizer for layerView
-//        UITapGestureRecognizer *tapOnceForCancel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeDeleteButton:)];
-//        tapOnceForCancel.numberOfTouchesRequired = 1;
-//        [_layerView addGestureRecognizer:tapOnceForCancel];
-//        //Creating delete button
-//        CGFloat radius=self.frame.size.width/DELETE_BUTTON_RELATIVE_RADIUS;
-//        CGRect frame=CGRectMake(self.frame.origin.x-radius,self.frame.origin.y-radius,2*radius,2*radius);
-//        UIView *deleteButton = [[UIView alloc] initWithFrame:frame];
-//        //deleteButton.alpha = 0.5;
-//        deleteButton.layer.cornerRadius = radius;
-//        deleteButton.backgroundColor = [UIColor blackColor];
-//        [deleteButton.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-//        [deleteButton.layer setBorderWidth:1];
-//        //Add label to delete button
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-//        [label setTextColor:[UIColor whiteColor]];
-//        [label setBackgroundColor:[UIColor clearColor]];
-//        [label setFont:[UIFont fontWithName: @"Impact" size: 10.0f*DELETE_BUTTON_RELATIVE_RADIUS/4]];
-//        [label setText:@"X"];
-//        [label setTextAlignment:NSTextAlignmentCenter];
-//        [deleteButton addSubview:label];
-//        [deleteButton bringSubviewToFront:label];
-//        //Gesture recognizer for delete button
-//        UITapGestureRecognizer *tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImageView:)];
-//        tapOnce.numberOfTouchesRequired = 1;
-//        [deleteButton addGestureRecognizer:tapOnce];
-//        
-//        [_layerView addSubview:deleteButton];
-//        [_layerView bringSubviewToFront:deleteButton];
+//        //Delete image from data
+//        [PicPranckCoreDataServices removeImages:_managedObject];
+//        [_layerView removeFromSuperview];
+//        [self removeFromSuperview];
 //    }
-}
-
--(void)deleteImageView: (UITapGestureRecognizer *)sender
-{
-    if ( sender.state == UIGestureRecognizerStateEnded )
-    {
-        //Delete image from data
-        [PicPranckCoreDataServices removeImages:_managedObject];
-        [_layerView removeFromSuperview];
-        [self removeFromSuperview];
-    }
-}
+//}
 -(void)removeDeleteButton: (UITapGestureRecognizer *)sender
 {
     if ( sender.state == UIGestureRecognizerStateEnded )

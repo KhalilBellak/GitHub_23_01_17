@@ -13,13 +13,14 @@
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckImageServices.h"
 #import "PicPranckCoreDataServices.h"
+
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 #import "UIImageView+AFNetworking.h"
 
 @import Firebase;
-//#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface PicPranckProfileViewController ()
 
@@ -116,7 +117,44 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
         else if (indexPath.row==[tableView numberOfRowsInSection:1]-2)
             [self showMessagePrompt:@"Do you really want to delete all PickPranks ?" withActionBlockOfType:@"Remove all"];
     }
+    else if(2==indexPath.section)
+    {
+        NSLog(@"Nb Of rows: %ldl",(long)[tableView numberOfRowsInSection:2]);
+        NSLog(@"Index of row: %ldl",(long)indexPath.row);
+        if(1==indexPath.row)
+        {
+            if([MFMailComposeViewController canSendMail])
+            {
+                MFMailComposeViewController *mailVC=[[MFMailComposeViewController alloc] init];
+                [mailVC setMailComposeDelegate:self];
+                // Configure the fields of the interface.
+                //[mailVC setToRecipients:@[@"address@example.com"]];
+                [mailVC setSubject:[PicPranckProfileViewController getTitle]];
+                [mailVC setMessageBody:[PicPranckProfileViewController getDescription] isHTML:YES];
+                
+                // Present the view controller modally.
+                [self presentViewController:mailVC animated:YES completion:nil];
+            }
+            else
+                [self showMessagePrompt:@"Mail services are not available !"];
+        }
+        else if(0==indexPath.row)
+        {
+            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+            content.contentTitle=[PicPranckProfileViewController getTitle];
+            content.contentDescription=[PicPranckProfileViewController getDescription];
+            content.contentURL = [NSURL URLWithString:@"http://pickprank-app.com/"];
+            [FBSDKMessageDialog showWithContent:content delegate:nil];
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    // Check the result or perform other tasks.
+    
+    // Dismiss the mail compose view controller.
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)logOut
 {
@@ -138,6 +176,18 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
         TabBarViewController *tabBarVC=(TabBarViewController *)self.tabBarController;
         tabBarVC.allPicPrancksRemovedMode=YES;
     }
+}
++(NSString *)getTitle
+{
+    return @"Let the troll inside you take over! ";
+}
++(NSString *)getDescription
+{
+    NSString *string1=@"Hello !";
+    NSString *string2=@"Here is my application to create customizable PickPranks: ";
+    NSString *string3=@"http://pickprank-app.com/";
+    NSString *desc=[NSString stringWithFormat:@"%@\r%@\r%@",string1,string2,string3];
+    return desc;
 }
 //#pragma mark <UITableViewDelegate>
 //-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

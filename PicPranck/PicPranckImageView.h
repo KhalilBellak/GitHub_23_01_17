@@ -13,7 +13,7 @@
 @class PicPranckImageView;
 @protocol PicPranckImageViewDelegate < NSObject >
 
--(void)cellTaped:(PicPranckImageView *)sender;
+-(void)cellTaped:(PicPranckImageView *)sender; //withIndex:(NSInteger) index;
 
 @end
 
