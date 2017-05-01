@@ -21,6 +21,7 @@
 //Services
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckImageServices.h"
+#import "PicPranckEncryptionServices.h"
 //PicPranck objects
 #import "PicPranckImageView.h"
 #import "PicPranckImage.h"
@@ -75,7 +76,51 @@ static int newSavedCount=0;
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController
 {
     bool forceRest=FALSE;
-    
+    if([PicPranckEncryptionServices isFirebaseMode])
+    {
+        NSInteger nbOfSavedPP=[PicPranckEncryptionServices getNumberOfUserPicPranks:NO];
+//        [PicPranckEncryptionServices createStorageForImageAtAreaOfIndex:0 fromArrayOfImages:listOfImages withNumberOfPicPranks:nbOfSavedPP fromViewController:viewController];
+        [PicPranckEncryptionServices createStorageForImages:listOfImages withNumberOfPicPranks:nbOfSavedPP fromViewController:viewController];
+        //Let user know that save was successful
+        [viewController showMessagePrompt:@"PickPranck saved !"];
+        //Increment nb of saved PP in database
+        [PicPranckEncryptionServices setNumberOfUserPicPranks:++nbOfSavedPP forceUpdateInDB:YES];
+        return;
+//        NSInteger nbOfSavedPP=[PicPranckEncryptionServices getNumberOfUserPicPranks];
+//        NSString *nameOfFolder=[NSString stringWithFormat:@"PickPrank_%@",[@(nbOfSavedPP) stringValue]];
+//        NSString *pathToStorageReference=[NSString stringWithFormat:@"usersPicPrancks/%@/%@",[FIRAuth auth].currentUser.displayName,nameOfFolder];
+//        
+//        //Add to storage
+//        FIRStorage *storage=[FIRStorage storageWithURL:@"gs://picpranck.appspot.com"];
+//        //FIRStorageReference *storageRef = [storage referenceWithPath:pathToStorageReference];
+//        BOOL shouldBreak=NO;
+//            for(UIImage *currImage in listOfImages)
+//            {
+//                //TODO: handle thumbnail
+//                
+//                NSData *imageData = UIImageJPEGRepresentation(currImage,1.0);
+//                
+//                NSString *indexAndExtensionOfImage=[NSString stringWithFormat:@"_%@.jpg",[@([listOfImages indexOfObject:currImage]) stringValue]];
+//                NSString *pathToImageStorage=[NSString stringWithFormat:@"%@/image%@",pathToStorageReference,indexAndExtensionOfImage];
+//               FIRStorageReference *storageRef = [storage referenceWithPath:pathToImageStorage];
+//            // Upload the file to the path "usersPicPrancks/userDisplayName/PickPrank_nbOfSavedPP/image_indexOfCurrentImage.jpg"
+//            FIRStorageUploadTask *uploadTask = [storageRef putData:imageData
+//                                                         metadata:nil
+//                                                       completion:^(FIRStorageMetadata *metadata,
+//                                                                    NSError *error) {
+//                                                           if (error) {
+//                                                               [viewController showMessagePrompt:error.localizedDescription];
+//                                                           } else {
+//                                                               if(2==[listOfImages indexOfObject:currImage])
+//                                                                   [viewController showMessagePrompt:@"PickPranck saved !"];
+//                                                               // Metadata contains file metadata such as size, content-type, and download URL.
+//                                                               //NSURL *downloadURL = metadata.downloadURL;
+//                                                           }
+//                                                       }];
+//            }
+
+
+    }
     if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:viewController])
     {
         if([viewController.tabBarController isKindOfClass:[TabBarViewController class]])

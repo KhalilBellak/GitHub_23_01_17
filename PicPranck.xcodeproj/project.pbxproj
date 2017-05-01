@@ -15,6 +15,7 @@
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
 		F9092B311E808917007BB47F /* ModelPicPranck.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F90147741E53993D00F3069F /* ModelPicPranck.xcdatamodeld */; };
 		F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */ = {isa = PBXBuildFile; fileRef = F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */; };
+		F914E2201EB7444B00F67844 /* PicPranckEncryptionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F914E21F1EB7444B00F67844 /* PicPranckEncryptionServices.m */; };
 		F91C0A8F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A801E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m */; };
 		F91C0A901E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A821E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.m */; };
 		F91C0A911E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A841E96C8FD00F7728D /* ImageOfArea+CoreDataClass.m */; };
@@ -60,6 +61,7 @@
 		F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */; };
 		F9E16B051E9111EE00FA0D6B /* simple_fuck_no_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E16B041E9111ED00FA0D6B /* simple_fuck_no_back.png */; };
 		F9E16B071E91166000FA0D6B /* blue_pastel_darker_HQ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F9E16B061E91166000FA0D6B /* blue_pastel_darker_HQ.jpg */; };
+		F9E642B61EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E642B51EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.m */; };
 		F9E9EFCE1E506B3200828929 /* PicPranckActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */; };
 		F9E9EFD01E50FA9800828929 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFCF1E50FA9800828929 /* gear.png */; };
 		F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD11E50FAAE00828929 /* paperbox.png */; };
@@ -104,6 +106,8 @@
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pastel_light.png; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light.png; sourceTree = "<group>"; };
+		F914E21E1EB7444B00F67844 /* PicPranckEncryptionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckEncryptionServices.h; sourceTree = "<group>"; };
+		F914E21F1EB7444B00F67844 /* PicPranckEncryptionServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckEncryptionServices.m; sourceTree = "<group>"; };
 		F91C0A7F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataClass.h"; sourceTree = "<group>"; };
 		F91C0A801E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageOfAreaDetails+CoreDataClass.m"; sourceTree = "<group>"; };
 		F91C0A811E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 		F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImageView.m; sourceTree = "<group>"; };
 		F9E16B041E9111ED00FA0D6B /* simple_fuck_no_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_fuck_no_back.png; path = Assets.xcassets/AppIcon.appiconset/simple_fuck_no_back.png; sourceTree = "<group>"; };
 		F9E16B061E91166000FA0D6B /* blue_pastel_darker_HQ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_pastel_darker_HQ.jpg; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_darker_HQ.jpg; sourceTree = "<group>"; };
+		F9E642B41EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckFirebaseCollectionViewController.h; sourceTree = "<group>"; };
+		F9E642B51EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckFirebaseCollectionViewController.m; sourceTree = "<group>"; };
 		F9E9EFCC1E506B3200828929 /* PicPranckActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActivityItemProvider.h; sourceTree = "<group>"; };
 		F9E9EFCD1E506B3200828929 /* PicPranckActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckActivityItemProvider.m; sourceTree = "<group>"; };
 		F9E9EFCF1E50FA9800828929 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Assets.xcassets/AppIcon.appiconset/gear.png; sourceTree = "<group>"; };
@@ -258,6 +264,8 @@
 				F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */,
 				F91F91CC1E5F8B0900966207 /* PicPranckActionServices.h */,
 				F91F91CD1E5F8B0900966207 /* PicPranckActionServices.m */,
+				F914E21E1EB7444B00F67844 /* PicPranckEncryptionServices.h */,
+				F914E21F1EB7444B00F67844 /* PicPranckEncryptionServices.m */,
 			);
 			name = PicPranckServices;
 			sourceTree = "<group>";
@@ -283,6 +291,8 @@
 				F94475AB1E7D47E800A9B7A9 /* PicPranckProfileViewController.m */,
 				F90147711E53586200F3069F /* PicPranckViewController.h */,
 				F90147721E53586200F3069F /* PicPranckViewController.m */,
+				F9E642B41EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.h */,
+				F9E642B51EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -755,6 +765,8 @@
 				F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */,
 				F931DD691E5E542900FC913E /* PicPranckCollectionViewCell.m in Sources */,
 				F94475A21E7B114E00A9B7A9 /* PicPranckSignInViewController.m in Sources */,
+				F914E2201EB7444B00F67844 /* PicPranckEncryptionServices.m in Sources */,
+				F9E642B61EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.m in Sources */,
 				F90147731E53586200F3069F /* PicPranckViewController.m in Sources */,
 				F964C8AE1E7F1AD600BFAFDD /* CollectionViewController.m in Sources */,
 				F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */,

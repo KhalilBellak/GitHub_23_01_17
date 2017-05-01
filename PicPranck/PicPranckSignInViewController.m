@@ -11,6 +11,7 @@
 #import "UIViewController+Alerts.h"
 #import "PicPranckImageServices.h"
 #import "PicPranckCustomViewsServices.h"
+#import "PicPranckEncryptionServices.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -124,6 +125,7 @@ typedef enum : NSUInteger {
                                                   // [END_EXCLUDE]
                                                   return;
                                               }
+                                              [PicPranckEncryptionServices getOrCreateSaltyKey:user];
                                               [self performSegueWithIdentifier:@"signInSucceeded" sender:self];
                                               // [END signin_credential]
                                           }];

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-
+#import "PicPranckEncryptionServices.h"
 @import Firebase;
 
 @interface AppDelegate ()
@@ -25,6 +25,7 @@
     
     if([[FIRAuth auth] currentUser])
     {
+        [PicPranckEncryptionServices getNumberOfUserPicPranks:YES];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
         UIViewController *viewController =[storyboard instantiateViewControllerWithIdentifier:@"TabBarViewController"];
