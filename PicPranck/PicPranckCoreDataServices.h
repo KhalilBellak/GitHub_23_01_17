@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class ViewController;
-@class PicPranckCollectionViewController;
+//@class PicPranckCollectionViewController;
 @class PicPranckCollectionViewCell;
 @class SavedImage;
 @class NSManagedObject;

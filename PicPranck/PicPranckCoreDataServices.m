@@ -14,7 +14,7 @@
 #import "ImageOfAreaDetails+CoreDataClass.h"
 #import "Bridge+CoreDataClass.h"
 //View controller
-#import "PicPranckCollectionViewController.h"
+//#import "PicPranckCollectionViewController.h"
 #import "ViewController.h"
 #import "TabBarViewController.h"
 #import "PicPranckProfileViewController.h"

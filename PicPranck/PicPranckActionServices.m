@@ -12,7 +12,7 @@
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckImageView.h"
 #import "ViewController.h"
-#import "PicPranckCollectionViewController.h"
+//#import "PicPranckCollectionViewController.h"
 #import "PicPranckButton.h"
 
 @implementation PicPranckActionServices
