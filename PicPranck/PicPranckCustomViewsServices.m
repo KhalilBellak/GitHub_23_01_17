@@ -16,6 +16,7 @@
 #import "PicPranckCollectionViewController.h"
 #import "AvailablePicPranckCollectionViewController.h"
 #import "CollectionViewController.h"
+#import "PicPranckFirebaseCollectionViewController.h"
 #import "PicPranckViewController.h"
 #import "SavedImage+CoreDataClass.h"
 #import "ImageOfArea+CoreDataClass.h"
@@ -61,6 +62,22 @@
         {
             NSString *key=[[vcAvailablePPVC listOfKeys] objectAtIndex:index];
             NSArray *arrayOfNSURL=[[vcAvailablePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
+            for(NSURL *url in arrayOfNSURL)
+            {
+                NSData *data=[NSData dataWithContentsOfURL:url];
+                UIImage *image=[[UIImage alloc] initWithData:data];
+                [arrayOfImages addObject:image];
+            }
+        }
+        
+    }
+    else if([vc isKindOfClass:[PicPranckFirebaseCollectionViewController class]])
+    {
+        PicPranckFirebaseCollectionViewController *vcFireBasePPVC=(PicPranckFirebaseCollectionViewController *)vc;
+        if(index<[[vcFireBasePPVC listOfKeys] count])
+        {
+            NSString *key=[[vcFireBasePPVC listOfKeys] objectAtIndex:index];
+            NSArray *arrayOfNSURL=[[vcFireBasePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
             for(NSURL *url in arrayOfNSURL)
             {
                 NSData *data=[NSData dataWithContentsOfURL:url];
