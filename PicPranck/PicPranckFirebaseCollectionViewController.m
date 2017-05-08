@@ -62,14 +62,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
     [super viewWillAppear:animated];
 }
-/////TEST//////
--(void)viewDidAppear:(BOOL)animated
-{
-    for(NSString *key in _listOfKeys)
-    {
-        NSLog(@"KEY AT:%ld =%@",[_listOfKeys indexOfObject:key],key);
-    }
-}
+
 -(void)updateCells:(FIRDataSnapshot *)snapshot
 {
     [self.collectionView reloadData];
@@ -102,14 +95,11 @@ static NSString * const reuseIdentifier = @"Cell";
     {
         //If not, create it
         NSError * error = nil;
-        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath: pathToCacheDirectory
+        [[NSFileManager defaultManager] createDirectoryAtPath: pathToCacheDirectory
                                                  withIntermediateDirectories:YES
                                                                   attributes:nil
                                                                        error:&error];
-        if(error)
-        {
-            NSLog(@"ERROR DIRECTORY CRREATION:%@",error.description);
-        }
+
     }
     else if([[NSFileManager defaultManager] fileExistsAtPath:pathToCachedImagePreview isDirectory:nil])
     {
@@ -117,9 +107,7 @@ static NSString * const reuseIdentifier = @"Cell";
         NSArray *arrayOfNSURL=[_dicoNSURLOfAvailablePickPranks objectForKey:pictureName];
         if(arrayOfNSURL && 1<[arrayOfNSURL count])
         {
-            //NSData *data=[NSData dataWithContentsOfFile:[arrayOfNSURL objectAtIndex:1]];
             NSData *data=[NSData dataWithContentsOfURL:[arrayOfNSURL objectAtIndex:1]];
-            //UIImage *image=[[UIImage alloc] initWithData:data];
             UIImage *imagePreview=[[UIImage alloc] initWithData:data];
             [cell.imageViewInCell setImage:imagePreview];
             if(imagePreview)
@@ -151,8 +139,6 @@ static NSString * const reuseIdentifier = @"Cell";
                            NSData *cachedData=[NSData dataWithContentsOfURL:localURL];
                            [localURL getResourceValue:&isAFile
                                                forKey:NSURLFileResourceTypeKey error:&err];
-                           //if(err)
-                           //    [self showMessagePrompt:err.description];
                            
                            // Download to the local filesystem
                            if(0>=isAFile && !cachedData)
@@ -164,18 +150,12 @@ static NSString * const reuseIdentifier = @"Cell";
                                    } else {
                                        
                                        NSData *decryptedData =[PicPranckEncryptionServices decryptImage:data];
-                                       
-                                       bool IsOK=[decryptedData writeToURL:localURL  atomically:YES];
-                                       if(IsOK)
-                                       {
-                                           NSLog(@"DOWNLOAD OK");
-                                       }
+                                       [decryptedData writeToURL:localURL  atomically:YES];
 
                                        //Set thumbnail
                                        if(2==i)
                                        {
                                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                               [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
                                                [cell.imageViewInCell setImage:[UIImage imageWithData:decryptedData]];
                                                [cell.activityIndic stopAnimating];
                                            });
@@ -187,8 +167,8 @@ static NSString * const reuseIdentifier = @"Cell";
                            }
                            else if(2==i && cachedData)
                            {
+                               //Set thumbnail
                                dispatch_async(dispatch_get_main_queue(), ^{
-                                   //                                               [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
                                    [cell.imageViewInCell setImage:[UIImage imageWithData:cachedData]];
                                    [cell.activityIndic stopAnimating];
                                });
