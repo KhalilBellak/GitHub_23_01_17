@@ -9,9 +9,10 @@
 #import "PicPranckImageView.h"
 #import "PicPranckImageServices.h"
 #import "PicPranckCoreDataServices.h"
+#import "PicPranckEncryptionServices.h"
 #import "ViewController.h"
 #import "ImageOfArea+CoreDataClass.h"
-
+#import "PicPranckFirebaseCollectionViewController.h"
 #define X_OFFSET_FROM_CENTER_OF_SCREEN 20
 #define Y_OFFSET_FROM_BOTTOM_OF_SCREEN 60
 #define BUTTON_WIDTH 100
@@ -44,6 +45,18 @@
 //        [self removeFromSuperview];
 //    }
 //}
+-(void)setImage:(UIImage *)image
+{
+    if([self.delegate isKindOfClass:[PicPranckFirebaseCollectionViewController class]])
+    {
+        
+        NSData *imageData = UIImagePNGRepresentation(image);
+        UIImage *decryptedImage=[PicPranckEncryptionServices decryptImage:imageData];
+        [super setImage:decryptedImage];
+        return;
+    }
+    [super setImage:image];
+}
 -(void)removeDeleteButton: (UITapGestureRecognizer *)sender
 {
     if ( sender.state == UIGestureRecognizerStateEnded )

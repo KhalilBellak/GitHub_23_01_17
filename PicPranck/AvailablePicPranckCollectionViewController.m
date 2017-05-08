@@ -41,7 +41,7 @@ static NSString * const reuseIdentifier = @"CellFromAvailablePP";
  
     //Firebase Database
     self.firebaseRef = [[FIRDatabase database] reference];
-    FIRDatabaseReference *availablePP=[self.firebaseRef child:@"availablePickPranks"];
+    FIRDatabaseReference *availablePP=[self.firebaseRef child:@"availablePicPrancks"];
     self.dataSource = [self.collectionView bindToQuery:availablePP//self.firebaseRef
                                           populateCell:^UICollectionViewCell *(UICollectionView *collectionView,
                                                                                NSIndexPath *indexPath,

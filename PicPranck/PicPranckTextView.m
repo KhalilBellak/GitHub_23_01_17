@@ -38,10 +38,15 @@
     self.imageView.clipsToBounds=YES;
     //UIColor *pWhiteColor=[UIColor whiteColor];
     
+    //Text and edition
+    //Edition of text view
+    self.editable=YES;
+    self.edited=NO;
     if([text length]>0)
     {
         NSAttributedString *attributedText=[PicPranckCustomViewsServices getAttributedStringWithString:text withFontSize:22.0f];
         [self setAttributedText:attributedText ];
+        self.edited=YES;
     }
 
     //Gestures
@@ -52,9 +57,7 @@
     [self.gestureView setBackgroundColor:[UIColor clearColor]];
     iImageView.userInteractionEnabled=YES;
     self.gestureView.userInteractionEnabled=YES;
-    //Edition of text view
-    self.editable=YES;
-    self.edited=NO;
+    
     [self setTextAlignment:NSTextAlignmentCenter];
     //Layout
     [self setBackgroundColor:[UIColor clearColor]];
@@ -83,6 +86,7 @@
     if(textViewToCopy && targetTextView)
     {
         NSString *text = [NSString stringWithFormat:@"%@", textViewToCopy.text];
+       
         [targetTextView initWithDelegate:textViewToCopy.delegate ImageView:iImageView AndText:text];
     }
 }

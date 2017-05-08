@@ -25,7 +25,11 @@
     
     if([[FIRAuth auth] currentUser])
     {
-        [PicPranckEncryptionServices getNumberOfUserPicPranks:YES];
+        //[PicPranckEncryptionServices getNumberOfUserPicPranks:YES];
+        [PicPranckEncryptionServices getOrCreateSaltyKey:[[FIRAuth auth] currentUser]];
+        [PicPranckEncryptionServices getPassword];
+        
+        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
         UIViewController *viewController =[storyboard instantiateViewControllerWithIdentifier:@"TabBarViewController"];

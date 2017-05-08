@@ -22,7 +22,7 @@
 //Pods
 #import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
 
-
+#define MAXIMUM_DATA_SIZE 250000
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
 @interface ViewController ()
 @end
@@ -34,6 +34,7 @@
 @synthesize listOfTextViews=_listOfTextViews;
 @synthesize  activityViewController=_activityViewController;
 @synthesize documentInteractionController=_documentInteractionController;
+@synthesize activityType=_activityType;
 //@synthesize ppImage=_ppImage;
 
 #pragma mark View Controller methods
@@ -203,6 +204,10 @@
     NSString *key=@"UIImagePickerControllerOriginalImage";
     //Get image from UIImagePickerController
     UIImage *imageFromPicker=[info objectForKey:key];
+    
+    NSData *imgData = UIImageJPEGRepresentation(imageFromPicker, 0); //1 it represents the quality of the image.
+    NSInteger dataSize=[imgData length];
+    NSLog(@"Size of Image(bytes):%lu",(unsigned long)dataSize);
     //Set it in the right image view
     [PicPranckImageServices setImage:imageFromPicker forPicPranckTextView:tapedTextView inViewController:self];
     [self dismissViewControllerAnimated:TRUE completion:NULL];

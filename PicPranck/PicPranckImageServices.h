@@ -17,7 +17,7 @@
 
 + (NSMutableDictionary *)dicOfSizes;
 
-+(void)generateImageToSend:(ViewController *)viewController;
++(UIImage *)generateImageToSend:(ViewController *)viewController;
 +(void)sendPicture:(ViewController *)viewController;
 
 +(void)setImage:(UIImage *)iImage forPicPranckTextView:(PicPranckTextView *)pPTextView inViewController: (ViewController *)viewController;

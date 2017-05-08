@@ -29,7 +29,11 @@
         [dict setValue:[NSValue valueWithCGSize:CGSizeMake(300, 1000)]
                        forKey:@"Facebook"];
         [dict setValue:[NSValue valueWithCGSize:CGSizeMake(300, 400)]
+        //[dict setValue:[NSValue valueWithCGSize:CGSizeMake(600, 400)]
+        //[dict setValue:[NSValue valueWithCGSize:CGSizeMake(800,900)]
                        forKey:@"iMessage"];
+        [dict setValue:[NSValue valueWithCGSize:CGSizeMake(500, 500)]
+                forKey:@"Preview"];
     }
     return dict;
 }
@@ -92,7 +96,7 @@
     }
 }
 #pragma mark Generate Picture for sharing
-+(void)generateImageToSend:(ViewController *)viewController
++(UIImage *)generateImageToSend:(ViewController *)viewController
 {
     //TODO: handle cases when no image selected (need to resize them)
     //Create clones of UIImageViews and UITextViews
@@ -101,8 +105,9 @@
     NSMutableArray *listOfTextViewsClones=[[NSMutableArray alloc] init];
     NSMutableArray *listOfImageViewsClones=[[NSMutableArray alloc] init];
     NSMutableArray *listOfSizes=[[NSMutableArray alloc] init];
+    NSMutableArray *listOfImages=[[NSMutableArray alloc] init];
     //Clone UIImageViews
-    NSInteger maxWidth=0,maxHeight=0,totalHeight=0;
+    NSInteger maxWidth=0,maxHeight=0,totalHeight=0,totalWidth=0;
     CGFloat x=0.0,y=0.0;
     UIImage *blackImage=nil;
     for(PicPranckTextView *currTextView in viewController.listOfTextViews)
@@ -116,14 +121,17 @@
             x=stackView.frame.origin.x;
             y=stackView.frame.origin.y;
         }
+        CGSize size= CGSizeMake(currImageView.frame.size.width, currImageView.frame.size.height);
+        [listOfSizes addObject:[NSValue valueWithCGSize:size]];
         //Keep width and height for average computing
-        if(currImage)
-        {
-            CGSize size= CGSizeMake(currImage.size.width, currImage.size.height);
-            [listOfSizes addObject:[NSValue valueWithCGSize:size]];
-        }
-        //Create a black image if no image taken
-        else
+//        if(currImage)
+//        {
+//            CGSize size= CGSizeMake(currImage.size.width, currImage.size.height);
+//            [listOfSizes addObject:[NSValue valueWithCGSize:size]];
+//        }
+//        //Create a black image if no image taken
+//        else
+        if(!currImage)
         {
             if(!blackImage)
             {
@@ -149,7 +157,10 @@
         //Clone UIImage View and Text View
         UIImageView *imageViewClone=[[UIImageView alloc] init];
         imageViewClone.frame=[stackView convertRect:currImageView.frame toView:viewController.view];
-        [PicPranckImageServices setImage:currImage forImageView:imageViewClone];
+        [listOfImages addObject:currImage];
+        //TEST Set Image////
+        //[PicPranckImageServices setImage:currImage forImageView:imageViewClone];
+        //////////////////
         PicPranckTextView *textViewClone=[[PicPranckTextView alloc] init];
         [PicPranckTextView copyTextView:currTextView inOtherTextView:textViewClone withImageView:imageViewClone];
         [textViewClone.layer setBorderWidth:0.0f];
@@ -168,22 +179,44 @@
     //Put all views in imageViewContainer and reframe if necessary
     for(PicPranckTextView *currTextView in listOfTextViewsClones)
     {
+        NSInteger indexOfCurrObject=[listOfTextViewsClones indexOfObject:currTextView];
         UIImageView *currImageView=currTextView.imageView;
         CGFloat ratio=0.0;
         if(0<currImageView.frame.size.width)
             ratio=sizesForApp.width/currImageView.frame.size.width;
         
+        //CGRect oldFrameImageView=currImageView.frame;
         CGRect newFrameImageView = CGRectMake(0,totalHeight,sizesForApp.width,sizesForApp.height);
+        //Keep old frame for preview
+        if([viewController.activityType isEqualToString:@"Preview"])
+        {
+            if(indexOfCurrObject<[listOfSizes count])
+            {
+                CGSize oldSize=[[listOfSizes objectAtIndex:indexOfCurrObject] CGSizeValue];
+                newFrameImageView = CGRectMake(0,totalHeight,oldSize.width,oldSize.height);
+                totalWidth=oldSize.width;
+            }
+            ratio=1;
+        }
         currImageView.frame = newFrameImageView;
+        
         CGFloat oldFontSize=currTextView.font.pointSize;
         [currTextView setFont:[UIFont fontWithName:@"Impact" size:ratio*oldFontSize]];
         //Make background black and opaque
         [currImageView setBackgroundColor:[UIColor blackColor]];
         currImageView.alpha=1;
+        //TEST Set Image////
+        //[currImageView setImage:[listOfImages objectAtIndex:indexOfCurrObject]];
+        ////////////
         //Add to the container
         [imageViewContainer addSubview:currImageView];
         [imageViewContainer bringSubviewToFront:currImageView];
-        totalHeight+=sizesForApp.height;
+        //Keep old frame for preview
+        if([viewController.activityType isEqualToString:@"Preview"])
+            totalHeight+=currImageView.frame.size.height;
+        else
+            totalHeight+=sizesForApp.height;
+        
     }
     //Add black square if whatsapp so the prank will work
     if([viewController.activityType isEqualToString:@"WhatsApp"])
@@ -203,29 +236,50 @@
         [imageViewContainer addSubview:blackImageView];
         totalHeight+=sizesForApp.height;
     }
-    CGSize size = CGSizeMake(sizesForApp.width,totalHeight);
+    
+    //Container width
+    CGFloat containerWidth=0.0;
+    if([viewController.activityType isEqualToString:@"Preview"])
+        containerWidth=totalWidth;
+    else
+        containerWidth=sizesForApp.width;
+    
+    CGSize size = CGSizeMake(containerWidth,totalHeight);
     CGRect newFrame=CGRectMake(x,y,size.width,size.height);
     imageViewContainer.frame=newFrame;
-
+    
+    //Now that all operations of resize are done, we can set images
+    //TEST Set Image////
+    for(PicPranckTextView *currTextView in listOfTextViewsClones)
+    {
+        NSInteger indexOfCurrObject=[listOfTextViewsClones indexOfObject:currTextView];
+        UIImage *currImg=[listOfImages objectAtIndex:indexOfCurrObject];
+        CGSize textViewFrame=currTextView.frame.size;
+        CGSize imageViewFrame=currTextView.imageView.frame.size;
+        
+        NSLog(@"Text View Frame: (%f,%f)",textViewFrame.width,textViewFrame.height);
+        NSLog(@"Image View Frame: (%f,%f)",imageViewFrame.width,imageViewFrame.height);
+        NSLog(@"Image Size: (%f;%f)",currImg.size.width,currImg.size.height);
+        [PicPranckImageServices setImage:currImg forImageView:currTextView.imageView];
+//        [PicPranckImageServices setImage:[listOfImages objectAtIndex:indexOfCurrObject] forPicPranckTextView:currTextView inViewController:viewController];
+        
+        //UIImageView *currImageView=currTextView.imageView;
+        //[currImageView setImage:[listOfImages objectAtIndex:indexOfCurrObject]];
+    }
+    ////////////
     //Get Image with text
     CGFloat screenScale=[UIScreen mainScreen].scale;
     UIGraphicsBeginImageContextWithOptions(imageViewContainer.bounds.size, NO, screenScale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
     [imageViewContainer.layer renderInContext:context];
-//  CGFloat scale = CGRectGetWidth(imageViewContainer.bounds) / CGRectGetWidth(viewController.view.bounds);
-//  CGContextScaleCTM(context, scale, scale);
     UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-//    PicPranckImage *ppFinalImage=[[PicPranckImage alloc] initWithImage:finalImage ];
-//    UIImageWriteToSavedPhotosAlbum(ppFinalImage,nil,nil,nil);
-//    if([viewController.activityType isEqualToString:@"Facebook"])
-//        viewController.ppImage=(PicPranckImage *)finalImage;
-//    else
-//        viewController.ppImage=ppFinalImage;
-    UIImageWriteToSavedPhotosAlbum(finalImage,nil,nil,nil);
+
     viewController.ppImage=finalImage;
+    return finalImage;
 }
+
 #pragma mark Methods for Image manipulations
 +(PicPranckImage*)drawImageInBounds:(CGRect)bounds inPicPranckImage:(PicPranckImage *)ppImage
 {

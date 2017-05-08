@@ -9,6 +9,7 @@
 #import "PicPranckFirebaseCollectionViewController.h"
 #import "PicPranckCollectionViewCell.h"
 #import "PicPranckCustomViewsServices.h"
+#import "PicPranckEncryptionServices.h"
 #import "UIViewController+Alerts.h"
 @import Firebase;
 @import FirebaseStorage;
@@ -45,7 +46,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     //Firebase Database
     //Path to Database
-    NSString *pathToDB=[NSString stringWithFormat:@"usersPickPranks/%@/PickPranks",userID];
+    NSString *pathToDB=[NSString stringWithFormat:@"usersPicPrancks/%@/PicPrancks",userID];
     self.firebaseRef = [[FIRDatabase database] reference];
     FIRDatabaseReference *availablePP=[self.firebaseRef child:pathToDB];
     self.dataSource = [self.collectionView bindToQuery:availablePP//self.firebaseRef
@@ -57,6 +58,11 @@ static NSString * const reuseIdentifier = @"Cell";
     //self.dataSource=[self.collectionView reu]
     //self.dataSource
     
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.collectionView reloadData];
+    [super viewWillAppear:animated];
 }
 -(void)updateCells:(FIRDataSnapshot *)snapshot
 {
@@ -78,7 +84,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSString *extension=@"png";
     
-    NSString *pathToPreview=[NSString stringWithFormat:@"PickPrank_%ld/",(long)indexPath.row];
+    NSString *pathToPreview=[NSString stringWithFormat:@"PicPranck_%ld/",(long)indexPath.row];
     NSMutableArray *arrayOfURLs=[[NSMutableArray alloc] init];
     
     //QOS_CLASS_USER_INITIATED
@@ -111,9 +117,11 @@ static NSString * const reuseIdentifier = @"Cell";
                            {
                                FIRStorageDownloadTask *downloadTask = [element writeToFile:localURL completion:^(NSURL *URL, NSError *error)
                                                                        {
+                                                    
                                                                            if(error)
                                                                            {
-                                                                               [self showMessagePrompt:error.description];
+                                                                               //WARNING:HAVING SOME FIREBASE ERRORS
+                                                                               //[self showMessagePrompt:error.description];
                                                                                return;
                                                                            }
                                                                        }];

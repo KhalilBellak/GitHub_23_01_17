@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09175614BACEF684EA8BC0BE /* Pods_PicPranckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD48309857A524BA3608925 /* Pods_PicPranckUITests.framework */; };
-		AD96FA061E05C995C9BB0D2B /* Pods_PicPranckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6A67F75BF642E09990A2C9 /* Pods_PicPranckTests.framework */; };
-		D85D3E8001C2EE16A6352D14 /* Pods_PicPranck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D0FA1CADDE8815FA500E0E /* Pods_PicPranck.framework */; };
+		2C41EB7B329265D1FFCDB09B /* Pods_PicPranck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229CE11B3E347008E51AC489 /* Pods_PicPranck.framework */; };
+		B761EDF119B81507E48EE995 /* Pods_PicPranckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09684AB4124D4511B47D5860 /* Pods_PicPranckUITests.framework */; };
 		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
@@ -71,6 +70,7 @@
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
+		FC1601C63C58B2DE3D47C400 /* Pods_PicPranckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE856EBD38B69EEAA448595 /* Pods_PicPranckTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,12 +92,12 @@
 
 /* Begin PBXFileReference section */
 		05C74D05397B193EF40714EA /* Pods-PicPranckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.release.xcconfig"; sourceTree = "<group>"; };
-		0FD48309857A524BA3608925 /* Pods_PicPranckUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09684AB4124D4511B47D5860 /* Pods_PicPranckUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		229CE11B3E347008E51AC489 /* Pods_PicPranck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C667854E6D8D239F99D069D /* Pods-PicPranckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.debug.xcconfig"; sourceTree = "<group>"; };
-		62D0FA1CADDE8815FA500E0E /* Pods_PicPranck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B6A67F75BF642E09990A2C9 /* Pods_PicPranckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFD28D05B1527B37982A7CF /* Pods-PicPranckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		716335EF6A8E85B1A50089D5 /* Pods-PicPranck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.debug.xcconfig"; sourceTree = "<group>"; };
+		CCE856EBD38B69EEAA448595 /* Pods_PicPranckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40993448DFDCCEB8E62C8AA /* Pods-PicPranckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F90147711E53586200F3069F /* PicPranckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewController.h; sourceTree = "<group>"; };
 		F90147721E53586200F3069F /* PicPranckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewController.m; sourceTree = "<group>"; };
@@ -106,6 +106,7 @@
 		F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckTextView.m; sourceTree = "<group>"; };
 		F904B2571E47D4DB00B5FA26 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		F90D65CD1E69F4BB007FA11A /* blue_pastel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pastel_light.png; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light.png; sourceTree = "<group>"; };
+		F90F6E8F1EBDFB030022F7CE /* PicPranck-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PicPranck-Bridging-Header.h"; sourceTree = "<group>"; };
 		F914E21E1EB7444B00F67844 /* PicPranckEncryptionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckEncryptionServices.h; sourceTree = "<group>"; };
 		F914E21F1EB7444B00F67844 /* PicPranckEncryptionServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckEncryptionServices.m; sourceTree = "<group>"; };
 		F91C0A7F1E96C8FD00F7728D /* ImageOfAreaDetails+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageOfAreaDetails+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -207,7 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D85D3E8001C2EE16A6352D14 /* Pods_PicPranck.framework in Frameworks */,
+				2C41EB7B329265D1FFCDB09B /* Pods_PicPranck.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD96FA061E05C995C9BB0D2B /* Pods_PicPranckTests.framework in Frameworks */,
+				FC1601C63C58B2DE3D47C400 /* Pods_PicPranckTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09175614BACEF684EA8BC0BE /* Pods_PicPranckUITests.framework in Frameworks */,
+				B761EDF119B81507E48EE995 /* Pods_PicPranckUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,9 +247,9 @@
 		F904B2591E47D53400B5FA26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				62D0FA1CADDE8815FA500E0E /* Pods_PicPranck.framework */,
-				6B6A67F75BF642E09990A2C9 /* Pods_PicPranckTests.framework */,
-				0FD48309857A524BA3608925 /* Pods_PicPranckUITests.framework */,
+				229CE11B3E347008E51AC489 /* Pods_PicPranck.framework */,
+				CCE856EBD38B69EEAA448595 /* Pods_PicPranckTests.framework */,
+				09684AB4124D4511B47D5860 /* Pods_PicPranckUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -353,6 +354,7 @@
 		F9A19DE21E34C0CD00EE34E6 = {
 			isa = PBXGroup;
 			children = (
+				F90F6E8F1EBDFB030022F7CE /* PicPranck-Bridging-Header.h */,
 				F904B2591E47D53400B5FA26 /* Frameworks */,
 				F9A19DED1E34C0D500EE34E6 /* PicPranck */,
 				F9A19E071E34C0D700EE34E6 /* PicPranckTests */,
