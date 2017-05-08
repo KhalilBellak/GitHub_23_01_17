@@ -45,18 +45,18 @@
 //        [self removeFromSuperview];
 //    }
 //}
--(void)setImage:(UIImage *)image
-{
-    if([self.delegate isKindOfClass:[PicPranckFirebaseCollectionViewController class]])
-    {
-        
-        NSData *imageData = UIImagePNGRepresentation(image);
-        UIImage *decryptedImage=[PicPranckEncryptionServices decryptImage:imageData];
-        [super setImage:decryptedImage];
-        return;
-    }
-    [super setImage:image];
-}
+//-(void)setImage:(UIImage *)image
+//{
+//    if([self.delegate isKindOfClass:[PicPranckFirebaseCollectionViewController class]])
+//    {
+//        
+//        NSData *imageData = UIImagePNGRepresentation(image);
+//        UIImage *decryptedImage=[PicPranckEncryptionServices decryptImage:imageData];
+//        [super setImage:decryptedImage];
+//        return;
+//    }
+//    [super setImage:image];
+//}
 -(void)removeDeleteButton: (UITapGestureRecognizer *)sender
 {
     if ( sender.state == UIGestureRecognizerStateEnded )

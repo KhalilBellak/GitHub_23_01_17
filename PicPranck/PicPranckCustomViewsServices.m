@@ -81,12 +81,18 @@
             for(NSURL *url in arrayOfNSURL)
             {
                 NSData *data=[NSData dataWithContentsOfURL:url];
-                
                 UIImage *image=[[UIImage alloc] initWithData:data];
-                if(!image) continue;
-                
                 [arrayOfImages addObject:image];
             }
+//            for(NSString *stringUrl in arrayOfNSURL)
+//            {
+//                NSData *data=[NSData dataWithContentsOfFile:stringUrl];
+//                
+//                UIImage *image=[[UIImage alloc] initWithData:data];
+//                if(!image) continue;
+//                
+//                [arrayOfImages addObject:image];
+//            }
         }
         
     }

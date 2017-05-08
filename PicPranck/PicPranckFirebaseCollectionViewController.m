@@ -11,13 +11,11 @@
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckEncryptionServices.h"
 #import "UIViewController+Alerts.h"
+
 @import Firebase;
 @import FirebaseStorage;
 @import FirebaseDatabase;
-//@import FirebaseUI;
-//@import FirebaseDatabaseUI;
 @import FirebaseStorageUI;
-//#import <FirebaseUI/FirebaseStorageUI/UIImageView+FirebaseStorage.h>
 
 @interface PicPranckFirebaseCollectionViewController ()
 
@@ -64,6 +62,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView reloadData];
     [super viewWillAppear:animated];
 }
+/////TEST//////
+-(void)viewDidAppear:(BOOL)animated
+{
+    for(NSString *key in _listOfKeys)
+    {
+        NSLog(@"KEY AT:%ld =%@",[_listOfKeys indexOfObject:key],key);
+    }
+}
 -(void)updateCells:(FIRDataSnapshot *)snapshot
 {
     [self.collectionView reloadData];
@@ -84,8 +90,44 @@ static NSString * const reuseIdentifier = @"Cell";
     
     NSString *extension=@"png";
     
-    NSString *pathToPreview=[NSString stringWithFormat:@"PicPranck_%ld/",(long)indexPath.row];
+    NSString *pathToPreview=[NSString stringWithFormat:@"PicPranck_%ld",(long)indexPath.row];
     NSMutableArray *arrayOfURLs=[[NSMutableArray alloc] init];
+    
+    //Create local directory to cache images
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *pathToCacheDirectory=[NSString stringWithFormat:@"%@/%@", documentsDirectory,pathToPreview];
+    NSString *pathToCachedImagePreview=[NSString stringWithFormat:@"%@/%@/image_1.png", documentsDirectory,pathToPreview];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:pathToCacheDirectory isDirectory:nil])
+    {
+        //If not, create it
+        NSError * error = nil;
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath: pathToCacheDirectory
+                                                 withIntermediateDirectories:YES
+                                                                  attributes:nil
+                                                                       error:&error];
+        if(error)
+        {
+            NSLog(@"ERROR DIRECTORY CRREATION:%@",error.description);
+        }
+    }
+    else if([[NSFileManager defaultManager] fileExistsAtPath:pathToCachedImagePreview isDirectory:nil])
+    {
+        //If already cached set preview in cell
+        NSArray *arrayOfNSURL=[_dicoNSURLOfAvailablePickPranks objectForKey:pictureName];
+        if(arrayOfNSURL && 1<[arrayOfNSURL count])
+        {
+            //NSData *data=[NSData dataWithContentsOfFile:[arrayOfNSURL objectAtIndex:1]];
+            NSData *data=[NSData dataWithContentsOfURL:[arrayOfNSURL objectAtIndex:1]];
+            //UIImage *image=[[UIImage alloc] initWithData:data];
+            UIImage *imagePreview=[[UIImage alloc] initWithData:data];
+            [cell.imageViewInCell setImage:imagePreview];
+            if(imagePreview)
+                [cell.activityIndic stopAnimating];
+            cell.imageViewInCell.delegate=self;
+            return cell;
+        }
+    }
     
     //QOS_CLASS_USER_INITIATED
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^
@@ -95,48 +137,63 @@ static NSString * const reuseIdentifier = @"Cell";
                            
                            //Get a path to picture of type nameOfPicture/nameOfPicture_i.extension
                            NSString *currRelativeImagePath=[NSString stringWithFormat: @"image_%d.%@",i-1,extension];
-                           NSString *currImagePath=[NSString stringWithFormat:@"%@%@", pathToPreview,currRelativeImagePath];
+                           NSString *currImagePath=[NSString stringWithFormat:@"%@/%@", pathToPreview,currRelativeImagePath];
                            UIImage *placeholderImage=[UIImage imageNamed:@"simple_fuck_no_back.png"];
                            FIRStorageReference *element = [self.availablePPRef child:currImagePath];
                            
                            // Create local filesystem URL
-                           NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                           NSString *documentsDirectory = [paths objectAtIndex:0];
-                           NSString *local=[NSString stringWithFormat:@"%@/%@",documentsDirectory,currImagePath];
+                           //With document directory
+                           NSString *local=[NSString stringWithFormat:@"%@/%@",pathToCacheDirectory,currRelativeImagePath];
                            NSURL *localURL=[NSURL fileURLWithPath:local];
                            
                            NSNumber *isAFile;
                            NSError *err;
+                           NSData *cachedData=[NSData dataWithContentsOfURL:localURL];
                            [localURL getResourceValue:&isAFile
                                                forKey:NSURLFileResourceTypeKey error:&err];
                            //if(err)
                            //    [self showMessagePrompt:err.description];
                            
                            // Download to the local filesystem
-                           if(0>=isAFile)
+                           if(0>=isAFile && !cachedData)
                            {
-                               FIRStorageDownloadTask *downloadTask = [element writeToFile:localURL completion:^(NSURL *URL, NSError *error)
-                                                                       {
-                                                    
-                                                                           if(error)
-                                                                           {
-                                                                               //WARNING:HAVING SOME FIREBASE ERRORS
-                                                                               //[self showMessagePrompt:error.description];
-                                                                               return;
-                                                                           }
-                                                                       }];
+                               [element dataWithMaxSize:1 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+                                   if (error != nil) {
+                                       //[self showMessagePrompt:error.description];
+                                       // Uh-oh, an error occurred!
+                                   } else {
+                                       
+                                       NSData *decryptedData =[PicPranckEncryptionServices decryptImage:data];
+                                       
+                                       bool IsOK=[decryptedData writeToURL:localURL  atomically:YES];
+                                       if(IsOK)
+                                       {
+                                           NSLog(@"DOWNLOAD OK");
+                                       }
+
+                                       //Set thumbnail
+                                       if(2==i)
+                                       {
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+//                                               [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
+                                               [cell.imageViewInCell setImage:[UIImage imageWithData:decryptedData]];
+                                               [cell.activityIndic stopAnimating];
+                                           });
+                                           
+                                       }
+                                   }
+                               }];
+
                            }
-                           [arrayOfURLs addObject:localURL];
-                           
-                           //Set thumbnail
-                           if(2==i)
+                           else if(2==i && cachedData)
                            {
                                dispatch_async(dispatch_get_main_queue(), ^{
-                                   [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
+                                   //                                               [cell.imageViewInCell sd_setImageWithStorageReference:element placeholderImage:placeholderImage];
+                                   [cell.imageViewInCell setImage:[UIImage imageWithData:cachedData]];
                                    [cell.activityIndic stopAnimating];
                                });
-                               
                            }
+                           [arrayOfURLs addObject:localURL];
                        }
                        if(3==[arrayOfURLs count])
                        {
@@ -150,7 +207,6 @@ static NSString * const reuseIdentifier = @"Cell";
                        
                    });
     cell.imageViewInCell.delegate=self;
-    //cell.imageViewInCell.indexOfViewInCollectionView=indexPath.row;
     return cell;
 }
 
