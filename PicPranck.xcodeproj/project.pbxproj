@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C41EB7B329265D1FFCDB09B /* Pods_PicPranck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 229CE11B3E347008E51AC489 /* Pods_PicPranck.framework */; };
-		B761EDF119B81507E48EE995 /* Pods_PicPranckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09684AB4124D4511B47D5860 /* Pods_PicPranckUITests.framework */; };
+		3E8EE9E99F64EDA4A703D366 /* Pods_PicPranckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5635E61DF341C1B3CD2EB7D /* Pods_PicPranckUITests.framework */; };
+		A35EFB4E987BAAD3BAE1EDBA /* Pods_PicPranck.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A37CA04B9FB11636E2B4C9 /* Pods_PicPranck.framework */; };
+		C38C320EC8BEE3CEED237863 /* Pods_PicPranckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C49755B4EF93D93882415D3 /* Pods_PicPranckTests.framework */; };
 		F90147731E53586200F3069F /* PicPranckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F90147721E53586200F3069F /* PicPranckViewController.m */; };
 		F904B2511E47C2AC00B5FA26 /* PicPranckTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F904B2501E47C2AC00B5FA26 /* PicPranckTextView.m */; };
 		F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F904B2571E47D4DB00B5FA26 /* Impact.ttf */; };
@@ -25,6 +26,9 @@
 		F91C0A961E96C8FD00F7728D /* Bridge+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F91C0A8E1E96C8FD00F7728D /* Bridge+CoreDataProperties.m */; };
 		F91F91CB1E5F836A00966207 /* PicPranckCustomViewsServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */; };
 		F91F91CE1E5F8B0900966207 /* PicPranckActionServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F91F91CD1E5F8B0900966207 /* PicPranckActionServices.m */; };
+		F926650C1ECE547300A77063 /* sendButton_162px_Stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = F926650B1ECE547300A77063 /* sendButton_162px_Stroke.png */; };
+		F93144AE1ECF884C00547E42 /* trashButton_162px.png in Resources */ = {isa = PBXBuildFile; fileRef = F93144AC1ECF884C00547E42 /* trashButton_162px.png */; };
+		F93144AF1ECF884C00547E42 /* sendButton_162px.png in Resources */ = {isa = PBXBuildFile; fileRef = F93144AD1ECF884C00547E42 /* sendButton_162px.png */; };
 		F931DD5C1E5CCB1500FC913E /* PicPranckImageServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */; };
 		F931DD5F1E5CEC8000FC913E /* PicPranckCoreDataServices.m in Sources */ = {isa = PBXBuildFile; fileRef = F931DD5E1E5CEC7F00FC913E /* PicPranckCoreDataServices.m */; };
 		F931DD641E5D058500FC913E /* green_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F931DD631E5D058500FC913E /* green_pastel.png */; };
@@ -41,9 +45,15 @@
 		F94475B01E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png in Resources */ = {isa = PBXBuildFile; fileRef = F94475AF1E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png */; };
 		F94475B41E7E966B00A9B7A9 /* blue_pastel_darker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F94475B31E7E966B00A9B7A9 /* blue_pastel_darker.jpg */; };
 		F951414F1E59B2D5006262A2 /* PicPranckImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F951414E1E59B2D5006262A2 /* PicPranckImage.m */; };
+		F956897F1ED08219009264CC /* homeButton_132px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F956897E1ED08219009264CC /* homeButton_132px@2x.png */; };
+		F95689811ED08380009264CC /* homeButton_44px_BlackStroke_652ppi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F95689801ED08380009264CC /* homeButton_44px_BlackStroke_652ppi@2x.png */; };
+		F95689831ED0855D009264CC /* homeButton_88px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F95689821ED0855C009264CC /* homeButton_88px@2x.png */; };
 		F964C8AE1E7F1AD600BFAFDD /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F964C8AD1E7F1AD600BFAFDD /* CollectionViewController.m */; };
 		F964C8B11E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F964C8B01E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.m */; };
 		F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */; };
+		F97E40F51ED0493D004B6581 /* blue_pastel_light_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = F97E40F41ED0493D004B6581 /* blue_pastel_light_iPhone.png */; };
+		F97E40F71ED0499C004B6581 /* homeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F97E40F61ED0499C004B6581 /* homeButton.png */; };
+		F97E40F91ED04BC0004B6581 /* homeButton_44px.png in Resources */ = {isa = PBXBuildFile; fileRef = F97E40F81ED04BC0004B6581 /* homeButton_44px.png */; };
 		F98BD3F71E623D9D00A65B8A /* PicPranckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */; };
 		F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = F98BD3F91E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m */; };
 		F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */ = {isa = PBXBuildFile; fileRef = F98BD3FB1E64F0E000A65B8A /* blue_pastel.png */; };
@@ -55,6 +65,10 @@
 		F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A19DFC1E34C0D700EE34E6 /* LaunchScreen.storyboard */; };
 		F9A19E091E34C0D700EE34E6 /* PicPranckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E081E34C0D700EE34E6 /* PicPranckTests.m */; };
 		F9A19E141E34C0D700EE34E6 /* PicPranckUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */; };
+		F9B4F4D51EC513900085ACBD /* saveButton_162px_White.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B4F4D21EC513900085ACBD /* saveButton_162px_White.png */; };
+		F9B4F4D61EC513900085ACBD /* saveButton_162px_Stroke.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B4F4D31EC513900085ACBD /* saveButton_162px_Stroke.png */; };
+		F9B5D03B1ED0580100C72109 /* homeButton_44px_small.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B5D03A1ED0580100C72109 /* homeButton_44px_small.png */; };
+		F9B5D03D1ED0639200C72109 /* homeButton_44px_grayStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = F9B5D03C1ED0639200C72109 /* homeButton_44px_grayStroke.png */; };
 		F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */; };
 		F9D460F41E565C9B009B54B1 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F31E565C9B009B54B1 /* TabBarViewController.m */; };
 		F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9D460F61E565EB6009B54B1 /* PicPranckImageView.m */; };
@@ -70,7 +84,6 @@
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
-		FC1601C63C58B2DE3D47C400 /* Pods_PicPranckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE856EBD38B69EEAA448595 /* Pods_PicPranckTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,13 +105,13 @@
 
 /* Begin PBXFileReference section */
 		05C74D05397B193EF40714EA /* Pods-PicPranckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.release.xcconfig"; sourceTree = "<group>"; };
-		09684AB4124D4511B47D5860 /* Pods_PicPranckUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		229CE11B3E347008E51AC489 /* Pods_PicPranck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C49755B4EF93D93882415D3 /* Pods_PicPranckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C667854E6D8D239F99D069D /* Pods-PicPranckTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckTests/Pods-PicPranckTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6CFD28D05B1527B37982A7CF /* Pods-PicPranckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		716335EF6A8E85B1A50089D5 /* Pods-PicPranck.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.debug.xcconfig"; sourceTree = "<group>"; };
-		CCE856EBD38B69EEAA448595 /* Pods_PicPranckTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A37CA04B9FB11636E2B4C9 /* Pods_PicPranck.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranck.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40993448DFDCCEB8E62C8AA /* Pods-PicPranckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranckUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranckUITests/Pods-PicPranckUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E5635E61DF341C1B3CD2EB7D /* Pods_PicPranckUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PicPranckUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90147711E53586200F3069F /* PicPranckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewController.h; sourceTree = "<group>"; };
 		F90147721E53586200F3069F /* PicPranckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckViewController.m; sourceTree = "<group>"; };
 		F90147751E53993D00F3069F /* ModelPicPranck.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelPicPranck.xcdatamodel; sourceTree = "<group>"; };
@@ -129,6 +142,9 @@
 		F91F91CA1E5F836A00966207 /* PicPranckCustomViewsServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckCustomViewsServices.m; sourceTree = "<group>"; };
 		F91F91CC1E5F8B0900966207 /* PicPranckActionServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckActionServices.h; sourceTree = "<group>"; };
 		F91F91CD1E5F8B0900966207 /* PicPranckActionServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckActionServices.m; sourceTree = "<group>"; };
+		F926650B1ECE547300A77063 /* sendButton_162px_Stroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sendButton_162px_Stroke.png; path = Assets.xcassets/AppIcon.appiconset/sendButton_162px_Stroke.png; sourceTree = "<group>"; };
+		F93144AC1ECF884C00547E42 /* trashButton_162px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trashButton_162px.png; path = Assets.xcassets/AppIcon.appiconset/trashButton_162px.png; sourceTree = "<group>"; };
+		F93144AD1ECF884C00547E42 /* sendButton_162px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sendButton_162px.png; path = Assets.xcassets/AppIcon.appiconset/sendButton_162px.png; sourceTree = "<group>"; };
 		F931DD5A1E5CCB1400FC913E /* PicPranckImageServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImageServices.h; sourceTree = "<group>"; };
 		F931DD5B1E5CCB1400FC913E /* PicPranckImageServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImageServices.m; sourceTree = "<group>"; };
 		F931DD5D1E5CEC7F00FC913E /* PicPranckCoreDataServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckCoreDataServices.h; sourceTree = "<group>"; };
@@ -155,11 +171,17 @@
 		F94475B31E7E966B00A9B7A9 /* blue_pastel_darker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_pastel_darker.jpg; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_darker.jpg; sourceTree = "<group>"; };
 		F951414D1E59B2D5006262A2 /* PicPranckImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckImage.h; sourceTree = "<group>"; };
 		F951414E1E59B2D5006262A2 /* PicPranckImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckImage.m; sourceTree = "<group>"; };
+		F956897E1ED08219009264CC /* homeButton_132px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homeButton_132px@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/homeButton_132px@2x.png"; sourceTree = "<group>"; };
+		F95689801ED08380009264CC /* homeButton_44px_BlackStroke_652ppi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homeButton_44px_BlackStroke_652ppi@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/homeButton_44px_BlackStroke_652ppi@2x.png"; sourceTree = "<group>"; };
+		F95689821ED0855C009264CC /* homeButton_88px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "homeButton_88px@2x.png"; path = "Assets.xcassets/AppIcon.appiconset/homeButton_88px@2x.png"; sourceTree = "<group>"; };
 		F964C8AC1E7F1AD600BFAFDD /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		F964C8AD1E7F1AD600BFAFDD /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		F964C8AF1E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailablePicPranckCollectionViewController.h; sourceTree = "<group>"; };
 		F964C8B01E7F26A900BFAFDD /* AvailablePicPranckCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailablePicPranckCollectionViewController.m; sourceTree = "<group>"; };
 		F977C0F71E78AB35004BBB41 /* blue_pastel_light.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blue_pastel_light.jpeg; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light.jpeg; sourceTree = "<group>"; };
+		F97E40F41ED0493D004B6581 /* blue_pastel_light_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_pastel_light_iPhone.png; path = Assets.xcassets/AppIcon.appiconset/blue_pastel_light_iPhone.png; sourceTree = "<group>"; };
+		F97E40F61ED0499C004B6581 /* homeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeButton.png; path = Assets.xcassets/AppIcon.appiconset/homeButton.png; sourceTree = "<group>"; };
+		F97E40F81ED04BC0004B6581 /* homeButton_44px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeButton_44px.png; path = Assets.xcassets/AppIcon.appiconset/homeButton_44px.png; sourceTree = "<group>"; };
 		F98BD3F51E623D9D00A65B8A /* PicPranckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckButton.h; sourceTree = "<group>"; };
 		F98BD3F61E623D9D00A65B8A /* PicPranckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckButton.m; sourceTree = "<group>"; };
 		F98BD3F81E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckViewControllerAnimatedTransitioning.h; sourceTree = "<group>"; };
@@ -181,6 +203,10 @@
 		F9A19E0F1E34C0D700EE34E6 /* PicPranckUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicPranckUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A19E131E34C0D700EE34E6 /* PicPranckUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicPranckUITests.m; sourceTree = "<group>"; };
 		F9A19E151E34C0D800EE34E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9B4F4D21EC513900085ACBD /* saveButton_162px_White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = saveButton_162px_White.png; path = Assets.xcassets/AppIcon.appiconset/saveButton_162px_White.png; sourceTree = "<group>"; };
+		F9B4F4D31EC513900085ACBD /* saveButton_162px_Stroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = saveButton_162px_Stroke.png; path = Assets.xcassets/AppIcon.appiconset/saveButton_162px_Stroke.png; sourceTree = "<group>"; };
+		F9B5D03A1ED0580100C72109 /* homeButton_44px_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeButton_44px_small.png; path = Assets.xcassets/AppIcon.appiconset/homeButton_44px_small.png; sourceTree = "<group>"; };
+		F9B5D03C1ED0639200C72109 /* homeButton_44px_grayStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeButton_44px_grayStroke.png; path = Assets.xcassets/AppIcon.appiconset/homeButton_44px_grayStroke.png; sourceTree = "<group>"; };
 		F9D460F01E5652C3009B54B1 /* simple_fuck_with_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = simple_fuck_with_logo.png; path = Assets.xcassets/AppIcon.appiconset/simple_fuck_with_logo.png; sourceTree = "<group>"; };
 		F9D460F21E565C9B009B54B1 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		F9D460F31E565C9B009B54B1 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
@@ -208,7 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C41EB7B329265D1FFCDB09B /* Pods_PicPranck.framework in Frameworks */,
+				A35EFB4E987BAAD3BAE1EDBA /* Pods_PicPranck.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC1601C63C58B2DE3D47C400 /* Pods_PicPranckTests.framework in Frameworks */,
+				C38C320EC8BEE3CEED237863 /* Pods_PicPranckTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B761EDF119B81507E48EE995 /* Pods_PicPranckUITests.framework in Frameworks */,
+				3E8EE9E99F64EDA4A703D366 /* Pods_PicPranckUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,9 +273,9 @@
 		F904B2591E47D53400B5FA26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				229CE11B3E347008E51AC489 /* Pods_PicPranck.framework */,
-				CCE856EBD38B69EEAA448595 /* Pods_PicPranckTests.framework */,
-				09684AB4124D4511B47D5860 /* Pods_PicPranckUITests.framework */,
+				B5A37CA04B9FB11636E2B4C9 /* Pods_PicPranck.framework */,
+				1C49755B4EF93D93882415D3 /* Pods_PicPranckTests.framework */,
+				E5635E61DF341C1B3CD2EB7D /* Pods_PicPranckUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -400,6 +426,19 @@
 		F9A19DEE1E34C0D500EE34E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F95689821ED0855C009264CC /* homeButton_88px@2x.png */,
+				F95689801ED08380009264CC /* homeButton_44px_BlackStroke_652ppi@2x.png */,
+				F956897E1ED08219009264CC /* homeButton_132px@2x.png */,
+				F9B5D03C1ED0639200C72109 /* homeButton_44px_grayStroke.png */,
+				F9B5D03A1ED0580100C72109 /* homeButton_44px_small.png */,
+				F97E40F81ED04BC0004B6581 /* homeButton_44px.png */,
+				F97E40F61ED0499C004B6581 /* homeButton.png */,
+				F97E40F41ED0493D004B6581 /* blue_pastel_light_iPhone.png */,
+				F93144AC1ECF884C00547E42 /* trashButton_162px.png */,
+				F93144AD1ECF884C00547E42 /* sendButton_162px.png */,
+				F926650B1ECE547300A77063 /* sendButton_162px_Stroke.png */,
+				F9B4F4D21EC513900085ACBD /* saveButton_162px_White.png */,
+				F9B4F4D31EC513900085ACBD /* saveButton_162px_Stroke.png */,
 				F9E16B061E91166000FA0D6B /* blue_pastel_darker_HQ.jpg */,
 				F9E16B041E9111ED00FA0D6B /* simple_fuck_no_back.png */,
 				F94475B31E7E966B00A9B7A9 /* blue_pastel_darker.jpg */,
@@ -564,26 +603,39 @@
 			files = (
 				F9092B311E808917007BB47F /* ModelPicPranck.xcdatamodeld in Resources */,
 				F9E16B071E91166000FA0D6B /* blue_pastel_darker_HQ.jpg in Resources */,
+				F956897F1ED08219009264CC /* homeButton_132px@2x.png in Resources */,
 				F931DD661E5D05A100FC913E /* patchwork_big_25_.png in Resources */,
 				F90D65CE1E69F4BB007FA11A /* blue_pastel_light.png in Resources */,
 				F9E9EFD61E50FAC400828929 /* photossimple.png in Resources */,
 				F9E9EFD51E50FAC400828929 /* pencil.png in Resources */,
 				F977C0F81E78AB35004BBB41 /* blue_pastel_light.jpeg in Resources */,
+				F9B5D03D1ED0639200C72109 /* homeButton_44px_grayStroke.png in Resources */,
+				F97E40F71ED0499C004B6581 /* homeButton.png in Resources */,
 				F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */,
 				F9E9EFDC1E51049900828929 /* Settings50.png in Resources */,
+				F97E40F91ED04BC0004B6581 /* homeButton_44px.png in Resources */,
+				F95689831ED0855D009264CC /* homeButton_88px@2x.png in Resources */,
+				F926650C1ECE547300A77063 /* sendButton_162px_Stroke.png in Resources */,
 				F9E16B051E9111EE00FA0D6B /* simple_fuck_no_back.png in Resources */,
+				F93144AF1ECF884C00547E42 /* sendButton_162px.png in Resources */,
 				F904B2581E47D4DB00B5FA26 /* Impact.ttf in Resources */,
+				F9B4F4D61EC513900085ACBD /* saveButton_162px_Stroke.png in Resources */,
 				F98BD3FC1E64F0E000A65B8A /* blue_pastel.png in Resources */,
+				F9B4F4D51EC513900085ACBD /* saveButton_162px_White.png in Resources */,
 				F9D460F11E5652C3009B54B1 /* simple_fuck_with_logo.png in Resources */,
 				F9A19DFE1E34C0D700EE34E6 /* LaunchScreen.storyboard in Resources */,
 				F94475AE1E7D8E5D00A9B7A9 /* simple_fuck_with_logo_light.png in Resources */,
 				F9E9EFD21E50FAAE00828929 /* paperbox.png in Resources */,
+				F95689811ED08380009264CC /* homeButton_44px_BlackStroke_652ppi@2x.png in Resources */,
 				F94475B41E7E966B00A9B7A9 /* blue_pastel_darker.jpg in Resources */,
 				F9E9EFD01E50FA9800828929 /* gear.png in Resources */,
 				F9A19DFB1E34C0D600EE34E6 /* Assets.xcassets in Resources */,
+				F97E40F51ED0493D004B6581 /* blue_pastel_light_iPhone.png in Resources */,
 				F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */,
 				F9A19DF91E34C0D600EE34E6 /* Main.storyboard in Resources */,
+				F9B5D03B1ED0580100C72109 /* homeButton_44px_small.png in Resources */,
 				F944759F1E7A058000A9B7A9 /* GoogleService-Info.plist in Resources */,
+				F93144AE1ECF884C00547E42 /* trashButton_162px.png in Resources */,
 				F931DD641E5D058500FC913E /* green_pastel.png in Resources */,
 				F94475B01E7D987C00A9B7A9 /* simple_fuck_with_logo_no_background.png in Resources */,
 				F9E9EFDA1E51049900828929 /* Editimage.png in Resources */,

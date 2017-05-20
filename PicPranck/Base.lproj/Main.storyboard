@@ -230,23 +230,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="y6T-IL-xF2">
-                                <rect key="frame" x="24" y="28" width="327" height="54"/>
+                                <rect key="frame" x="51" y="28" width="273.5" height="54"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKK-Gr-7qX">
-                                        <rect key="frame" x="0.0" y="0.0" width="66" height="54"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Reset">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKK-Gr-7qX">
+                                        <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
+                                        <state key="normal" title="Reset" image="trashButton">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sqq-UC-Lcf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-vF-7Cv">
-                                        <rect key="frame" x="131" y="0.0" width="65" height="54"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Save">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKf-vF-7Cv">
+                                        <rect key="frame" x="109.5" y="0.0" width="54" height="54"/>
+                                        <state key="normal" title="Save" image="saveButton">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -254,11 +251,9 @@
                                             <action selector="performSave:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yRz-Wj-JOc"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
-                                        <rect key="frame" x="261" y="0.0" width="66" height="54"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Send">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHD-Jc-2eT">
+                                        <rect key="frame" x="219" y="0.0" width="54.5" height="54"/>
+                                        <state key="normal" title="Send" image="sendButton">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -313,7 +308,7 @@
                             <constraint firstItem="Szg-Rn-DFc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EtZ-Sl-30e"/>
                             <constraint firstItem="y6T-IL-xF2" firstAttribute="top" secondItem="XfH-Tj-ryu" secondAttribute="bottom" constant="8" symbolic="YES" id="MBJ-Cv-Yam"/>
                             <constraint firstItem="BGM-1s-YG8" firstAttribute="top" secondItem="MN2-E9-2up" secondAttribute="bottom" constant="60" id="PHr-D1-rMj"/>
-                            <constraint firstItem="y6T-IL-xF2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.87" id="Zeh-UR-k2P"/>
+                            <constraint firstItem="y6T-IL-xF2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.73" id="Zeh-UR-k2P"/>
                             <constraint firstItem="MN2-E9-2up" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bEt-BT-N61"/>
                             <constraint firstItem="Szg-Rn-DFc" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="-10" id="kJ1-qC-Fqw"/>
                         </constraints>
@@ -631,7 +626,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="saveButton" width="66" height="66"/>
+        <image name="sendButton" width="81" height="81"/>
         <image name="simple_fuck_with_logo_no_background.png" width="500" height="500"/>
+        <image name="trashButton" width="81" height="81"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="KQa-DW-kbS"/>

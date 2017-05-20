@@ -12,7 +12,7 @@
 //Services
 #import "PicPranckImageServices.h"
 //Pods
-#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
+//#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
 
 @interface TabBarViewController ()
 
@@ -28,40 +28,81 @@
     //NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
     
     NSArray *listOfItems=self.tabBar.items;
+    //UIImage *tabBarIcon;
     for(UITabBarItem *item in listOfItems)
     {
-        NIKFontAwesomeIcon icon;
-        switch ([listOfItems indexOfObject:item])
-        {
-            case 0:
-                icon=NIKFontAwesomeIconEdit;
-                break;
-            case 1:
-                icon=NIKFontAwesomeIconInbox;
-                break;
-            case 2:
-                icon=NIKFontAwesomeIconPhoto;
-                break;
-            default:
-                //icon=NIKFontAwesomeIconWrench;
-                icon=NIKFontAwesomeIconUser;
-                break;
-        }
+//        NIKFontAwesomeIcon icon;
+//        switch ([listOfItems indexOfObject:item])
+//        {
+//            case 0:
+//                icon=NIKFontAwesomeIconEdit;
+//                break;
+//            case 1:
+//                icon=NIKFontAwesomeIconInbox;
+//                break;
+//            case 2:
+//                icon=NIKFontAwesomeIconPhoto;
+//                break;
+//            default:
+//                //icon=NIKFontAwesomeIconWrench;
+//                icon=NIKFontAwesomeIconUser;
+//                break;
+//        }
         //item.image=[factory createImageForIcon:icon];
         //item.selectedImage=[factory createImageForIcon:icon];
+        self.tabBar.barTintColor = [UIColor whiteColor];
+        self.tabBar.tintColor = [UIColor blackColor];
+                NSString * iconName;
+                NSString * iconNameLighter;
+                switch ([listOfItems indexOfObject:item])
+                {
+                    case 0:
+                        iconName=@"homeButton";
+                        iconNameLighter=@"homeButtonGrayed";
+                        break;
+                    case 1:
+                        iconName=@"archiveButton";
+                        iconNameLighter=@"archiveButtonGrayed";
+                        break;
+                    case 2:
+                        iconName=@"ideaButton";
+                        iconNameLighter=@"ideaButtonGrayed";
+                        break;
+                    default:
+                        //icon=NIKFontAwesomeIconWrench;
+                        iconName=@"menuButton";
+                        iconNameLighter=@"menuButtonGrayed";
+                        break;
+                }
+        UIImage *tabBarIcon=[[UIImage imageNamed:iconName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *tabBarIconLighter=[[UIImage imageNamed:iconNameLighter] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        item.image=tabBarIconLighter;
+        item.selectedImage=tabBarIcon;
     }
     
     // Do any additional setup after loading the view.
-    self.tabBar.barTintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:30];
-    self.tabBar.tintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:-40];
+    //self.tabBar.barTintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:30];
+    
+//    self.tabBar.tintColor = [PicPranckImageServices getGlobalTintWithLighterFactor:-40];
+//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
+//                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:-50]
+//                                                        } forState:UIControlStateSelected];
+    
+    //[[UITabBarItem appearance] setSelectedImage:tabBarIcon];
+   
+    UIColor *grayColor=[UIColor colorWithRed:210.0f/255.0f green:210.0f/255.0f blue:210.0f/255.0f alpha:1.0f];
+    
+    
+    
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
-                                                        NSForegroundColorAttributeName : [PicPranckImageServices getGlobalTintWithLighterFactor:-50]
+                                                        NSForegroundColorAttributeName : [UIColor blackColor]
                                                         } forState:UIControlStateSelected];
     
-    
+   
     // doing this results in an easier to read unselected state then the default iOS 7 one
+    
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"Impact" size:10.0f],
-                                                        NSForegroundColorAttributeName : [UIColor grayColor]
+                                                        NSForegroundColorAttributeName : grayColor
                                                         } forState:UIControlStateNormal];
 }
 

@@ -20,7 +20,7 @@
 #import "PicPranckCoreDataServices.h"
 #import "PicPranckCustomViewsServices.h"
 //Pods
-#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
+//#import <FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h>
 
 #define MAXIMUM_DATA_SIZE 250000
 #define USE_ACTIVITY_VIEW_CONTROLLER 1
@@ -76,7 +76,7 @@
 -(void)setButton:(NSString *)nameOfButton
 {
     UIButton *button=resetButton;
-    NIKFontAwesomeIcon icon=NIKFontAwesomeIconEraser;
+    //NIKFontAwesomeIcon icon=NIKFontAwesomeIconEraser;
     //NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory textlessButtonIconFactory];
     //factory.size=0.5*button.frame.size.height;
     ////factory.colors = @[[UIColor redColor], [UIColor darkGrayColor]];
@@ -85,18 +85,18 @@
     //factory.square=YES;
     if([nameOfButton isEqualToString:@"Send"])
     {
-        icon=NIKFontAwesomeIconUpload;//NIKFontAwesomeIconSendO
+        //icon=NIKFontAwesomeIconUpload;//NIKFontAwesomeIconSendO
         button=buttonSend;
     }
     else if([nameOfButton isEqualToString:@"Save"])
     {
-        icon=NIKFontAwesomeIconSave;
+        //icon=NIKFontAwesomeIconSave;
         button=saveButton;
     }
     
     button.clipsToBounds = YES;
     [button setTitle:@"" forState:UIControlStateNormal];
-    [PicPranckCustomViewsServices setViewDesign:button];
+    //[PicPranckCustomViewsServices setViewDesign:button];
     //[button setImage:[factory createImageForIcon:icon] forState:UIControlStateNormal];
     [buttonsStackView bringSubviewToFront:button];
 }

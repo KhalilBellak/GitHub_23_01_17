@@ -10,12 +10,19 @@
 #6.Uncomment "use_frameworks"
 #7.Launch a build (No error anymore)
 
+#NOTE: Problem with RNCryptor-objc
+#1.Delete "Pods" file
+#2.Comment "use_frameworks" in Podfile
+#3.Pod Install (error with FirebaseUI)
+#4.Uncomment "use_frameworks" in Podfile
+#3.Pod Install
+
 target 'PicPranck' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   #pod 'PureLayout'
   #pod 'AsyncDisplayKit'
-  pod 'FontAwesomeIconFactory'
+  #pod 'FontAwesomeIconFactory'
   pod 'FMDB'
   pod 'FBSDKShareKit'
   pod 'FBSDKCoreKit'
@@ -32,7 +39,8 @@ target 'PicPranck' do
   #pod 'FirebaseUI/Auth'
   #pod 'FirebaseUI/Database'
   pod 'SDWebImage'
-  
+  #pod 'RNCryptor'
+  pod 'RNCryptor-objc'
   # Pods for PicPranck
 
   target 'PicPranckTests' do
