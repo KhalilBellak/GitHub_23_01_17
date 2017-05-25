@@ -37,7 +37,8 @@ static int collectionViewMode = 0;
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2) withDarkMode:NO];
+    
     [self.collectionView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     
     
@@ -74,11 +75,17 @@ static int collectionViewMode = 0;
         if(0==button.tag)
         {
             //Replace Select by Delete (in red)
-            [button setTitle:@"Cancel"];
+            [button setImage:[UIImage imageNamed:@"cancelButton"] ];
+            //[button setTitle:@"Cancel"];
             //Replace custom button icon with trash button
             if(!_trashButton)
-                _trashButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteSelectedElements:)];
-                
+            {
+//                _trashButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteSelectedElements:)];
+                _trashButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"trashButtonNavigationBar"] style:UIBarButtonItemStylePlain target:self action:@selector(deleteSelectedElements:)];
+                UIEdgeInsets titleInsets = UIEdgeInsetsMake(0.0, -20.0, 0.0, 0.0);
+                [_trashButton setImageInsets:titleInsets];
+            }
+            
             [navigVC setTitle:@"Selected Items"];
             _trashButton.customView.frame=navigVC.leftBarButtonItem.customView.bounds;
             [navigVC setLeftBarButtonItem:_trashButton];
@@ -96,7 +103,8 @@ static int collectionViewMode = 0;
     UINavigationItem *navigVC=self.navigationItem;
     UITabBarController *tabBarVC=self.tabBarController;
     //Put back select button
-    [barButton setTitle:@"Select"];
+    [barButton setImage:[UIImage imageNamed:@"selectButton"] ];
+    //[barButton setTitle:@"Select"];
     [barButton setTintColor:self.collectionView.tintColor];
     //Title for tab
     [navigVC setTitle:@""];

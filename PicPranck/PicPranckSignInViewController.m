@@ -18,7 +18,7 @@
 @import Firebase;
 @import FirebaseAuth;
 
-#define SPACING_TO_FB_LOGIN 60
+#define SPACING_TO_FB_LOGIN 50
 typedef enum : NSUInteger {
     AuthEmail,
     AuthAnonymous,
@@ -35,12 +35,12 @@ typedef enum : NSUInteger {
 {
     [super viewDidLoad];
     _hasSegued=NO;
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2) withDarkMode:NO];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
     
-    [PicPranckCustomViewsServices setLogInButtonsDesign:_logInButton withText:@"Log In"];
-    [PicPranckCustomViewsServices setLogInButtonsDesign:_signUpButton withText:@"Sign Up"];
-    [PicPranckCustomViewsServices setLogInButtonsDesign:_forgotPassButton withText:@"Forgot Password ?"];
+    //[PicPranckCustomViewsServices setLogInButtonsDesign:_logInButton withText:@""];
+    //[PicPranckCustomViewsServices setLogInButtonsDesign:_signUpButton withText:@""];
+    //[PicPranckCustomViewsServices setLogInButtonsDesign:_forgotPassButton withText:@"Forgot Password ?"];
     
     //Customize fields
     _emailTextField.placeholder=@"Email";

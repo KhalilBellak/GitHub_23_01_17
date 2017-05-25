@@ -244,6 +244,16 @@ static int newSavedCount=0;
         [sender showMessagePrompt:@"PicPranks were already deleted !"];
         return;
     }
+    if([PicPranckEncryptionServices isFirebaseMode])
+    {
+        // Create a reference to the file to delete
+        [PicPranckEncryptionServices removeAllPicPrancks:sender];
+        
+        //Update number of PPs
+        [PicPranckEncryptionServices setNumberOfUserPicPranks:0 forceUpdateInDB:YES];
+        
+        return;
+    }
     NSManagedObjectContext *managedObjectContext=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:sender];
     // retrieve the store URL
     NSURL * storeURL = [[managedObjectContext persistentStoreCoordinator] URLForPersistentStore:[[[managedObjectContext persistentStoreCoordinator] persistentStores] lastObject]];
@@ -288,42 +298,6 @@ static int newSavedCount=0;
         }
     }];
     
-//    NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:NO];
-//    if(managedObjCtx)
-//    {
-//        NSPersistentStore *store =[managedObjCtx.persistentStoreCoordinator.persistentStores lastObject];
-//        NSError *error;
-//        NSURL *storeURL = store.URL;
-//        NSPersistentStoreCoordinator *storeCoordinator =managedObjCtx.persistentStoreCoordinator;
-//        [storeCoordinator removePersistentStore:store error:&error];
-//        [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error];
-//        if (error)
-//            [sender showMessagePrompt:error.localizedDescription];
-//        else
-//            [sender showMessagePrompt:@"PicPranks removed Successfully !"];
-//        //managedObjCtx.persistentStoreCoordinator=nil;
-//        //managedObjCtx=nil;
-//        
-//        //[managedObjCtx save:&error];
-//        AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
-//        if(appDelegate)
-//        {
-//            [appDelegate resetPersistencyObjects];
-//            [appDelegate initializePersistentStoreCoordinator];
-//            [appDelegate initializeManagedObjectContext];
-//            //Let know tab bar controller that we removed all PicPrancks have been removed
-//            if([sender isKindOfClass:[PicPranckProfileViewController class]])
-//            {
-//                PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)sender;
-//                if([ppProfileVC.tabBarController isKindOfClass:[TabBarViewController class]])
-//                {
-//                    TabBarViewController *tabBarVC=(TabBarViewController *)ppProfileVC.tabBarController;
-//                    tabBarVC.allPicPrancksRemovedMode=YES;
-//                }
-//            }
-//            
-//        }
-//    }
 }
 +(BOOL)areAllPicPrancksDeletedMode:(UIViewController *)sender
 {

@@ -42,11 +42,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //Set background image for main view
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2) withDarkMode:NO];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
 //    //Set background image for stack view (containing areas)
 //    UIImage *imgStackView=[[UIImage alloc] initWithContentsOfFile:@"blue_pastel_light.jpeg"];
 //    [areasStackView setBackgroundColor:[UIColor colorWithPatternImage:imgStackView]];
+    //Set background image for areaStack view
     
     [viewToMoveForKeyBoardAppearance bringSubviewToFront:areasStackView];
     
@@ -132,6 +133,7 @@
         [currTextView initWithDelegate:self ImageView:currImageView AndText:text];
         if(firstInitialization)
         {
+            currTextView.edited=NO;
             //Add gesture Recognizers
             UITapGestureRecognizer *tapOnce = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnce:)];
             UITapGestureRecognizer *tapTwice = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapTwice:)];

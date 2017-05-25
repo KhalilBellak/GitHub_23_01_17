@@ -9,6 +9,7 @@
 #import "UIViewController+Alerts.h"
 #import <objc/runtime.h>
 #import "PicPranckProfileViewController.h"
+#import "PicPranckNewProfileViewController.h"
 /*! @var kPleaseWaitAssociatedObjectKey
  @brief Key used to identify the "please wait" spinner associated object.
  */
@@ -95,15 +96,22 @@ NS_DESIGNATED_INITIALIZER;
     UIAlertAction* ok = [UIAlertAction actionWithTitle:okText style:UIAlertActionStyleDestructive handler:
                          ^(UIAlertAction * action) {
                              
-                             if([weakSelf isKindOfClass:[PicPranckProfileViewController class]])
+//                             if([weakSelf isKindOfClass:[PicPranckProfileViewController class]])
+//                             {
+//                                 PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)weakSelf;
+//                                 if([type isEqualToString:@"Log out"])
+//                                     [ppProfileVC logOut];
+//                                 else if([type isEqualToString:@"Remove all"])
+//                                     [ppProfileVC removeAll];
+//                             }
+                             if([weakSelf isKindOfClass:[PicPranckNewProfileViewController class]])
                              {
-                                 PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)weakSelf;
+                                 PicPranckNewProfileViewController *ppProfileVC=(PicPranckNewProfileViewController *)weakSelf;
                                  if([type isEqualToString:@"Log out"])
                                      [ppProfileVC logOut];
                                  else if([type isEqualToString:@"Remove all"])
                                      [ppProfileVC removeAll];
                              }
-                             
                              
                          }];
     [alertController addAction:cancel];

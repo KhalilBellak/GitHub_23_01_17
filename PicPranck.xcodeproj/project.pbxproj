@@ -84,6 +84,7 @@
 		F9E9EFDB1E51049900828929 /* MiddleFinger.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD81E51049900828929 /* MiddleFinger.png */; };
 		F9E9EFDC1E51049900828929 /* Settings50.png in Resources */ = {isa = PBXBuildFile; fileRef = F9E9EFD91E51049900828929 /* Settings50.png */; };
 		F9FCBFE91E4B49B70088B831 /* middle_finger_emoticon.png in Resources */ = {isa = PBXBuildFile; fileRef = F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */; };
+		F9FF3EF81ED5A7C900D71791 /* PicPranckNewProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9FF3EF71ED5A7C900D71791 /* PicPranckNewProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,6 +227,8 @@
 		F9E9EFD81E51049900828929 /* MiddleFinger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiddleFinger.png; path = Assets.xcassets/AppIcon.appiconset/MiddleFinger.png; sourceTree = "<group>"; };
 		F9E9EFD91E51049900828929 /* Settings50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Settings50.png; path = Assets.xcassets/AppIcon.appiconset/Settings50.png; sourceTree = "<group>"; };
 		F9FCBFE81E4B49B70088B831 /* middle_finger_emoticon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = middle_finger_emoticon.png; path = Assets.xcassets/AppIcon.appiconset/middle_finger_emoticon.png; sourceTree = "<group>"; };
+		F9FF3EF61ED5A7C900D71791 /* PicPranckNewProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicPranckNewProfileViewController.h; sourceTree = "<group>"; };
+		F9FF3EF71ED5A7C900D71791 /* PicPranckNewProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicPranckNewProfileViewController.m; sourceTree = "<group>"; };
 		FA65270B0F4DC4C5611207E6 /* Pods-PicPranck.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PicPranck.release.xcconfig"; path = "Pods/Target Support Files/Pods-PicPranck/Pods-PicPranck.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -320,6 +323,8 @@
 				F90147721E53586200F3069F /* PicPranckViewController.m */,
 				F9E642B41EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.h */,
 				F9E642B51EB66E6E0099087C /* PicPranckFirebaseCollectionViewController.m */,
+				F9FF3EF61ED5A7C900D71791 /* PicPranckNewProfileViewController.h */,
+				F9FF3EF71ED5A7C900D71791 /* PicPranckNewProfileViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -827,6 +832,7 @@
 				F944759D1E79F74400A9B7A9 /* PicPranckCollectionViewFlowLayout.m in Sources */,
 				F9D460F71E565EB6009B54B1 /* PicPranckImageView.m in Sources */,
 				F91C0A951E96C8FD00F7728D /* Bridge+CoreDataClass.m in Sources */,
+				F9FF3EF81ED5A7C900D71791 /* PicPranckNewProfileViewController.m in Sources */,
 				F91C0A931E96C8FD00F7728D /* SavedImage+CoreDataClass.m in Sources */,
 				F9A19DF01E34C0D500EE34E6 /* main.m in Sources */,
 				F98BD3FA1E63084300A65B8A /* PicPranckViewControllerAnimatedTransitioning.m in Sources */,

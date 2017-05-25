@@ -70,7 +70,7 @@
   
     iImageView.clipsToBounds = YES;
     iImageView.autoresizesSubviews = YES;
-    [iImageView setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
+    //[iImageView setBackgroundColor:[PicPranckImageServices getGlobalTintWithLighterFactor:-50]];
     iImageView.alpha=0.75;
     if(1==iImageView.tag)
         iImageView.alpha=1;

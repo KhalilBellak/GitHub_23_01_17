@@ -402,9 +402,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     return image;
 }
 #pragma mark Generate image for background coloring
-+(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize
++(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize withDarkMode:(BOOL)darkMode
 {
-    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:@"blue_pastel_light_iPhone.png"]];
+    NSString *imageName=@"backGroundImage";
+    if(darkMode)
+        imageName=@"backGroundImageDarker";
+    
+    PicPranckImage *ppBackGround=[[PicPranckImage alloc] initWithImage:[UIImage imageNamed:imageName]];
     return [ppBackGround imageByScalingProportionallyToSize:targetSize];
 }
 #pragma mark Colors

@@ -31,8 +31,11 @@ static NSString * const reuseIdentifier = @"profileCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2)];
+    UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2) withDarkMode:NO];
     [self.backGroungView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
+    
+    //To avoid having additional rows on last section
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     // Do any additional setup after loading the view.
     self.tableView.delegate=self;
@@ -101,13 +104,33 @@ static NSString * const reuseIdentifier = @"profileCell";
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //[cell setBackgroundColor:[UIColor blackColor]];
     
+    if(1==indexPath.section || 2==indexPath.section)
+    {
+        
+        NSString *rowTitle=@"Remove All created PicPranks";
+        if(1==indexPath.section && 1==indexPath.row)
+            rowTitle=@"Log out";
+        else if(2==indexPath.section)
+        {
+            if(0==indexPath.row)
+                rowTitle=@"Share with Facebook";
+            else if(1==indexPath.row)
+                rowTitle=@"Share with Email";
+        }
+        NSAttributedString * sectionTitleAttrString=[PicPranckCustomViewsServices getAttributedStringWithString:rowTitle withFontSize:12.0];
+        UILabel *viewWithTitle=[[UILabel alloc] initWithFrame:cell.contentView.frame];
+        [viewWithTitle setAttributedText:sectionTitleAttrString];
+        [cell.contentView addSubview:viewWithTitle];
+    }
 }
 - (void)tableView:(UITableView *)tableView
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(1==indexPath.section)
@@ -202,5 +225,22 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 //    
 //    return cell;
 //}
-
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    //[view setBackgroundColor:[UIColor blackColor]];
+    
+    if(1==section || 2==section)
+    {
+        
+        NSString *sectionTitle=@"Manage Profile";
+        if(2==section)
+            sectionTitle=@"Share with friends";
+        
+        NSAttributedString * sectionTitleAttrString=[PicPranckCustomViewsServices getAttributedStringWithString:sectionTitle withFontSize:15.0];
+        UILabel *viewWithTitle=[[UILabel alloc] initWithFrame:view.frame];
+        [viewWithTitle setAttributedText:sectionTitleAttrString];
+        
+        [view addSubview:viewWithTitle];
+    }
+}
 @end

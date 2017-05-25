@@ -29,6 +29,6 @@
 +(CGImageRef)CGImageWithCorrectOrientationFromImage:(UIImage *)image;
 +(UIImage *)rotate:(UIImage *) src  withOrientation:(UIImageOrientation) orientation;
 
-+(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize;
++(UIImage *)getImageForBackgroundColoringWithSize:(CGSize)targetSize withDarkMode:(BOOL)darkMode;
 +(UIColor *)getGlobalTintWithLighterFactor:(NSInteger)factor;
 @end

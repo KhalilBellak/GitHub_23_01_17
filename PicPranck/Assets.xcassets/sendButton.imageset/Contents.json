@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sendButton_162px_New.png",
+      "filename" : "sendButton_81px_8PTFontSize.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "sendButton_162px_New@2x.png",
+      "filename" : "sendButton_162px_8PTFontSize@2x.png",
       "scale" : "2x"
     },
     {
