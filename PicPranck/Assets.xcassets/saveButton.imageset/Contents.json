@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "saveButton_81px_8PTFontSize.png",
+      "filename" : "saveButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "saveButton_162px_8PTFontSize@2x.png",
+      "filename" : "saveButton@2x.png",
       "scale" : "2x"
     },
     {

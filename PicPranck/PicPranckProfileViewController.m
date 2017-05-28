@@ -14,11 +14,11 @@
 #import "PicPranckImageServices.h"
 #import "PicPranckCoreDataServices.h"
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <FBSDKShareKit/FBSDKShareKit.h>
+//#import <FBSDKCoreKit/FBSDKCoreKit.h>
+//#import <FBSDKLoginKit/FBSDKLoginKit.h>
+//#import <FBSDKShareKit/FBSDKShareKit.h>
 
-#import "UIImageView+AFNetworking.h"
+//#import "UIImageView+AFNetworking.h"
 
 @import Firebase;
 
@@ -53,33 +53,33 @@ static NSString * const reuseIdentifier = @"profileCell";
     [_profilePicture addSubview:activityIndic];
     [activityIndic startAnimating];
     
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        //Set User's name and picture
-        if ([FBSDKAccessToken currentAccessToken]) {
-            [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"id,name,picture.width(100).height(100)"}] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-                if (!error) {
-                    //Set User's name
-                    NSString *nameOfLoginUser = [result valueForKey:@"name"];
-                    NSAttributedString *userName;
-                    if(0<[nameOfLoginUser length])
-                        userName=[PicPranckCustomViewsServices getAttributedStringWithString:nameOfLoginUser withFontSize:19.0];
-                    else
-                        userName=[PicPranckCustomViewsServices getAttributedStringWithString:@"User Name" withFontSize:19.0];
-                    
-                    //Set Profile's picture
-                    NSString *imageStringOfLoginUser = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
-                    NSURL *url = [[NSURL alloc] initWithString:imageStringOfLoginUser];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [_profilePicture setImageWithURL:url placeholderImage: nil];
-                        [_userName setAttributedText:userName];
-                        [_userName setAlpha:1];
-                        [activityIndic stopAnimating];
-                    });
-                   
-                }
-            }];
-        }
-    });
+//    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+//        //Set User's name and picture
+//        if ([FBSDKAccessToken currentAccessToken]) {
+//            [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"id,name,picture.width(100).height(100)"}] startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+//                if (!error) {
+//                    //Set User's name
+//                    NSString *nameOfLoginUser = [result valueForKey:@"name"];
+//                    NSAttributedString *userName;
+//                    if(0<[nameOfLoginUser length])
+//                        userName=[PicPranckCustomViewsServices getAttributedStringWithString:nameOfLoginUser withFontSize:19.0];
+//                    else
+//                        userName=[PicPranckCustomViewsServices getAttributedStringWithString:@"User Name" withFontSize:19.0];
+//                    
+//                    //Set Profile's picture
+//                    NSString *imageStringOfLoginUser = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+//                    NSURL *url = [[NSURL alloc] initWithString:imageStringOfLoginUser];
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        [_profilePicture setImageWithURL:url placeholderImage: nil];
+//                        [_userName setAttributedText:userName];
+//                        [_userName setAlpha:1];
+//                        [activityIndic stopAnimating];
+//                    });
+//                   
+//                }
+//            }];
+//        }
+//    });
     
     
 }
@@ -163,11 +163,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
         }
         else if(0==indexPath.row)
         {
-            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-            content.contentTitle=[PicPranckProfileViewController getTitle];
-            content.contentDescription=[PicPranckProfileViewController getDescription];
-            content.contentURL = [NSURL URLWithString:@"http://pickprank-app.com/"];
-            [FBSDKMessageDialog showWithContent:content delegate:nil];
+//            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+//            content.contentTitle=[PicPranckProfileViewController getTitle];
+//            content.contentDescription=[PicPranckProfileViewController getDescription];
+//            content.contentURL = [NSURL URLWithString:@"http://pickprank-app.com/"];
+//            [FBSDKMessageDialog showWithContent:content delegate:nil];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -181,13 +181,13 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 }
 -(void)logOut
 {
-    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-    [loginManager logOut];
-    NSError *signOutError;
-    BOOL status = [[FIRAuth auth] signOut:&signOutError];
-    if (!status) {
-        NSLog(@"Error signing out: %@", signOutError);
-    }
+//    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//    [loginManager logOut];
+//    NSError *signOutError;
+//    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+//    if (!status) {
+//        NSLog(@"Error signing out: %@", signOutError);
+//    }
     [self performSegueWithIdentifier:@"logOut" sender:self];
 }
 -(void)removeAll

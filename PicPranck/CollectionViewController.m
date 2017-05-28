@@ -33,14 +33,15 @@ static int collectionViewMode = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Collection View "settings"
     [self.collectionView setAllowsMultipleSelection:YES];
     self.collectionView.delegate=self;
     self.collectionView.dataSource=self;
     
+    //Collection View background
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2) withDarkMode:NO];
-    
     [self.collectionView setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
-    
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -76,17 +77,16 @@ static int collectionViewMode = 0;
         {
             //Replace Select by Delete (in red)
             [button setImage:[UIImage imageNamed:@"cancelButton"] ];
-            //[button setTitle:@"Cancel"];
             //Replace custom button icon with trash button
             if(!_trashButton)
             {
-//                _trashButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteSelectedElements:)];
                 _trashButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"trashButtonNavigationBar"] style:UIBarButtonItemStylePlain target:self action:@selector(deleteSelectedElements:)];
                 UIEdgeInsets titleInsets = UIEdgeInsetsMake(0.0, -20.0, 0.0, 0.0);
                 [_trashButton setImageInsets:titleInsets];
             }
             
-            [navigVC setTitle:@"Selected Items"];
+            UIImageView *titleView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selectedElements"]];
+            [navigVC setTitleView:titleView];
             _trashButton.customView.frame=navigVC.leftBarButtonItem.customView.bounds;
             [navigVC setLeftBarButtonItem:_trashButton];
             [_trashButton setEnabled:NO];
@@ -106,8 +106,7 @@ static int collectionViewMode = 0;
     [barButton setImage:[UIImage imageNamed:@"selectButton"] ];
     //[barButton setTitle:@"Select"];
     [barButton setTintColor:self.collectionView.tintColor];
-    //Title for tab
-    [navigVC setTitle:@""];
+    [navigVC setTitleView:nil];
     //Put back custom button
     [navigVC setLeftBarButtonItem:_buttonCustomView];
     //show tab bar

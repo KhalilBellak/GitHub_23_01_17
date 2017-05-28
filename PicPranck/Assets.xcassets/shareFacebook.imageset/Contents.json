@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "facebookButton_81px_8PTFontSize.png",
+      "filename" : "facebookButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "facebookButton_162px_8PTFontSize@2x.png",
+      "filename" : "facebookButtonNew@2x.png",
       "scale" : "2x"
     },
     {

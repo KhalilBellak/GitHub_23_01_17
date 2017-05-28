@@ -171,8 +171,9 @@ static NSString * const reuseIdentifier = @"profileCell";
 - (IBAction)shareWithFBAction:(id)sender
 {
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-    content.contentTitle=[PicPranckProfileViewController getTitle];
-    content.contentDescription=[PicPranckProfileViewController getDescription];
+    //DEPRECATED
+    //content.contentTitle=[PicPranckProfileViewController getTitle];
+    //content.contentDescription=[PicPranckProfileViewController getDescription];
     content.contentURL = [NSURL URLWithString:@"http://pickprank-app.com/"];
     [FBSDKMessageDialog showWithContent:content delegate:nil];
 }

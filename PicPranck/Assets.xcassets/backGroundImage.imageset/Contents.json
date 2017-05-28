@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "blue_pastel_light_iPhone.png",
+      "filename" : "backGroundLight.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "blue_pastel_light_iPhone@2x.png",
+      "filename" : "backGroundLight@2x.png",
       "scale" : "2x"
     },
     {

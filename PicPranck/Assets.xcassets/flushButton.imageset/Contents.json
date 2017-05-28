@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "flushButton_81px_8PTFontSize.png",
+      "filename" : "flushButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "flushButton_162px_8PTFontSize@2x.png",
+      "filename" : "flushButton@2x.png",
       "scale" : "2x"
     },
     {

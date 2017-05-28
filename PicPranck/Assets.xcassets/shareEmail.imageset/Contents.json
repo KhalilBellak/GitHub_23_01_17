@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "mailButton_81px_4PTFontSize.png",
+      "filename" : "mailButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "mailButton_162px_8PTFontSize@2x.png",
+      "filename" : "mailButton@2x.png",
       "scale" : "2x"
     },
     {

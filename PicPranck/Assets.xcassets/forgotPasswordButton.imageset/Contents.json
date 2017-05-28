@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "forgotPassword_81px_65PTFontSize.png",
+      "filename" : "forgotPasswordNew.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "forgotPassword_162px_65PTFontSize@2x.png",
+      "filename" : "forgotPasswordNew@2x.png",
       "scale" : "2x"
     },
     {

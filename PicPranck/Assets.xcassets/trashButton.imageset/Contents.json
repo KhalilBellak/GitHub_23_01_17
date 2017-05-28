@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "trashButton_81px_8PTFontSize.png",
+      "filename" : "trashButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "trashButton_162px_8PTFontSize@2x.png",
+      "filename" : "trashButton@2x.png",
       "scale" : "2x"
     },
     {

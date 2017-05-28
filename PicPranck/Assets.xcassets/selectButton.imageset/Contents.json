@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "selectButton_66px.png",
+      "filename" : "selectButton@2x-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "selectButton_black_132px@2x.png",
+      "filename" : "selectButton@2x.png",
       "scale" : "2x"
     },
     {

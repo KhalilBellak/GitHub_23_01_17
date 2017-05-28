@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "shareLabel_220px_45PTFontSize.png",
+      "filename" : "shareLabel.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shareLabel_440px_45PTFontSize@2x.png",
+      "filename" : "shareLabel@2x.png",
       "scale" : "2x"
     },
     {

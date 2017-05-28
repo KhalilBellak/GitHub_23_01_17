@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "manageProfileLabel_220px_45PT.png",
+      "filename" : "manageProfile.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "manageProfileLabel_440px_45PTFontSize@2x.png",
+      "filename" : "manageProfile@2x.png",
       "scale" : "2x"
     },
     {

@@ -6,19 +6,20 @@
 //  Copyright © 2017 El Khalil Bellakrid. All rights reserved.
 //
 
+//View controllers
 #import "PicPranckSignInViewController.h"
 #import "PicPranckEmailSignInViewController.h"
 #import "UIViewController+Alerts.h"
+//Services
 #import "PicPranckImageServices.h"
 #import "PicPranckCustomViewsServices.h"
 #import "PicPranckEncryptionServices.h"
-
+//Other Frameworks
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 @import Firebase;
 @import FirebaseAuth;
 
-#define SPACING_TO_FB_LOGIN 50
 typedef enum : NSUInteger {
     AuthEmail,
     AuthAnonymous,
@@ -26,45 +27,100 @@ typedef enum : NSUInteger {
 } AuthProvider;
 
 @interface PicPranckSignInViewController ()
-
+@property BOOL hasSegued;
 @end
 
+#pragma mark -
 @implementation PicPranckSignInViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
     _hasSegued=NO;
+    
+    //BackGround
     UIImage *imgBackground=[PicPranckImageServices getImageForBackgroundColoringWithSize:CGSizeMake(self.view.frame.size.width/2,self.view.frame.size.height/2) withDarkMode:NO];
+    //UIImage *imgBackground=[UIImage imageNamed:@"backGroundImage"];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:imgBackground]];
+
+    //Customize text fields
+    //[self customizeTextFields];
     
-    //[PicPranckCustomViewsServices setLogInButtonsDesign:_logInButton withText:@""];
-    //[PicPranckCustomViewsServices setLogInButtonsDesign:_signUpButton withText:@""];
-    //[PicPranckCustomViewsServices setLogInButtonsDesign:_forgotPassButton withText:@"Forgot Password ?"];
-    
-    //Customize fields
-    _emailTextField.placeholder=@"Email";
-    _passwordTextField.placeholder=@"Password";
-    UIToolbar *customKeyboard=[self getCustomizedKeyboard];
-    _emailTextField.inputAccessoryView=customKeyboard;
-    _passwordTextField.inputAccessoryView=customKeyboard;
-    
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    CGPoint center=CGPointMake(_forgotPassButton.center.x,_forgotPassButton.center.y+SPACING_TO_FB_LOGIN);
-    loginButton.center = center;
-    [self.view addSubview:loginButton];
-    
-    UIView *gestureView=[[UIView alloc] init];
-    gestureView.frame=loginButton.frame;
-    [self.view addSubview:gestureView];
-    [self.view bringSubviewToFront:gestureView];
-    UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
-    [tapGR setNumberOfTapsRequired:1];
-    [gestureView addGestureRecognizer:tapGR];
-    gestureView.tag=0;
+//    //Customize facebook button
+//    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+//    CGPoint center=CGPointMake(_facebookButton.center.x,_facebookButton.center.y);
+//    loginButton.center = center;
+//    [self.view addSubview:loginButton];
+//    
+//    
+//    UIView *gestureView=[[UIView alloc] init];
+//    gestureView.frame=loginButton.frame;
+//    [self.view addSubview:gestureView];
+//    [self.view bringSubviewToFront:gestureView];
+//    UITapGestureRecognizer *tapGR=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+//    [tapGR setNumberOfTapsRequired:1];
+//    [gestureView addGestureRecognizer:tapGR];
+//    gestureView.tag=0;
 }
--(UIToolbar *)getCustomizedKeyboard
-{
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
+#pragma Layout and appearance
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    //Prevent from rotating
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+-(void)switchMode {
+
+    [_facebookButton setHidden:[_containerEmailLogInView isHidden]];
+    [_emailButton setHidden:[_containerEmailLogInView isHidden]];
+    
+    [_containerEmailLogInView setHidden:![_containerEmailLogInView isHidden]];
+    
+    if(![_containerEmailLogInView isHidden])
+    {
+        [self customizeTextFields];
+        [self.view bringSubviewToFront:_containerEmailLogInView];
+        [self.view sendSubviewToBack:_facebookButton];
+        [self.view sendSubviewToBack:_emailButton];
+    }
+    else
+    {
+        [self.view sendSubviewToBack:_containerEmailLogInView];
+        [self.view bringSubviewToFront:_facebookButton];
+        [self.view bringSubviewToFront:_emailButton];
+    }
+}
+
+- (IBAction)backToMainLogInView:(id)sender {
+    [self switchMode];
+}
+
+-(void)customizeTextFields{
+    UIToolbar *customKeyboard=[self getCustomizedKeyboard];
+    
+    _emailTextField.placeholder=@"Email";
+    _emailTextField.inputAccessoryView=customKeyboard;
+    
+    _passwordTextField.placeholder=@"Password";
+    _passwordTextField.inputAccessoryView=customKeyboard;
+}
+
+-(UIToolbar *)getCustomizedKeyboard{
     UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
     [keyboardToolbar sizeToFit];
     UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
@@ -76,22 +132,15 @@ typedef enum : NSUInteger {
     keyboardToolbar.items = @[flexBarButton, doneBarButton];
     return keyboardToolbar;
 }
--(void)doneButtonPressed
-{
+
+-(void)doneButtonPressed{
     if(_emailTextField.isEditing)
         [_emailTextField endEditing:YES];
     else if(_passwordTextField.isEditing)
         [_passwordTextField endEditing:YES];
 }
--(UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    //Prevent from rotating
-    return UIInterfaceOrientationMaskPortrait;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+#pragma Firebase Authentification
 
 - (void)firebaseLoginWithCredential:(FIRAuthCredential *)credential {
     [self showSpinner:^{
@@ -133,8 +182,8 @@ typedef enum : NSUInteger {
         }
     }];
 }
-- (void)showAuthPicker: (NSArray<NSNumber *>*) providers
-{
+
+- (void)showAuthPicker: (NSArray<NSNumber *>*) providers {
     for (NSNumber *provider in providers) {
         switch (provider.unsignedIntegerValue) {
             case AuthEmail:
@@ -187,63 +236,55 @@ typedef enum : NSUInteger {
         }
     }
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
--(void)didTap:(id)sender
-{
-    if([sender isKindOfClass:[UITapGestureRecognizer class]])
-    {
-        //UITapGestureRecognizer *tapGest=(UITapGestureRecognizer *)sender;
-        //UIView *gestureView=tapGest.view;
-        NSMutableArray *providers = [@[@(AuthFacebook)] mutableCopy];
-        // Remove any existing providers. Note that this is not a complete list of
-        // providers, so always check the documentation for a complete reference:
-        // https://firebase.google.com/docs/auth
-        //TODO: To uncomment when finishing testing
-        
-        for (id<FIRUserInfo> userInfo in [FIRAuth auth].currentUser.providerData) {
-            if ([userInfo.providerID isEqualToString:FIRFacebookAuthProviderID]) {
-                [providers removeObject:@(AuthFacebook)];
-                //TODO: WARNING TO REMOVE AFTER FINISHING TESTS
-                FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-                [loginManager logOut];
-                NSError *signOutError;
-                BOOL status = [[FIRAuth auth] signOut:&signOutError];
-                if (!status) {
-                    NSLog(@"Error signing out: %@", signOutError);
-                }
-                [providers addObject:@(AuthFacebook)];
-            }
-        }
-        [self showAuthPicker:providers];
-//        if(0==gestureView.tag)
-//        {
-//            [self showAuthPicker:providers];
-//            gestureView.tag=1;
-//        }
-//        else
-//        {
-//            FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-//            [loginManager logOut];
-//            gestureView.tag=0;
-//            NSError *signOutError;
-//            BOOL status = [[FIRAuth auth] signOut:&signOutError];
-//            if (!status) {
-//                NSLog(@"Error signing out: %@", signOutError);
-//                return;
+//-(void)didTap:(id)sender
+//{
+//    if([sender isKindOfClass:[UITapGestureRecognizer class]])
+//    {
+//        NSMutableArray *providers = [@[@(AuthFacebook)] mutableCopy];
+//        for (id<FIRUserInfo> userInfo in [FIRAuth auth].currentUser.providerData) {
+//            if ([userInfo.providerID isEqualToString:FIRFacebookAuthProviderID]) {
+//                [providers removeObject:@(AuthFacebook)];
+//                //TODO: WARNING TO REMOVE AFTER FINISHING TESTS
+//                FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//                [loginManager logOut];
+//                NSError *signOutError;
+//                BOOL status = [[FIRAuth auth] signOut:&signOutError];
+//                if (!status) {
+//                    NSLog(@"Error signing out: %@", signOutError);
+//                }
+//                [providers addObject:@(AuthFacebook)];
 //            }
 //        }
-    }
+//        [self showAuthPicker:providers];
+////        if(0==gestureView.tag)
+////        {
+////            [self showAuthPicker:providers];
+////            gestureView.tag=1;
+////        }
+////        else
+////        {
+////            FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+////            [loginManager logOut];
+////            gestureView.tag=0;
+////            NSError *signOutError;
+////            BOOL status = [[FIRAuth auth] signOut:&signOutError];
+////            if (!status) {
+////                NSLog(@"Error signing out: %@", signOutError);
+////                return;
+////            }
+////        }
+//    }
+//}
+
+#pragma mark Handling Email Log In and Sign In
+
+- (IBAction)logInWithEmail:(id)sender{
+    [self switchMode];
 }
-#pragma mark Handling Email Sign In
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
     [self.view endEditing:YES];
 }
 
@@ -300,12 +341,38 @@ typedef enum : NSUInteger {
          }];
      }];
 }
-- (IBAction)didCreateAccount:(id)sender
-{
-    //[self performSegueWithIdentifier:@"signUp" sender:self];
+
+- (IBAction)didCreateAccount:(id)sender {
+    
     PicPranckEmailSignInViewController *ppEmailVC=[self.storyboard instantiateViewControllerWithIdentifier:@"EmailSignUpViewController"];
     ppEmailVC.modalPresentationStyle=UIModalPresentationFormSheet;
     ppEmailVC.modalTransitionStyle=UIModalTransitionStyleCrossDissolve;
     [self presentViewController:ppEmailVC animated:YES completion:nil];
 }
+
+#pragma mark Handling Facebook Log In
+- (IBAction)logInWithFacebook:(id)sender
+{
+    NSMutableArray *providers = [@[@(AuthFacebook)] mutableCopy];
+    
+//    for (id<FIRUserInfo> userInfo in [FIRAuth auth].currentUser.providerData)
+//    {
+//        if ([userInfo.providerID isEqualToString:FIRFacebookAuthProviderID])
+//        {
+//            [providers removeObject:@(AuthFacebook)];
+//            //TODO: WARNING TO REMOVE AFTER FINISHING TESTS
+//            FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+//            [loginManager logOut];
+//            NSError *signOutError;
+//            BOOL status = [[FIRAuth auth] signOut:&signOutError];
+//            if (!status) {
+//                NSLog(@"Error signing out: %@", signOutError);
+//            }
+//            [providers addObject:@(AuthFacebook)];
+//        }
+//    }
+    [self showAuthPicker:providers];
+}
+
+
 @end

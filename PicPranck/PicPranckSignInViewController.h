@@ -9,6 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @interface PicPranckSignInViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UIButton *facebookButton;
+- (IBAction)logInWithFacebook:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *emailButton;
+- (IBAction)logInWithEmail:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
+- (IBAction)backToMainLogInView:(id)sender;
+
+
+@property (strong, nonatomic) IBOutlet UIView *containerEmailLogInView;
+
+
 @property (strong, nonatomic) IBOutlet UITextField *emailTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -20,5 +34,4 @@
 - (IBAction)didCreateAccount:(id)sender;
 - (IBAction)didRequestPasswordReset:(id)sender;
 
-@property BOOL hasSegued;
 @end

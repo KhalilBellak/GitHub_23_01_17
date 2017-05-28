@@ -20,33 +20,50 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.20.0):
+  - FBSDKCoreKit (4.23.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.20.0):
+  - FBSDKLoginKit (4.23.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.20.0):
+  - FBSDKShareKit (4.23.0):
     - FBSDKCoreKit
-  - Firebase/Auth (3.14.0):
+  - Firebase/Auth (4.0.0):
     - Firebase/Core
-    - FirebaseAuth (= 3.1.1)
-  - Firebase/Core (3.14.0):
-    - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.1)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
-    - FirebaseInstanceID (~> 1.0)
+    - FirebaseAuth (= 4.0.0)
+  - Firebase/Core (4.0.0):
+    - FirebaseAnalytics (= 4.0.0)
+    - FirebaseCore (= 4.0.0)
+  - Firebase/Database (4.0.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.0.0)
+  - Firebase/Storage (4.0.0):
+    - Firebase/Core
+    - FirebaseStorage (= 2.0.0)
+  - FirebaseAnalytics (4.0.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseAuth (3.1.1):
-    - FirebaseAnalytics (~> 3.7)
+  - FirebaseAuth (4.0.0):
+    - FirebaseAnalytics (~> 4.0)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.5.1):
+  - FirebaseCore (4.0.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.9)
+  - FirebaseDatabase (4.0.0):
+    - FirebaseAnalytics (~> 4.0)
+  - FirebaseInstanceID (2.0.0):
+    - FirebaseCore (~> 4.0)
+  - FirebaseStorage (2.0.0):
+    - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Database (4.0.0):
+    - Firebase/Database
+  - FirebaseUI/Storage (4.0.0):
+    - Firebase/Storage
+    - SDWebImage (~> 4.0)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - FontAwesomeIconFactory (2.1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -57,7 +74,11 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
-  - GTMSessionFetcher/Core (1.1.8)
+  - GTMSessionFetcher/Core (1.1.10)
+  - RNCryptor-objc (3.0.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
 
 DEPENDENCIES:
   - AFNetworking
@@ -66,25 +87,34 @@ DEPENDENCIES:
   - FBSDKShareKit
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
+  - Firebase/Storage
+  - FirebaseUI/Database
+  - FirebaseUI/Storage
   - FMDB
-  - FontAwesomeIconFactory
+  - RNCryptor-objc
+  - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: 2d16979b28fe28c2b95af0d275ad5f9703c6c8de
-  FBSDKLoginKit: a9d9391506c687e2304a590bf9312837fce7f375
-  FBSDKShareKit: 1b91af62a603d67f392bc7fde63bc4a0705dde31
-  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
-  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
-  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
+  FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
+  FBSDKShareKit: 65751c3b9937ab9d594e6c37611ecc115ceeb448
+  Firebase: 284eea779b73fdff309791817da7c68bff8dd572
+  FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
+  FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
+  FirebaseCore: 85ad466044c2f013cdb167f85d426d15b128114a
+  FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
+  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
+  FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  FirebaseUI: b9de05bfb4768db05f64ea90fc2f6a07b819118f
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  FontAwesomeIconFactory: bb9ce26d3dd13044854a82d380023c8e7d3ebf1a
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  RNCryptor-objc: 6d18b2e4297c8f4a71a295492366313a3245d0ae
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: 9c930e50b6ef9b92d26e1fa2e5a6215ced00a525
+PODFILE CHECKSUM: 791c076f81e3c9f5f9271f9808b63975c2cc5f44
 
 COCOAPODS: 1.2.0

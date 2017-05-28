@@ -25,7 +25,7 @@
     
     if([[FIRAuth auth] currentUser])
     {
-        //[PicPranckEncryptionServices getNumberOfUserPicPranks:YES];
+        [PicPranckEncryptionServices getNumberOfUserPicPranks:YES];
         [PicPranckEncryptionServices getOrCreateSaltyKey:[[FIRAuth auth] currentUser]];
         [PicPranckEncryptionServices getPassword];
         
