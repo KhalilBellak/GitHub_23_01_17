@@ -60,14 +60,10 @@ static int newSavedCount=0;
     {
         AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
         moc=[appDelegate managedObjectContext];
-        if(moc && viewController)
-        {
-            if([viewController.tabBarController isKindOfClass:[TabBarViewController class]])
-            {
-                TabBarViewController *tabBarVC=(TabBarViewController *)viewController.tabBarController;
-                tabBarVC.allPicPrancksRemovedMode=NO;
-            }
-        }
+        
+        TabBarViewController *tabBarVC=[PicPranckCoreDataServices getTabBarVCFromVC:viewController];
+        if(moc && tabBarVC)
+            tabBarVC.allPicPrancksRemovedMode=NO;
     }
     return moc;
 }
@@ -76,25 +72,30 @@ static int newSavedCount=0;
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (ViewController *)viewController
 {
     bool forceRest=FALSE;
+    
+    TabBarViewController *tabBarVC=[PicPranckCoreDataServices getTabBarVCFromVC:viewController];
+    
     if([PicPranckEncryptionServices isFirebaseMode])
     {
         NSInteger nbOfSavedPP=[PicPranckEncryptionServices getNumberOfUserPicPranks:NO];
-        [PicPranckEncryptionServices createStorageForImages:listOfImages withNumberOfPicPranks:nbOfSavedPP fromViewController:viewController];
+        
+        NSInteger countOfSavedPP=[PicPranckEncryptionServices getCountOfUserPicPranks];
+        
+        [PicPranckEncryptionServices createStorageForImages:listOfImages withNumberOfPicPranks:countOfSavedPP fromViewController:viewController];
         //Let user know that save was successful
         [viewController showMessagePrompt:@"PickPranck saved !"];
         //Increment nb of saved PP in database
         [PicPranckEncryptionServices setNumberOfUserPicPranks:++nbOfSavedPP forceUpdateInDB:YES];
+        if(tabBarVC)
+            tabBarVC.allPicPrancksRemovedMode=NO;
         return;
 
     }
     if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:viewController])
     {
-        if([viewController.tabBarController isKindOfClass:[TabBarViewController class]])
-        {
-            TabBarViewController *tabBarVC=(TabBarViewController *)viewController.tabBarController;
-            forceRest=tabBarVC.allPicPrancksRemovedMode;
+        forceRest=tabBarVC.allPicPrancksRemovedMode;
+        if(tabBarVC)
             tabBarVC.allPicPrancksRemovedMode=NO;
-        }
     }
     NSManagedObjectContext *managedObjCtx=[PicPranckCoreDataServices managedObjectContext:forceRest fromViewController:viewController];
     if(managedObjCtx)
@@ -148,6 +149,15 @@ static int newSavedCount=0;
         
     }
 }
+
++(TabBarViewController *)getTabBarVCFromVC:(UIViewController *)vc {
+    TabBarViewController *result=nil;
+    if(vc && [vc.tabBarController isKindOfClass:[TabBarViewController class]]) {
+            result=(TabBarViewController *)vc.tabBarController;
+    }
+    return result;
+}
+
 //+(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index
 //{
 //    if(!imgView)
@@ -237,28 +247,29 @@ static int newSavedCount=0;
         [managedObjCtx deleteObject:objectToDelete];
     count--;
 }
-+(void)removeAllImages:(UIViewController *)sender
-{
-    if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:sender])
-    {
++(void)removeAllImages:(UIViewController *)sender {
+    
+    //In case we already performed a flush
+    if([PicPranckCoreDataServices areAllPicPrancksDeletedMode:sender]) {
         [sender showMessagePrompt:@"PicPranks were already deleted !"];
         return;
     }
-    if([PicPranckEncryptionServices isFirebaseMode])
-    {
-        // Create a reference to the file to delete
+    
+    //If Firebase mode instead of CoreData
+    if([PicPranckEncryptionServices isFirebaseMode]) {
         [PicPranckEncryptionServices removeAllPicPrancks:sender];
-        
-        //Update number of PPs
-        [PicPranckEncryptionServices setNumberOfUserPicPranks:0 forceUpdateInDB:YES];
-        
         return;
     }
-    NSManagedObjectContext *managedObjectContext=[PicPranckCoreDataServices managedObjectContext:NO fromViewController:sender];
+    
+    NSManagedObjectContext *managedObjectContext=[PicPranckCoreDataServices managedObjectContext:NO
+                                                                              fromViewController:sender];
     // retrieve the store URL
     NSURL * storeURL = [[managedObjectContext persistentStoreCoordinator] URLForPersistentStore:[[[managedObjectContext persistentStoreCoordinator] persistentStores] lastObject]];
+    
     // lock the current context
     //[managedObjectContext lock];
+    
+    //Perform Delete
     [managedObjectContext performBlock:^{
         NSError * error;
         [managedObjectContext reset];//to drop pending changes
@@ -287,11 +298,9 @@ static int newSavedCount=0;
                 if([sender isKindOfClass:[PicPranckProfileViewController class]])
                 {
                     PicPranckProfileViewController *ppProfileVC=(PicPranckProfileViewController *)sender;
-                    if([ppProfileVC.tabBarController isKindOfClass:[TabBarViewController class]])
-                    {
-                        TabBarViewController *tabBarVC=(TabBarViewController *)ppProfileVC.tabBarController;
+                    TabBarViewController *tabBarVC=[PicPranckCoreDataServices getTabBarVCFromVC:ppProfileVC];
+                    if(tabBarVC)
                         tabBarVC.allPicPrancksRemovedMode=YES;
-                    }
                 }
                 
             }

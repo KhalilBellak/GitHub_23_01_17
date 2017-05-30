@@ -12,6 +12,7 @@
 #import "PicPranckImageServices.h"
 #import "PicPranckViewControllerAnimatedTransitioning.h"
 #import "PicPranckButton.h"
+#import "PicPranckCollectionViewCell.h"
 #import "ViewController.h"
 #import "PicPranckCollectionViewController.h"
 #import "AvailablePicPranckCollectionViewController.h"
@@ -74,26 +75,35 @@
     else if([vc isKindOfClass:[PicPranckFirebaseCollectionViewController class]])
     {
         PicPranckFirebaseCollectionViewController *vcFireBasePPVC=(PicPranckFirebaseCollectionViewController *)vc;
-        if(index<[[vcFireBasePPVC listOfKeys] count])
+        
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:index inSection:0];
+        PicPranckCollectionViewCell *ppCell=(PicPranckCollectionViewCell *)[vcFireBasePPVC.collectionView cellForItemAtIndexPath:indexPath];
+       
+        if(ppCell)
         {
-            NSString *key=[[vcFireBasePPVC listOfKeys] objectAtIndex:index];
+            NSString *key=ppCell.pictureName;
             NSArray *arrayOfNSURL=[[vcFireBasePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
-            for(NSURL *url in arrayOfNSURL)
+            if(arrayOfNSURL)
             {
-                NSData *data=[NSData dataWithContentsOfURL:url];
-                UIImage *image=[[UIImage alloc] initWithData:data];
-                [arrayOfImages addObject:image];
+                for(NSURL *url in arrayOfNSURL)
+                {
+                    NSData *data=[NSData dataWithContentsOfURL:url];
+                    UIImage *image=[[UIImage alloc] initWithData:data];
+                    [arrayOfImages addObject:image];
+                }
             }
-//            for(NSString *stringUrl in arrayOfNSURL)
+        }
+//        if(index<[[vcFireBasePPVC listOfKeys] count])
+//        {
+//            NSString *key=[[vcFireBasePPVC listOfKeys] objectAtIndex:index];
+//            NSArray *arrayOfNSURL=[[vcFireBasePPVC dicoNSURLOfAvailablePickPranks] objectForKey:key];
+//            for(NSURL *url in arrayOfNSURL)
 //            {
-//                NSData *data=[NSData dataWithContentsOfFile:stringUrl];
-//                
+//                NSData *data=[NSData dataWithContentsOfURL:url];
 //                UIImage *image=[[UIImage alloc] initWithData:data];
-//                if(!image) continue;
-//                
 //                [arrayOfImages addObject:image];
 //            }
-        }
+//        }
         
     }
     //Get frame

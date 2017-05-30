@@ -23,6 +23,12 @@
                              didFinishLaunchingWithOptions:launchOptions];
     [FIRApp configure];
     
+//    ///WARNING FOR TEST///
+//    if([[FIRAuth auth] currentUser]) {
+//        NSError *signOutError;
+//        [[FIRAuth auth] signOut:&signOutError];
+//    }
+//    /////////////////////
     if([[FIRAuth auth] currentUser])
     {
         [PicPranckEncryptionServices getNumberOfUserPicPranks:YES];

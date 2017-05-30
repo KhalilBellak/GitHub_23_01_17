@@ -193,12 +193,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 -(void)removeAll
 {
     [PicPranckCoreDataServices removeAllImages:self];
+    
+    TabBarViewController *tabBarVC=[PicPranckCoreDataServices getTabBarVCFromVC:self];
     //Let know other views that we've just wiped out all data (to re-initialize MOC)
-    if([self.tabBarController isKindOfClass:[TabBarViewController class]])
-    {
-        TabBarViewController *tabBarVC=(TabBarViewController *)self.tabBarController;
+    if(tabBarVC)
         tabBarVC.allPicPrancksRemovedMode=YES;
-    }
 }
 +(NSString *)getTitle
 {

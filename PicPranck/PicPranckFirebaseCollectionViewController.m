@@ -25,14 +25,14 @@
 static NSString * const reuseIdentifier = @"Cell";
 @synthesize storage=_storage;
 @synthesize dicoNSURLOfAvailablePickPranks=_dicoNSURLOfAvailablePickPranks;
-@synthesize listOfKeys=_listOfKeys;
+//@synthesize listOfKeys=_listOfKeys;
 @synthesize availablePPRef=_availablePPRef;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.nbOfItems=0;
     _dicoNSURLOfAvailablePickPranks=[[NSMutableDictionary alloc] init];
-    _listOfKeys=[[NSMutableArray alloc] init];
+//    _listOfKeys=[[NSMutableArray alloc] init];
     //Firebase Storage
     _storage=[FIRStorage storageWithURL:@"gs://picpranck.appspot.com"];
     FIRStorageReference *storageRef = [_storage reference];
@@ -78,12 +78,14 @@ static NSString * const reuseIdentifier = @"Cell";
     PicPranckCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
                                                                                   forIndexPath:indexPath];
     [cell.activityIndic startAnimating];
-    
-    NSString *pictureName=object.value;
+    cell.pictureName=object.value;
+    //NSString *pictureName=object.value;
     
     NSString *extension=@"png";
     
-    NSString *pathToPreview=[NSString stringWithFormat:@"PicPranck_%ld",(long)indexPath.row];
+    //NSString *pathToPreview=[NSString stringWithFormat:@"PicPranck_%ld",(long)indexPath.row];
+    
+    NSString *pathToPreview=object.value;
     NSMutableArray *arrayOfURLs=[[NSMutableArray alloc] init];
     
     //Create local directory to cache images
@@ -104,7 +106,7 @@ static NSString * const reuseIdentifier = @"Cell";
     else if([[NSFileManager defaultManager] fileExistsAtPath:pathToCachedImagePreview isDirectory:nil])
     {
         //If already cached set preview in cell
-        NSArray *arrayOfNSURL=[_dicoNSURLOfAvailablePickPranks objectForKey:pictureName];
+        NSArray *arrayOfNSURL=[_dicoNSURLOfAvailablePickPranks objectForKey:pathToPreview];
         if(arrayOfNSURL && 1<[arrayOfNSURL count])
         {
             NSData *data=[NSData dataWithContentsOfURL:[arrayOfNSURL objectAtIndex:1]];
@@ -126,7 +128,7 @@ static NSString * const reuseIdentifier = @"Cell";
                            //Get a path to picture of type nameOfPicture/nameOfPicture_i.extension
                            NSString *currRelativeImagePath=[NSString stringWithFormat: @"image_%d.%@",i-1,extension];
                            NSString *currImagePath=[NSString stringWithFormat:@"%@/%@", pathToPreview,currRelativeImagePath];
-                           UIImage *placeholderImage=[UIImage imageNamed:@"simple_fuck_no_back.png"];
+                           //UIImage *placeholderImage=[UIImage imageNamed:@"simple_fuck_no_back.png"];
                            FIRStorageReference *element = [self.availablePPRef child:currImagePath];
                            
                            // Create local filesystem URL
@@ -177,11 +179,11 @@ static NSString * const reuseIdentifier = @"Cell";
                        }
                        if(3==[arrayOfURLs count])
                        {
-                           [_dicoNSURLOfAvailablePickPranks setValue:arrayOfURLs forKey:pictureName];
-                           if(indexPath.row<=[_listOfKeys count])
-                               [_listOfKeys insertObject:pictureName atIndex:indexPath.row];
-                           else
-                               [_listOfKeys addObject:pictureName];
+                           [_dicoNSURLOfAvailablePickPranks setValue:arrayOfURLs forKey:pathToPreview];
+//                           if(indexPath.row<=[_listOfKeys count])
+//                               [_listOfKeys insertObject:pathToPreview atIndex:indexPath.row];
+//                           else
+//                               [_listOfKeys addObject:pathToPreview];
                            
                        }
                        
@@ -199,6 +201,26 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     //To be implemented by subclasses
     return reuseIdentifier;
+}
+-(void)deleteSelectedElements:(id)sender
+{
+    //Sort
+    NSSortDescriptor* sortOrder = [NSSortDescriptor sortDescriptorWithKey: @"self"
+                                                                ascending: YES];
+    [self.selectedIndices sortedArrayUsingDescriptors: [NSArray arrayWithObject: sortOrder]];
+    
+    //Array of PPs Name to delete
+    NSMutableArray *folderNamesToDelete=[[NSMutableArray alloc] init];
+    for(id row in self.selectedIndices)
+    {
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:[row integerValue] inSection:0];
+        PicPranckCollectionViewCell *currCell=(PicPranckCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        [folderNamesToDelete addObject:currCell.pictureName];
+    }
+    [PicPranckEncryptionServices removePicPrancks:self withNames:folderNamesToDelete];
+    [self.selectedIndices removeAllObjects];
+    [self backToInitialStateFromBarButtonItem:self.selectButton];
+    
 }
 /*
  #pragma mark - Navigation

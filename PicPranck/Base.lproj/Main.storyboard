@@ -495,7 +495,6 @@
                                         </constraints>
                                         <state key="normal" image="forgotPasswordButton"/>
                                         <connections>
-                                            <action selector="didCreateAccount:" destination="wN9-nN-o3Q" eventType="touchUpInside" id="qhK-we-EHd"/>
                                             <action selector="didRequestPasswordReset:" destination="wN9-nN-o3Q" eventType="touchUpInside" id="P8D-DQ-kHD"/>
                                         </connections>
                                     </button>
@@ -811,7 +810,7 @@
         <image name="shareFacebook" width="81" height="81"/>
         <image name="shareLabel" width="220" height="50"/>
         <image name="signUpButton" width="81" height="81"/>
-        <image name="simple_fuck_with_logo_no_background.png" width="500" height="500"/>
+        <image name="simple_fuck_with_logo_no_background.png" width="120" height="120"/>
         <image name="trashButton" width="81" height="81"/>
     </resources>
     <inferredMetricsTieBreakers>

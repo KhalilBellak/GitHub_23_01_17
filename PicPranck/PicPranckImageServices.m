@@ -32,7 +32,7 @@
         //[dict setValue:[NSValue valueWithCGSize:CGSizeMake(600, 400)]
         //[dict setValue:[NSValue valueWithCGSize:CGSizeMake(800,900)]
                        forKey:@"iMessage"];
-        [dict setValue:[NSValue valueWithCGSize:CGSizeMake(500, 500)]
+        [dict setValue:[NSValue valueWithCGSize:CGSizeMake(400, 400)]
                 forKey:@"Preview"];
     }
     return dict;

@@ -18,6 +18,6 @@
 @property (strong, nonatomic) FUICollectionViewDataSource *dataSource;
 @property FIRStorageReference *availablePPRef;
 @property (strong, nonatomic) NSMutableDictionary *dicoNSURLOfAvailablePickPranks;
-@property (strong,nonatomic) NSMutableArray *listOfKeys;
+//@property (strong,nonatomic) NSMutableArray *listOfKeys;
 @property NSInteger nbOfItems;
 @end

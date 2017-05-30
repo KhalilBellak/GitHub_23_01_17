@@ -13,6 +13,7 @@
 #import "PicPranckImageView.h"
 
 @implementation PicPranckCollectionViewCell
+@synthesize pictureName=_pictureName;
 - (PicPranckImageView *) imageViewInCell
 {
     //self.layer.shouldRasterize = YES;
@@ -33,6 +34,7 @@
     
     return _imageViewInCell;
 }
+
 -(UIActivityIndicatorView *)activityIndic
 {
     if(!_activityIndic)

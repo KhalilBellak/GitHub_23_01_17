@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class ViewController;
+@class TabBarViewController;
 //@class PicPranckCollectionViewController;
 @class PicPranckCollectionViewCell;
 @class SavedImage;
@@ -24,7 +25,7 @@
 //+(NSInteger)nbOfSavedPicPrancks;
 
 +(void)uploadImages:(NSArray *)listOfImages withViewController: (UIViewController *)viewController;
-
++(TabBarViewController *)getTabBarVCFromVC:(UIViewController *)vc;
 //+(void)addThumbnailInImageView:(UIImageView *)imgView withIndex:(NSInteger)index;
 
 +(id)retrieveDataAtIndex:(NSInteger)index withType:(NSString *)type;
